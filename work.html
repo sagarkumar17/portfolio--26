@@ -192,7 +192,10 @@
     @media (max-width: 640px) {
       .projects-grid { grid-template-columns: 1fr; }
       .pcard--hero, .pcard--featured { grid-column: span 1; flex-direction: column; }
-      .pcard--hero .pcard__thumb { width: 100%; height: 260px; }
+      .pcard--hero .pcard__thumb { width: 100%; height: 220px; min-height: unset; }
+      .pcard--hero { flex-direction: column; min-height: unset; }
+      .pcard--hero .pcard__body { padding: 24px 20px; width: 100%; box-sizing: border-box; }
+      .pcard { flex-direction: column; }
     }
 
   </style>
@@ -279,7 +282,7 @@
         </a>
 
         <!-- ROW 3 — Jio AIOP (full-width) -->
-        <a href="project-jio-welfare.html" class="pcard reveal" data-tags="b2b b2c" style="grid-column: span 3;">
+        <a href="project-jio-welfare.html" class="pcard pcard--fullwidth reveal" data-tags="b2b b2c" style="grid-column: span 3;">
           <div class="pcard__thumb pcard__thumb--b2b">
             <div class="pcard__thumb-label">JIO</div>
             <div class="pcard__thumb-overlay"></div>
