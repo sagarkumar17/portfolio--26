@@ -1389,6 +1389,12 @@ body::before {
   [style*="grid-template-columns:1fr 1fr"],
   [style*="grid-template-columns: 1fr 1.4fr"],
   [style*="grid-template-columns:1fr 1.4fr"],
+  [style*="grid-template-columns: auto 1fr"],
+  [style*="grid-template-columns:auto 1fr"],
+  [style*="grid-template-columns: 64px 1fr"],
+  [style*="grid-template-columns:64px 1fr"],
+  [style*="grid-template-columns: 200px 1fr"],
+  [style*="grid-template-columns:200px 1fr"],
   [style*="grid-template-columns: repeat(2, 1fr)"],
   [style*="grid-template-columns:repeat(2, 1fr)"],
   [style*="grid-template-columns:repeat(2,1fr)"],
@@ -1397,6 +1403,15 @@ body::before {
   [style*="grid-template-columns:repeat(3,1fr)"] {
     grid-template-columns: 1fr !important;
   }
+  /* Persona card class-based overrides */
+  .cs-persona,
+  .cn-persona,
+  .kd-cjm__persona { grid-template-columns: 1fr !important; }
+  /* Persona header flex → wrap on mobile */
+  .psu-persona__header,
+  .aiop-persona__hdr,
+  .pu-persona__hdr,
+  .pp-persona__header { flex-wrap: wrap; }
   /* 4+ col grids → 2 col (keeps swatches/icons readable) */
   [style*="grid-template-columns: repeat(4, 1fr)"],
   [style*="grid-template-columns:repeat(4, 1fr)"],
