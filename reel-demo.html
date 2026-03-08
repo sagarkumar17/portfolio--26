@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scrolling Reel — Demo</title>
+  <style>
+    /* ─── REEL COMPONENT ───────────────────────────────────── */
+
+    .sk-reel-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      /* subtle fade edges */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Click-to-pause pill indicator */
+    .sk-reel-wrap::after {
+      content: '⏸ Click to pause';
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: rgba(8, 8, 15, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: rgba(255,255,255,0.85);
+      font-family: 'JetBrains Mono', 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .sk-reel-wrap:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0px);
+    }
+    .sk-reel-wrap.is-paused::after {
+      content: '▶ Click to play';
+      opacity: 1;
+      transform: translateX(-50%) translateY(0px);
+    }
+
+    /* The scrolling track — duplicated for seamless loop */
+    .sk-reel-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      animation: sk-reel-scroll 36s linear infinite;
+      will-change: transform;
+    }
+    .sk-reel-track.is-paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes sk-reel-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Individual frame card */
+    .sk-reel-frame {
+      flex-shrink: 0;
+      width: 340px;      /* ← adjust to your screenshot width */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      background: #14141e;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sk-reel-frame:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 36px rgba(0,0,0,0.55);
+    }
+    .sk-reel-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+      /* prevent tiny gap under img */
+      vertical-align: bottom;
+    }
+
+    /* Tall variant for mobile screens (portrait) */
+    .sk-reel-frame.is-tall {
+      width: 200px;
+    }
+
+    /* ─── DEMO PAGE STYLES (not part of the component) ───── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #08080f;
+      color: #e8e8f0;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      padding: 60px 0;
+    }
+    .demo-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .demo-section {
+      margin-bottom: 56px;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-label">Scrolling Reel — Demo</div>
+
+  <!-- ─── REEL 1: Landscape / Desktop screens ───────────────── -->
+  <div class="demo-section">
+    <h2>Landscape screens (desktop)</h2>
+
+    <div class="sk-reel-wrap" id="reel1">
+      <div class="sk-reel-track" id="track1">
+
+        <!-- ★ SLOT YOUR IMAGES HERE — paste real <img> tags below -->
+        <!-- Each .sk-reel-frame is one screenshot card -->
+
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%2310846d'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 01%3C/text%3E%3C/svg%3E" alt="Screen 1"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%230c6150'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 02%3C/text%3E%3C/svg%3E" alt="Screen 2"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%23094b3e'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 03%3C/text%3E%3C/svg%3E" alt="Screen 3"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%2341a18d'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 04%3C/text%3E%3C/svg%3E" alt="Screen 4"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%23dbb429'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 05%3C/text%3E%3C/svg%3E" alt="Screen 5"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%23e2c354'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 06%3C/text%3E%3C/svg%3E" alt="Screen 6"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%23ef4444'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EScreen 07%3C/text%3E%3C/svg%3E" alt="Screen 7"/>
+        </div>
+
+        <!-- ★ ADD MORE .sk-reel-frame cards above this line -->
+
+      </div><!-- /track -->
+    </div><!-- /wrap -->
+  </div>
+
+  <!-- ─── REEL 2: Mixed — portrait + landscape ──────────────── -->
+  <div class="demo-section">
+    <h2>Mixed portrait + landscape (mobile + web)</h2>
+
+    <div class="sk-reel-wrap" id="reel2">
+      <div class="sk-reel-track" id="track2">
+
+        <div class="sk-reel-frame is-tall">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='700' viewBox='0 0 400 700'%3E%3Crect width='400' height='700' fill='%2310846d'/%3E%3Ctext x='200' y='360' text-anchor='middle' fill='white' font-size='18' font-family='system-ui' opacity='0.6'%3EMobile 01%3C/text%3E%3C/svg%3E" alt="Mobile 1"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%230c6150'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EDesktop 01%3C/text%3E%3C/svg%3E" alt="Desktop 1"/>
+        </div>
+        <div class="sk-reel-frame is-tall">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='700' viewBox='0 0 400 700'%3E%3Crect width='400' height='700' fill='%23dbb429'/%3E%3Ctext x='200' y='360' text-anchor='middle' fill='white' font-size='18' font-family='system-ui' opacity='0.6'%3EMobile 02%3C/text%3E%3C/svg%3E" alt="Mobile 2"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%23094b3e'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EDesktop 02%3C/text%3E%3C/svg%3E" alt="Desktop 2"/>
+        </div>
+        <div class="sk-reel-frame is-tall">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='700' viewBox='0 0 400 700'%3E%3Crect width='400' height='700' fill='%23ef4444'/%3E%3Ctext x='200' y='360' text-anchor='middle' fill='white' font-size='18' font-family='system-ui' opacity='0.6'%3EMobile 03%3C/text%3E%3C/svg%3E" alt="Mobile 3"/>
+        </div>
+        <div class="sk-reel-frame">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='680' height='420' viewBox='0 0 680 420'%3E%3Crect width='680' height='420' fill='%2341a18d'/%3E%3Ctext x='340' y='220' text-anchor='middle' fill='white' font-size='22' font-family='system-ui' opacity='0.6'%3EDesktop 03%3C/text%3E%3C/svg%3E" alt="Desktop 3"/>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * sk-reel — infinite scrolling image reel
+     * ----------------------------------------
+     * 1. Duplicates all frames so the loop is seamless
+     * 2. Click wrap to pause / resume
+     * 3. Respects prefers-reduced-motion
+     */
+    function initReel(wrapId, trackId) {
+      const wrap  = document.getElementById(wrapId);
+      const track = document.getElementById(trackId);
+      if (!wrap || !track) return;
+
+      // ── Duplicate slides for seamless loop ──────────────────
+      const originals = Array.from(track.children);
+      originals.forEach(el => track.appendChild(el.cloneNode(true)));
+
+      // ── Respect prefers-reduced-motion ──────────────────────
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mq.matches) {
+        track.style.animationPlayState = 'paused';
+        return;
+      }
+
+      // ── Click to toggle pause / play ────────────────────────
+      let paused = false;
+      wrap.addEventListener('click', () => {
+        paused = !paused;
+        track.classList.toggle('is-paused', paused);
+        wrap.classList.toggle('is-paused', paused);
+      });
+    }
+
+    initReel('reel1', 'track1');
+    initReel('reel2', 'track2');
+  </script>
+
+</body>
+</html>

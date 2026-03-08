@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jio Home App — Sagar Kumar</title>
+  <meta name="description" content="Redesigning the core booking and onboarding flow for Jio's home broadband customer app."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Back -->
+  <div style="padding-top:calc(var(--nav-h) + 48px);padding-bottom:0;">
+    <div class="container">
+      <a href="work.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);transition:color 200ms ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+    </div>
+  </div>
+
+  <!-- PROJECT HERO -->
+  <section style="padding:40px 0 60px;">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2C · Mobile App · Jio Platforms · 2024</div>
+      <h1 class="proj-title reveal reveal-delay-1">Jio Home App</h1>
+      <p class="proj-sub reveal reveal-delay-2" style="margin-top:20px;">Redesigning the core booking and onboarding flow for Jio's home broadband customer app.</p>
+
+      <!-- Meta -->
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">Product Designer</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Client</div>
+          <div class="proj-meta__v">Jio Platforms</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Platform</div>
+          <div class="proj-meta__v">iOS · Android</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Team</div>
+          <div class="proj-meta__v">2 Designers · 8 Engineers</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Duration</div>
+          <div class="proj-meta__v">6 Months · 2024</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DESIGNS -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Main banner — replace src="" with your screenshot path ── -->
+      <div class="proj-visuals__banner" style="background:linear-gradient(135deg,#0e0a18,#1a0a08);">
+        <div class="proj-visuals__glow" style="--proj-glow-color:rgba(255,92,46,0.18);"></div>
+        <div class="proj-visuals__placeholder">
+          <span class="proj-visuals__mark" style="color:rgba(255,92,46,0.9);">JIO</span>
+          <span class="proj-visuals__hint" style="color:rgba(255,92,46,0.5);">Add project visuals here</span>
+        </div>
+        <img src="" alt="Jio Home — final design" loading="lazy">
+      </div>
+
+      <!-- ── Optional extra rows — uncomment to add more screens ───
+      <div class="proj-visuals__grid">
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0e0a18,#1a0a08);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio Home — screen 2" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0e0a18,#1a0a08);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio Home — screen 3" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-visuals__row proj-visuals__row--3">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0e0a18,#1a0a08);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio Home — screen 4" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0e0a18,#1a0a08);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio Home — screen 5" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0e0a18,#1a0a08);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio Home — screen 6" loading="lazy">
+          </div>
+        </div>
+      </div>
+      ── end optional rows ── -->
+
+    </div>
+  </section>
+  <!-- PROCESS -->
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="section-label reveal">Design Process</div>
+      <div class="process-flow reveal reveal-delay-1">
+        <div class="process-step done"><div class="process-step__num">01</div><div class="process-step__label">Discover</div><div class="process-step__desc">Research · Audit</div></div>
+        <div class="process-step done"><div class="process-step__num">02</div><div class="process-step__label">Define</div><div class="process-step__desc">Insights · HMW</div></div>
+        <div class="process-step done"><div class="process-step__num">03</div><div class="process-step__label">Ideate</div><div class="process-step__desc">Sketches · Concepts</div></div>
+        <div class="process-step done"><div class="process-step__num">04</div><div class="process-step__label">Design</div><div class="process-step__desc">Wireframes · Hi-fi</div></div>
+        <div class="process-step done"><div class="process-step__num">05</div><div class="process-step__label">Test</div><div class="process-step__desc">Usability · Iterate</div></div>
+        <div class="process-step done"><div class="process-step__num">06</div><div class="process-step__label">Ship</div><div class="process-step__desc">Launch · Measure</div></div>
+      </div>
+
+      <!-- Problem & Research -->
+      <div class="cs-body reveal" style="margin-top:48px;">
+        <div>
+          <h3 class="cs-h">The Problem</h3>
+          <p class="cs-p">Jio's home broadband app had a fragmented booking and account management experience. Customers were calling support for tasks that should have been self-serve. The onboarding flow had a 52% completion rate — nearly half of new customers couldn't finish setup without help.</p>
+        </div>
+        <div>
+          <h3 class="cs-h">Research Approach</h3>
+          <p class="cs-p">15 user interviews with new Jio Home customers. Session replay analysis of 500+ onboarding sessions. Key finding: customers were getting lost at the address verification step — the third screen — and abandoning.</p>
+          <div class="insight-box">
+            <div class="insight-box__label">Key Insight</div>
+            <p>Users weren't confused by the form — they were anxious about commitment. They wanted to know what came next before they entered their address. The flow needed to show the full journey upfront, not hide it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Define & Design -->
+      <div class="cs-body reveal" style="margin-top:60px;">
+        <div>
+          <h3 class="cs-h">Defining the Challenge</h3>
+          <p class="cs-p">HMW: "How might we make new customers feel confident about what they're signing up for at every step of the onboarding?" Redesigned the information architecture to show a persistent progress indicator and next-step preview.</p>
+        </div>
+        <div>
+          <h3 class="cs-h">Design Decisions</h3>
+          <p class="cs-p">Progressive onboarding with 3-step summary visible before starting, persistent progress bar, address validation inline (not on a separate screen), and a real-time engineer assignment step that made the process feel human.</p>
+        </div>
+      </div>
+
+      <!-- Outcomes -->
+      <div style="margin-top:60px;" class="reveal">
+        <div class="section-label">Outcomes</div>
+        <div class="outcome-metrics">
+          <div class="outcome-metric"><div class="outcome-metric__num">20%</div><div class="outcome-metric__label">Improvement in user efficiency on core workflows</div></div>
+          <div class="outcome-metric"><div class="outcome-metric__num">35%</div><div class="outcome-metric__label">Reduction in support ticket volume post-launch</div></div>
+          <div class="outcome-metric"><div class="outcome-metric__num">4.2 → 4.6</div><div class="outcome-metric__label">App store rating improvement</div></div>
+        </div>
+      </div>
+
+      <!-- Reflection -->
+      <div style="margin-top:48px;" class="reveal">
+        <div class="insight-box" style="background:var(--bg-elevated);border-color:var(--border-strong);border-left-color:var(--text-2);">
+          <div class="insight-box__label" style="color:var(--text-2);">What I'd Do Differently</div>
+          <p>The engineer assignment feature — showing a real person's name and estimated arrival — was the highest-impact single design change. Human signals in digital processes dramatically reduce anxiety. I'd apply this principle much earlier in future projects.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

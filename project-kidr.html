@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KIID Repository — Document Intelligence · Sagar Kumar</title>
+  <meta name="description" content="A centralised, searchable document hub for fund managers — replacing scattered drives and email chains with a structured compliance-grade repository."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    :root {
+      --proj-accent: #1B9ABA;
+      --kd-blue:   #1B9ABA;
+      --kd-teal:   #62E1E3;
+      --kd-dark:   #1B3A4B;
+      --kd-green:  #22C55E;
+      --kd-amber:  #F59E0B;
+      --kd-red:    #EF4444;
+    }
+    @keyframes iconPop { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
+
+    /* ── Section rhythm ── */
+    .kd-sec { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .kd-sec:last-of-type { border-bottom: none; }
+    .kd-sec--alt { background: var(--bg-card); }
+
+    /* ── Eyebrow + headings ── */
+    .kd-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--kd-blue); margin-bottom: 10px; }
+    .kd-h2 { font-family: var(--font-display); font-size: clamp(26px,3.5vw,42px); font-weight: 800; letter-spacing: -0.025em; color: var(--text-1); line-height: 1.1; margin-bottom: 16px; }
+    .kd-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+    .kd-h3 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+
+    /* ── 2 / 3 col grids ── */
+    .kd-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .kd-3col { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .kd-4col { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    @media(max-width:900px){ .kd-2col,.kd-3col { grid-template-columns:1fr; } .kd-4col { grid-template-columns:1fr 1fr; } }
+    @media(max-width:520px){ .kd-4col { grid-template-columns:1fr; } }
+
+    /* ── Problem principle cards ── */
+    .kd-principle { padding: 22px 20px; border-radius: var(--r-xl); background: var(--kd-blue); color: #fff; display: flex; flex-direction: column; gap: 10px; }
+    .kd-principle__icon { width: 36px; height: 36px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .kd-principle__label { font-size: 14px; font-weight: 600; line-height: 1.4; }
+
+    /* ── Team cards ── */
+    .kd-team { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    @media(max-width:900px){ .kd-team { grid-template-columns: repeat(2,1fr); } }
+    .kd-team-card { padding: 22px 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); text-align: center; }
+    .kd-team-card__avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; margin: 0 auto 12px; animation: iconPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .kd-team-card__avatar:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(27,154,186,0.3); }
+    .kd-team-card__name { font-size: 14px; font-weight: 600; color: var(--text-1); line-height: 1.3; }
+    .kd-team-card__role { font-size: 11px; color: var(--kd-blue); font-family: var(--font-mono); margin-top: 4px; letter-spacing: 0.05em; }
+
+    /* ── My Role list ── */
+    .kd-role-list { display: flex; flex-direction: column; gap: 12px; }
+    .kd-role-item { display: flex; gap: 16px; padding: 18px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-lg); border-left: 3px solid var(--kd-blue); }
+    .kd-role-item__num { font-family: var(--font-mono); font-size: 11px; color: var(--kd-blue); flex-shrink: 0; letter-spacing: 0.08em; margin-top: 2px; }
+    .kd-role-item__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Double Diamond ── */
+    .kd-diamond { display: grid; grid-template-columns: repeat(6,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; margin-bottom: 40px; }
+    @media(max-width:960px){ .kd-diamond { grid-template-columns: repeat(3,1fr); } }
+    @media(max-width:560px){ .kd-diamond { grid-template-columns: repeat(2,1fr); } }
+    .kd-diamond-phase { padding: 20px 18px; border-right: 1px solid var(--border); }
+    .kd-diamond-phase:last-child { border-right: none; }
+    @media(max-width:960px){ .kd-diamond-phase:nth-child(3) { border-right: none; } }
+    .kd-diamond-phase__dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 12px; }
+    .kd-diamond-phase__tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+    .kd-diamond-phase__name { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .kd-diamond-phase__roles { font-size: 11px; color: var(--text-3); margin-bottom: 8px; font-style: italic; line-height: 1.5; }
+    .kd-diamond-phase__output { font-size: 11px; color: var(--text-2); line-height: 1.55; }
+
+    /* ── Scrum strip ── */
+    .kd-scrum { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media(max-width:700px){ .kd-scrum { grid-template-columns: 1fr 1fr; } }
+    .kd-scrum-cell { padding: 18px 16px; border-right: 1px solid var(--border); text-align: center; background: var(--bg-card); }
+    .kd-scrum-cell:last-child { border-right: none; }
+    .kd-scrum-cell__label { font-size: 11px; font-weight: 700; color: var(--text-1); margin-bottom: 4px; }
+    .kd-scrum-cell__sub { font-size: 11px; color: var(--text-3); font-family: var(--font-mono); }
+
+    /* ── Research sticky notes ── */
+    .kd-notes { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    @media(max-width:800px){ .kd-notes { grid-template-columns: repeat(2,1fr); } }
+    .kd-note { padding: 16px 14px; border-radius: var(--r-lg); min-height: 88px; display: flex; flex-direction: column; gap: 6px; transition: transform 0.2s ease; cursor: default; }
+    .kd-note:hover { transform: translateY(-3px) rotate(0.5deg); }
+    .kd-note__cat { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .kd-note__text { font-size: 12px; line-height: 1.55; }
+
+    /* ── Benchmark cards (not table) ── */
+    .kd-bench-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    @media(max-width:700px){ .kd-bench-grid { grid-template-columns: 1fr; } }
+    .kd-bench-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .kd-bench-card__hdr { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--border); background: var(--bg-elevated); }
+    .kd-bench-card__logo { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: #fff; flex-shrink: 0; }
+    .kd-bench-card__name { font-size: 14px; font-weight: 700; color: var(--text-1); }
+    .kd-bench-card__body { padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+    .kd-bench-card__point { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .kd-bench-card__bullet { width: 6px; height: 6px; border-radius: 50%; background: var(--kd-blue); flex-shrink: 0; margin-top: 5px; }
+    .kd-bench-caption { font-size: 13px; color: var(--text-3); text-align: center; margin-top: 20px; font-style: italic; }
+
+    /* ── Stakeholder questions ── */
+    .kd-question-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:700px){ .kd-question-grid { grid-template-columns: 1fr; } }
+    .kd-question { padding: 20px 22px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); }
+    .kd-question__num { font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--kd-blue); opacity: 0.25; line-height: 1; margin-bottom: 8px; letter-spacing: -0.04em; }
+    .kd-question__text { font-size: 13px; color: var(--text-2); line-height: 1.65; font-style: italic; }
+
+    /* ── Stakeholder insights ── */
+    .kd-insights { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+    @media(max-width:700px){ .kd-insights { grid-template-columns: 1fr; } }
+    .kd-insight { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); }
+    .kd-insight__num { width: 32px; height: 32px; border-radius: 50%; background: var(--kd-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; font-weight: 800; flex-shrink: 0; }
+    .kd-insight__text { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+    /* ── CJM table ── */
+    .kd-cjm-wrap { overflow-x: auto; }
+    .kd-cjm { min-width: 840px; width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; font-size: 12px; }
+    .kd-cjm thead th { padding: 10px 14px; background: var(--kd-blue); color: #fff; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-right: 1px solid rgba(255,255,255,0.15); text-align: left; font-weight: 500; }
+    .kd-cjm thead th:last-child { border-right: none; }
+    .kd-cjm tbody tr:nth-child(odd) { background: var(--bg-card); }
+    .kd-cjm tbody tr:nth-child(even) { background: var(--bg-elevated); }
+    .kd-cjm td { padding: 12px 14px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; line-height: 1.55; }
+    .kd-cjm td:last-child { border-right: none; }
+    .kd-cjm tr:last-child td { border-bottom: none; }
+    .kd-cjm td:first-child { font-weight: 700; color: var(--text-1); font-size: 11px; white-space: nowrap; }
+    .kd-cjm__persona { display: flex; align-items: center; gap: 14px; padding: 20px 22px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); margin-bottom: 24px; }
+    .kd-cjm__avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--kd-blue); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 20px; font-weight: 700; font-family: var(--font-display); }
+    .kd-cjm__name { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--text-1); margin-bottom: 2px; }
+    .kd-cjm__name span { color: var(--kd-blue); }
+    .kd-cjm__role { font-size: 12px; color: var(--text-3); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 6px; }
+    .kd-cjm__bio { font-size: 13px; color: var(--text-2); line-height: 1.6; max-width: 520px; }
+    .kd-cjm__quote { margin-left: auto; padding: 14px 18px; background: var(--kd-blue); color: #fff; border-radius: var(--r-lg); font-size: 13px; font-style: italic; max-width: 220px; text-align: center; line-height: 1.5; flex-shrink: 0; }
+    .kd-feeling { font-size: 16px; }
+
+    /* ── IA flowchart ── */
+    .kd-ia-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; overflow-x: auto; }
+    .kd-ia { min-width: 720px; }
+    .kd-ia-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 0; }
+    .kd-ia-branch { display: flex; flex-direction: column; gap: 0; }
+    .kd-ia-node { padding: 8px 14px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--text-1); text-align: center; white-space: nowrap; border: 1px solid var(--border); background: var(--bg-elevated); min-width: 90px; }
+    .kd-ia-node--root { background: var(--kd-blue); color: #fff; border-color: var(--kd-blue); font-size: 12px; padding: 10px 18px; }
+    .kd-ia-node--l1 { background: rgba(27,154,186,0.12); border-color: rgba(27,154,186,0.35); color: var(--text-1); font-size: 11px; font-weight: 700; }
+    .kd-ia-node--l2 { background: var(--bg-elevated); font-size: 10px; color: var(--text-2); min-width: 80px; padding: 6px 10px; }
+    .kd-ia-node--l3 { background: var(--bg-base); font-size: 10px; color: var(--text-3); border-style: dashed; min-width: 70px; padding: 5px 8px; }
+    .kd-ia-vline { width: 1px; background: var(--border); margin: 0 auto; }
+    .kd-ia-hflex { display: flex; gap: 8px; align-items: flex-start; }
+    .kd-ia-connector { display: flex; align-items: center; padding-top: 12px; }
+    .kd-ia-connector__h { height: 1px; width: 24px; background: var(--border); }
+    .kd-ia-tree { display: flex; flex-direction: column; gap: 6px; }
+    .kd-ia-l1-group { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+    .kd-ia-indent { padding-left: 24px; display: flex; flex-direction: column; gap: 4px; border-left: 1px solid var(--border); margin-left: 12px; padding-top: 4px; padding-bottom: 4px; }
+    .kd-ia-indent2 { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; border-left: 1px solid var(--border); margin-left: 12px; padding-top: 4px; }
+
+    /* ── User Flows ── */
+    .kd-flow-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kd-blue); margin-bottom: 12px; margin-top: 28px; }
+    .kd-flow-label:first-child { margin-top: 0; }
+    .kd-flow-tree { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 24px 28px; }
+    .kd-flow-root { display: inline-block; padding: 8px 20px; background: var(--kd-blue); color: #fff; border-radius: 6px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+    .kd-flow-branches { display: flex; gap: 12px; flex-wrap: wrap; position: relative; padding-left: 0; }
+    .kd-flow-branch { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+    .kd-flow-node { padding: 7px 14px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--text-1); text-align: center; white-space: nowrap; }
+    .kd-flow-node--leaf { font-size: 11px; color: var(--text-2); background: var(--bg-base); border-style: dashed; padding: 5px 10px; }
+    .kd-flow-node--end { background: var(--kd-green); color: #fff; border-color: var(--kd-green); font-size: 11px; }
+    .kd-flow-vl { width: 1px; height: 14px; background: var(--border); }
+    .kd-flow-hl { height: 1px; background: var(--border); align-self: flex-start; width: 100%; }
+    .kd-flow-row { display: flex; gap: 8px; align-items: flex-start; }
+    .kd-flow-row--centered { align-items: center; }
+
+    /* ── Wireframe mockups ── */
+    .kd-wire-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    @media(max-width:800px){ .kd-wire-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:520px){ .kd-wire-grid { grid-template-columns: 1fr; } }
+    .kd-wire { border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .kd-wire__chrome { height: 26px; background: var(--bg-elevated); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 5px; padding: 0 10px; }
+    .kd-wire__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
+    .kd-wire__body { padding: 14px; background: var(--bg-card); min-height: 160px; display: flex; flex-direction: column; gap: 8px; }
+    .kd-wire__bar { height: 10px; background: var(--border); border-radius: 3px; opacity: 0.6; }
+    .kd-wire__block { background: var(--border); border-radius: 3px; opacity: 0.5; }
+    .kd-wire__row { display: flex; gap: 6px; }
+    .kd-wire__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); padding: 8px 14px; background: var(--bg-elevated); border-top: 1px solid var(--border); text-align: center; }
+
+    /* ── Solution approach ── */
+    .kd-solution-list { display: flex; flex-direction: column; gap: 14px; }
+    .kd-solution-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-lg); }
+    .kd-solution-item__num { font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--kd-blue); opacity: 0.2; line-height: 1; flex-shrink: 0; min-width: 32px; }
+    .kd-solution-item__text { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-top: 4px; }
+
+    /* ── Design System ── */
+    .kd-ds-sub { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 14px; margin-top: 32px; }
+    .kd-ds-sub:first-child { margin-top: 0; }
+    .kd-colors { display: flex; gap: 12px; flex-wrap: wrap; }
+    .kd-color { display: flex; flex-direction: column; gap: 6px; }
+    .kd-color__swatch { width: 80px; height: 80px; border-radius: var(--r-lg); border: 1px solid rgba(0,0,0,0.1); }
+    .kd-color__name { font-size: 12px; font-weight: 600; color: var(--text-1); }
+    .kd-color__hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); }
+    .kd-color__ratio { font-family: var(--font-mono); font-size: 10px; color: var(--kd-blue); }
+    .kd-type-scale { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .kd-type-row { display: flex; align-items: baseline; gap: 16px; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--bg-card); }
+    .kd-type-row:last-child { border-bottom: none; }
+    .kd-type-row__label { font-family: var(--font-mono); font-size: 9px; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; min-width: 52px; flex-shrink: 0; }
+    .kd-components { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 22px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); }
+    .kc-btn { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: default; border: none; }
+    .kc-btn--primary { background: var(--kd-blue); color: #fff; }
+    .kc-btn--hover { background: #16829e; color: #fff; }
+    .kc-btn--focused { background: var(--kd-dark); color: #fff; }
+    .kc-btn--disabled { background: var(--bg-elevated); color: var(--text-3); border: 1px solid var(--border); }
+    .kc-chip { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-family: var(--font-mono); }
+    .kc-chip--active { background: rgba(27,154,186,0.12); color: var(--kd-blue); border: 1px solid rgba(27,154,186,0.3); }
+    .kc-chip--neutral { background: var(--bg-elevated); color: var(--text-2); border: 1px solid var(--border); }
+    .kc-badge { padding: 3px 8px; border-radius: 4px; font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.06em; }
+    .kc-badge--ok { background: rgba(34,197,94,0.12); color: #16A34A; border: 1px solid rgba(34,197,94,0.25); }
+    .kc-badge--warn { background: rgba(245,158,11,0.12); color: #B45309; border: 1px solid rgba(245,158,11,0.25); }
+    .kc-badge--err { background: rgba(239,68,68,0.12); color: #DC2626; border: 1px solid rgba(239,68,68,0.25); }
+
+    /* ── Visual screen mockups ── */
+    .kd-screen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media(max-width:800px){ .kd-screen-grid { grid-template-columns: 1fr; } }
+    .kd-screen { border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .kd-screen__chrome { height: 30px; background: var(--bg-elevated); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 5px; padding: 0 12px; }
+    .kd-screen__dot { width: 8px; height: 8px; border-radius: 50%; }
+    .kd-screen__url { flex: 1; height: 11px; background: var(--border); border-radius: 20px; max-width: 240px; margin-left: 8px; opacity: 0.5; }
+    .kd-screen__layout { display: flex; min-height: 220px; }
+    .kd-screen__sidebar { width: 44px; background: rgba(27,154,186,0.08); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 10px 0; gap: 8px; flex-shrink: 0; }
+    .kd-screen__icon { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .kd-screen__icon--active { background: var(--kd-blue); }
+    .kd-screen__icon--off { background: var(--bg-elevated); }
+    .kd-screen__main { flex: 1; padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; background: var(--bg-card); }
+    .kd-screen__hdr-row { display: flex; justify-content: space-between; align-items: center; }
+    .kd-screen__title-block { height: 13px; background: var(--border); border-radius: 3px; }
+    .kd-screen__btn-block { height: 22px; border-radius: 6px; background: var(--kd-blue); opacity: 0.7; }
+    .kd-screen__bar { height: 9px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 3px; }
+    .kd-screen__tag-row { display: flex; gap: 5px; }
+    .kd-screen__tag { padding: 2px 8px; border-radius: 10px; font-size: 9px; background: rgba(27,154,186,0.12); color: var(--kd-blue); font-family: var(--font-mono); }
+    .kd-screen__table-hdr { display: flex; gap: 6px; padding: 5px 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 5px; }
+    .kd-screen__table-row { display: flex; gap: 6px; padding: 7px 8px; border: 1px solid var(--border); border-radius: 5px; background: var(--bg-card); }
+    .kd-screen__cell { height: 8px; background: var(--border); border-radius: 3px; }
+    .kd-screen__dot-status { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 1px; }
+    .kd-screen__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); text-align: center; padding: 10px; background: var(--bg-elevated); border-top: 1px solid var(--border); }
+    .kd-screen__desc { margin-top: 10px; font-size: 12px; color: var(--text-2); line-height: 1.6; padding: 0 4px; }
+    .kd-screen__num { font-family: var(--font-mono); font-size: 10px; color: var(--kd-blue); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+    .kd-screen__wrap { }
+
+    /* ── Stat strip ── */
+    .kd-stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; margin-bottom: 32px; }
+    .kd-stat { padding: 28px 24px; border-right: 1px solid var(--border); text-align: center; background: var(--bg-card); }
+    .kd-stat:last-child { border-right: none; }
+    .kd-stat__num { font-family: var(--font-display); font-size: clamp(28px,4vw,44px); font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+    .kd-stat__label { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="proj-back-wrap"><div class="container"><a href="work.html" class="proj-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>All Work</a></div></div>
+
+  <!-- HERO -->
+  <section class="proj-hero-section">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2B SaaS · FinTech · Compliance · 2023</div>
+      <h1 class="proj-title reveal">KIID Repository<br><em>Document Intelligence</em></h1>
+      <p class="proj-sub reveal">A centralised, searchable document hub for fund managers — replacing scattered drives and email chains with a structured compliance-grade repository powered by intelligent search (iKE) and automated audit trails.</p>
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell"><div class="proj-meta__k">Client</div><div class="proj-meta__v">Morgan Stanley (FinTech SaaS)</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">My Role</div><div class="proj-meta__v">Lead UX/UI Designer</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Platform</div><div class="proj-meta__v">Web SaaS</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Duration</div><div class="proj-meta__v">4 Months · 2023</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Focus</div><div class="proj-meta__v">Compliance · Search UX · IA</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL DESIGNS -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Visual Designs</div>
+
+      <!-- ── Main banner ── -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#06141e;width:100%;">
+        <img src="img/kiid_banner.jpg" alt="KIID — Document Intelligence Repository" loading="lazy" style="width:100%;height:auto;display:block;">
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <!-- PROBLEM STATEMENT -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">01 — Problem Statement</div>
+      <h2 class="kd-h2 reveal">What problem are we solving?</h2>
+      <p class="kd-p reveal" style="max-width:760px;margin-bottom:32px;">Interactive commentary to enhance client &amp; Financial advisor collaboration on documents. Global distribution of the Digital file Repository with multiple channels. Overview analysis capabilities of all the Global Repositories. Encrypted cloud based document storage &amp; sharing between the Client and Financial Advisor in a central location.</p>
+      <div class="kd-4col reveal">
+        <div class="kd-principle">
+          <div class="kd-principle__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="kd-principle__label">From the user's perspective</div>
+        </div>
+        <div class="kd-principle">
+          <div class="kd-principle__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="kd-principle__label">Keep it broad</div>
+        </div>
+        <div class="kd-principle">
+          <div class="kd-principle__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="kd-principle__label">Who, what, where, and why</div>
+        </div>
+        <div class="kd-principle">
+          <div class="kd-principle__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="kd-principle__label">Make it manageable</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOAL -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">02 — Goal</div>
+      <h2 class="kd-h2 reveal">What are we building towards?</h2>
+      <div class="kd-2col reveal">
+        <div>
+          <p class="kd-p">The goal is to understand the current landscape &amp; help in-house users analyze and segregate the importance of repository counts and data. To design a Repository management portal considering reducing cognitive load. To provide a modern customer experience to various modules of the organization.</p>
+          <p class="kd-p" style="margin-top:16px;">The KIID and/or KID contain essential information and key facts about the UCITS fund aimed at helping investors make informed investment decisions about whether the particular fund meets their needs.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid var(--kd-blue);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:var(--kd-blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Outcome 1</div>
+            <div style="font-size:14px;color:var(--text-2);">Centralised repository for KIID/KID documents with easy management &amp; access for administrators</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid var(--kd-teal);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:var(--kd-teal);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Outcome 2</div>
+            <div style="font-size:14px;color:var(--text-2);">Dynamic, intelligent iKE search to surface documents in under 30 seconds</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid var(--kd-green);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:var(--kd-green);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Outcome 3</div>
+            <div style="font-size:14px;color:var(--text-2);">Automated alerts for document updates, expirations &amp; DLM task management</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR TEAM -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">03 — Our Team</div>
+      <h2 class="kd-h2 reveal">Who built this</h2>
+      <div class="kd-team reveal">
+        <div class="kd-team-card">
+          <div class="kd-team-card__avatar" style="background:var(--kd-blue);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <div class="kd-team-card__name">4 Designers</div>
+          <div class="kd-team-card__role">Offshore Team</div>
+        </div>
+        <div class="kd-team-card">
+          <div class="kd-team-card__avatar" style="background:var(--kd-teal);animation-delay:0.08s;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <div class="kd-team-card__name">1 Designer</div>
+          <div class="kd-team-card__role">Onshore</div>
+        </div>
+        <div class="kd-team-card">
+          <div class="kd-team-card__avatar" style="background:var(--kd-amber);animation-delay:0.16s;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="kd-team-card__name">2 Product Owners</div>
+          <div class="kd-team-card__role">Product Leadership</div>
+        </div>
+        <div class="kd-team-card">
+          <div class="kd-team-card__avatar" style="background:var(--kd-dark);animation-delay:0.24s;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div class="kd-team-card__name">Infosys Dev Team</div>
+          <div class="kd-team-card__role">Engineering</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY ROLE -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">04 — My Role</div>
+      <h2 class="kd-h2 reveal">What I led</h2>
+      <div class="kd-role-list reveal">
+        <div class="kd-role-item">
+          <div class="kd-role-item__num">01</div>
+          <div class="kd-role-item__text">Understand the current environment/product, analyse the gaps through Heuristic evaluation.</div>
+        </div>
+        <div class="kd-role-item">
+          <div class="kd-role-item__num">02</div>
+          <div class="kd-role-item__text">Build a design strategy based on user needs &amp; business goals.</div>
+        </div>
+        <div class="kd-role-item">
+          <div class="kd-role-item__num">03</div>
+          <div class="kd-role-item__text">Manage feedback loops with the key stakeholders &amp; visualise the product.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN PROCESS -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">05 — Design Process</div>
+      <h2 class="kd-h2 reveal">Double Diamond + Scrum</h2>
+      <p class="kd-p reveal" style="max-width:680px;margin-bottom:32px;">Applied the Double Diamond diverge–converge framework with a focus on Purpose (the outcome), People (the involvement) and Process (the flow) — running within 2-week Scrum sprints from Product Backlog through to Build Increment and MVP.</p>
+
+      <!-- 6-phase diamond -->
+      <div class="kd-diamond reveal">
+        <div class="kd-diamond-phase">
+          <div class="kd-diamond-phase__dot" style="background:#3C8CFF;"></div>
+          <div class="kd-diamond-phase__tag">Phase 01</div>
+          <div class="kd-diamond-phase__name">Discover</div>
+          <div class="kd-diamond-phase__roles">Business User, Data Analyst, Product Designer (UX)</div>
+          <div class="kd-diamond-phase__output">Business Goals, Product Data, Product Goals — using HEART &amp; AARRR frameworks. MCA methodology.</div>
+        </div>
+        <div class="kd-diamond-phase">
+          <div class="kd-diamond-phase__dot" style="background:#8B5CF6;"></div>
+          <div class="kd-diamond-phase__tag">Phase 02</div>
+          <div class="kd-diamond-phase__name">Define</div>
+          <div class="kd-diamond-phase__roles">Product Manager, Product Designer (UX), Business User</div>
+          <div class="kd-diamond-phase__output">User Journey, AIMC Recommendations — narrowing scope, focus on specific problems.</div>
+        </div>
+        <div class="kd-diamond-phase">
+          <div class="kd-diamond-phase__dot" style="background:var(--kd-blue);"></div>
+          <div class="kd-diamond-phase__tag">Phase 03</div>
+          <div class="kd-diamond-phase__name">Design</div>
+          <div class="kd-diamond-phase__roles">Product Designer (UI/UX), Business User</div>
+          <div class="kd-diamond-phase__output">Wireframes, User Stories, Prototype, Prototyping Methods — exploring possible solutions with available resources.</div>
+        </div>
+        <div class="kd-diamond-phase">
+          <div class="kd-diamond-phase__dot" style="background:var(--kd-amber);"></div>
+          <div class="kd-diamond-phase__tag">Phase 04</div>
+          <div class="kd-diamond-phase__name">Deliver</div>
+          <div class="kd-diamond-phase__roles">Product Manager, Product Designer (UI)</div>
+          <div class="kd-diamond-phase__output">Hi-fi Prototype, User Stories, Metrics — defining concrete, feasible solutions to these problems.</div>
+        </div>
+        <div class="kd-diamond-phase">
+          <div class="kd-diamond-phase__dot" style="background:var(--kd-green);"></div>
+          <div class="kd-diamond-phase__tag">Phase 05</div>
+          <div class="kd-diamond-phase__name">Develop</div>
+          <div class="kd-diamond-phase__roles">Developer, Product Manager</div>
+          <div class="kd-diamond-phase__output">Metrics, Build Increment — explore technical approach, develop solutions into the product.</div>
+        </div>
+        <div class="kd-diamond-phase">
+          <div class="kd-diamond-phase__dot" style="background:var(--kd-teal);"></div>
+          <div class="kd-diamond-phase__tag">Phase 06</div>
+          <div class="kd-diamond-phase__name">Distribute</div>
+          <div class="kd-diamond-phase__roles">Developer, Data Scientist, Product Manager, Product Designer (UI)</div>
+          <div class="kd-diamond-phase__output">Analytics/Insight, Product Backlog — track success metrics, plan improvement.</div>
+        </div>
+      </div>
+
+      <!-- Scrum context -->
+      <div class="kd-eyebrow" style="margin-bottom:12px;">Scrum Context</div>
+      <div class="kd-scrum reveal">
+        <div class="kd-scrum-cell">
+          <div class="kd-scrum-cell__label">Product Vision &amp; Goals</div>
+          <div class="kd-scrum-cell__sub">→ Product Backlog → Sprint Plan</div>
+        </div>
+        <div class="kd-scrum-cell">
+          <div class="kd-scrum-cell__label">Sprint Backlog</div>
+          <div class="kd-scrum-cell__sub">→ Daily Scrum</div>
+        </div>
+        <div class="kd-scrum-cell">
+          <div class="kd-scrum-cell__label">Sprint Review</div>
+          <div class="kd-scrum-cell__sub">Track &amp; Analyse</div>
+        </div>
+        <div class="kd-scrum-cell">
+          <div class="kd-scrum-cell__label">Build Increment → MVP</div>
+          <div class="kd-scrum-cell__sub">Developers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">06 — Research</div>
+      <h2 class="kd-h2 reveal">Affinity Mapping</h2>
+      <p class="kd-p reveal" style="max-width:680px;margin-bottom:32px;">We started with Affinity mapping where we sorted ideas into different groups or categories based on their relationships to one another — clustering pain points, journey moments, and opportunities from contextual inquiry sessions.</p>
+      <div class="kd-notes reveal">
+        <div class="kd-note" style="background:#FEF9E7;border:1px solid #F9E79F;">
+          <div class="kd-note__cat" style="color:#B7950B;">Storage</div>
+          <div class="kd-note__text" style="color:#5D4037;">No canonical location — documents exist across 4+ drives, email, and personal folders with no master index</div>
+        </div>
+        <div class="kd-note" style="background:#FDEDEC;border:1px solid #F5B7B1;">
+          <div class="kd-note__cat" style="color:#CB4335;">Retrieval Pain</div>
+          <div class="kd-note__text" style="color:#5D4037;">Search completely broken — filenames inconsistent, no tags, no metadata, no shared conventions</div>
+        </div>
+        <div class="kd-note" style="background:#EAF2FF;border:1px solid #AED6F1;">
+          <div class="kd-note__cat" style="color:#2471A3;">Compliance</div>
+          <div class="kd-note__text" style="color:#1B2631;">No audit trail — version history is manual, unreliable, often absent when regulators ask</div>
+        </div>
+        <div class="kd-note" style="background:#E9F7EF;border:1px solid #A9DFBF;">
+          <div class="kd-note__cat" style="color:#1E8449;">Approval Flow</div>
+          <div class="kd-note__text" style="color:#1B2631;">Every manager runs a different approval process — email, paper sign-off, chat — nothing standardised</div>
+        </div>
+        <div class="kd-note" style="background:#FEF9E7;border:1px solid #F9E79F;">
+          <div class="kd-note__cat" style="color:#B7950B;">Access Control</div>
+          <div class="kd-note__text" style="color:#5D4037;">Everyone sees everything — no role-based permissions, no visibility scoping across regions or teams</div>
+        </div>
+        <div class="kd-note" style="background:#FDEDEC;border:1px solid #F5B7B1;">
+          <div class="kd-note__cat" style="color:#CB4335;">Trust Gap</div>
+          <div class="kd-note__text" style="color:#5D4037;">No confidence a found file is the latest approved version — teams routinely send wrong documents</div>
+        </div>
+        <div class="kd-note" style="background:#EAF2FF;border:1px solid #AED6F1;">
+          <div class="kd-note__cat" style="color:#2471A3;">SLA Risk</div>
+          <div class="kd-note__text" style="color:#1B2631;">Audit SLA breach: 1–3 day retrieval time vs. the minutes regulators expect during live reviews</div>
+        </div>
+        <div class="kd-note" style="background:#E9F7EF;border:1px solid #A9DFBF;">
+          <div class="kd-note__cat" style="color:#1E8449;">Mental Model</div>
+          <div class="kd-note__text" style="color:#1B2631;">Users think Fund → Doc Type, not folder path → filename. The system's structure fights their instincts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENCHMARK ANALYSIS -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">07 — Benchmark Analysis</div>
+      <h2 class="kd-h2 reveal">Competitive Landscape</h2>
+      <p class="kd-p reveal" style="max-width:680px;margin-bottom:32px;">Product benchmarking helped us identify the strengths and weaknesses of existing tools and identify market leaders based on the benchmarks established.</p>
+      <div class="kd-bench-grid reveal">
+        <div class="kd-bench-card">
+          <div class="kd-bench-card__hdr">
+            <div class="kd-bench-card__logo" style="background:#24292e;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+            <div class="kd-bench-card__name">GitHub</div>
+          </div>
+          <div class="kd-bench-card__body">
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Option to follow changes or updates across repositories</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Tagging for easy search and categorisation</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Information regarding the versions of the repository with full commit history</div>
+          </div>
+        </div>
+        <div class="kd-bench-card">
+          <div class="kd-bench-card__hdr">
+            <div class="kd-bench-card__logo" style="background:#6264A7;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+            <div class="kd-bench-card__name">Microsoft Teams</div>
+          </div>
+          <div class="kd-bench-card__body">
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Recent files for easy access across channels</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Option to refresh or update the repository in real time</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Categorisation by the services and team channels</div>
+          </div>
+        </div>
+        <div class="kd-bench-card">
+          <div class="kd-bench-card__hdr">
+            <div class="kd-bench-card__logo" style="background:#4285F4;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></div>
+            <div class="kd-bench-card__name">Google Cloud</div>
+          </div>
+          <div class="kd-bench-card__body">
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Option to personalise the view for different user types</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Bookmark important files for quick access</div>
+          </div>
+        </div>
+        <div class="kd-bench-card">
+          <div class="kd-bench-card__hdr">
+            <div class="kd-bench-card__logo" style="background:#FBBC05;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+            <div class="kd-bench-card__name">Google Drive</div>
+          </div>
+          <div class="kd-bench-card__body">
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Choice of layout — grid or list view</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Recommendation engine for frequently accessed files</div>
+            <div class="kd-bench-card__point"><div class="kd-bench-card__bullet"></div>Option to sort by name, date modified, or owner</div>
+          </div>
+        </div>
+      </div>
+      <p class="kd-bench-caption reveal">Compared various direct and indirect competitors to understand existing features in the market as well as other UX metrics like usability, satisfaction and ease of the product.</p>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER INTERVIEWS -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">08 — Stakeholder Interviews</div>
+      <h2 class="kd-h2 reveal">Voices from the field</h2>
+      <p class="kd-p reveal" style="max-width:700px;margin-bottom:8px;">Stakeholder interviews are a great way to get the lay of the land. It helped us to understand user behaviour, distinguish constraints, and identify pain points. At the beginning of a UX research and design project a Stakeholder Interview should be conducted in order to find out:</p>
+      <ul style="font-size:14px;color:var(--text-2);line-height:1.75;margin-bottom:32px;padding-left:20px;" class="reveal">
+        <li>What are the business goals (so later we can see where the user goals and the business goals align)?</li>
+        <li>Are there any existing research or design material?</li>
+        <li>What is already known about the users?</li>
+      </ul>
+      <div class="kd-question-grid reveal">
+        <div class="kd-question">
+          <div class="kd-question__num">01</div>
+          <div class="kd-question__text">Can you walk us through some of the most common pain points you hear from users during this process? What keeps coming up? What is working well?</div>
+        </div>
+        <div class="kd-question">
+          <div class="kd-question__num">02</div>
+          <div class="kd-question__text">What information do users need to provide for returns? How do they access that information?</div>
+        </div>
+        <div class="kd-question">
+          <div class="kd-question__num">03</div>
+          <div class="kd-question__text">What are your own needs, motivations and goals specific to your area of Repository handling?</div>
+        </div>
+        <div class="kd-question">
+          <div class="kd-question__num">04</div>
+          <div class="kd-question__text">What constraints might be somehow in the way of achieving those goals?</div>
+        </div>
+      </div>
+      <h3 class="kd-h3 reveal" style="margin-top:40px;margin-bottom:4px;">Key Insights</h3>
+      <div class="kd-insights reveal">
+        <div class="kd-insight">
+          <div class="kd-insight__num">1</div>
+          <div class="kd-insight__text">The elimination of departmental barriers so everyone has a common objective or objectives driven by corporate management.</div>
+        </div>
+        <div class="kd-insight">
+          <div class="kd-insight__num">2</div>
+          <div class="kd-insight__text">Having a central location to collect, store, and report KPI data makes it much easier to manage metrics that are unified around a strategy map.</div>
+        </div>
+        <div class="kd-insight">
+          <div class="kd-insight__num">3</div>
+          <div class="kd-insight__text">Within the dashboard, KPIs are presented in a manner that gives executives enhanced analytical insights, showing not only the current levels of performance against each KPI, but providing the capabilities to create "what-if" scenarios and exception reports.</div>
+        </div>
+        <div class="kd-insight">
+          <div class="kd-insight__num">4</div>
+          <div class="kd-insight__text">Users cannot prioritize making repository assigning calls to users and check progress without a centralised system.</div>
+        </div>
+        <div class="kd-insight">
+          <div class="kd-insight__num">5</div>
+          <div class="kd-insight__text">Data Visualization needs to be easy to comprehend, reducing cognitive load — users think visually, not in tables.</div>
+        </div>
+        <div class="kd-insight">
+          <div class="kd-insight__num">6</div>
+          <div class="kd-insight__text">Making the need for change visible and the opportunity for improvement clear, helping to close the loop in the performance management cycle.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USER JOURNEY MAPPING -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">09 — User Journey Mapping</div>
+      <h2 class="kd-h2 reveal">CJM — Julie Lepage</h2>
+      <div class="kd-cjm__persona reveal">
+        <div class="kd-cjm__avatar">JL</div>
+        <div>
+          <div class="kd-cjm__name"><span>Julie</span> Lepage</div>
+          <div class="kd-cjm__role">Reporting Overview · Fund Manager</div>
+          <div class="kd-cjm__bio">Julie is responsible to manage different aspects of a repository all in one place, rather than having to traverse several menus and tabs to manage each of the aspects separately.</div>
+        </div>
+        <div class="kd-cjm__quote">"Anything that saves time is great"</div>
+      </div>
+      <div class="kd-cjm-wrap reveal">
+        <table class="kd-cjm">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Anticipating</th>
+              <th>Explore</th>
+              <th>Filter</th>
+              <th>Search</th>
+              <th>View / Export</th>
+              <th>Find Other Reports</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tasks</td>
+              <td>Will be able to monitor and analyze the repositories easily &amp; hassle-free. Find repositories for different departments and reports required. Export/View the required data from reports.</td>
+              <td>Goes to Reports section from Primary Navigation. Finds the required report in the Recent/past reports. Couldn't find it in recent reports. Browses through different report sections through different Geographical views.</td>
+              <td>Selects the required account. Selects the date range. Sorts based on report number etc. Views list of reports.</td>
+              <td>Types the required report number in search field. Search results are generated as a list.</td>
+              <td>Selects report to view in browser. Click on generate report. Select fields to export report. Select format. Click export/download.</td>
+              <td>Using the breadcrumb, goes back to overview home page. Clear filter options. Find other reports.</td>
+            </tr>
+            <tr>
+              <td>Positive experiences</td>
+              <td>Dedicated page for report &amp; analysis. Quick understanding of transactions/finances.</td>
+              <td>Quick access to all reports. Do multiple analysis and go back and forth between reports.</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Negative experiences</td>
+              <td>—</td>
+              <td>Couldn't find the required report, navigated to different sections.</td>
+              <td>Tried multiple combinations in filter, but results were not found.</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Got confused how to go back to the main screen/remove filters.</td>
+            </tr>
+            <tr>
+              <td>Feelings</td>
+              <td><span class="kd-feeling">😊</span> Optimistic</td>
+              <td><span class="kd-feeling">😐</span> Neutral → Frustrated</td>
+              <td><span class="kd-feeling">😐</span> Uncertain</td>
+              <td><span class="kd-feeling">😊</span> Hopeful</td>
+              <td><span class="kd-feeling">😊</span> Satisfied</td>
+              <td><span class="kd-feeling">😊</span> Recovering</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMATION ARCHITECTURE -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">10 — Information Architecture</div>
+      <h2 class="kd-h2 reveal">System Structure</h2>
+      <p class="kd-p reveal" style="max-width:700px;margin-bottom:32px;">Information architecture aims at organising content so that users would easily adjust to the functionality of the product and could find everything they need without big effort. IA is a science of organising and structuring content of websites, web and mobile applications, and social media software.</p>
+      <div class="kd-ia-wrap reveal">
+        <div class="kd-ia">
+          <!-- ROOT -->
+          <div style="display:flex;justify-content:center;margin-bottom:8px;">
+            <div class="kd-ia-node kd-ia-node--root">USER LOGIN</div>
+          </div>
+          <div style="display:flex;justify-content:center;margin-bottom:4px;"><div style="width:1px;height:20px;background:var(--border);"></div></div>
+          <!-- 5 main branches in a row -->
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:6px;">
+            <div class="kd-ia-node kd-ia-node--l1" style="min-width:130px;text-align:center;">UNIQUE COUNT<br><span style="font-size:9px;font-weight:400;opacity:0.7;">(Default Tab)</span></div>
+            <div class="kd-ia-node kd-ia-node--l1" style="min-width:120px;text-align:center;">BY ORGANISATION</div>
+            <div class="kd-ia-node kd-ia-node--l1" style="min-width:110px;text-align:center;">BY COST CENTRE</div>
+            <div class="kd-ia-node kd-ia-node--l1" style="min-width:140px;text-align:center;">NAVIGATION / SIDEBAR</div>
+            <div class="kd-ia-node kd-ia-node--l1" style="min-width:90px;text-align:center;">SETTINGS</div>
+          </div>
+          <!-- Branch details in 5 columns -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;margin-top:4px;">
+            <!-- Unique Count children -->
+            <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);padding-top:8px;">
+              <div class="kd-ia-node kd-ia-node--l2">Volume Counts → Repository Counts</div>
+              <div class="kd-ia-node kd-ia-node--l2">Ownership Status → Storage Count</div>
+              <div class="kd-ia-node kd-ia-node--l2">TAI Ownership Status → File Count</div>
+              <div class="kd-ia-node kd-ia-node--l2">Repository Usage Counts → Container Count</div>
+              <div class="kd-ia-node kd-ia-node--l3">SharePoint</div>
+              <div class="kd-ia-node kd-ia-node--l3">Sharedrive</div>
+              <div class="kd-ia-node kd-ia-node--l3">No ISTO</div>
+            </div>
+            <!-- By Organisation children -->
+            <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);padding-top:8px;">
+              <div class="kd-ia-node kd-ia-node--l2">H.R Organisation</div>
+              <div class="kd-ia-node kd-ia-node--l2">Volume Counts → Repository Counts</div>
+              <div class="kd-ia-node kd-ia-node--l2">Ownership Status - Self → Storage Count</div>
+              <div class="kd-ia-node kd-ia-node--l2">Repository Usage Counts → File Count, Container Count</div>
+              <div class="kd-ia-node kd-ia-node--l3">WM Technology</div>
+              <div class="kd-ia-node kd-ia-node--l3">Institutional Securities Tech</div>
+              <div class="kd-ia-node kd-ia-node--l3">Corporate Fundings</div>
+              <div class="kd-ia-node kd-ia-node--l3">Technology Risk</div>
+              <div class="kd-ia-node kd-ia-node--l3">Enterprise Tech &amp; Service</div>
+              <div class="kd-ia-node kd-ia-node--l3">IM IT</div>
+            </div>
+            <!-- By Cost Centre children -->
+            <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);padding-top:8px;">
+              <div class="kd-ia-node kd-ia-node--l2">Financial Cost Centre</div>
+              <div class="kd-ia-node kd-ia-node--l2">HR Cost Centre</div>
+              <div class="kd-ia-node kd-ia-node--l2">IM Cost Centre</div>
+              <div class="kd-ia-node kd-ia-node--l3">Data Validation</div>
+              <div class="kd-ia-node kd-ia-node--l3">iKE Search</div>
+            </div>
+            <!-- Navigation/Sidebar children -->
+            <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);padding-top:8px;">
+              <div class="kd-ia-node kd-ia-node--l2">My Repositories → Volume Counts → Repository Counts</div>
+              <div class="kd-ia-node kd-ia-node--l2">Admin View → Ownership Status → Storage Count</div>
+              <div class="kd-ia-node kd-ia-node--l2">Team Leads View → TAI Ownership Status → File Count</div>
+              <div class="kd-ia-node kd-ia-node--l2">Alerts → Repository Usage Counts → Container Count</div>
+              <div class="kd-ia-node kd-ia-node--l3">SharePoint</div>
+              <div class="kd-ia-node kd-ia-node--l3">Sharedrive</div>
+              <div class="kd-ia-node kd-ia-node--l3">No ISTO</div>
+            </div>
+            <!-- Settings children -->
+            <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--border);padding-top:8px;">
+              <div class="kd-ia-node kd-ia-node--l2">User Profile</div>
+              <div class="kd-ia-node kd-ia-node--l2">Logout</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USER FLOWS -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">11 — User Flows</div>
+      <h2 class="kd-h2 reveal">Navigation Paths</h2>
+      <p class="kd-p reveal" style="max-width:700px;margin-bottom:32px;">There are many different paths that users can take. User flows are often modelled as flow charts with nodes for each of the major navigational paths. The purpose of user flow analysis is to identify the main user flows through your app or website, and identify areas where the navigational flow can be improved.</p>
+      <div class="kd-flow-tree reveal">
+        <!-- Root login -->
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
+          <div class="kd-flow-root">IM USER LOGIN</div>
+        </div>
+        <!-- Level 1: 4 main views -->
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;">
+          <div class="kd-flow-node">Admin View / Summary</div>
+          <div class="kd-flow-node">My Team Rep (Home)</div>
+          <div class="kd-flow-node" style="background:rgba(27,154,186,0.1);border-color:rgba(27,154,186,0.3);font-weight:700;">Explorer</div>
+          <div class="kd-flow-node">RO</div>
+        </div>
+        <!-- Explorer branch detail -->
+        <div style="border:1px dashed var(--border);border-radius:var(--r-lg);padding:16px 20px;background:var(--bg-elevated);margin-bottom:12px;">
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--kd-blue);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Explorer → Summary (showing total count of the MS Firm View, including both HR/CC)</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+            <div class="kd-flow-node">Geography</div>
+            <div class="kd-flow-node">Types of Rep</div>
+            <div class="kd-flow-node">Divisions</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Geography</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div class="kd-flow-node kd-flow-node--leaf">New York</div>
+                <div class="kd-flow-node kd-flow-node--leaf">India</div>
+                <div class="kd-flow-node kd-flow-node--leaf">Sweden</div>
+                <div class="kd-flow-node kd-flow-node--leaf">Oceania</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Types of Rep</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div class="kd-flow-node kd-flow-node--leaf">SharePoint</div>
+                <div class="kd-flow-node kd-flow-node--leaf">Share Drive</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Divisions</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div class="kd-flow-node kd-flow-node--leaf">HR Org Unit</div>
+                <div class="kd-flow-node kd-flow-node--leaf">CC Org Unit</div>
+                <div class="kd-flow-node kd-flow-node--leaf">Super Div / Div</div>
+                <div class="kd-flow-node kd-flow-node--leaf">Super Dep / Dept</div>
+                <div class="kd-flow-node kd-flow-node--leaf">Orgs (Legal) / Org 2</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+            <div class="kd-flow-node">Team 1</div>
+            <div class="kd-flow-node">Team 2</div>
+            <div class="kd-flow-node">Team 3</div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+            <div class="kd-flow-node kd-flow-node--leaf">John</div>
+            <div class="kd-flow-node kd-flow-node--leaf">Sam</div>
+            <div class="kd-flow-node kd-flow-node--leaf">Tony</div>
+          </div>
+          <div style="display:flex;justify-content:center;">
+            <div class="kd-flow-node kd-flow-node--end">Repository Card</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEATING & DESIGN PHASE -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">12 — Ideating &amp; Design Phase</div>
+      <h2 class="kd-h2 reveal">From Sketch to Structure</h2>
+      <p class="kd-p reveal" style="max-width:700px;margin-bottom:12px;">A simple pen &amp; paper low fidelity wireframe designed, based on Client interaction which leads us to understand the point of view from the user research perspective.</p>
+      <ul style="font-size:14px;color:var(--text-2);line-height:1.75;margin-bottom:32px;padding-left:20px;" class="reveal">
+        <li>Wireframes display site architecture visually.</li>
+        <li>Wireframes allow for clarification of website features.</li>
+        <li>Wireframes push usability to the forefront.</li>
+      </ul>
+      <div class="kd-wire-grid reveal">
+        <!-- Wireframe 1: Repository Inventory -->
+        <div class="kd-wire">
+          <div class="kd-wire__chrome"><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div></div>
+          <div class="kd-wire__body">
+            <div class="kd-wire__row" style="margin-bottom:6px;"><div class="kd-wire__bar" style="width:90px;"></div><div style="flex:1;"></div><div class="kd-wire__block" style="height:20px;width:60px;"></div></div>
+            <div class="kd-wire__row"><div class="kd-wire__block" style="height:20px;flex:1;"></div><div class="kd-wire__block" style="height:20px;flex:1;"></div><div class="kd-wire__block" style="height:20px;flex:1;"></div><div class="kd-wire__block" style="height:20px;flex:1;"></div></div>
+            <div style="height:1px;background:var(--border);margin:6px 0;"></div>
+            <div class="kd-wire__row"><div class="kd-wire__block" style="height:9px;width:80px;"></div><div class="kd-wire__block" style="height:9px;width:60px;"></div><div class="kd-wire__block" style="height:9px;flex:1;"></div></div>
+            <div class="kd-wire__row" style="margin-top:5px;"><div class="kd-wire__block" style="height:9px;width:80px;"></div><div class="kd-wire__block" style="height:9px;width:60px;"></div><div class="kd-wire__block" style="height:9px;flex:1;"></div></div>
+            <div class="kd-wire__row" style="margin-top:5px;"><div class="kd-wire__block" style="height:9px;width:80px;"></div><div class="kd-wire__block" style="height:9px;width:60px;"></div><div class="kd-wire__block" style="height:9px;flex:1;"></div></div>
+          </div>
+          <div class="kd-wire__label">Repository Inventory — Lo-fi</div>
+        </div>
+        <!-- Wireframe 2: Dashboard with sidebar -->
+        <div class="kd-wire">
+          <div class="kd-wire__chrome"><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div></div>
+          <div class="kd-wire__body" style="flex-direction:row;padding:0;gap:0;">
+            <div style="width:36px;background:var(--bg-elevated);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 0;flex-shrink:0;">
+              <div style="width:20px;height:20px;background:var(--border);border-radius:4px;"></div>
+              <div style="width:20px;height:20px;background:var(--border);border-radius:4px;"></div>
+              <div style="width:20px;height:20px;background:var(--border);border-radius:4px;"></div>
+            </div>
+            <div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:6px;">
+              <div class="kd-wire__bar" style="width:70px;"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;"><div style="height:28px;background:var(--border);border-radius:4px;opacity:0.5;"></div><div style="height:28px;background:var(--border);border-radius:4px;opacity:0.5;"></div><div style="height:28px;background:var(--border);border-radius:4px;opacity:0.5;"></div></div>
+              <div style="display:grid;grid-template-columns:3fr 2fr;gap:4px;flex:1;"><div style="background:var(--border);border-radius:4px;opacity:0.4;min-height:50px;"></div><div style="background:var(--border);border-radius:4px;opacity:0.4;"></div></div>
+            </div>
+          </div>
+          <div class="kd-wire__label">Admin Dashboard — Mid-fi</div>
+        </div>
+        <!-- Wireframe 3: iKE Search -->
+        <div class="kd-wire">
+          <div class="kd-wire__chrome"><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div></div>
+          <div class="kd-wire__body">
+            <div style="display:flex;gap:5px;align-items:center;padding:7px;border:1px dashed var(--border);border-radius:5px;margin-bottom:8px;">
+              <div style="width:10px;height:10px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;"></div>
+              <div style="flex:1;height:8px;background:var(--border);border-radius:3px;opacity:0.5;"></div>
+              <div style="width:18px;height:18px;background:var(--border);border-radius:3px;"></div>
+            </div>
+            <div style="display:flex;gap:4px;margin-bottom:8px;">
+              <div style="height:14px;width:40px;background:var(--border);border-radius:10px;opacity:0.6;"></div>
+              <div style="height:14px;width:40px;background:var(--border);border-radius:10px;opacity:0.4;"></div>
+            </div>
+            <div style="padding:8px;border:1px dashed var(--border);border-radius:5px;margin-bottom:5px;"><div style="height:8px;background:var(--border);border-radius:3px;margin-bottom:4px;"></div><div style="height:7px;background:var(--border);border-radius:3px;width:80%;opacity:0.5;"></div></div>
+            <div style="padding:8px;border:1px dashed var(--border);border-radius:5px;"><div style="height:8px;background:var(--border);border-radius:3px;margin-bottom:4px;"></div><div style="height:7px;background:var(--border);border-radius:3px;width:70%;opacity:0.5;"></div></div>
+          </div>
+          <div class="kd-wire__label">iKE Search — Lo-fi Sketch</div>
+        </div>
+        <!-- Wireframe 4: Summary page sketch -->
+        <div class="kd-wire">
+          <div class="kd-wire__chrome"><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div></div>
+          <div class="kd-wire__body">
+            <div class="kd-wire__row" style="margin-bottom:4px;"><div class="kd-wire__bar" style="width:40px;margin-bottom:0;"></div><div style="flex:1;"></div><div class="kd-wire__block" style="height:11px;width:30px;"></div></div>
+            <div class="kd-wire__bar" style="width:80px;margin-bottom:8px;"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px;"><div style="height:32px;background:var(--border);border-radius:4px;opacity:0.5;"></div><div style="height:32px;background:var(--border);border-radius:4px;opacity:0.5;"></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;"><div style="height:40px;background:var(--border);border-radius:4px;opacity:0.4;"></div><div style="height:40px;background:var(--border);border-radius:4px;opacity:0.4;"></div></div>
+          </div>
+          <div class="kd-wire__label">Summary Page — Lo-fi Sketch</div>
+        </div>
+        <!-- Wireframe 5: Alerts panel -->
+        <div class="kd-wire">
+          <div class="kd-wire__chrome"><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div></div>
+          <div class="kd-wire__body">
+            <div class="kd-wire__row" style="margin-bottom:6px;"><div class="kd-wire__bar" style="width:60px;margin-bottom:0;"></div><div style="flex:1;"></div><div style="width:24px;height:14px;background:rgba(239,68,68,0.3);border-radius:10px;"></div></div>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <div class="kd-wire__row" style="padding:6px;border:1px dashed var(--border);border-radius:4px;align-items:center;"><div style="width:7px;height:7px;border-radius:50%;background:rgba(239,68,68,0.5);flex-shrink:0;"></div><div style="flex:1;height:8px;background:var(--border);border-radius:3px;margin-left:6px;"></div></div>
+              <div class="kd-wire__row" style="padding:6px;border:1px dashed var(--border);border-radius:4px;align-items:center;"><div style="width:7px;height:7px;border-radius:50%;background:rgba(245,158,11,0.5);flex-shrink:0;"></div><div style="flex:1;height:8px;background:var(--border);border-radius:3px;margin-left:6px;"></div></div>
+              <div class="kd-wire__row" style="padding:6px;border:1px dashed var(--border);border-radius:4px;align-items:center;"><div style="width:7px;height:7px;border-radius:50%;background:rgba(34,197,94,0.5);flex-shrink:0;"></div><div style="flex:1;height:8px;background:var(--border);border-radius:3px;margin-left:6px;"></div></div>
+            </div>
+          </div>
+          <div class="kd-wire__label">Alerts Panel — Mid-fi</div>
+        </div>
+        <!-- Wireframe 6: My Repositories with team panel -->
+        <div class="kd-wire">
+          <div class="kd-wire__chrome"><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div><div class="kd-wire__dot"></div></div>
+          <div class="kd-wire__body">
+            <div class="kd-wire__bar" style="width:100px;margin-bottom:8px;"></div>
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;flex:1;">
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="height:30px;background:var(--border);border-radius:4px;opacity:0.4;"></div>
+                <div style="height:30px;background:var(--border);border-radius:4px;opacity:0.4;"></div>
+                <div style="height:30px;background:var(--border);border-radius:4px;opacity:0.4;"></div>
+              </div>
+              <div style="background:var(--border);border-radius:4px;opacity:0.3;padding:6px;display:flex;flex-direction:column;gap:4px;align-items:center;">
+                <div style="height:8px;width:60px;background:rgba(0,0,0,0.2);border-radius:3px;"></div>
+                <div style="display:flex;gap:4px;"><div style="width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,0.2);"></div><div style="width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,0.2);"></div><div style="width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,0.2);"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="kd-wire__label">My Repositories — Mid-fi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION APPROACH -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="kd-eyebrow">13 — Solution Approach</div>
+      <h2 class="kd-h2 reveal">How we solved it</h2>
+      <p class="kd-p reveal" style="max-width:700px;margin-bottom:32px;">Information architecture aims at organising content so that users would easily adjust to the functionality of the product and could find everything they need without big effort. IA is a science of organising and structuring content of the websites, web and mobile applications, and social media software.</p>
+      <div class="kd-solution-list reveal">
+        <div class="kd-solution-item">
+          <div class="kd-solution-item__num">1</div>
+          <div class="kd-solution-item__text">Using cyber-connection to enhance the User experience — enabling seamless, secure communication between distributed repository systems and end users.</div>
+        </div>
+        <div class="kd-solution-item">
+          <div class="kd-solution-item__num">2</div>
+          <div class="kd-solution-item__text">Easy filter and segregation of data — fund managers can slice the repository by fund, document type, geography, organisation, cost centre, or ownership status in seconds.</div>
+        </div>
+        <div class="kd-solution-item">
+          <div class="kd-solution-item__num">3</div>
+          <div class="kd-solution-item__text">Providing access levels and permissions — a 4-tier role model (Viewer, Editor, Approver, Admin) ensures the right people see the right documents with a full audit trail generated automatically.</div>
+        </div>
+        <div class="kd-solution-item">
+          <div class="kd-solution-item__num">4</div>
+          <div class="kd-solution-item__text">Reducing cognitive load — the entire interface is designed around the fund manager mental model: navigate by fund or organisation, not by folder path or filename, with iKE AI search as the power user shortcut.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM -->
+  <section class="kd-sec kd-sec--alt">
+    <div class="container">
+      <div class="kd-eyebrow">14 — Design System</div>
+      <h2 class="kd-h2 reveal">Components, Typography &amp; Colour</h2>
+      <p class="kd-p reveal" style="max-width:700px;margin-bottom:32px;">Built a component library purpose-made for document management interfaces — data-dense but never cluttered. Every decision optimised for speed of information retrieval under cognitive load.</p>
+
+      <div class="kd-ds-sub reveal">Components</div>
+      <div class="kd-components reveal">
+        <button class="kc-btn kc-btn--primary">Button</button>
+        <button class="kc-btn kc-btn--hover">Hover</button>
+        <button class="kc-btn kc-btn--focused">Focused</button>
+        <button class="kc-btn kc-btn--disabled">Disabled</button>
+        <span class="kc-chip kc-chip--active">KIID</span>
+        <span class="kc-chip kc-chip--neutral">KID</span>
+        <span class="kc-chip kc-chip--neutral">Prospectus</span>
+        <span class="kc-badge kc-badge--ok">Approved</span>
+        <span class="kc-badge kc-badge--warn">Pending Review</span>
+        <span class="kc-badge kc-badge--err">Expired</span>
+      </div>
+
+      <div class="kd-ds-sub reveal">Typography Scale</div>
+      <div class="kd-type-scale reveal">
+        <div class="kd-type-row"><div class="kd-type-row__label">H1 / 60px</div><div style="font-family:var(--font-display);font-size:clamp(22px,3vw,40px);font-weight:800;color:var(--text-1);letter-spacing:-0.03em;">Good design is good business</div></div>
+        <div class="kd-type-row"><div class="kd-type-row__label">H2 / 48px</div><div style="font-family:var(--font-display);font-size:clamp(18px,2.5vw,30px);font-weight:700;color:var(--text-1);letter-spacing:-0.025em;">Good design is good business</div></div>
+        <div class="kd-type-row"><div class="kd-type-row__label">H3 / 40px</div><div style="font-family:var(--font-display);font-size:clamp(16px,2vw,24px);font-weight:700;color:var(--text-1);">Good design is good business</div></div>
+        <div class="kd-type-row"><div class="kd-type-row__label">H4 / 32px</div><div style="font-size:clamp(15px,1.8vw,20px);font-weight:600;color:var(--text-1);">Good design is good business</div></div>
+        <div class="kd-type-row"><div class="kd-type-row__label">Body / 14px</div><div style="font-size:14px;color:var(--text-2);">Good design is good business</div></div>
+        <div class="kd-type-row"><div class="kd-type-row__label">Caption / 12px</div><div style="font-size:12px;color:var(--text-3);">Good design is good business</div></div>
+      </div>
+
+      <div class="kd-ds-sub reveal">Colours</div>
+      <div class="kd-colors reveal">
+        <div class="kd-color">
+          <div class="kd-color__swatch" style="background:#1B9ABA;"></div>
+          <div class="kd-color__name">MSO Blue</div>
+          <div class="kd-color__hex">#1B9ABA</div>
+          <div class="kd-color__ratio">4.63 : 1</div>
+        </div>
+        <div class="kd-color">
+          <div class="kd-color__swatch" style="background:#FFFFFF;border:1px solid var(--border);"></div>
+          <div class="kd-color__name">MSO White</div>
+          <div class="kd-color__hex">#FFFFFF</div>
+          <div class="kd-color__ratio">21.0 : 1</div>
+        </div>
+        <div class="kd-color">
+          <div class="kd-color__swatch" style="background:#333333;"></div>
+          <div class="kd-color__name">MSO Black</div>
+          <div class="kd-color__hex">#333333</div>
+          <div class="kd-color__ratio">11.79 : 1</div>
+        </div>
+        <div class="kd-color">
+          <div class="kd-color__swatch" style="background:#62E1E3;"></div>
+          <div class="kd-color__name">MSO Teal</div>
+          <div class="kd-color__hex">#62E1E3</div>
+          <div class="kd-color__ratio">13.43 : 1</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VISUAL DESIGN -->
+  <section class="kd-sec">
+    <div class="container">
+      <div class="reveal">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Visual Design</div>
+        <h2 class="kd-h2">High Fidelity Screens</h2>
+        <p class="kd-p" style="max-width:640px;margin-bottom:32px;">Final UI designs for the KIID Repository platform — covering the document intelligence dashboard, alert management, and repository views.</p>
+        <div style="border-radius:28px;border:1px dashed var(--border-strong);background:var(--bg-elevated);padding:72px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-3);"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--text-1);letter-spacing:-0.02em;">Coming Soon</div>
+          <div style="font-size:14px;color:var(--text-3);max-width:380px;line-height:1.6;">Final visual designs are being prepared and will be added here shortly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2026 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

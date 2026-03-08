@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayU Super App Redesign — Sagar Kumar</title>
+  <meta name="description" content="End-to-end redesign of PayU's merchant mobile app — from deep discovery through a Double Diamond process to high-fidelity delivery. 75% MAU increase, 60% product engagement lift."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    :root { --proj-accent: #34D278; }
+    .btn--primary { background: var(--proj-accent); color: #061a0d; }
+
+    /* ── Phase markers ── */
+    .psu-phase-banner { background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card)); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:36px 0; }
+    .psu-phase-marker { display:flex; align-items:center; gap:16px; }
+    .psu-phase-num { font-family:var(--font-display); font-size:72px; font-weight:800; color:var(--proj-accent); opacity:0.18; letter-spacing:-0.04em; line-height:1; flex-shrink:0; }
+    .psu-phase-info { border-left:2px solid var(--proj-accent); padding-left:16px; }
+    .psu-phase-label { font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--proj-accent); }
+    .psu-phase-title { font-family:var(--font-display); font-size:clamp(26px,3vw,38px); font-weight:800; letter-spacing:-0.02em; color:var(--text-1); }
+
+    /* ── Sections ── */
+    .psu-section { padding:64px 0; border-bottom:1px solid var(--border); }
+    .psu-section--alt { background:var(--bg-elevated); }
+    .psu-sub { font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--proj-accent); margin-bottom:10px; }
+    .psu-h2 { font-family:var(--font-display); font-size:clamp(22px,2.8vw,32px); font-weight:800; letter-spacing:-0.02em; color:var(--text-1); margin-bottom:16px; }
+    .psu-lead { font-size:15px; color:var(--text-2); line-height:1.75; max-width:660px; margin-bottom:32px; }
+
+    /* ── Full-width image block ── */
+    .psu-img-block { border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--border); margin:32px 0; background:var(--bg-elevated); }
+    .psu-img-block img { width:100%; display:block; }
+    .psu-img-caption { font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); padding:10px 16px; text-align:center; border-top:1px solid var(--border); }
+
+    /* ── Outcome metrics row ── */
+    .psu-metrics { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; margin-bottom:32px; }
+    .psu-metric { padding:28px 16px; border-right:1px solid var(--border); text-align:center; }
+    .psu-metric:last-child { border-right:none; }
+    .psu-metric__num { font-family:var(--font-display); font-size:26px; font-weight:800; color:var(--proj-accent); letter-spacing:-0.02em; }
+    .psu-metric__label { font-size:11px; color:var(--text-2); margin-top:6px; line-height:1.4; }
+
+    /* ── Big stat row ── */
+    .psu-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+    .psu-stat { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:28px 24px; text-align:center; }
+    .psu-stat__num { font-family:var(--font-display); font-size:clamp(36px,4vw,52px); font-weight:800; color:var(--proj-accent); letter-spacing:-0.03em; line-height:1; margin-bottom:8px; }
+    .psu-stat__label { font-size:13px; color:var(--text-2); line-height:1.5; }
+
+    /* ── Hypothesis cards ── */
+    .psu-hypo { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px; }
+    .psu-hypo-card { padding:24px 28px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); }
+    .psu-hypo-card--denied { border-left:3px solid #EF4444; }
+    .psu-hypo-card--confirmed { border-left:3px solid var(--proj-accent); }
+    .psu-hypo-card__tag { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+    .psu-hypo-card__title { font-size:15px; font-weight:600; color:var(--text-1); margin-bottom:8px; }
+    .psu-hypo-card__desc { font-size:14px; color:var(--text-2); line-height:1.6; }
+    .psu-hypo-card__verdict { margin-top:14px; font-size:12px; font-weight:600; display:flex; align-items:center; gap:6px; }
+
+    /* ── Comparison table ── */
+    .psu-compare { width:100%; border-collapse:collapse; font-size:14px; }
+    .psu-compare th { padding:12px 16px; background:var(--bg-elevated); font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-2); font-weight:500; border-bottom:1px solid var(--border); }
+    .psu-compare td { padding:13px 16px; border-bottom:1px solid var(--border); }
+    .psu-compare td:first-child { color:var(--text-1); font-weight:500; }
+    .psu-compare tr:last-child td { border-bottom:none; }
+    .psu-check { color:#22C55E; font-weight:600; }
+    .psu-cross { color:#EF4444; font-weight:600; }
+
+    /* ── Interview findings ── */
+    .psu-finding { padding:20px 24px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); margin-bottom:12px; display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; }
+    .psu-finding__tag { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:20px; white-space:nowrap; margin-top:2px; }
+    .psu-finding__title { font-size:15px; font-weight:600; color:var(--text-1); margin-bottom:4px; }
+    .psu-finding__text { font-size:14px; color:var(--text-2); line-height:1.65; }
+
+    /* ── Persona cards ── */
+    .psu-personas { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .psu-persona { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .psu-persona__header { padding:20px 24px; background:linear-gradient(135deg,#071a0e,#0d2214); display:flex; align-items:center; gap:14px; }
+    .psu-persona__avatar { width:48px; height:48px; border-radius:50%; background:var(--proj-accent); display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .psu-persona__avatar:hover { transform: scale(1.12); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+    .psu-persona__name { font-weight:700; font-size:15px; color:#fff; }
+    .psu-persona__meta { font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px; }
+    .psu-persona__body { padding:20px 24px; }
+    .psu-persona__kv { margin-bottom:14px; }
+    .psu-persona__k { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:4px; }
+    .psu-persona__v { font-size:13px; color:var(--text-2); line-height:1.55; }
+    .psu-persona__tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+    .psu-persona__tag { font-family:var(--font-mono); font-size:10px; padding:3px 10px; border-radius:20px; background:rgba(52,210,120,0.08); border:1px solid rgba(52,210,120,0.2); color:var(--proj-accent); }
+
+    /* ── MoSCoW grid ── */
+    .psu-moscow { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
+    .psu-moscow-col { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .psu-moscow-col__header { padding:14px 18px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; }
+    .psu-moscow-col__header--must { background:rgba(52,210,120,0.1); color:var(--proj-accent); border-bottom:1px solid rgba(52,210,120,0.2); }
+    .psu-moscow-col__header--should { background:rgba(59,130,246,0.1); color:#3B82F6; border-bottom:1px solid rgba(59,130,246,0.2); }
+    .psu-moscow-col__header--could { background:rgba(245,158,11,0.1); color:#F59E0B; border-bottom:1px solid rgba(245,158,11,0.2); }
+    .psu-moscow-col__header--wont { background:rgba(239,68,68,0.08); color:#EF4444; border-bottom:1px solid rgba(239,68,68,0.15); }
+    .psu-moscow-col__body { padding:16px 18px; display:flex; flex-direction:column; gap:8px; }
+    .psu-moscow-col__item { font-size:13px; color:var(--text-2); line-height:1.5; padding-left:10px; border-left:2px solid var(--border); }
+
+    /* ── Screen gallery ── */
+    .psu-screens { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-bottom:24px; }
+    .psu-screens--3 { grid-template-columns:repeat(3,1fr); }
+    .psu-screen { border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--border); background:var(--bg-elevated); }
+    .psu-screen img { width:100%; display:block; }
+    .psu-screen__label { padding:10px 16px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); border-top:1px solid var(--border); text-align:center; }
+
+    /* ── Result metrics final ── */
+    .psu-results { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .psu-result { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:32px 24px; text-align:center; position:relative; overflow:hidden; }
+    .psu-result::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(52,210,120,0.05),transparent); pointer-events:none; }
+    .psu-result__num { font-family:var(--font-display); font-size:clamp(40px,5vw,60px); font-weight:800; color:var(--proj-accent); letter-spacing:-0.03em; line-height:1; margin-bottom:8px; }
+    .psu-result__label { font-size:13px; color:var(--text-2); line-height:1.5; }
+
+    /* ── Goal cards ── */
+    .psu-goals { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .psu-goal { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:24px 20px; text-align:center; }
+    .psu-goal__icon { width:48px; height:48px; border-radius:50%; background:var(--proj-accent); display:flex; align-items:center; justify-content:center; color:#fff; margin:0 auto 16px; animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .psu-goal__icon:hover { transform: scale(1.12); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+    .psu-goal__title { font-size:14px; font-weight:700; color:var(--text-1); margin-bottom:6px; }
+    .psu-goal__desc { font-size:12px; color:var(--text-2); line-height:1.5; }
+
+    /* ── Quote block ── */
+    .psu-quote { padding:32px 36px; background:linear-gradient(135deg,rgba(52,210,120,0.04),transparent); border:1px solid rgba(52,210,120,0.2); border-left:3px solid var(--proj-accent); border-radius:var(--r-xl); margin:32px 0; }
+    .psu-quote__text { font-size:18px; font-weight:600; color:var(--text-1); line-height:1.65; font-style:italic; margin-bottom:12px; }
+    .psu-quote__attr { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); }
+
+    /* ── Progress bar for engagement ── */
+    .psu-bar-row { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+    .psu-bar-label { font-size:13px; color:var(--text-2); width:220px; flex-shrink:0; }
+    .psu-bar-track { flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden; }
+    .psu-bar-fill { height:100%; border-radius:4px; background:var(--proj-accent); transition: width 1s ease; }
+    .psu-bar-pct { font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--proj-accent); width:36px; text-align:right; flex-shrink:0; }
+
+    @keyframes iconPop {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Double Diamond ── */
+    .psu-diamond-wrap { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:32px 0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; align-items:stretch; }
+    .psu-dd-phase { height:100%; }
+    .psu-dd-phase { padding:28px 20px; border-right:1px solid var(--border); position:relative; }
+    .psu-dd-phase:last-child { border-right:none; }
+    .psu-dd-phase:nth-child(odd) { background:linear-gradient(160deg,rgba(52,210,120,0.06),transparent); }
+    .psu-dd-phase:nth-child(even) { background:var(--bg-elevated); }
+    .psu-dd-step { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--proj-accent); margin-bottom:6px; }
+    .psu-dd-title { font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--text-1); margin-bottom:4px; letter-spacing:-0.02em; }
+    .psu-dd-mode { font-size:11px; color:var(--text-3); font-style:italic; margin-bottom:14px; }
+    .psu-dd-items { display:flex; flex-direction:column; gap:6px; }
+    .psu-dd-item { font-size:12px; color:var(--text-2); padding:5px 10px; background:var(--bg-card); border:1px solid var(--border); border-radius:6px; line-height:1.4; }
+    .psu-dd-connector { display:flex; align-items:center; justify-content:center; background:var(--bg-elevated); }
+
+    /* ── Research methods ── */
+    .psu-methods { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:32px 0; }
+    .psu-method { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:20px 18px; }
+    .psu-method__icon { width:40px; height:40px; border-radius:50%; background:rgba(52,210,120,0.1); border:1px solid rgba(52,210,120,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:12px; color:var(--proj-accent); }
+    .psu-method__title { font-size:13px; font-weight:700; color:var(--text-1); margin-bottom:4px; }
+    .psu-method__desc { font-size:11px; color:var(--text-3); line-height:1.55; }
+    .psu-method__meta { margin-top:10px; font-family:var(--font-mono); font-size:10px; color:var(--proj-accent); letter-spacing:0.06em; }
+
+    /* ── Competitive full grid ── */
+    .psu-comp-grid { margin:32px 0; overflow-x:auto; border:1px solid var(--border); border-radius:var(--r-xl); }
+    .psu-comp-table { width:100%; border-collapse:collapse; font-size:12px; min-width:620px; }
+    .psu-comp-table th { padding:12px 14px; text-align:center; font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-2); background:var(--bg-elevated); border-bottom:1px solid var(--border); border-right:1px solid var(--border); }
+    .psu-comp-table th:first-child { text-align:left; }
+    .psu-comp-table th:last-child, .psu-comp-table td:last-child { border-right:none; }
+    .psu-comp-table td { padding:11px 14px; border-bottom:1px solid var(--border); border-right:1px solid var(--border); text-align:center; color:var(--text-2); }
+    .psu-comp-table td:first-child { text-align:left; font-weight:500; color:var(--text-1); }
+    .psu-comp-table tr:last-child td { border-bottom:none; }
+    .psu-comp-hl th { background:rgba(52,210,120,0.08) !important; color:var(--proj-accent) !important; }
+    .psu-comp-hl td { background:rgba(52,210,120,0.04) !important; }
+    .psu-good { color:#22C55E; font-weight:700; font-size:15px; }
+    .psu-bad { color:#EF4444; font-weight:700; font-size:15px; }
+    .psu-mid { color:#F59E0B; font-weight:600; font-size:11px; }
+
+    /* ── Journey map ── */
+    .psu-journey { margin:32px 0; overflow-x:auto; }
+    .psu-jinner { min-width:680px; }
+    .psu-jsteps { display:grid; grid-template-columns:repeat(6,1fr); }
+    .psu-jstep { border:1px solid var(--border); border-right:none; background:var(--bg-card); padding:14px 12px; text-align:center; }
+    .psu-jstep:last-child { border-right:1px solid var(--border); }
+    .psu-jstep__num { font-family:var(--font-mono); font-size:9px; color:var(--proj-accent); letter-spacing:0.1em; margin-bottom:4px; }
+    .psu-jstep__label { font-size:11px; font-weight:700; color:var(--text-1); margin-bottom:3px; line-height:1.3; }
+    .psu-jstep__action { font-size:10px; color:var(--text-3); line-height:1.4; }
+    .psu-jemotion { display:grid; grid-template-columns:repeat(6,1fr); height:90px; margin-top:-1px; position:relative; border:1px solid var(--border); border-top:none; background:var(--bg-elevated); overflow:hidden; }
+    .psu-jem { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; border-right:1px solid var(--border); padding-bottom:12px; gap:4px; position:relative; }
+    .psu-jem:last-child { border-right:none; }
+    .psu-jem__bar { width:6px; border-radius:3px 3px 0 0; }
+    .psu-jem__emoji { font-size:14px; position:absolute; bottom:28px; }
+    .psu-jem__sentiment { font-family:var(--font-mono); font-size:9px; letter-spacing:0.06em; }
+    .psu-jlegend { display:flex; gap:20px; margin-top:12px; align-items:center; }
+    .psu-jleg-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-3); }
+    .psu-jleg-dot { width:10px; height:10px; border-radius:50%; }
+
+    /* ── Insights flow ── */
+    .psu-insights-flow { display:grid; grid-template-columns:1fr 32px 1fr 32px 1fr; gap:0; align-items:start; margin:32px 0; }
+    .psu-if-col { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .psu-if-header { padding:12px 16px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; border-bottom:1px solid var(--border); }
+    .psu-if-header--s { background:rgba(59,130,246,0.08); color:#3B82F6; border-bottom-color:rgba(59,130,246,0.2); }
+    .psu-if-header--i { background:rgba(245,158,11,0.08); color:#F59E0B; border-bottom-color:rgba(245,158,11,0.2); }
+    .psu-if-header--o { background:rgba(52,210,120,0.08); color:var(--proj-accent); border-bottom-color:rgba(52,210,120,0.2); }
+    .psu-if-body { padding:12px 16px; display:flex; flex-direction:column; gap:8px; }
+    .psu-if-item { font-size:12px; color:var(--text-2); line-height:1.55; padding:8px 10px; background:var(--bg-elevated); border-radius:7px; }
+    .psu-if-arrow { display:flex; align-items:center; justify-content:center; padding-top:44px; }
+
+    /* ── IA tree ── */
+    .psu-ia { margin:32px 0; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:32px 28px; overflow-x:auto; }
+    .psu-ia-inner { min-width:580px; }
+    .psu-ia-root { display:flex; justify-content:center; margin-bottom:20px; }
+    .psu-ia-root-node { padding:10px 28px; background:var(--proj-accent); color:#000; border-radius:8px; font-size:14px; font-weight:800; letter-spacing:-0.01em; }
+    .psu-ia-trunk { display:flex; justify-content:center; height:20px; position:relative; }
+    .psu-ia-trunk::before { content:''; position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--border); }
+    .psu-ia-branch { display:flex; justify-content:space-between; position:relative; margin-bottom:4px; }
+    .psu-ia-branch::before { content:''; position:absolute; top:0; left:10%; right:10%; height:2px; background:var(--border); }
+    .psu-ia-section { flex:1; margin:0 6px; }
+    .psu-ia-section__head { padding:9px 10px; background:rgba(52,210,120,0.1); border:1px solid rgba(52,210,120,0.25); border-radius:8px 8px 0 0; font-size:11px; font-weight:700; color:var(--proj-accent); text-align:center; margin-top:16px; border-bottom:none; }
+    .psu-ia-section__items { border:1px solid var(--border); border-top:none; border-radius:0 0 8px 8px; padding:8px; display:flex; flex-direction:column; gap:4px; background:var(--bg-elevated); }
+    .psu-ia-section__item { font-size:10px; color:var(--text-2); padding:4px 8px; background:var(--bg-card); border:1px solid var(--border); border-radius:5px; text-align:center; }
+
+    /* ── Phone mockup ── */
+    .psu-phone-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:32px 0; justify-items:center; }
+    .psu-phone-row--2 { grid-template-columns:repeat(2,1fr); }
+    .psu-phone { display:flex; flex-direction:column; align-items:center; width:100%; }
+    .psu-phone__frame { width:min(200px,100%); aspect-ratio:9/19; background:#111; border-radius:28px; border:5px solid #1c1c1e; box-shadow:0 20px 50px rgba(0,0,0,0.45),inset 0 0 0 1px rgba(255,255,255,0.05); position:relative; overflow:hidden; display:flex; flex-direction:column; }
+    .psu-phone__notch { width:72px; height:18px; background:#111; border-radius:0 0 10px 10px; position:absolute; top:0; left:50%; transform:translateX(-50%); z-index:3; }
+    .psu-phone__screen { flex:1; overflow:hidden; display:flex; flex-direction:column; background:#f2f2f2; padding-top:18px; }
+    .psu-phone__label { margin-top:10px; font-family:var(--font-mono); font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-3); text-align:center; }
+    .psu-phone__sb { height:18px; background:#34D278; flex-shrink:0; display:flex; align-items:center; padding:0 10px; justify-content:space-between; }
+    .psu-phone__sb-time { font-size:7px; font-weight:700; color:#fff; }
+    .psu-phone__sb-icons { display:flex; gap:4px; align-items:center; }
+    .psu-phone__sb-icon { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.6); }
+    .psu-phone__hdr { background:#34D278; padding:8px 12px 12px; flex-shrink:0; }
+    .psu-phone__hdr-eyebrow { font-size:7px; color:rgba(255,255,255,0.65); margin-bottom:1px; font-weight:500; }
+    .psu-phone__hdr-title { font-size:13px; font-weight:800; color:#fff; letter-spacing:-0.02em; }
+    .psu-phone__hdr-sub { font-size:8px; color:rgba(255,255,255,0.55); margin-top:1px; }
+    .psu-phone__body { flex:1; padding:8px; overflow:hidden; display:flex; flex-direction:column; gap:6px; background:#efefef; }
+    .psu-phone__card { background:#fff; border-radius:8px; padding:7px 9px; box-shadow:0 1px 3px rgba(0,0,0,0.07); }
+    .psu-phone__card-label { font-size:6px; color:#999; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px; }
+    .psu-phone__card-val { font-size:12px; font-weight:800; color:#111; letter-spacing:-0.02em; }
+    .psu-phone__card-sub { font-size:6px; color:#34D278; font-weight:600; }
+    .psu-phone__chips { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; }
+    .psu-phone__chip { background:#fff; border-radius:7px; padding:6px 3px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
+    .psu-phone__chip-dot { width:18px; height:18px; border-radius:50%; background:#34D278; margin:0 auto 3px; display:flex; align-items:center; justify-content:center; }
+    .psu-phone__chip-dot svg { width:9px; height:9px; stroke:#000; fill:none; stroke-width:2.5; }
+    .psu-phone__chip-txt { font-size:5.5px; color:#555; line-height:1.2; }
+    .psu-phone__row { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+    .psu-phone__nav { height:36px; background:#fff; border-top:1px solid #e0e0e0; display:flex; align-items:center; justify-content:space-around; flex-shrink:0; padding-bottom:2px; }
+    .psu-phone__nav-item { display:flex; flex-direction:column; align-items:center; gap:2px; }
+    .psu-phone__nav-bar { width:16px; height:2px; border-radius:1px; }
+    .psu-phone__nav-txt { font-size:5px; color:#aaa; }
+    .psu-phone__list { display:flex; flex-direction:column; gap:4px; }
+    .psu-phone__list-row { background:#fff; border-radius:7px; padding:6px 8px; display:flex; align-items:center; gap:6px; }
+    .psu-phone__list-dot { width:22px; height:22px; border-radius:50%; background:#34D278; flex-shrink:0; }
+    .psu-phone__list-info { flex:1; }
+    .psu-phone__list-name { font-size:8px; font-weight:700; color:#111; }
+    .psu-phone__list-sub { font-size:6px; color:#888; }
+    .psu-phone__list-amt { font-size:8px; font-weight:700; color:#111; }
+    .psu-phone__section-label { font-size:7px; font-weight:700; color:#666; text-transform:uppercase; letter-spacing:0.06em; padding:0 2px; }
+    .psu-phone__inp { background:#fff; border-radius:6px; padding:6px 8px; font-size:8px; color:#888; border:1px solid #e5e5e5; }
+    .psu-phone__btn { background:#34D278; border-radius:7px; padding:7px; text-align:center; font-size:8px; font-weight:700; color:#000; }
+    .psu-phone__qr { width:54px; height:54px; background:#fff; border-radius:6px; margin:0 auto; padding:6px; display:flex; align-items:center; justify-content:center; }
+    .psu-phone__qr-inner { width:42px; height:42px; background:repeating-linear-gradient(0deg,#111 0px,#111 3px,transparent 3px,transparent 6px),repeating-linear-gradient(90deg,#111 0px,#111 3px,transparent 3px,transparent 6px); }
+    .psu-phone__settings-row { background:#fff; border-radius:7px; padding:7px 9px; display:flex; align-items:center; justify-content:space-between; }
+    .psu-phone__settings-label { font-size:8px; font-weight:600; color:#111; }
+    .psu-phone__settings-sub { font-size:6px; color:#999; }
+    .psu-phone__badge { display:inline-block; padding:2px 6px; border-radius:10px; font-size:6px; font-weight:700; }
+
+    /* ── Testing methodology ── */
+    .psu-test-setup { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:32px 0; }
+    .psu-test-box { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:24px; }
+    .psu-test-box__head { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--proj-accent); margin-bottom:14px; }
+    .psu-test-kpi { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; }
+    .psu-test-kpi__dot { width:6px; height:6px; border-radius:50%; background:var(--proj-accent); flex-shrink:0; margin-top:6px; }
+    .psu-test-kpi__text { font-size:13px; color:var(--text-2); line-height:1.5; }
+    .psu-test-segment { margin-bottom:12px; }
+    .psu-test-segment__label { font-size:12px; font-weight:600; color:var(--text-1); margin-bottom:6px; }
+    .psu-test-segment__bar { height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden; margin-bottom:3px; }
+    .psu-test-segment__fill { height:100%; border-radius:4px; background:var(--proj-accent); }
+    .psu-test-segment__meta { font-size:11px; color:var(--text-3); display:flex; justify-content:space-between; }
+
+    @media(max-width:900px) {
+      .psu-personas { grid-template-columns:1fr; }
+      .psu-moscow { grid-template-columns:1fr 1fr; }
+      .psu-goals { grid-template-columns:1fr 1fr; }
+      .psu-results { grid-template-columns:1fr; }
+      .psu-stats { grid-template-columns:1fr 1fr; }
+      .psu-metrics { grid-template-columns:1fr 1fr; }
+      .psu-hypo { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px) {
+      .psu-moscow { grid-template-columns:1fr; }
+      .psu-goals { grid-template-columns:1fr; }
+      .psu-screens { grid-template-columns:1fr; }
+      .psu-screens--3 { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="proj-back-wrap">
+    <div class="container">
+      <a href="work.html" class="proj-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+    </div>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="proj-hero-section">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2C · Mobile App · PayU Payments · 2023</div>
+      <h1 class="proj-title reveal">PayU <em>Super App</em><br>Redesign</h1>
+      <p class="proj-sub reveal">End-to-end redesign of PayU's merchant mobile app — from deep discovery through a full Double Diamond process to high-fidelity delivery. Tackled 30.87% negative-sentiment UX issues, a 32% product-engagement churn, and zero cross-sell discoverability. Rolled out to 125k+ merchants.</p>
+      <div class="proj-meta reveal">
+        <div class="proj-meta__cell"><div class="proj-meta__k">My Role</div><div class="proj-meta__v">Lead Product Designer</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Client</div><div class="proj-meta__v">PayU Payments</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Platform</div><div class="proj-meta__v">Mobile · Android &amp; iOS</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Outcome</div><div class="proj-meta__v">75% MAU ↑ · 65% Engagement ↑</div></div>
+        <div class="proj-meta__cell"><div class="proj-meta__k">Year</div><div class="proj-meta__v">2023 · 8 Months</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL DESIGNS HERO ── -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Main banner ── -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;width:100%;">
+        <img src="img/supperapp_banner.jpg" alt="PayU Super App Redesign" loading="lazy" style="width:100%;height:auto;display:block;">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PRODUCT BRIEFING ── -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">Product Briefing</div>
+      <h2 class="psu-h2 reveal">An all-in-one merchant super app</h2>
+      <p class="psu-lead reveal">The PayU Super App project aims to create a <strong>comprehensive, user-friendly, and merchant-centric</strong> super app to address existing problems in the PayU application. The app offers an all-in-one solution for payments, financial services, and business management — allowing merchants to efficiently manage their operations and finances.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;" class="reveal">
+        <div style="display:flex;flex-direction:column;">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;flex:1;">
+            <div class="psu-sub" style="margin-bottom:16px;">The Core Problem</div>
+            <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:16px;">We noticed an upward trend in negative sentiments around the app. Upon further analysis, we found that <strong style="color:var(--text-1);">bad UX was contributing 30.87% to the overall negative sentiment</strong>. Looking deeper at support escalations revealed new problem sets:</p>
+            <ul style="display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none;">
+              <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2);"><span style="color:var(--proj-accent);flex-shrink:0;margin-top:2px;">→</span>Lack of awareness of different PayU products</li>
+              <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2);"><span style="color:var(--proj-accent);flex-shrink:0;margin-top:2px;">→</span>Some merchants unaware a native PayU app exists</li>
+              <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2);"><span style="color:var(--proj-accent);flex-shrink:0;margin-top:2px;">→</span>Existing app engagement issues rising continuously</li>
+              <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2);"><span style="color:var(--proj-accent);flex-shrink:0;margin-top:2px;">→</span>Store ratings showing a sustained negative trend</li>
+            </ul>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <div class="psu-diamond-wrap reveal" style="flex:1;margin:0;">
+            <div class="psu-dd-phase psu-dd-phase--d1">
+              <div class="psu-dd-step">01 · Diverge</div>
+              <div class="psu-dd-title">Discover</div>
+              <div class="psu-dd-mode">Problem space</div>
+              <div class="psu-dd-items">
+                <div class="psu-dd-item">Secondary research</div>
+                <div class="psu-dd-item">Funnel analysis</div>
+                <div class="psu-dd-item">User interviews</div>
+                <div class="psu-dd-item">Competitive bench.</div>
+              </div>
+            </div>
+            <div class="psu-dd-phase psu-dd-phase--d2">
+              <div class="psu-dd-step">02 · Converge</div>
+              <div class="psu-dd-title">Define</div>
+              <div class="psu-dd-mode">Problem clarity</div>
+              <div class="psu-dd-items">
+                <div class="psu-dd-item">User personas</div>
+                <div class="psu-dd-item">Journey mapping</div>
+                <div class="psu-dd-item">Insights synthesis</div>
+                <div class="psu-dd-item">Problem statement</div>
+              </div>
+            </div>
+            <div class="psu-dd-phase psu-dd-phase--d3">
+              <div class="psu-dd-step">03 · Diverge</div>
+              <div class="psu-dd-title">Design</div>
+              <div class="psu-dd-mode">Solution space</div>
+              <div class="psu-dd-items">
+                <div class="psu-dd-item">MoSCoW analysis</div>
+                <div class="psu-dd-item">Information arch.</div>
+                <div class="psu-dd-item">Lo-fi wireframes</div>
+                <div class="psu-dd-item">Design system</div>
+              </div>
+            </div>
+            <div class="psu-dd-phase psu-dd-phase--d4">
+              <div class="psu-dd-step">04 · Converge</div>
+              <div class="psu-dd-title">Deliver</div>
+              <div class="psu-dd-mode">Solution clarity</div>
+              <div class="psu-dd-items">
+                <div class="psu-dd-item">Hi-fi prototypes</div>
+                <div class="psu-dd-item">Usability testing</div>
+                <div class="psu-dd-item">30% rollout</div>
+                <div class="psu-dd-item">100% deployment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PHASE 01 — DISCOVER
+  ══════════════════════════════════════════ -->
+  <div class="psu-phase-banner reveal">
+    <div class="container">
+      <div class="psu-phase-marker">
+        <div class="psu-phase-num">01</div>
+        <div class="psu-phase-info">
+          <div class="psu-phase-label">Phase One · Research Phase</div>
+          <div class="psu-phase-title">Discover</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problem Identification -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">Problem Identification</div>
+      <h2 class="psu-h2 reveal">32% of merchants churned before ever engaging with a product</h2>
+      <p class="psu-lead reveal">Secondary research with the business revealed a critical funnel collapse. Of 12,556 app users, only 32% engaged with any PayU product — meaning 68% of onboarded merchants were either unaware of or unable to access the product suite.</p>
+
+      <!-- Funnel bars -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 32px;margin-bottom:32px;" class="reveal">
+        <div class="psu-sub" style="margin-bottom:20px;">Product Engagement Funnel — Past 365 Days</div>
+        <div class="psu-bar-row">
+          <div class="psu-bar-label">App Users (baseline)</div>
+          <div class="psu-bar-track"><div class="psu-bar-fill" style="width:100%;"></div></div>
+          <div class="psu-bar-pct">100%</div>
+        </div>
+        <div class="psu-bar-row">
+          <div class="psu-bar-label">Visited Reports or Products</div>
+          <div class="psu-bar-track"><div class="psu-bar-fill" style="width:66%;"></div></div>
+          <div class="psu-bar-pct">66%</div>
+        </div>
+        <div class="psu-bar-row">
+          <div class="psu-bar-label">Visited One or More Product</div>
+          <div class="psu-bar-track"><div class="psu-bar-fill" style="width:50%;"></div></div>
+          <div class="psu-bar-pct">50%</div>
+        </div>
+        <div class="psu-bar-row">
+          <div class="psu-bar-label">Engaged with one or more Product</div>
+          <div class="psu-bar-track"><div class="psu-bar-fill" style="width:32%;background:#EF4444;"></div></div>
+          <div class="psu-bar-pct" style="color:#EF4444;">32%</div>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:10px;font-size:13px;color:#EF4444;">
+          <strong>Problem:</strong> 32% churn on accessing the product section — Discovery is the core issue. Opportunity loss due to missing quick actions.
+        </div>
+      </div>
+
+      <!-- Product Usage Share -->
+      <div style="margin-top:40px;" class="reveal">
+        <div class="psu-sub" style="margin-bottom:16px;">Product Usage Share — What Merchants Actually Use</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+          <div style="background:var(--bg-card);border:1px solid rgba(52,210,120,0.3);border-radius:var(--r-xl);padding:28px 20px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:52px;font-weight:800;color:var(--proj-accent);line-height:1;letter-spacing:-0.03em;">74%</div>
+            <div style="font-size:13px;color:var(--text-1);margin-top:10px;font-weight:600;">Payment Link</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px;line-height:1.5;">Primary collection method for most merchants</div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid rgba(59,130,246,0.3);border-radius:var(--r-xl);padding:28px 20px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:52px;font-weight:800;color:#3B82F6;line-height:1;letter-spacing:-0.03em;">18%</div>
+            <div style="font-size:13px;color:var(--text-1);margin-top:10px;font-weight:600;">Invoice</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px;line-height:1.5;">Used for B2B and service-based billing</div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid rgba(245,158,11,0.3);border-radius:var(--r-xl);padding:28px 20px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:52px;font-weight:800;color:#F59E0B;line-height:1;letter-spacing:-0.03em;">8%</div>
+            <div style="font-size:13px;color:var(--text-1);margin-top:10px;font-weight:600;">Payment Handle</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:4px;line-height:1.5;">UPI handle-based collections — least adopted</div>
+          </div>
+        </div>
+        <div style="padding:12px 16px;background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.15);border-radius:10px;font-size:13px;color:var(--text-2);">
+          <strong style="color:var(--text-1);">Insight:</strong> Payment Link dominates at 74% but lacks mobile-native features. Invoice at 18% has no mobile equivalent at all. Both are critical redesign priorities.
+        </div>
+      </div>
+
+      <!-- Historical Dec'22 Decline Context -->
+      <div style="margin-top:40px;" class="reveal">
+        <div class="psu-sub" style="margin-bottom:16px;">December 2022 — The Decline That Triggered the Redesign</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px 28px;">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Year-over-Year Decline</div>
+            <div style="display:flex;gap:24px;">
+              <div style="text-align:center;flex:1;padding:16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;">
+                <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">20%↓</div>
+                <div style="font-size:12px;color:var(--text-2);margin-top:6px;line-height:1.4;">Monthly Active User decrease (Dec '22)</div>
+              </div>
+              <div style="text-align:center;flex:1;padding:16px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;">
+                <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:#EF4444;letter-spacing:-0.03em;">12%↓</div>
+                <div style="font-size:12px;color:var(--text-2);margin-top:6px;line-height:1.4;">Product Engagement decrease year-on-year</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px 28px;">
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Absolute Baseline Numbers</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg-elevated);border-radius:8px;">
+                <span style="font-size:13px;color:var(--text-2);">Total App Users</span>
+                <span style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text-1);">1.25 Lac</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg-elevated);border-radius:8px;">
+                <span style="font-size:13px;color:var(--text-2);">Visited Reports or Products</span>
+                <span style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text-1);">83K</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg-elevated);border-radius:8px;">
+                <span style="font-size:13px;color:var(--text-2);">Tried One or More Product</span>
+                <span style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--text-1);">63K</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.12);border-radius:8px;">
+                <span style="font-size:13px;color:var(--text-2);">Monthly Active (engaged)</span>
+                <span style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#EF4444;">40K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Merchant Classification -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">Merchant Classification</div>
+      <h2 class="psu-h2 reveal">Understanding who our merchants really are</h2>
+      <p class="psu-lead reveal">Before redesigning, it was critical to understand the merchant base composition. PayU's 20,944 active merchants span diverse sectors and usage patterns — grouped into three distinct cohorts based on how they interact with the platform.</p>
+
+      <!-- Total + 3 groups -->
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;margin-bottom:32px;" class="reveal">
+        <div style="background:linear-gradient(135deg,rgba(52,210,120,0.1),rgba(52,210,120,0.03));border:1px solid rgba(52,210,120,0.25);border-radius:var(--r-xl);padding:32px 40px;text-align:center;min-width:180px;">
+          <div style="font-family:var(--font-display);font-size:54px;font-weight:800;color:var(--proj-accent);line-height:1;letter-spacing:-0.03em;">20,944</div>
+          <div style="font-size:13px;color:var(--text-2);margin-top:10px;font-weight:600;">Total Active Merchants</div>
+          <div style="font-size:11px;color:var(--text-3);margin-top:4px;">at time of research</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;">
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--proj-accent);letter-spacing:-0.02em;">11,068</div>
+            <div style="font-size:13px;color:var(--text-1);font-weight:600;margin-top:8px;">Tools Users</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:6px;line-height:1.55;">Actively use PayU payment tools — Payment Link, Invoice, or Handle</div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;">
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:#3B82F6;letter-spacing:-0.02em;">5,103</div>
+            <div style="font-size:13px;color:var(--text-1);font-weight:600;margin-top:8px;">Website Users</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:6px;line-height:1.55;">Primarily use PayU's web dashboard — not on mobile app</div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;">
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:#F59E0B;letter-spacing:-0.02em;">4,772</div>
+            <div style="font-size:13px;color:var(--text-1);font-weight:600;margin-top:8px;">Other / Mixed</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:6px;line-height:1.55;">Low engagement, using app for basic transaction views only</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sectors -->
+      <div class="reveal">
+        <div class="psu-sub" style="margin-bottom:16px;">Merchant Sectors</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">✈️ Airlines</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">🛒 E-Commerce</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">🏥 Healthcare</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">🎓 Education</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">🏦 Financial Services</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">🚌 Transport</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">🏪 Retail / SMB</span>
+          <span style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-2);">💼 Professional Services</span>
+        </div>
+        <div style="margin-top:14px;padding:12px 16px;background:rgba(52,210,120,0.05);border:1px solid rgba(52,210,120,0.15);border-radius:10px;font-size:13px;color:var(--text-2);">
+          <strong style="color:var(--text-1);">Design implication:</strong> Merchants across these sectors share a common need — fast payment collection on mobile — but differ in reporting depth, inventory complexity, and settlement urgency. The redesign had to serve all cohorts from a single unified app.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Root Cause Analysis -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">Identifying Root Causes</div>
+      <h2 class="psu-h2 reveal">Web App vs Mobile App — Critical feature gaps</h2>
+      <p class="psu-lead reveal">A feature parity audit between the web dashboard and mobile app revealed that many critical merchant tools were available on web but entirely absent from mobile — forcing merchants back to desktop or competitor apps.</p>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="psu-compare" style="border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Feature / Capability</th>
+              <th style="text-align:center;">Web App</th>
+              <th style="text-align:center;">Mobile App</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Overview Dashboard</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Payment Links</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-check">✓</span></td></tr>
+            <tr><td>Payment Invoices</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-check">✓</span></td></tr>
+            <tr><td>Invoice Inventory Management</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>QR Code Payments</td><td style="text-align:center;"><span class="psu-cross">✗</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Payment Handle</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Reporting</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Transaction Detail View</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Share Transaction Detail</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Cross-Selling / Up-Selling</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+            <tr><td>Payment Landing</td><td style="text-align:center;"><span class="psu-check">✓</span></td><td style="text-align:center;"><span class="psu-cross">✗</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary Research -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">Primary Research</div>
+      <h2 class="psu-h2 reveal">User interviews surface what data can't tell</h2>
+      <p class="psu-lead reveal">After establishing purpose through secondary research, I conducted primary user interviews with existing PayU merchants across categories — investment advisors, SMB merchants, and transport businesses — to extract needs, pain points, and behavioral patterns.</p>
+      <div class="psu-methods reveal">
+        <div class="psu-method">
+          <div class="psu-method__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="psu-method__title">User Interviews</div>
+          <div class="psu-method__desc">Moderated 1:1 sessions with 3 merchant segments — investment advisor, SMB, transport agency</div>
+          <div class="psu-method__meta">3 participants · 45 min each</div>
+        </div>
+        <div class="psu-method">
+          <div class="psu-method__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="psu-method__title">Funnel Analysis</div>
+          <div class="psu-method__desc">Product engagement funnel review across 12,556 app users over the past 365 days</div>
+          <div class="psu-method__meta">12,556 users · 365 days</div>
+        </div>
+        <div class="psu-method">
+          <div class="psu-method__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="psu-method__title">App Store Analysis</div>
+          <div class="psu-method__desc">Sentiment analysis of app store reviews to quantify UX-related negative feedback</div>
+          <div class="psu-method__meta">30.87% UX-related negative sentiment</div>
+        </div>
+        <div class="psu-method">
+          <div class="psu-method__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <div class="psu-method__title">Competitive Benchmarking</div>
+          <div class="psu-method__desc">Desk research against PhonePe, Razorpay, Stripe, and Google Pay for feature benchmarking</div>
+          <div class="psu-method__meta">5 competitors analysed</div>
+        </div>
+      </div>
+
+      <!-- Interview findings -->
+      <div class="reveal reveal-delay-1">
+        <div class="psu-finding">
+          <span class="psu-finding__tag" style="color:var(--proj-accent);background:rgba(52,210,120,0.08);border:1px solid rgba(52,210,120,0.2);">UX</span>
+          <div><div class="psu-finding__title">No proper user experience in the existing app</div><div class="psu-finding__text">Merchants were unable to use the application effectively. Critical flows like report generation and invoice creation had too many friction points, leading to task abandonment.</div></div>
+        </div>
+        <div class="psu-finding">
+          <span class="psu-finding__tag" style="color:#3B82F6;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);">Gaps</span>
+          <div><div class="psu-finding__title">Significant gaps in product offering vs. user needs</div><div class="psu-finding__text">Merchants were switching to competitor apps like Razorpay and Stripe for features PayU's web dashboard offered but mobile didn't — including report downloads, inventory management, and QR payments.</div></div>
+        </div>
+        <div class="psu-finding">
+          <span class="psu-finding__tag" style="color:#F59E0B;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);">Settlement</span>
+          <div><div class="psu-finding__title">Priority settlement not discoverable on mobile</div><div class="psu-finding__text">While priority settlement was active in the dashboard, users couldn't access or understand it through the app — a key financial benefit going entirely untouched by merchants who needed it most.</div></div>
+        </div>
+        <div class="psu-finding">
+          <span class="psu-finding__tag" style="color:#EF4444;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);">Lending</span>
+          <div><div class="psu-finding__title">Payment lending can be introduced on mobile</div><div class="psu-finding__text">Merchants on the PayU app were highly interested in financial services like business lending — but no native lending onboarding existed in the app. This represented a major cross-sell opportunity.</div></div>
+        </div>
+        <div class="psu-finding">
+          <span class="psu-finding__tag" style="color:#8B5CF6;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);">Reporting</span>
+          <div><div class="psu-finding__title">Improve reporting feature and share transaction details</div><div class="psu-finding__text">Merchants needed a way to generate, filter, and share transaction reports directly from mobile — especially useful for accountants and partners. The current app had no export or share functionality for transaction data, forcing merchants back to the web dashboard.</div></div>
+        </div>
+        <div class="psu-finding">
+          <span class="psu-finding__tag" style="color:#06B6D4;background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.2);">Security</span>
+          <div><div class="psu-finding__title">Security improvements — Two Factor Authentication needed</div><div class="psu-finding__text">Multiple merchants flagged security as a concern. Without Two Factor Authentication (2FA), merchants felt their payment accounts were vulnerable — particularly those operating at high transaction volumes. Introducing 2FA was highlighted as a trust-building feature that would directly impact app adoption.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitive Analysis -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">Competitive Analysis</div>
+      <h2 class="psu-h2 reveal">How competitors are winning merchant trust</h2>
+      <p class="psu-lead reveal">Desk research against PhonePe, Razorpay, Stripe, and Google Pay revealed clear patterns in what best-in-class merchant apps do that PayU didn't — setting a clear benchmark for the redesign.</p>
+      <div class="psu-comp-grid reveal">
+        <table class="psu-comp-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;min-width:160px;">Feature</th>
+              <th class="psu-comp-hl" style="color:var(--proj-accent);">PayU (Redesign)</th>
+              <th>PhonePe</th>
+              <th>Razorpay</th>
+              <th>Stripe</th>
+              <th>GPay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dashboard Overview</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>Payment Links</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>QR Code Payments</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-good">✓</span></td>
+            </tr>
+            <tr>
+              <td>Invoicing + Inventory</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>Transaction Reports</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>Native Customer Support</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-mid">Chat only</span></td>
+              <td><span class="psu-mid">Email only</span></td>
+              <td><span class="psu-mid">Help centre</span></td>
+            </tr>
+            <tr>
+              <td>Cross-Sell / Up-Sell</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>Priority Settlement</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>Mobile-First Design</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-good">✓</span></td>
+            </tr>
+            <tr>
+              <td>Biometric Authentication</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+            </tr>
+            <tr>
+              <td>In-App Notifications</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-mid">Email only</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+            </tr>
+            <tr>
+              <td>Training Videos / Onboarding</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+            </tr>
+            <tr>
+              <td>Cashback / Offers for Merchant</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+            </tr>
+            <tr>
+              <td>Vernacular / Regional Dashboard</td>
+              <td class="psu-comp-hl"><span class="psu-good">✓</span></td>
+              <td><span class="psu-good">✓</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-bad">✗</span></td>
+              <td><span class="psu-mid">Partial</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Sentiment Analysis -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">User Sentiment Analysis</div>
+      <h2 class="psu-h2 reveal">App Store reviews reveal three dominant pain themes</h2>
+      <p class="psu-lead reveal">Analysing App Store and Play Store reviews from PayU merchants surfaced a consistent pattern of complaints. 30.87% of all reviews contained UX-related negative sentiment, clustering into three major themes that directly informed redesign priorities.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px;" class="reveal reveal-delay-1">
+        <!-- Theme 1: Customer Support -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text-1);">Customer Support</div>
+              <div style="font-size:11px;color:#EF4444;font-family:var(--font-mono);margin-top:2px;">Most cited pain</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;margin:0;">Merchants consistently complained about delayed and inaccessible support. No in-app chat, no escalation path, and no resolution tracking made disputes frustrating to resolve.</p>
+          <div style="border-top:1px solid var(--border);padding-top:14px;">
+            <div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Sample feedback</div>
+            <div style="font-size:12px;color:var(--text-2);font-style:italic;line-height:1.55;">"No one responds to my support tickets. I've been waiting weeks for a refund resolution."</div>
+          </div>
+        </div>
+
+        <!-- Theme 2: Accessibility -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text-1);">Accessibility</div>
+              <div style="font-size:11px;color:#F59E0B;font-family:var(--font-mono);margin-top:2px;">UX friction + language gaps</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;margin:0;">The app was difficult to use for merchants unfamiliar with English interfaces. Tier 2/3 city merchants and non-tech-savvy users struggled with navigation, layout complexity, and the absence of vernacular language support.</p>
+          <div style="border-top:1px solid var(--border);padding-top:14px;">
+            <div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Sample feedback</div>
+            <div style="font-size:12px;color:var(--text-2);font-style:italic;line-height:1.55;">"The app is too complicated. I need Hindi language. Very confusing for small shop owners."</div>
+          </div>
+        </div>
+
+        <!-- Theme 3: Cross-Sell / Up-Sell -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:12px;background:rgba(52,210,120,0.1);border:1px solid rgba(52,210,120,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text-1);">Cross-Selling / Up-Selling</div>
+              <div style="font-size:11px;color:var(--proj-accent);font-family:var(--font-mono);margin-top:2px;">Missed revenue opportunity</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;margin:0;">Merchants were unaware of additional PayU products — priority settlement, business lending, QR codes — because no in-app discovery existed. Cross-sell recommendations were entirely absent from the merchant experience.</p>
+          <div style="border-top:1px solid var(--border);padding-top:14px;">
+            <div style="font-size:11px;color:var(--text-3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Sample feedback</div>
+            <div style="font-size:12px;color:var(--text-2);font-style:italic;line-height:1.55;">"I didn't know PayU had a QR code feature. I've been using a different app for that."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Feedbacks callout -->
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px 28px;display:flex;align-items:center;gap:20px;" class="reveal">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(52,210,120,0.1);border:1px solid rgba(52,210,120,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--text-1);margin-bottom:4px;">App Store & Play Store Feedback</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.6;">Both platforms showed consistent ratings depression tied to UX issues — not service reliability. Merchants who had positive payment experiences still left 2–3 star reviews due to app-specific frustrations. This confirmed that design, not infrastructure, was the primary problem to solve.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PHASE 02 — DEFINE
+  ══════════════════════════════════════════ -->
+  <div class="psu-phase-banner reveal">
+    <div class="container">
+      <div class="psu-phase-marker">
+        <div class="psu-phase-num">02</div>
+        <div class="psu-phase-info">
+          <div class="psu-phase-label">Phase Two · Synthesis Phase</div>
+          <div class="psu-phase-title">Define</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Personas -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">User Personas</div>
+      <h2 class="psu-h2 reveal">Three merchants, three distinct needs</h2>
+      <p class="psu-lead reveal">Based on interview responses, I designed three user personas representing the primary segments of PayU's merchant base. These personas guided every design decision throughout the project.</p>
+      <div class="psu-personas reveal reveal-delay-1">
+        <div class="psu-persona">
+          <div class="psu-persona__header">
+            <div class="psu-persona__avatar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="psu-persona__name">Ashutosh Mishra, 35</div>
+              <div class="psu-persona__meta">Investment Advisor · Jaipur</div>
+            </div>
+          </div>
+          <div class="psu-persona__body">
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Context</div>
+              <div class="psu-persona__v">Owns a small investment consulting company. Uses PayU for 1.5 years to collect fees and payments.</div>
+            </div>
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Needs</div>
+              <div class="psu-persona__v">Mobile-friendly interface, enhanced payment link features, better support on demand</div>
+            </div>
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Pain Points</div>
+              <div class="psu-persona__v">Uses 3rd-party invoicing apps. No proper user experience in PayU app. Support is hard to reach.</div>
+            </div>
+            <div class="psu-persona__tags">
+              <span class="psu-persona__tag">Invoicing</span>
+              <span class="psu-persona__tag">Mobile-first</span>
+              <span class="psu-persona__tag">Support</span>
+            </div>
+          </div>
+        </div>
+        <div class="psu-persona">
+          <div class="psu-persona__header">
+            <div class="psu-persona__avatar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div>
+              <div class="psu-persona__name">Sajid Khan, 31</div>
+              <div class="psu-persona__meta">SMB Merchant · Pune</div>
+            </div>
+          </div>
+          <div class="psu-persona__body">
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Context</div>
+              <div class="psu-persona__v">Runs Apple Authorised Service Centre. High transaction volume, relies heavily on payment links and invoices.</div>
+            </div>
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Needs</div>
+              <div class="psu-persona__v">QR Code app, enhanced payment links, report generation, scheduled notifications for payment reminders</div>
+            </div>
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Pain Points</div>
+              <div class="psu-persona__v">No QR payment collection, no native reporting, no scheduled payment follow-ups in-app</div>
+            </div>
+            <div class="psu-persona__tags">
+              <span class="psu-persona__tag">QR Payments</span>
+              <span class="psu-persona__tag">Reporting</span>
+              <span class="psu-persona__tag">Automation</span>
+            </div>
+          </div>
+        </div>
+        <div class="psu-persona">
+          <div class="psu-persona__header">
+            <div class="psu-persona__avatar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div>
+              <div class="psu-persona__name">Tamanna Singh, 45</div>
+              <div class="psu-persona__meta">SMB Merchant · Transport Agency</div>
+            </div>
+          </div>
+          <div class="psu-persona__body">
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Context</div>
+              <div class="psu-persona__v">Manages a transport and logistics agency. Uses PayU for 2+ years but only through the web app — no mobile usage.</div>
+            </div>
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Needs</div>
+              <div class="psu-persona__v">Need mobile application parity with web, better UX, access to financial services (lending) on app</div>
+            </div>
+            <div class="psu-persona__kv">
+              <div class="psu-persona__k">Pain Points</div>
+              <div class="psu-persona__v">Not aware of PayU's mobile application. Existing PayU app not mobile-friendly. Financial services not available.</div>
+            </div>
+            <div class="psu-persona__tags">
+              <span class="psu-persona__tag">Mobile Parity</span>
+              <span class="psu-persona__tag">Financial Services</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Map -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">User Journey Mapping</div>
+      <h2 class="psu-h2 reveal">Emotional states across the current app experience</h2>
+      <p class="psu-lead reveal">Mapping the journey of an Apple Authorised Service Centre owner through the PayU app revealed exactly where frustration and confusion peaked — and where opportunity lay to convert cautious users into satisfied ones.</p>
+      <div class="psu-journey reveal">
+        <div class="psu-jinner">
+          <div class="psu-jsteps">
+            <div class="psu-jstep"><div class="psu-jstep__num">01</div><div class="psu-jstep__label">Login &amp; Onboarding</div><div class="psu-jstep__action">Opens app, enters credentials</div></div>
+            <div class="psu-jstep"><div class="psu-jstep__num">02</div><div class="psu-jstep__label">Home Screen</div><div class="psu-jstep__action">Views dashboard, scans for products</div></div>
+            <div class="psu-jstep"><div class="psu-jstep__num">03</div><div class="psu-jstep__label">Reports</div><div class="psu-jstep__action">Tries to generate transaction report</div></div>
+            <div class="psu-jstep"><div class="psu-jstep__num">04</div><div class="psu-jstep__label">Payment Link</div><div class="psu-jstep__action">Creates and shares payment link</div></div>
+            <div class="psu-jstep"><div class="psu-jstep__num">05</div><div class="psu-jstep__label">Invoice</div><div class="psu-jstep__action">Attempts to add item inventory</div></div>
+            <div class="psu-jstep"><div class="psu-jstep__num">06</div><div class="psu-jstep__label">Support</div><div class="psu-jstep__action">Raises complaint about missing feature</div></div>
+          </div>
+          <div class="psu-jemotion">
+            <div class="psu-jem">
+              <div class="psu-jem__bar" style="height:60%;background:#22C55E;"></div>
+              <div class="psu-jem__sentiment" style="color:#22C55E;font-family:var(--font-mono);font-size:9px;position:absolute;bottom:2px;">Positive</div>
+            </div>
+            <div class="psu-jem">
+              <div class="psu-jem__bar" style="height:42%;background:#F59E0B;"></div>
+              <div class="psu-jem__sentiment" style="color:#F59E0B;font-family:var(--font-mono);font-size:9px;position:absolute;bottom:2px;">Neutral</div>
+            </div>
+            <div class="psu-jem">
+              <div class="psu-jem__bar" style="height:20%;background:#EF4444;"></div>
+              <div class="psu-jem__sentiment" style="color:#EF4444;font-family:var(--font-mono);font-size:9px;position:absolute;bottom:2px;">Frustrated</div>
+            </div>
+            <div class="psu-jem">
+              <div class="psu-jem__bar" style="height:55%;background:#22C55E;"></div>
+              <div class="psu-jem__sentiment" style="color:#22C55E;font-family:var(--font-mono);font-size:9px;position:absolute;bottom:2px;">Satisfied</div>
+            </div>
+            <div class="psu-jem">
+              <div class="psu-jem__bar" style="height:18%;background:#EF4444;"></div>
+              <div class="psu-jem__sentiment" style="color:#EF4444;font-family:var(--font-mono);font-size:9px;position:absolute;bottom:2px;">Confused</div>
+            </div>
+            <div class="psu-jem">
+              <div class="psu-jem__bar" style="height:10%;background:#EF4444;"></div>
+              <div class="psu-jem__sentiment" style="color:#EF4444;font-family:var(--font-mono);font-size:9px;position:absolute;bottom:2px;">Disappointed</div>
+            </div>
+          </div>
+          <div class="psu-jlegend">
+            <div class="psu-jleg-item"><div class="psu-jleg-dot" style="background:#22C55E;"></div>Positive experience</div>
+            <div class="psu-jleg-item"><div class="psu-jleg-dot" style="background:#F59E0B;"></div>Neutral / uncertain</div>
+            <div class="psu-jleg-item"><div class="psu-jleg-dot" style="background:#EF4444;"></div>Frustration / drop-off risk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Needs + Sentiments -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">Extracting User Needs · Analysing Sentiments</div>
+      <h2 class="psu-h2 reveal">From user statements to design opportunities</h2>
+      <p class="psu-lead reveal">Interview data was synthesised into user statements, insights, and concrete design opportunities — forming the bridge between research and solution design.</p>
+      <div class="psu-insights-flow reveal reveal-delay-1">
+        <div class="psu-if-col">
+          <div class="psu-if-header psu-if-header--s">User Statements</div>
+          <div class="psu-if-body">
+            <div class="psu-if-item">"I can't generate reports from my phone. I always have to use a laptop."</div>
+            <div class="psu-if-item">"There's no QR option — I lose sales at the counter every week."</div>
+            <div class="psu-if-item">"I don't even know what products PayU has. The app just shows transactions."</div>
+            <div class="psu-if-item">"Support takes days to respond. I need it right in the app."</div>
+          </div>
+        </div>
+        <div class="psu-if-arrow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="psu-if-col">
+          <div class="psu-if-header psu-if-header--i">Insights</div>
+          <div class="psu-if-body">
+            <div class="psu-if-item">Mobile app lacks feature parity with web — critical flows unavailable</div>
+            <div class="psu-if-item">Zero QR or mPOS capability creates merchant revenue leakage</div>
+            <div class="psu-if-item">No cross-sell discovery surface — full product suite invisible</div>
+            <div class="psu-if-item">Support access relies on external channels, breaking mobile flow</div>
+          </div>
+        </div>
+        <div class="psu-if-arrow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="psu-if-col">
+          <div class="psu-if-header psu-if-header--o">Design Opportunities</div>
+          <div class="psu-if-body">
+            <div class="psu-if-item">Build full-featured reporting module with export on mobile</div>
+            <div class="psu-if-item">Introduce QR Code Payments as a first-class feature in Phase 1</div>
+            <div class="psu-if-item">Redesign home as product discovery hub with cross-sell shelf</div>
+            <div class="psu-if-item">Embed native customer support ticket + chat in-app</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">Defining the Problem Statement</div>
+      <h2 class="psu-h2 reveal">From symptoms to root cause</h2>
+      <div class="psu-quote reveal">
+        <div class="psu-quote__text">"PayU app is a single-channel mobile app that helps users track their business more efficiently. The app's existing design and structure lack user-friendly features, resulting in a subpar user journey and reduced engagement with PayU's offerings. To address these issues, a comprehensive redesign and restructuring initiative is essential to create a seamless, intuitive, and efficient user experience."</div>
+        <div class="psu-quote__attr">Redefined problem statement — post research synthesis</div>
+      </div>
+      <div class="psu-goals reveal reveal-delay-1">
+        <div class="psu-goal">
+          <div class="psu-goal__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="psu-goal__title">Uniformity Across Platforms</div>
+          <div class="psu-goal__desc">Mobile app parity with web dashboard so users are not forced back to desktop</div>
+        </div>
+        <div class="psu-goal">
+          <div class="psu-goal__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="psu-goal__title">Cross-Selling &amp; Up-Selling</div>
+          <div class="psu-goal__desc">Expose merchants to the full PayU product suite through smart in-app discovery</div>
+        </div>
+        <div class="psu-goal">
+          <div class="psu-goal__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="psu-goal__title">Best-in-Class Help &amp; Support</div>
+          <div class="psu-goal__desc">Native in-app customer support reducing reliance on KAM and email escalations</div>
+        </div>
+        <div class="psu-goal">
+          <div class="psu-goal__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="psu-goal__title">Better User Experience</div>
+          <div class="psu-goal__desc">Intuitive, fast, confident experience that builds merchant trust and retention</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PHASE 03 — DESIGN
+  ══════════════════════════════════════════ -->
+  <div class="psu-phase-banner reveal">
+    <div class="container">
+      <div class="psu-phase-marker">
+        <div class="psu-phase-num">03</div>
+        <div class="psu-phase-info">
+          <div class="psu-phase-label">Phase Three · Ideation Phase</div>
+          <div class="psu-phase-title">Design</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MoSCoW -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">Ideation &amp; Prioritisation</div>
+      <h2 class="psu-h2 reveal">MoSCoW: What to build, what to park</h2>
+      <p class="psu-lead reveal">Using MoSCoW analysis for idea prioritisation, I clustered features into four groups to align the team on a realistic Phase 1 scope without sacrificing the most critical merchant needs.</p>
+      <div class="psu-moscow reveal reveal-delay-1">
+        <div class="psu-moscow-col">
+          <div class="psu-moscow-col__header psu-moscow-col__header--must">Must Have</div>
+          <div class="psu-moscow-col__body">
+            <div class="psu-moscow-col__item">Intuitive and user-friendly interface for quick navigation</div>
+            <div class="psu-moscow-col__item">Report generation inside application</div>
+            <div class="psu-moscow-col__item">Cross-Selling and Up-Selling</div>
+            <div class="psu-moscow-col__item">Real-time transaction tracking and reporting</div>
+            <div class="psu-moscow-col__item">QR Code Payments</div>
+            <div class="psu-moscow-col__item">Enhanced Payment invoicing and Links</div>
+            <div class="psu-moscow-col__item">Refund and dispute resolution features</div>
+            <div class="psu-moscow-col__item">Mobile point-of-sale (mPOS) functionality</div>
+          </div>
+        </div>
+        <div class="psu-moscow-col">
+          <div class="psu-moscow-col__header psu-moscow-col__header--should">Should Have</div>
+          <div class="psu-moscow-col__body">
+            <div class="psu-moscow-col__item">Support for various payment methods</div>
+            <div class="psu-moscow-col__item">Integration with popular e-commerce platforms</div>
+            <div class="psu-moscow-col__item">Natural and dispute resolution features</div>
+          </div>
+        </div>
+        <div class="psu-moscow-col">
+          <div class="psu-moscow-col__header psu-moscow-col__header--could">Could Have</div>
+          <div class="psu-moscow-col__body">
+            <div class="psu-moscow-col__item">Advanced analytics for sales trends and customer behaviour</div>
+            <div class="psu-moscow-col__item">Customisable dashboard and reporting tools</div>
+            <div class="psu-moscow-col__item">Loyalty program management for customer retention</div>
+            <div class="psu-moscow-col__item">Inventory management to sync online and offline sales</div>
+          </div>
+        </div>
+        <div class="psu-moscow-col">
+          <div class="psu-moscow-col__header psu-moscow-col__header--wont">Won't Have (Phase 1)</div>
+          <div class="psu-moscow-col__body">
+            <div class="psu-moscow-col__item">Complex financial tools like budgeting</div>
+            <div class="psu-moscow-col__item">Advanced AI features for predictive analytics</div>
+            <div class="psu-moscow-col__item">Social media integrations</div>
+            <div class="psu-moscow-col__item">Native Lending Onboarding</div>
+            <div class="psu-moscow-col__item">Native Customer Support</div>
+            <div class="psu-moscow-col__item">Native Signup flow</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Design Vision + IA -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">Design Vision · Information Architecture</div>
+      <h2 class="psu-h2 reveal">From desktop dashboard to seamless mobile</h2>
+      <div class="psu-quote reveal">
+        <div class="psu-quote__text">"To revolutionise the PayU Payments application, our design vision is to seamlessly transition powerful desktop dashboard features to a mobile environment. By prioritising user experience enhancements, we aim to not only retain but elevate user satisfaction, reducing churn rates and establishing PayU as the go-to platform for secure and intuitive mobile payment management."</div>
+        <div class="psu-quote__attr">Design Vision Statement</div>
+      </div>
+      <div class="psu-ia reveal">
+        <div class="psu-ia-inner">
+          <div class="psu-ia-root">
+            <div class="psu-ia-root-node">PayU Merchant App</div>
+          </div>
+          <div style="display:flex;justify-content:center;"><div style="width:2px;height:20px;background:var(--border);"></div></div>
+          <div style="display:flex;position:relative;">
+            <div style="position:absolute;top:0;left:10%;right:10%;height:2px;background:var(--border);"></div>
+          </div>
+          <div class="psu-ia-branch" style="align-items:flex-start;padding-top:2px;">
+            <div class="psu-ia-section" style="flex:1;margin:0 5px;">
+              <div class="psu-ia-section__head">Home</div>
+              <div class="psu-ia-section__items">
+                <div class="psu-ia-section__item">Balance Overview</div>
+                <div class="psu-ia-section__item">Quick Actions</div>
+                <div class="psu-ia-section__item">Product Suite</div>
+                <div class="psu-ia-section__item">Transaction Feed</div>
+                <div class="psu-ia-section__item">Cross-Sell Shelf</div>
+              </div>
+            </div>
+            <div class="psu-ia-section" style="flex:1;margin:0 5px;">
+              <div class="psu-ia-section__head">Payments</div>
+              <div class="psu-ia-section__items">
+                <div class="psu-ia-section__item">Payment Links</div>
+                <div class="psu-ia-section__item">QR Code</div>
+                <div class="psu-ia-section__item">Invoice + Inventory</div>
+                <div class="psu-ia-section__item">Payment Handle</div>
+                <div class="psu-ia-section__item">mPOS</div>
+              </div>
+            </div>
+            <div class="psu-ia-section" style="flex:1;margin:0 5px;">
+              <div class="psu-ia-section__head">Reports</div>
+              <div class="psu-ia-section__items">
+                <div class="psu-ia-section__item">Transaction Reports</div>
+                <div class="psu-ia-section__item">Settlement Reports</div>
+                <div class="psu-ia-section__item">Export / Download</div>
+                <div class="psu-ia-section__item">Transaction Detail</div>
+                <div class="psu-ia-section__item">Share Detail</div>
+              </div>
+            </div>
+            <div class="psu-ia-section" style="flex:1;margin:0 5px;">
+              <div class="psu-ia-section__head">Products</div>
+              <div class="psu-ia-section__items">
+                <div class="psu-ia-section__item">Priority Settlement</div>
+                <div class="psu-ia-section__item">Payment Landing</div>
+                <div class="psu-ia-section__item">Business Lending</div>
+                <div class="psu-ia-section__item">uP Card</div>
+                <div class="psu-ia-section__item">Offers &amp; Discounts</div>
+              </div>
+            </div>
+            <div class="psu-ia-section" style="flex:1;margin:0 5px;">
+              <div class="psu-ia-section__head">Support</div>
+              <div class="psu-ia-section__items">
+                <div class="psu-ia-section__item">Raise Complaint</div>
+                <div class="psu-ia-section__item">Live Chat</div>
+                <div class="psu-ia-section__item">FAQs</div>
+                <div class="psu-ia-section__item">Profile Settings</div>
+                <div class="psu-ia-section__item">KYC / Documents</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PHASE 04 — DELIVER
+  ══════════════════════════════════════════ -->
+  <div class="psu-phase-banner reveal">
+    <div class="container">
+      <div class="psu-phase-marker">
+        <div class="psu-phase-num">04</div>
+        <div class="psu-phase-info">
+          <div class="psu-phase-label">Phase Four · Implementation Phase</div>
+          <div class="psu-phase-title">Deliver</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- High Fidelity Screens -->
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">High Fidelity Wireframes</div>
+      <h2 class="psu-h2 reveal">The redesigned PayU merchant experience</h2>
+      <p class="psu-lead reveal">Every screen was designed with the three personas in mind — ensuring first-time users could onboard with confidence, power users could transact in seconds, and all merchants could discover and use the full PayU product suite.</p>
+
+      <!-- Login + Onboarding visual designs -->
+      <div style="margin-bottom:12px;" class="psu-sub reveal">Login · Onboarding Experience</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;" class="reveal">
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
+          <img src="img/login_supperapp.jpg" alt="PayU Super App — Login Screen" loading="lazy" style="width:100%;height:auto;display:block;">
+          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Login Screen</div>
+        </div>
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
+          <img src="img/onboarding_superapp.jpg" alt="PayU Super App — Onboarding Flow" loading="lazy" style="width:100%;height:auto;display:block;">
+          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Onboarding Flow</div>
+        </div>
+      </div>
+
+      <div class="psu-sub reveal" style="margin-top:40px;">The All-New Homescreen</div>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:640px;margin-bottom:24px;" class="reveal">Welcome to the redesigned PayU Mobile App, where simplicity meets power. The new Home Screen provides a seamless and intuitive experience — empowering merchants to manage payments effortlessly with the full product suite one tap away.</p>
+
+      <!-- Homescreen full-width visual -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;width:100%;margin-top:8px;" class="reveal">
+        <img src="img/supperapp_homescreen.jpg" alt="PayU Super App — All-New Homescreen" loading="lazy" style="width:100%;height:auto;display:block;">
+        <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">All-New Homescreen</div>
+      </div>
+
+      <div class="psu-sub reveal" style="margin-top:40px;">Payments · Invoice · QR Code</div>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:640px;margin-bottom:24px;" class="reveal">Experience the future of seamless transactions with QR Code Payments — the fastest, safest way to pay and receive. Payment invoicing was redesigned with item-level inventory management, directly addressing Sajid's top pain point.</p>
+
+      <!-- Payments · Invoice · QR visual designs -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;" class="reveal">
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
+          <img src="img/QR_superapp.jpg" alt="PayU Super App — QR Code Payments" loading="lazy" style="width:100%;height:auto;display:block;">
+          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">QR Code Payments</div>
+        </div>
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
+          <img src="img/links_superapp.jpg" alt="PayU Super App — Payment Links" loading="lazy" style="width:100%;height:auto;display:block;">
+          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Payment Links</div>
+        </div>
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
+          <img src="img/Invoice_superapp.jpg" alt="PayU Super App — Invoice" loading="lazy" style="width:100%;height:auto;display:block;">
+          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Invoice · Inventory</div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;" class="psu-sub reveal">Settings · Support</div>
+
+      <!-- Settings · Support visual design -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;width:100%;margin-top:16px;" class="reveal">
+        <img src="img/settings_support_superapp.jpg" alt="PayU Super App — Settings & Support" loading="lazy" style="width:100%;height:auto;display:block;">
+        <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Settings · Native Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       USER TESTING
+  ══════════════════════════════════════════ -->
+  <div class="psu-phase-banner reveal">
+    <div class="container">
+      <div class="psu-phase-marker">
+        <div class="psu-phase-num">05</div>
+        <div class="psu-phase-info">
+          <div class="psu-phase-label">Validation</div>
+          <div class="psu-phase-title">User Testing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="psu-section">
+    <div class="container">
+      <div class="psu-sub reveal">Testing Methodology</div>
+      <h2 class="psu-h2 reveal">Rolling out to real merchants at scale</h2>
+      <p class="psu-lead reveal">The application was tested using an unmoderated usability study by rolling out to 30% of existing PayU merchants in Apr–May 2023 (~38k users). Participants were categorised by platform usage — app-only, dashboard-only, and both. KPIs tracked TAT comparison, user error rates, conversion rates, and app engagement.</p>
+      <div class="psu-test-setup reveal reveal-delay-1">
+        <div class="psu-test-box">
+          <div class="psu-test-box__head">KPIs Tracked</div>
+          <div class="psu-test-kpi"><div class="psu-test-kpi__dot"></div><div class="psu-test-kpi__text">Task completion rate — could users finish key flows?</div></div>
+          <div class="psu-test-kpi"><div class="psu-test-kpi__dot"></div><div class="psu-test-kpi__text">TAT comparison — new app vs web dashboard</div></div>
+          <div class="psu-test-kpi"><div class="psu-test-kpi__dot"></div><div class="psu-test-kpi__text">Monthly active users (MAU) — 30 day retention</div></div>
+          <div class="psu-test-kpi"><div class="psu-test-kpi__dot"></div><div class="psu-test-kpi__text">Product engagement rate across all sections</div></div>
+          <div class="psu-test-kpi"><div class="psu-test-kpi__dot"></div><div class="psu-test-kpi__text">User error rate and abandonment in critical flows</div></div>
+        </div>
+        <div class="psu-test-box">
+          <div class="psu-test-box__head">Participant Breakdown — 38k Users</div>
+          <div class="psu-test-segment">
+            <div class="psu-test-segment__label">App-only users</div>
+            <div class="psu-test-segment__bar"><div class="psu-test-segment__fill" style="width:48%;"></div></div>
+            <div class="psu-test-segment__meta"><span>Mobile merchants</span><span>~18,000</span></div>
+          </div>
+          <div class="psu-test-segment">
+            <div class="psu-test-segment__label">Dashboard-only users</div>
+            <div class="psu-test-segment__bar"><div class="psu-test-segment__fill" style="width:32%;background:#3B82F6;"></div></div>
+            <div class="psu-test-segment__meta"><span>Desktop merchants</span><span>~12,000</span></div>
+          </div>
+          <div class="psu-test-segment">
+            <div class="psu-test-segment__label">Both platforms</div>
+            <div class="psu-test-segment__bar"><div class="psu-test-segment__fill" style="width:20%;background:#F59E0B;"></div></div>
+            <div class="psu-test-segment__meta"><span>Power users</span><span>~8,000</span></div>
+          </div>
+          <div style="margin-top:14px;font-size:11px;color:var(--text-3);padding:10px;background:var(--bg-elevated);border-radius:8px;">Method: Unmoderated usability study · Apr–May 2023 · 30% rollout cohort</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       OUTCOMES
+  ══════════════════════════════════════════ -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div class="psu-sub reveal">Results — 30% Rollout · ~38k Users</div>
+      <h2 class="psu-h2 reveal">Phase 1: Proof it works</h2>
+      <p class="psu-lead reveal">The first rollout to 30% of merchants in April–June 2023 validated the redesign direction decisively across every key metric.</p>
+      <div class="psu-metrics reveal">
+        <div class="psu-metric"><div class="psu-metric__num">75%↑</div><div class="psu-metric__label">Increase in MAU Apr–June 2023</div></div>
+        <div class="psu-metric"><div class="psu-metric__num">60%↑</div><div class="psu-metric__label">Increase in Product Engagement</div></div>
+        <div class="psu-metric"><div class="psu-metric__num">30K</div><div class="psu-metric__label">Users came to App Homepage</div></div>
+        <div class="psu-metric"><div class="psu-metric__num">32K</div><div class="psu-metric__label">Users tried using products in app</div></div>
+        <div class="psu-metric"><div class="psu-metric__num">28K</div><div class="psu-metric__label">Using products on monthly basis</div></div>
+      </div>
+      <div class="psu-sub reveal" style="margin-top:48px;">Results — 100% Rollout · ~125k Users</div>
+      <h2 class="psu-h2 reveal" style="margin-bottom:16px;">Phase 2: Full scale confirmation</h2>
+      <p class="psu-lead reveal" style="margin-bottom:32px;">After the 30% success, the app was rolled out to 100% of merchants in August 2023 — replicating and extending the gains at more than 3× the user base.</p>
+      <div class="psu-results reveal reveal-delay-1">
+        <div class="psu-result">
+          <div class="psu-result__num">70%↑</div>
+          <div class="psu-result__label">Increase in MAU from August 2023 after full rollout</div>
+        </div>
+        <div class="psu-result">
+          <div class="psu-result__num">65%↑</div>
+          <div class="psu-result__label">Increase in Product Engagement across all merchant types</div>
+        </div>
+        <div class="psu-result">
+          <div class="psu-result__num">81K</div>
+          <div class="psu-result__label">Active merchants using products monthly — 3.2× baseline</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App is Live -->
+  <section class="psu-section psu-section--alt">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;" class="reveal">
+        <div>
+          <div class="psu-sub" style="margin-bottom:12px;">The App is Live</div>
+          <h2 class="psu-h2" style="margin-bottom:16px;">Available now on App Store and Play Store</h2>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:24px;">The redesigned PayU Super App is live for all merchants. After a successful 30% rollout and full deployment in August 2023, the app is now available to download and use. I'd love to hear what you think of the experience — download it and let me know.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <div style="display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75.1 4 .1 3 0 6-8 6-12.22A4 4 0 0 0 18 5l-5.23 2.5a3 3 0 0 1-1.54 0L6 5a4 4 0 0 0-4 3.82C2 13 5 21 8 21c1.25 0 2.5-.1 4-.1z"/><path d="M10 2c0 2.5-2 2.5-2 4a2 2 0 1 0 4 0c0-1.5-2-1.5-2-4z"/></svg>
+              <span style="font-size:13px;color:var(--text-1);font-weight:600;">App Store</span>
+            </div>
+            <div style="display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span style="font-size:13px;color:var(--text-1);font-weight:600;">Play Store</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(52,210,120,0.1),rgba(52,210,120,0.03));border:1px solid rgba(52,210,120,0.25);border-radius:var(--r-xl);padding:32px 36px;text-align:center;min-width:220px;">
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--proj-accent);margin-bottom:8px;">PayU Super App</div>
+          <div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;">Now in Production</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-card);border-radius:10px;text-align:left;">
+              <span style="color:var(--proj-accent);font-size:14px;">✓</span>
+              <span style="font-size:12px;color:var(--text-2);">iOS &amp; Android</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-card);border-radius:10px;text-align:left;">
+              <span style="color:var(--proj-accent);font-size:14px;">✓</span>
+              <span style="font-size:12px;color:var(--text-2);">100% merchant rollout</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-card);border-radius:10px;text-align:left;">
+              <span style="color:var(--proj-accent);font-size:14px;">✓</span>
+              <span style="font-size:12px;color:var(--text-2);">81K+ monthly actives</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reflection -->
+  <section class="psu-section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;" class="reveal">
+        <div>
+          <div class="psu-sub">Key Learnings</div>
+          <h2 class="psu-h2">What this project taught me</h2>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px;">
+            <div style="display:flex;gap:14px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--proj-accent);flex-shrink:0;margin-top:8px;"></div><p style="font-size:14px;color:var(--text-2);line-height:1.65;margin:0;"><strong style="color:var(--text-1);">Data without context misleads.</strong> The funnel showed 32% engagement — but without interviews we'd have built the wrong solution. Research sequencing matters enormously.</p></div>
+            <div style="display:flex;gap:14px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--proj-accent);flex-shrink:0;margin-top:8px;"></div><p style="font-size:14px;color:var(--text-2);line-height:1.65;margin:0;"><strong style="color:var(--text-1);">Feature parity is not the goal.</strong> Web-to-mobile parity was a starting point, not a solution. The real goal was to redesign for mobile-native mental models.</p></div>
+            <div style="display:flex;gap:14px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--proj-accent);flex-shrink:0;margin-top:8px;"></div><p style="font-size:14px;color:var(--text-2);line-height:1.65;margin:0;"><strong style="color:var(--text-1);">Phased rollout is underrated.</strong> The 30% rollout gave us real signal before committing to 100% — and the metrics were strong enough to justify full deployment without further iteration.</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="psu-sub">What I'd Do Differently</div>
+          <h2 class="psu-h2">Next time around</h2>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;margin-top:24px;">
+            <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:16px;">I would invest more time upfront in <strong style="color:var(--text-1);">longitudinal diary studies</strong> to understand how merchants' workflows evolve over time — not just single-session pain points.</p>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin-bottom:16px;">The competitive analysis leaned heavily on global fintech benchmarks. Indian SMB merchant usage patterns — especially in Tier 2 and 3 cities — have significant nuance that desk research alone can't capture.</p>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.7;margin:0;">I'd also push harder for <strong style="color:var(--text-1);">native lending onboarding</strong> in Phase 1 — the interview data clearly showed demand, but it was deprioritised due to engineering constraints.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next project -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

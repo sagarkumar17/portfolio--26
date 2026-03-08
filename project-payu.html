@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayU Partners Platform — Sagar Kumar</title>
+  <meta name="description" content="Redesigning a 14-step manual onboarding into a self-serve digital portal — eliminating 40% drop-off."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    /* ── PayU Brand Variables ── */
+    :root {
+      --proj-accent: #8DC200;
+      --pu-green: #8DC200;
+      --pu-green-dim: rgba(141,194,0,0.08);
+      --pu-border-green: rgba(141,194,0,0.22);
+    }
+
+    /* ── Section rhythm (PayU) ── */
+    .pu-sec { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .pu-sec:last-of-type { border-bottom: none; }
+    .pu-sec--alt { background: var(--bg-card); }
+
+    /* ── Phase divider ── */
+    .pu-phase-hdr { display: flex; align-items: flex-end; gap: 24px; margin-bottom: 56px; }
+    .pu-phase-hdr__num { font-family: var(--font-display); font-size: clamp(80px,10vw,120px); font-weight: 900; line-height: 0.85; color: var(--pu-green); opacity: 0.22; letter-spacing: -0.06em; flex-shrink: 0; }
+    [data-theme="light"] .pu-phase-hdr__num { opacity: 0.12; }
+    .pu-phase-hdr__text { padding-bottom: 8px; }
+    .pu-phase-hdr__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 6px; }
+    .pu-phase-hdr__title { font-family: var(--font-display); font-size: clamp(30px,4vw,48px); font-weight: 900; letter-spacing: -0.03em; color: var(--text-1); line-height: 1; }
+    .pu-phase-hdr__sub { font-size: 14px; color: var(--text-2); margin-top: 6px; }
+
+    /* ── Sub-section ── */
+    .pu-sub { margin-top: 56px; }
+    .pu-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 10px; }
+    .pu-h2 { font-family: var(--font-display); font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--text-1); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .pu-h3 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .pu-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+
+    /* ── Two / three / four col ── */
+    .pu-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .pu-3col { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .pu-4col { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media (max-width: 900px) { .pu-2col, .pu-3col { grid-template-columns: 1fr; } .pu-4col { grid-template-columns: 1fr 1fr; } }
+
+    /* ── Persona cards ── */
+    .pu-personas { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    @media(max-width:900px){.pu-personas{grid-template-columns:1fr}}
+    .pu-persona { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .pu-persona__hdr { padding: 24px 24px 0; display: flex; gap: 16px; align-items: flex-start; }
+    .pu-persona__avatar {
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        background: var(--proj-accent);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; flex-shrink: 0;
+        animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .pu-persona__avatar:hover {
+        transform: scale(1.12);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      }
+    .pu-persona__info { flex: 1; }
+    .pu-persona__name { font-weight: 800; font-size: 16px; color: var(--text-1); margin-bottom: 2px; }
+    .pu-persona__role { font-size: 12px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
+    .pu-persona__body { padding: 16px 24px; }
+    .pu-persona__bio { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .pu-persona__tags { padding: 0 24px 24px; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .pu-persona__tag { font-family: var(--font-mono); font-size: 10px; color: var(--pu-green); background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; padding: 3px 10px; }
+
+    /* ── Pain point / Insight grid ── */
+    .pu-pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media(max-width:900px){.pu-pain-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.pu-pain-grid{grid-template-columns:1fr}}
+    .pu-pain { padding: 24px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+    .pu-pain:nth-child(3n) { border-right: none; }
+    .pu-pain:nth-last-child(-n+3) { border-bottom: none; }
+    @media(max-width:900px){ .pu-pain:nth-child(2n){ border-right:none; } .pu-pain:nth-child(3n){ border-right:1px solid var(--border); } .pu-pain:nth-child(3n):nth-child(2n){ border-right:none; } }
+    .pu-pain__phase { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: block; }
+    .pu-pain__rule { display: block; width: 20px; height: 2px; background: var(--pu-green); border-radius: 2px; margin-bottom: 12px; }
+    .pu-pain__title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--text-1); margin-bottom: 6px; letter-spacing: -0.01em; }
+    .pu-pain__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Insight cards ── */
+    .pu-insight-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media(max-width:900px){.pu-insight-grid{grid-template-columns:1fr}}
+    .pu-insight { padding: 28px 24px; border-right: 1px solid var(--border); }
+    .pu-insight:last-child { border-right: none; }
+    @media(max-width:900px){ .pu-insight { border-right: none; border-bottom: 1px solid var(--border); } .pu-insight:last-child { border-bottom: none; } }
+    .pu-insight__num { font-family: var(--font-display); font-size: clamp(40px,5vw,56px); font-weight: 900; color: var(--pu-green); opacity: 0.18; line-height: 0.9; letter-spacing: -0.06em; margin-bottom: 14px; }
+    .pu-insight__title { font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; letter-spacing: -0.01em; }
+    .pu-insight__text { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Double Diamond ── */
+    .pu-diamond { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .pu-diamond-phase { padding: 24px 20px; border-right: 1px solid var(--border); }
+    .pu-diamond-phase:last-child { border-right: none; }
+    .pu-diamond-phase__d { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .pu-diamond-phase__d--discover { background: var(--pu-green-dim); color: var(--pu-green); }
+    .pu-diamond-phase__d--define { background: rgba(139,92,246,0.1); color: #7C3AED; }
+    .pu-diamond-phase__d--develop { background: rgba(16,185,129,0.1); color: #059669; }
+    .pu-diamond-phase__d--deliver { background: rgba(245,158,11,0.1); color: #D97706; }
+    .pu-diamond-phase__title { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .pu-diamond-phase__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .pu-diamond-phase__items li { font-size: 12px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
+    .pu-diamond-phase__items li::before { content: '—'; position: absolute; left: 0; color: var(--pu-green); }
+    @media(max-width:800px){.pu-diamond{grid-template-columns:1fr 1fr}}
+
+    /* ── Constraints grid ── */
+    .pu-constraints { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    @media(max-width:800px){.pu-constraints{grid-template-columns:1fr}}
+    .pu-constraint { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
+    .pu-constraint__num { font-family: var(--font-display); font-size: 36px; font-weight: 900; color: var(--pu-green); opacity: 0.25; margin-bottom: 12px; }
+    .pu-constraint__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .pu-constraint__text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Objectives grid ── */
+    .pu-objectives { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    @media(max-width:900px){.pu-objectives{grid-template-columns:1fr}}
+    .pu-obj { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
+    .pu-obj__icon { width:48px; height:48px; border-radius:50%; background:var(--proj-accent); display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; margin-bottom:16px; }
+    .pu-obj__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .pu-obj__text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Browser / Laptop Mockup ── */
+    .browser-wrap {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.07);
+      background: var(--bg-card);
+    }
+    .browser-chrome {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 16px;
+      background: #1E1E2E;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .browser-chrome__dots { display: flex; gap: 6px; }
+    .browser-chrome__dot { width: 11px; height: 11px; border-radius: 50%; }
+    .browser-chrome__dot--r { background: #FF5F57; }
+    .browser-chrome__dot--y { background: #FFBD2E; }
+    .browser-chrome__dot--g { background: #28C840; }
+    .browser-chrome__bar {
+      flex: 1; height: 24px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      display: flex; align-items: center; padding: 0 10px;
+      font-family: var(--font-mono); font-size: 10px;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.04em;
+      gap: 6px;
+    }
+
+    /* ── Screen card layout ── */
+    .screen-card { margin-top: 64px; margin-bottom: 16px; }
+    .screen-card__header {
+      display: flex; align-items: flex-start; gap: 32px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .screen-card__meta { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+    .screen-card__num {
+      font-family: var(--font-display); font-size: clamp(56px,7vw,80px);
+      font-weight: 900; line-height: 0.9; letter-spacing: -0.06em;
+      color: var(--pu-green); opacity: 0.12; pointer-events: none; user-select: none;
+    }
+    .screen-card__step {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--pu-green);
+      background: var(--pu-green-dim); border: 1px solid var(--pu-border-green);
+      border-radius: 20px; padding: 4px 12px; display: inline-block; white-space: nowrap;
+    }
+    .screen-card__content { flex: 1; }
+    .screen-card__title {
+      font-family: var(--font-display); font-size: clamp(22px,2.8vw,34px);
+      font-weight: 900; letter-spacing: -0.03em; color: var(--text-1);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .screen-card__desc { font-size: 15px; color: var(--text-2); line-height: 1.75; max-width: 680px; }
+
+    .screen-card .browser-wrap {
+      box-shadow: 0 40px 120px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06),
+                  0 0 60px rgba(141,194,0,0.08);
+      border-radius: 14px 14px 0 0;
+    }
+    /* Full image — no crop inside screen-cards */
+    .screen-card .browser-wrap img {
+      width: 100%; height: auto; display: block;
+      object-fit: unset; position: static; transform: none !important;
+    }
+    .screen-card .browser-wrap .proj-visuals__placeholder { position: absolute; inset: 40px 0 0; }
+
+    /* ── Annotation strip below screen ── */
+    .screen-card__annots {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
+      border: 1px solid var(--border); border-radius: 0 0 var(--r-xl) var(--r-xl);
+      border-top: none; overflow: hidden;
+    }
+    .screen-card__annot {
+      padding: 16px 20px;
+      border-right: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .screen-card__annot:last-child { border-right: none; }
+    .screen-card__annot-label {
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-3); margin-bottom: 4px;
+    }
+    .screen-card__annot-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    @media(max-width:700px){ .screen-card__annots { grid-template-columns: 1fr; } .screen-card__header { flex-direction: column; gap: 16px; } }
+
+    /* ── Phone frame ── */
+    .phone-frame {
+      width: 280px; margin: 0 auto;
+      background: #000; border-radius: 48px;
+      padding: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .phone-frame__notch {
+      height: 28px; background: #000; border-radius: 0 0 24px 24px;
+      margin: -12px -12px 0 -12px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .phone-frame__screen {
+      border-radius: 40px; overflow: hidden;
+      aspect-ratio: 9/19.5; background: var(--bg);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── Usecases section ── */
+    .pu-usecases { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    @media(max-width:900px){.pu-usecases{grid-template-columns:1fr}}
+    .pu-usecase { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
+    .pu-usecase__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 14px; }
+    .pu-usecase__steps { display: flex; flex-direction: column; gap: 12px; }
+    .pu-usecase__step { font-size: 13px; color: var(--text-2); line-height: 1.65; padding-left: 16px; position: relative; }
+    .pu-usecase__step::before { content: '→'; position: absolute; left: 0; color: var(--pu-green); font-weight: 700; }
+
+    /* ── Animation ── */
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { animation: reveal 600ms ease-out forwards; opacity: 0; }
+    .reveal-delay-1 { animation-delay: 100ms; }
+    .reveal-delay-2 { animation-delay: 200ms; }
+    .reveal-delay-3 { animation-delay: 300ms; }
+
+    /* ── Utilities ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+    .section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; }
+    .section-label::before { background: var(--pu-green); }
+    .d-xl { font-family: var(--font-display); font-size: clamp(40px,6vw,72px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; }
+    .body-lg { font-size: 18px; color: var(--text-2); line-height: 1.75; }
+    .tag { display: inline-block; padding: 4px 12px; background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; font-size: 11px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; border-radius: var(--r-md); font-size: 13px; font-weight: 600; transition: all 200ms ease; }
+    .btn--primary { background: var(--pu-green); color: #0A0A14; }
+    .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(141,194,0,0.3); }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer__logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-1);
+    }
+    .footer__logo span { color: var(--pu-green); }
+    .footer__copy {
+      font-size: 13px;
+      color: var(--text-3);
+    }
+    .footer__links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer__links a {
+      font-size: 13px;
+      color: var(--text-2);
+      transition: color 200ms ease;
+    }
+    .footer__links a:hover {
+      color: var(--pu-green);
+    }
+      /* Icon animation */
+    @keyframes iconPop {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .pu-obj__icon {
+      animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+    .pu-obj__icon:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+    .pu-obj:nth-child(1) .pu-obj__icon { animation-delay: 0.05s; }
+    .pu-obj:nth-child(2) .pu-obj__icon { animation-delay: 0.10s; }
+    .pu-obj:nth-child(3) .pu-obj__icon { animation-delay: 0.15s; }
+    .pu-obj:nth-child(4) .pu-obj__icon { animation-delay: 0.20s; }
+    .pu-obj:nth-child(5) .pu-obj__icon { animation-delay: 0.25s; }
+    .pu-obj:nth-child(6) .pu-obj__icon { animation-delay: 0.30s; }
+
+  
+    /* ── Scrolling Image Reel — contained card ──────────────── */
+    .sk-reel-card {
+      background: linear-gradient(135deg, #080e1a, #0a1020);
+      border: 1px solid rgba(141,194,0,0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      padding: 32px 0 28px;
+    }
+
+    .sk-reel-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      cursor: pointer;
+      user-select: none;
+    }
+    .sk-reel-wrap::after {
+      content: '⏸  Click to pause';
+      position: absolute;
+      bottom: 12px; left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(8,8,15,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: rgba(255,255,255,0.88);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 5px 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 10;
+    }
+    .sk-reel-wrap:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .sk-reel-wrap.is-paused::after { content: '▶  Click to play'; opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .sk-reel-track {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: max-content;
+      padding: 8px 0 8px;
+      animation: sk-reel-scroll 32s linear infinite;
+      will-change: transform;
+    }
+    .sk-reel-track.is-paused { animation-play-state: paused; }
+
+    @keyframes sk-reel-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Image frame — uniform height, 8 px radius */
+    .sk-reel-phone {
+      flex-shrink: 0;
+      width: 180px;
+      height: 360px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .sk-reel-phone:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 0 0 1.5px rgba(141,194,0,0.4), 0 20px 48px rgba(0,0,0,0.6);
+    }
+    .sk-reel-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+    /* ── end reel ───────────────────────────────────────────── */
+
+    /* reel now uses actual <img> screenshots — ph-* classes removed */
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Back -->
+  <div style="padding-top:calc(var(--nav-h) + 48px);padding-bottom:0;">
+    <div class="container">
+      <a href="work.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);transition:color 200ms ease;" onmouseover="this.style.color='var(--pu-green)'" onmouseout="this.style.color='var(--text-2)'">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+    </div>
+  </div>
+
+  <!-- PROJECT HERO -->
+  <section style="padding:40px 0 60px;">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2B · FinTech · PayU · 2022–2023</div>
+      <h1 class="proj-title reveal reveal-delay-1">PayU Partners Platform</h1>
+      <p class="proj-sub reveal reveal-delay-2" style="margin-top:20px;">Redesigning a 14-step manual onboarding into a self-serve digital portal — eliminating 40% drop-off.</p>
+
+      <!-- Meta -->
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">Lead UX/UI Designer</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Client</div>
+          <div class="proj-meta__v">PayU Payments</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Platform</div>
+          <div class="proj-meta__v">Web · Desktop + Mobile</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Team</div>
+          <div class="proj-meta__v">2 Designers · Engineering</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Duration</div>
+          <div class="proj-meta__v">4 Months · 2020–2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FINAL DESIGNS — Scrolling Reel (contained card) -->
+  <section style="padding:0 0 64px;" class="reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Hero banner ── -->
+      <div style="margin-bottom:20px; border-radius:28px; overflow:hidden; border:1px solid var(--border-strong); background:#111; width:100%;">
+        <img src="img/payu-partners-hero.jpg" alt="PayU Partners Platform — Dashboard Overview" loading="lazy" style="width:100%; height:auto; display:block;" />
+      </div>
+
+      <!-- Contained reel card — hidden until screens are ready -->
+      <div class="sk-reel-card" style="display:none;">
+        <div class="sk-reel-wrap" id="reel-partners">
+          <div class="sk-reel-track" id="track-partners">
+
+            <!-- ─── Screen 1 ─── -->
+            <div class="sk-reel-phone">
+              <img src="img/payu-ps-1.jpg" alt="PayU Partners – Home Dashboard" />
+            </div>
+
+            <!-- ─── Screen 2 ─── -->
+            <div class="sk-reel-phone">
+              <img src="img/payu-ps-2.jpg" alt="PayU Partners – Notifications" />
+            </div>
+
+            <!-- ─── Screen 3 ─── -->
+            <div class="sk-reel-phone">
+              <img src="img/payu-ps-3.jpg" alt="PayU Partners – Refer &amp; Earn" />
+            </div>
+
+            <!-- ─── Screen 4 ─── -->
+            <div class="sk-reel-phone">
+              <img src="img/payu-ps-4.jpg" alt="PayU Partners – Share Referral Link" />
+            </div>
+
+            <!-- ─── Screen 5 ─── -->
+            <div class="sk-reel-phone">
+              <img src="img/payu-ps-5.jpg" alt="PayU Partners – Referral Success" />
+            </div>
+
+            <!-- ─── Screen 6 ─── -->
+            <div class="sk-reel-phone">
+              <img src="img/payu-ps-6.jpg" alt="PayU Partners – Bulk Upload" />
+            </div>
+
+          </div><!-- /track -->
+        </div><!-- /reel-wrap -->
+      </div><!-- /sk-reel-card -->
+    </div><!-- /container -->
+  </section>
+  <!-- OVERVIEW -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="section-label reveal">Overview</div>
+      <div class="pu-2col reveal reveal-delay-1">
+        <div>
+          <h2 class="pu-h2">Context & Challenge</h2>
+          <p class="pu-p" style="margin-top:16px;">PayU's Partner Program enables developers, resellers, and enterprise platforms to refer merchants and earn incentives on transactions. The legacy dashboard was built exclusively for individual resellers — it lacked self-serve capabilities for enterprise partners, relied heavily on KAM support for every step, and had a 60+ pain-point journey causing massive drop-offs.</p>
+          <p class="pu-p" style="margin-top:16px;">We set out to redesign the entire partner experience across three user types: Enterprise Platforms, Resellers, and Developers.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <h3 class="pu-h3" style="margin-bottom:20px;">Platform Scale</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;">
+            <div style="padding:36px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">300+</div>
+              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Active Partners</div>
+            </div>
+            <div style="padding:36px 28px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">350K+</div>
+              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Referred Merchants</div>
+            </div>
+            <div style="padding:36px 28px;border-right:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">40bn</div>
+              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Transaction Volume</div>
+            </div>
+            <div style="padding:36px 28px;">
+              <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">15+</div>
+              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Local Offices</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM STATEMENT -->
+  <section class="pu-sec pu-sec--alt">
+    <div class="container">
+      <div class="section-label reveal">Problem Statement</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="max-width:700px;">60+ pain points across 7 journey stages causing 40% drop-off</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;" class="reveal reveal-delay-2">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;">
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-1);margin-bottom:8px;">Account for Platform Partners</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Enable enterprise platforms to self-onboard and set up payment gateway on their platform without KAM intervention.</p>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;">
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-1);margin-bottom:8px;">Reevaluate Feature Usability</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Filter junk leads and make pricing, merchant status, settlement & incentive information transparent and actionable.</p>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;">
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-1);margin-bottom:8px;">Enable Self-Serve</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Reduce KAM dependency for onboarding funnel and retention. Partners should manage everything independently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN PROCESS -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="pu-phase-hdr reveal">
+        <div class="pu-phase-hdr__num">∆</div>
+        <div class="pu-phase-hdr__text">
+          <div class="pu-phase-hdr__tag">Process</div>
+          <div class="pu-phase-hdr__title">Double Diamond</div>
+          <div class="pu-phase-hdr__sub">Discover → Define → Develop → Deliver</div>
+        </div>
+      </div>
+
+      <div class="pu-diamond reveal reveal-delay-1">
+        <div class="pu-diamond-phase">
+          <div class="pu-diamond-phase__d pu-diamond-phase__d--discover">Discover</div>
+          <div class="pu-diamond-phase__title">Research & Audit</div>
+          <ul class="pu-diamond-phase__items">
+            <li>User interviews (14)</li>
+            <li>Journey mapping</li>
+            <li>Stakeholder interviews</li>
+            <li>Existing platform audit</li>
+          </ul>
+        </div>
+        <div class="pu-diamond-phase">
+          <div class="pu-diamond-phase__d pu-diamond-phase__d--define">Define</div>
+          <div class="pu-diamond-phase__title">Insights & HMW</div>
+          <ul class="pu-diamond-phase__items">
+            <li>Personas & archetypes</li>
+            <li>Gap analysis</li>
+            <li>Problem statements</li>
+            <li>Design objectives</li>
+          </ul>
+        </div>
+        <div class="pu-diamond-phase">
+          <div class="pu-diamond-phase__d pu-diamond-phase__d--develop">Develop</div>
+          <div class="pu-diamond-phase__title">Concepts & Flows</div>
+          <ul class="pu-diamond-phase__items">
+            <li>User flows & wireframes</li>
+            <li>Information architecture</li>
+            <li>Interaction patterns</li>
+            <li>Visual design system</li>
+          </ul>
+        </div>
+        <div class="pu-diamond-phase">
+          <div class="pu-diamond-phase__d pu-diamond-phase__d--deliver">Deliver</div>
+          <div class="pu-diamond-phase__title">Design & Handoff</div>
+          <ul class="pu-diamond-phase__items">
+            <li>Hi-fidelity designs</li>
+            <li>Prototype & validation</li>
+            <li>Component library</li>
+            <li>Dev handoff & QA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="pu-phase-hdr reveal" style="margin-bottom:48px;">
+        <div class="pu-phase-hdr__num">01</div>
+        <div class="pu-phase-hdr__text">
+          <div class="pu-phase-hdr__tag">Discovery</div>
+          <div class="pu-phase-hdr__title">Research & Insights</div>
+          <div class="pu-phase-hdr__sub">14 participant interviews, heuristic audit, and competitive benchmarking across partner platforms</div>
+        </div>
+      </div>
+      <div class="section-label reveal">Research</div>
+      <h2 class="pu-h2 reveal reveal-delay-1">User Research · 14 Participants</h2>
+      <div class="pu-2col reveal reveal-delay-2" style="margin-top:40px;align-items:start;">
+        <div>
+          <h3 class="pu-h3">Methodology</h3>
+          <p class="pu-p" style="margin-top:12px;">We conducted 14 in-depth user interviews via video calls across 5 distinct groups:</p>
+          <ul style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>4 Internal Stakeholders (Sales, Partnerships)</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>3 Active Resellers (experienced users)</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>2 New Resellers (onboarding journey)</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>2 Stuck Resellers (abandoned midway)</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>3 Platform Partners (API integrators)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="pu-h3">Key Themes</h3>
+          <ul style="margin-top:12px;display:flex;flex-direction:column;gap:12px;">
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+              <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Awareness →</strong>
+              Partners didn't understand program value or what they were signing up for
+            </li>
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+              <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Conversion →</strong>
+              Sign-up and document verification took 2–3 weeks with unclear next steps
+            </li>
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+              <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Usage →</strong>
+              No dashboard support for developer integration or platform partner workflows
+            </li>
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+              <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Retention →</strong>
+              Manual incentive claiming, poor visibility into settlements, KAM dependency
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="pu-sec pu-sec--alt">
+    <div class="container">
+      <div class="section-label reveal">Target Personas</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">3 Core User Types</h2>
+      <div class="pu-personas reveal reveal-delay-2">
+        <div class="pu-persona">
+          <div class="pu-persona__hdr">
+            <div class="pu-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="pu-persona__info">
+              <div class="pu-persona__name">Aman</div>
+              <div class="pu-persona__role">Developer</div>
+            </div>
+          </div>
+          <div class="pu-persona__body">
+            <p class="pu-persona__bio">Runs a website & app solutions business. Refers clients needing PayU integration, helps with PG technical setup. Wants to quickly integrate on behalf of clients.</p>
+            <div style="background:var(--bg-elevated);border-radius:var(--r-lg);padding:14px;margin-top:12px;">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
+              <p style="font-size:12px;color:var(--text-2);line-height:1.55;">No dashboard support for PG integration. Relies on direct KAM for integration credentials.</p>
+            </div>
+          </div>
+          <div class="pu-persona__tags">
+            <span class="pu-persona__tag">Integration</span>
+            <span class="pu-persona__tag">Technical</span>
+            <span class="pu-persona__tag">Bulk Referrals</span>
+          </div>
+        </div>
+
+        <div class="pu-persona">
+          <div class="pu-persona__hdr">
+            <div class="pu-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="pu-persona__info">
+              <div class="pu-persona__name">Mohan</div>
+              <div class="pu-persona__role">Reseller</div>
+            </div>
+          </div>
+          <div class="pu-persona__body">
+            <p class="pu-persona__bio">Experienced reseller. Uses dashboard regularly to refer merchants, track incentives, and research PayU products. Wants visibility into multiple products beyond Payment Gateway.</p>
+            <div style="background:var(--bg-elevated);border-radius:var(--r-lg);padding:14px;margin-top:12px;">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
+              <p style="font-size:12px;color:var(--text-2);line-height:1.55;">Dashboard only shows PG. Can't discover or refer Invoicing, Subscriptions, Payouts solutions.</p>
+            </div>
+          </div>
+          <div class="pu-persona__tags">
+            <span class="pu-persona__tag">Multi-Product</span>
+            <span class="pu-persona__tag">Learning</span>
+            <span class="pu-persona__tag">Incentives</span>
+          </div>
+        </div>
+
+        <div class="pu-persona">
+          <div class="pu-persona__hdr">
+            <div class="pu-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <div class="pu-persona__info">
+              <div class="pu-persona__name">Shopmatic</div>
+              <div class="pu-persona__role">Platform Partner</div>
+            </div>
+          </div>
+          <div class="pu-persona__body">
+            <p class="pu-persona__bio">E-commerce platform integrating PayU PG. Merchants can find PayU natively on the platform. Representative checks dashboard for incentive tracking and quarterly claims.</p>
+            <div style="background:var(--bg-elevated);border-radius:var(--r-lg);padding:14px;margin-top:12px;">
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
+              <p style="font-size:12px;color:var(--text-2);line-height:1.55;">No API to programmatically fetch settlement & incentive data. Manual quarterly process with KAM.</p>
+            </div>
+          </div>
+          <div class="pu-persona__tags">
+            <span class="pu-persona__tag">API-Driven</span>
+            <span class="pu-persona__tag">Bulk</span>
+            <span class="pu-persona__tag">Automation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXISTING JOURNEY -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="pu-phase-hdr reveal" style="margin-bottom:48px;">
+        <div class="pu-phase-hdr__num">02</div>
+        <div class="pu-phase-hdr__text">
+          <div class="pu-phase-hdr__tag">As-Is</div>
+          <div class="pu-phase-hdr__title">User Flow — Old</div>
+          <div class="pu-phase-hdr__sub">Mapping the existing partner journey to surface friction, drop-off points, and KAM dependencies across all 7 stages</div>
+        </div>
+      </div>
+      <div class="section-label reveal">Existing Journey</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">7 Stages · 60+ Pain Points</h2>
+      <div class="pu-pain-grid reveal reveal-delay-2">
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 1</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Discover Program</div>
+          <p class="pu-pain__desc">Landing page unclear. Junk leads from merchants who should sign up as customers, not partners. Smaller resellers not represented.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 2</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Sign Up</div>
+          <p class="pu-pain__desc">Confusion between merchant & partner login. No way to resend OTP. Physical signature required for agreement document.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 3</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">KYC & Verification</div>
+          <p class="pu-pain__desc">Unclear what docs are needed. Can't upload in chunks. Verification takes 2+ weeks instead of promised 2 days.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 4</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Merchant Onboarding</div>
+          <p class="pu-pain__desc">No dashboard PG integration support. Partners blind to merchant progress. KAM-dependent for everything. High business cost.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 5</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Settlement & Incentive</div>
+          <p class="pu-pain__desc">Settlements not real-time. No breakdown by merchant. Incentives appear at different time. Can't filter by month/period.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 6</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Refer Merchant</div>
+          <p class="pu-pain__desc">Multiple confusing methods (single, bulk, link). No support for non-PG products. Partner profile status never checked.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 7</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Claim Incentive</div>
+          <p class="pu-pain__desc">Manual process with no auto-credit (unlike competitors). Requires invoice + VRF form. Quarterly cycle. Disputes take 3+ months.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 4</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Settings & Users</div>
+          <p class="pu-pain__desc">No way to add team members with permission levels. Can't manage multi-user access for enterprise partners.</p>
+        </div>
+        <div class="pu-pain">
+          <span class="pu-pain__phase">Stage 5</span>
+          <div class="pu-pain__rule"></div>
+          <div class="pu-pain__title">Engagement & Learning</div>
+          <p class="pu-pain__desc">No community, no partner forum, no shared learning. Partners feel isolated. No way to discover new opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY INSIGHTS -->
+  <section class="pu-sec pu-sec--alt">
+    <div class="container">
+      <div class="section-label reveal">Key Insights</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">Gap Analysis</h2>
+      <div class="pu-insight-grid reveal reveal-delay-2">
+        <div class="pu-insight">
+          <div class="pu-insight__num">1</div>
+          <div class="pu-insight__title">Partners Don't Get Leads</div>
+          <p class="pu-insight__text">Dashboard doesn't help partners discover new leads. Only PayU benefits. Partners want to find merchants in their geography or vertical for cross-selling.</p>
+        </div>
+        <div class="pu-insight">
+          <div class="pu-insight__num">2</div>
+          <div class="pu-insight__title">No Community</div>
+          <p class="pu-insight__text">No way to engage with other partners. No forum, events, or shared knowledge. Partners feel isolated and lack peer learning opportunities.</p>
+        </div>
+        <div class="pu-insight">
+          <div class="pu-insight__num">3</div>
+          <div class="pu-insight__title">Dashboard Scope Limited</div>
+          <p class="pu-insight__text">Partners only know about Payment Gateway. Dashboard doesn't support referring Subscriptions, Invoices, Payouts. Can't map merchants to products.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM CONSTRAINTS -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="section-label reveal">System Constraints</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">What We Cannot Change</h2>
+      <div class="pu-constraints reveal reveal-delay-2">
+        <div class="pu-constraint">
+          <div class="pu-constraint__num">1</div>
+          <div class="pu-constraint__title">Payout Automation</div>
+          <p class="pu-constraint__text">Incentive payouts cannot be automated — finance & GST compliance require manual processing. Claiming process remains offline.</p>
+        </div>
+        <div class="pu-constraint">
+          <div class="pu-constraint__num">2</div>
+          <div class="pu-constraint__title">Custom Pricing</div>
+          <p class="pu-constraint__text">Cannot offer custom incentive plans on the dashboard. Finance team manually handles custom arrangements.</p>
+        </div>
+        <div class="pu-constraint">
+          <div class="pu-constraint__num">3</div>
+          <div class="pu-constraint__title">Custom Calculation</div>
+          <p class="pu-constraint__text">Incentives on custom plans cannot be auto-calculated. Finance does manual computation for non-standard deals.</p>
+        </div>
+        <div class="pu-constraint">
+          <div class="pu-constraint__num">4</div>
+          <div class="pu-constraint__title">Manual Claiming</div>
+          <p class="pu-constraint__text">Quarterly incentive claiming must remain a manual workflow. We can make it visible and trackable, but not automatic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN OBJECTIVES -->
+  <section class="pu-sec pu-sec--alt">
+    <div class="container">
+      <div class="section-label reveal">Design Objectives</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">What Success Looks Like</h2>
+      <div class="pu-objectives reveal reveal-delay-2">
+        <div class="pu-obj">
+          <div class="pu-obj__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <div class="pu-obj__title">Self-Serve Onboarding</div>
+          <p class="pu-obj__text">Partners complete entire onboarding without KAM involvement. Clear progress tracking. Predictable completion timelines.</p>
+        </div>
+        <div class="pu-obj">
+          <div class="pu-obj__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="pu-obj__title">Real-Time Visibility</div>
+          <p class="pu-obj__text">Settlements & incentives visible in real-time. Breakdown by merchant. Filter by period. No surprises.</p>
+        </div>
+        <div class="pu-obj">
+          <div class="pu-obj__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="pu-obj__title">Developer Support</div>
+          <p class="pu-obj__text">Integrated credentials management for developers. Request access, share with merchants. No external emails.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- INFORMATION ARCHITECTURE -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="pu-phase-hdr reveal" style="margin-bottom:48px;">
+        <div class="pu-phase-hdr__num">03</div>
+        <div class="pu-phase-hdr__text">
+          <div class="pu-phase-hdr__tag">Structure</div>
+          <div class="pu-phase-hdr__title">Information Architecture</div>
+          <div class="pu-phase-hdr__sub">Restructuring the partner portal navigation to reduce cognitive load and surface the right content at the right stage of the partner journey</div>
+        </div>
+      </div>
+      <div class="section-label reveal">IA Map</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:12px;">Partner Portal Structure</h2>
+      <p class="pu-p reveal reveal-delay-1" style="max-width:680px;margin-bottom:40px;">The IA was rebuilt around three partner archetypes — Developer, Reseller, and Platform — ensuring navigation reflects the distinct workflows of each user type rather than a one-size-fits-all menu.</p>
+
+      <!-- IA Tree -->
+      <div class="reveal reveal-delay-2" style="overflow-x:auto;">
+        <div style="min-width:760px;">
+
+          <!-- Root -->
+          <div style="display:flex;justify-content:center;margin-bottom:0;">
+            <div style="padding:12px 32px;background:var(--pu-green);color:#0a0a14;border-radius:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">PayU Partners Portal</div>
+          </div>
+
+          <!-- Connector down -->
+          <div style="display:flex;justify-content:center;"><div style="width:2px;height:28px;background:var(--pu-border-green);"></div></div>
+
+          <!-- L1 nodes -->
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;">
+            <!-- Horizontal line across tops -->
+            <div style="position:absolute;top:0;left:10%;right:10%;height:2px;background:var(--pu-border-green);"></div>
+
+            <!-- Node: Dashboard -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+              <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Dashboard</div>
+              <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">KPI Overview</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Activity Graph</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Nudge Cards</div>
+              </div>
+            </div>
+
+            <!-- Node: Referrals -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+              <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Referrals</div>
+              <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Merchant List</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Add Merchant</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Bulk Upload</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Merchant Profile</div>
+              </div>
+            </div>
+
+            <!-- Node: Incentives -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+              <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Incentives</div>
+              <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Earnings Overview</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Claim Incentive</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Invoice Upload</div>
+              </div>
+            </div>
+
+            <!-- Node: Resources -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+              <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Resources</div>
+              <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Product Catalogue</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Integration Docs</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Marketing Kit</div>
+              </div>
+            </div>
+
+            <!-- Node: Settings -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+              <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Settings</div>
+              <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
+              <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Profile</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Users & Permissions</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">API Credentials</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Help & Support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IA rationale cards -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;" class="reveal reveal-delay-3">
+        <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);border-left:3px solid var(--pu-green);">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Consolidation</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Reduced from 11 scattered nav items to 5 primary sections — eliminating duplicate entry points that caused partner confusion.</p>
+        </div>
+        <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);border-left:3px solid var(--pu-green);">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Task-First Grouping</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Navigation follows partner tasks (refer, earn, integrate) rather than internal product structure — matching mental models from user research.</p>
+        </div>
+        <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);border-left:3px solid var(--pu-green);">
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Progressive Disclosure</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Advanced options (API credentials, bulk upload) are nested under primary nodes — keeping the core flow simple for new partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEAL JOURNEY -->
+  <section class="pu-sec pu-sec--alt">
+    <div class="container">
+      <div class="pu-phase-hdr reveal" style="margin-bottom:48px;">
+        <div class="pu-phase-hdr__num">04</div>
+        <div class="pu-phase-hdr__text">
+          <div class="pu-phase-hdr__tag">To-Be</div>
+          <div class="pu-phase-hdr__title">User Flow — New</div>
+          <div class="pu-phase-hdr__sub">Redesigned end-to-end flows for 3 partner archetypes — eliminating KAM dependencies and enabling full self-serve across every stage</div>
+        </div>
+      </div>
+      <div class="section-label reveal">Ideal User Journey</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">3 Core Use Cases</h2>
+
+      <div class="pu-usecases reveal reveal-delay-2">
+        <div class="pu-usecase">
+          <h3 class="pu-usecase__title">Aman (Developer)</h3>
+          <div class="pu-usecase__steps">
+            <div class="pu-usecase__step">Search "PayU Partner" → land on program page</div>
+            <div class="pu-usecase__step">Sign up with email, mobile, brand → verify OTP</div>
+            <div class="pu-usecase__step">Complete KYC (told verification = 3 days)</div>
+            <div class="pu-usecase__step">Receive agreement via email, sign digitally</div>
+            <div class="pu-usecase__step">Refer merchants with details & product</div>
+            <div class="pu-usecase__step">Request integration credentials for merchant</div>
+            <div class="pu-usecase__step">Merchant grants access on dashboard</div>
+            <div class="pu-usecase__step">Partner sees test & live salt/key instantly</div>
+            <div class="pu-usecase__step">Check incentives, claim quarterly</div>
+          </div>
+        </div>
+
+        <div class="pu-usecase">
+          <h3 class="pu-usecase__title">Mohan (Reseller)</h3>
+          <div class="pu-usecase__steps">
+            <div class="pu-usecase__step">Login → browse dashboard</div>
+            <div class="pu-usecase__step">Go to Resources to research products</div>
+            <div class="pu-usecase__step">Find Invoicing solution for client</div>
+            <div class="pu-usecase__step">Share resource link with notes</div>
+            <div class="pu-usecase__step">Add merchant via referral form</div>
+            <div class="pu-usecase__step">Merchant receives email to complete profile</div>
+            <div class="pu-usecase__step">Check incentive dashboard monthly</div>
+            <div class="pu-usecase__step">Download invoice template, upload, claim</div>
+          </div>
+        </div>
+
+        <div class="pu-usecase">
+          <h3 class="pu-usecase__title">Shopmatic (Platform)</h3>
+          <div class="pu-usecase__steps">
+            <div class="pu-usecase__step">Merchants find PayU natively on platform</div>
+            <div class="pu-usecase__step">Rep logs in to dashboard (SSO)</div>
+            <div class="pu-usecase__step">View real-time settlement data</div>
+            <div class="pu-usecase__step">Download merchant breakdown report</div>
+            <div class="pu-usecase__step">Check quarterly incentive status</div>
+            <div class="pu-usecase__step">Upload invoice & claim via dashboard</div>
+            <div class="pu-usecase__step">Track claim status without KAM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY SCREENS -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="pu-phase-hdr reveal">
+        <div class="pu-phase-hdr__num">05</div>
+        <div class="pu-phase-hdr__text">
+          <div class="pu-phase-hdr__tag">Key Screens</div>
+          <div class="pu-phase-hdr__title">Final Designs</div>
+          <div class="pu-phase-hdr__sub">Core screens across the partner platform — dashboard, referrals, user management, support, and merchant profiles</div>
+        </div>
+      </div>
+
+
+      <!-- ── 01 Partners Dashboard Overview ── -->
+      <div class="screen-card reveal reveal-delay-1">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num">01</div>
+            <span class="screen-card__step">Dashboard Home</span>
+          </div>
+          <div class="screen-card__content">
+            <h3 class="screen-card__title">Partners Dashboard Overview</h3>
+            <p class="screen-card__desc">A single at-a-glance view of active referrals, new merchants this month, total incentives earned, and transaction volume. Nudge cards surface incomplete tasks so nothing falls through the cracks. The transaction graph shows performance trend over time — motivating continued referrals.</p>
+          </div>
+        </div>
+        <div class="browser-wrap" style="margin-top:24px;position:relative;">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+              payu-partners.com/dashboard
+            </div>
+          </div>
+          <div class="proj-visuals__placeholder">
+            <span class="proj-visuals__mark" style="color:rgba(141,194,0,0.9);">PAY</span>
+            <span class="proj-visuals__hint" style="color:rgba(141,194,0,0.5);">Drop payu-screen-01.jpg here</span>
+          </div>
+          <img src="img/payu-screen-01.jpg" alt="PayU Partners — Dashboard Overview" loading="lazy">
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">At-a-glance KPIs</div>
+            <div class="screen-card__annot-text">Four metric cards (active referrals, this month, total incentives, transactions) give partners instant performance context.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Smart nudges</div>
+            <div class="screen-card__annot-text">Inline callout highlights incomplete onboarding tasks — reduces drop-offs by surfacing what's next.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Performance graph</div>
+            <div class="screen-card__annot-text">Transaction volume trend shows partner their business impact and motivates continued referral activity.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 02 Merchant Referrals Screen ── -->
+      <div class="screen-card reveal reveal-delay-1">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num">02</div>
+            <span class="screen-card__step">Referrals</span>
+          </div>
+          <div class="screen-card__content">
+            <h3 class="screen-card__title">Merchant Referrals Screen</h3>
+            <p class="screen-card__desc">Partners can refer merchants individually via a clean modal form — collecting name, email, phone, business category, and product. Pricing is shown inline on the right so partners understand what they're selling. A bulk upload option handles high-volume referrals without repetitive form filling.</p>
+          </div>
+        </div>
+        <div class="browser-wrap" style="margin-top:24px;position:relative;">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+              payu-partners.com/referrals
+            </div>
+          </div>
+          <div class="proj-visuals__placeholder">
+            <span class="proj-visuals__mark" style="color:rgba(141,194,0,0.9);">PAY</span>
+            <span class="proj-visuals__hint" style="color:rgba(141,194,0,0.5);">Drop payu-screen-02.jpg here</span>
+          </div>
+          <img src="img/payu-screen-02.jpg" alt="PayU Partners — Merchant Referrals" loading="lazy">
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Single referral modal</div>
+            <div class="screen-card__annot-text">Clean form collects only essential fields. Inline pricing panel removes the need to navigate away to check incentive rates.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Bulk upload</div>
+            <div class="screen-card__annot-text">CSV upload lets power-users submit dozens of merchants at once — critical for agency-type partners with large pipelines.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Status tracking</div>
+            <div class="screen-card__annot-text">Each referral shows live status (pending, verified, active) so partners always know where a merchant is in the funnel.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 03 Users & Permission Management ── -->
+      <div class="screen-card reveal reveal-delay-2">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num">03</div>
+            <span class="screen-card__step">Team Access</span>
+          </div>
+          <div class="screen-card__content">
+            <h3 class="screen-card__title">Users & Permission Management</h3>
+            <p class="screen-card__desc">Agency partners often have teams. This screen lets an account owner invite sub-users, assign roles (Admin, Manager, Viewer), and revoke access — all without contacting PayU support. Role-based permissions ensure sensitive incentive data stays protected while enabling collaboration across large partner organisations.</p>
+          </div>
+        </div>
+        <div class="browser-wrap" style="margin-top:24px;position:relative;">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+              payu-partners.com/settings/users
+            </div>
+          </div>
+          <div class="proj-visuals__placeholder">
+            <span class="proj-visuals__mark" style="color:rgba(141,194,0,0.9);">PAY</span>
+            <span class="proj-visuals__hint" style="color:rgba(141,194,0,0.5);">Drop payu-screen-03.jpg here</span>
+          </div>
+          <img src="img/payu-screen-03.jpg" alt="PayU Partners — Users & Permission Management" loading="lazy">
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Role-based access</div>
+            <div class="screen-card__annot-text">Admin, Manager, and Viewer roles map to real org structures — no over-permissioning or under-permissioning.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Self-serve invites</div>
+            <div class="screen-card__annot-text">Partners invite team members directly — no email chains to PayU support, no waiting for provisioning.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Audit visibility</div>
+            <div class="screen-card__annot-text">User list shows last active timestamp and current status — giving account owners confidence in who has access.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 04 Help & Support ── -->
+      <div class="screen-card reveal reveal-delay-2">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num">04</div>
+            <span class="screen-card__step">Support</span>
+          </div>
+          <div class="screen-card__content">
+            <h3 class="screen-card__title">Help & Support</h3>
+            <p class="screen-card__desc">A self-serve help centre reduces inbound support load by surfacing FAQs, onboarding guides, and integration documentation contextually. Partners can raise tickets, check ticket status, and access a dedicated relationship manager contact — all from one place, reducing frustration during critical onboarding moments.</p>
+          </div>
+        </div>
+        <div class="browser-wrap" style="margin-top:24px;position:relative;">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+              payu-partners.com/help
+            </div>
+          </div>
+          <div class="proj-visuals__placeholder">
+            <span class="proj-visuals__mark" style="color:rgba(141,194,0,0.9);">PAY</span>
+            <span class="proj-visuals__hint" style="color:rgba(141,194,0,0.5);">Drop payu-screen-04.jpg here</span>
+          </div>
+          <img src="img/payu-screen-04.jpg" alt="PayU Partners — Help & Support" loading="lazy">
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Contextual FAQs</div>
+            <div class="screen-card__annot-text">Help content adapts to where the partner is in their journey — onboarding FAQs shown early, integration docs later.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Ticket management</div>
+            <div class="screen-card__annot-text">Partners can raise, track, and follow up on support tickets without leaving the platform or switching to email.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">RM contact</div>
+            <div class="screen-card__annot-text">High-value partners get a dedicated relationship manager — surfaced prominently so escalation is always one click away.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 05 Knowledge Centre ── -->
+      <div class="screen-card reveal reveal-delay-3">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num">05</div>
+            <span class="screen-card__step">Knowledge Centre</span>
+          </div>
+          <div class="screen-card__content">
+            <h3 class="screen-card__title">Self-Serve Knowledge Centre</h3>
+            <p class="screen-card__desc">A built-in video library that lets partners learn at their own pace — covering everything from merchant onboarding to integration setup and incentive tracking. Instead of waiting on support calls, partners can watch step-by-step video guides, search by topic, and get answers instantly without ever leaving the dashboard.</p>
+          </div>
+        </div>
+        <div class="browser-wrap" style="margin-top:24px;position:relative;">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+              payu-partners.com/help/knowledge-centre
+            </div>
+          </div>
+          <div class="proj-visuals__placeholder">
+            <span class="proj-visuals__mark" style="color:rgba(141,194,0,0.9);">PAY</span>
+            <span class="proj-visuals__hint" style="color:rgba(141,194,0,0.5);">Drop payu-screen-05.jpg here</span>
+          </div>
+          <img src="img/payu-screen-05.jpg" alt="PayU Partners — Self-Serve Knowledge Centre" loading="lazy">
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Video tutorials</div>
+            <div class="screen-card__annot-text">Step-by-step video guides for every key task — from adding a merchant to tracking incentives — so partners can onboard without any support dependency.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Topic-based search</div>
+            <div class="screen-card__annot-text">Partners can search by keyword or browse by category to quickly find the exact guide they need, reducing time spent hunting through documentation.</div>
+          </div>
+          <div class="screen-card__annot">
+            <div class="screen-card__annot-label">Always contextual</div>
+            <div class="screen-card__annot-text">Relevant help content surfaces based on where the partner is in the dashboard — reducing inbound support tickets at the moments that matter most.</div>
+          </div>
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="pu-sec pu-sec--alt">
+    <div class="container">
+      <div class="section-label reveal">Impact & Outcomes</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">Results & Metrics</h2>
+
+      <div class="reveal reveal-delay-2">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px;">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">40%</div>
+            <p style="font-size:13px;color:var(--text-2);">Reduction in onboarding drop-off rate</p>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">3x</div>
+            <p style="font-size:13px;color:var(--text-2);">Faster partner onboarding (14 steps → 4 phases)</p>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">60%</div>
+            <p style="font-size:13px;color:var(--text-2);">KAM time reduction via self-serve features</p>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">25%</div>
+            <p style="font-size:13px;color:var(--text-2);">Increase in merchant referrals post-launch</p>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:32px 28px;">
+          <h3 class="pu-h3" style="margin-bottom:16px;">Key Wins</h3>
+          <ul style="display:flex;flex-direction:column;gap:12px;">
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Self-serve onboarding:</strong> Partners no longer wait for KAM approval at every step. Clear phase-based progression reduces anxiety.</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Real-time transparency:</strong> Settlements & incentives visible instantly. No more surprises or manual spreadsheet tracking.</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Developer enablement:</strong> Integrated credential management eliminates email coordination for API keys. Faster integration.</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Multi-product support:</strong> Dashboard now supports PayU PG, Invoicing, Subscriptions, Payouts referrals — not just PG.</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Platform partner parity:</strong> Enterprise partners now have same self-serve capabilities as individual resellers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNINGS & NEXT STEPS -->
+  <section class="pu-sec">
+    <div class="container">
+      <div class="section-label reveal">Learnings & Next Steps</div>
+      <h2 class="pu-h2 reveal reveal-delay-1" style="margin-bottom:40px;">What We Learned & What's Next</h2>
+
+      <div class="reveal reveal-delay-2" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+        <div>
+          <h3 class="pu-h3" style="margin-bottom:16px;">What I'd Do Differently</h3>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--pu-green);border-radius:var(--r-lg);padding:20px;margin-bottom:20px;">
+            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">Initial designs assumed single-session onboarding — wrong assumption. Many enterprise partners have multiple decision-makers who need to approve different sections (legal approves agreement, finance approves banking details, tech approves integration). We had to redesign the save-state and handoff flow in iteration 2.</p>
+            <p style="font-size:11px;color:var(--text-3);margin-top:12px;">Better stakeholder mapping upfront would have surfaced this earlier. Next time: map all decision-makers before wireframing flows.</p>
+          </div>
+
+          <h3 class="pu-h3" style="margin-bottom:16px;">Design Decisions</h3>
+          <ul style="display:flex;flex-direction:column;gap:10px;">
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Persistent progress indicator across all pages (not just onboarding)</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Timeline communicated upfront (3 days for KYC, not "TBD")</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>In-app messaging replacing 60% of email notifications</li>
+            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Nudge cards for incomplete tasks (not mandatory popups)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="pu-h3" style="margin-bottom:16px;">Future Roadmap</h3>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;margin-bottom:20px;">
+            <h4 style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:12px;">Phase 2 — Community & Engagement</h4>
+            <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Partner forum, knowledge base, resource library. Partners can ask questions, share best practices, find leads in their vertical.</p>
+          </div>
+
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;margin-bottom:20px;">
+            <h4 style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:12px;">Phase 3 — Automation & Analytics</h4>
+            <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Predictive settlements. ML-based anomaly detection. Partner performance scoring. Personalized product recommendations.</p>
+          </div>
+
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;">
+            <h4 style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:12px;">Phase 4 — API & Webhooks</h4>
+            <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Full REST API for platform partners. Webhooks for real-time settlement & incentive events. SSO integration with partner systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // Scrolling reel — duplicate frames for seamless loop, click to pause/play
+    (function() {
+      var wrap  = document.getElementById('reel-partners');
+      var track = document.getElementById('track-partners');
+      if (!wrap || !track) return;
+      // duplicate all frames for seamless infinite loop
+      var originals = Array.from(track.children);
+      originals.forEach(function(el) { track.appendChild(el.cloneNode(true)); });
+      // respect prefers-reduced-motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        track.style.animationPlayState = 'paused';
+        return;
+      }
+      // click to toggle
+      var paused = false;
+      wrap.addEventListener('click', function() {
+        paused = !paused;
+        track.classList.toggle('is-paused', paused);
+        wrap.classList.toggle('is-paused', paused);
+      });
+    })();
+  </script>
+</body>
+</html>

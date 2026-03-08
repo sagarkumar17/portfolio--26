@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentorship Booking App — Sagar Kumar</title>
+  <meta name="description" content="Designing a structured mentorship platform — 87% demand, 218% ROI, connecting mentors and mentees with measurable growth tracking."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    /* ── Brand accent for universal hero ── */
+    :root { --proj-accent: #00C4B0; }
+
+    /* Mentorship page — Impact-First layout */
+    .mnt-quote-hero { padding:80px 0 64px; background:var(--bg-elevated); border-bottom:1px solid var(--border); }
+    .mnt-quote { font-family:var(--font-display); font-size:clamp(26px,4vw,48px); font-weight:800; letter-spacing:-0.02em; color:var(--text-1); line-height:1.15; max-width:760px; }
+    .mnt-quote__accent { color:var(--accent); }
+
+    /* Impact billboard */
+    .mnt-stats-strip { background:var(--bg-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .mnt-stats-row { display:grid; grid-template-columns:repeat(3,1fr); }
+    .mnt-stat { padding:48px 40px; border-right:1px solid var(--border); text-align:center; }
+    .mnt-stat:last-child { border-right:none; }
+    .mnt-stat__num { font-family:var(--font-display); font-size:clamp(48px,6vw,80px); font-weight:800; letter-spacing:-0.04em; color:var(--accent); line-height:1; }
+    .mnt-stat__label { font-size:14px; color:var(--text-2); margin-top:10px; line-height:1.5; }
+    .mnt-stat__sub { font-family:var(--font-mono); font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:0.1em; margin-top:6px; }
+
+    /* Process phases */
+    .mnt-phases { display:grid; grid-template-columns:repeat(7,1fr); gap:0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .mnt-phase { padding:24px 16px; border-right:1px solid var(--border); text-align:center; position:relative; transition:background 200ms ease; }
+    .mnt-phase:last-child { border-right:none; }
+    .mnt-phase:hover { background:var(--bg-elevated); }
+    .mnt-phase__icon { width:36px; height:36px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .mnt-phase__name { font-size:13px; font-weight:700; color:var(--text-1); }
+    .mnt-phase__num { font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:0.12em; margin-bottom:6px; }
+
+    /* Challenge section */
+    .mnt-challenge { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+    .mnt-challenge__heading { font-family:var(--font-display); font-size:clamp(28px,3.5vw,42px); font-weight:800; letter-spacing:-0.02em; color:var(--text-1); }
+
+    /* Impact of No Mentorship */
+    .mnt-impact-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+    .mnt-impact-card { border:1px solid var(--border); border-radius:var(--r-xl); padding:36px 32px; background:var(--bg-card); }
+    .mnt-impact-card__pct { font-family:var(--font-display); font-size:clamp(42px,5vw,64px); font-weight:800; letter-spacing:-0.03em; line-height:1; }
+    .mnt-impact-card--orange .mnt-impact-card__pct { color:var(--accent); }
+    .mnt-impact-card--blue .mnt-impact-card__pct { color:#3C8CFF; }
+    .mnt-impact-card--green .mnt-impact-card__pct { color:#22C55E; }
+    .mnt-impact-card__label { font-size:14px; color:var(--text-2); line-height:1.6; margin-top:10px; }
+
+    /* User Flow */
+    .mnt-flow { display:flex; align-items:flex-start; gap:0; overflow-x:auto; padding:8px 0; }
+    .mnt-flow-step { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:12px; min-width:140px; }
+    .mnt-flow-step__screen { width:100px; height:180px; background:var(--bg-elevated); border:1px solid var(--border); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--text-3); text-align:center; padding:8px; font-family:var(--font-mono); }
+    .mnt-flow-step__label { font-size:12px; font-weight:600; color:var(--text-2); text-align:center; }
+    .mnt-flow-arrow { flex-shrink:0; display:flex; align-items:center; padding-top:60px; color:var(--accent); font-size:20px; padding:60px 8px 0; }
+
+    /* Design system */
+    .mnt-ds-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .mnt-ds-swatch { height:80px; border-radius:var(--r-lg); border:1px solid var(--border); display:flex; align-items:flex-end; padding:10px 12px; }
+    .mnt-ds-swatch__name { font-size:11px; font-weight:600; letter-spacing:-0.01em; }
+    .mnt-ds-swatch__hex { font-family:var(--font-mono); font-size:10px; opacity:0.7; }
+
+    /* Small stat row */
+    .mnt-mini-stats { display:flex; gap:0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .mnt-mini-stat { flex:1; padding:24px 20px; border-right:1px solid var(--border); }
+    .mnt-mini-stat:last-child { border-right:none; }
+    .mnt-mini-stat__num { font-family:var(--font-display); font-size:28px; font-weight:800; letter-spacing:-0.02em; color:var(--accent); }
+    .mnt-mini-stat__label { font-size:13px; color:var(--text-2); margin-top:4px; }
+
+    @media (max-width:768px) {
+      .mnt-stats-row { grid-template-columns:1fr; }
+      .mnt-stat { border-right:none; border-bottom:1px solid var(--border); }
+      .mnt-phases { grid-template-columns:repeat(4,1fr); }
+      .mnt-challenge { grid-template-columns:1fr; }
+      .mnt-impact-grid { grid-template-columns:1fr; }
+      .mnt-ds-grid { grid-template-columns:repeat(2,1fr); }
+      .mnt-mini-stats { flex-direction:column; }
+      .mnt-mini-stat { border-right:none; border-bottom:1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ── BACK LINK ── -->
+  <div class="proj-back-wrap">
+    <div class="container">
+      <a href="work.html" class="proj-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+    </div>
+  </div>
+
+  <!-- ── UNIVERSAL PROJECT HERO ── -->
+  <section class="proj-hero-section">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2C · Academic Project · Mobile App</div>
+      <h1 class="proj-title reveal">Mentorship<br><em>Booking App</em></h1>
+      <p class="proj-sub reveal">A platform built to close the mentorship gap — structured discovery, seamless booking, and measurable growth for both mentors and mentees at scale.</p>
+
+      <!-- Meta strip -->
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Client</div>
+          <div class="proj-meta__v">Academic Project</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">Product Designer</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Platform</div>
+          <div class="proj-meta__v">iOS · Android</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Duration</div>
+          <div class="proj-meta__v">6 Months</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Services</div>
+          <div class="proj-meta__v">Research · UX · UI · Testing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DESIGNS -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Main banner — replace src="" with your screenshot path ── -->
+      <div class="proj-visuals__banner" style="background:linear-gradient(135deg,#0a1210,#0c1812);">
+        <div class="proj-visuals__glow" style="--proj-glow-color:rgba(0,196,176,0.15);"></div>
+        <div class="proj-visuals__placeholder">
+          <span class="proj-visuals__mark" style="color:rgba(0,196,176,0.9);">MNT</span>
+          <span class="proj-visuals__hint" style="color:rgba(0,196,176,0.5);">Add project visuals here</span>
+        </div>
+        <img src="" alt="Mentorship App — final design" loading="lazy">
+      </div>
+
+      <!-- ── Optional extra rows — uncomment to add more screens ───
+      <div class="proj-visuals__grid">
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0a1210,#0c1812);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Mentorship App — screen 2" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0a1210,#0c1812);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Mentorship App — screen 3" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-visuals__row proj-visuals__row--3">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0a1210,#0c1812);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Mentorship App — screen 4" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0a1210,#0c1812);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Mentorship App — screen 5" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#0a1210,#0c1812);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Mentorship App — screen 6" loading="lazy">
+          </div>
+        </div>
+      </div>
+      ── end optional rows ── -->
+
+    </div>
+  </section>
+  <!-- OPENING QUOTE — full-bleed impact -->
+  <div class="mnt-quote-hero reveal">
+    <div class="container">
+      <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;">Project Vision</div>
+      <p class="mnt-quote">"Delivering <span class="mnt-quote__accent">Knowledge &amp; Support</span><br>Today and Everyday."</p>
+      <p style="font-size:15px;color:var(--text-2);max-width:560px;margin-top:24px;line-height:1.7;">A platform built to close the mentorship gap — structured discovery, seamless booking, and measurable growth for both mentors and mentees at scale.</p>
+    </div>
+  </div>
+
+  <!-- IMPACT STATS BILLBOARD -->
+  <div class="mnt-stats-strip reveal">
+    <div class="container" style="padding:0;">
+      <div class="mnt-stats-row">
+        <div class="mnt-stat">
+          <div class="mnt-stat__num"><span data-count="87" data-suffix="%">87%</span></div>
+          <div class="mnt-stat__label">of professionals say mentorship<br>positively impacted their career</div>
+          <div class="mnt-stat__sub">Market Demand</div>
+        </div>
+        <div class="mnt-stat">
+          <div class="mnt-stat__num"><span data-count="218" data-suffix="%">218%</span></div>
+          <div class="mnt-stat__label">Return on investment for<br>structured mentorship programmes</div>
+          <div class="mnt-stat__sub">ROI on Mentorship</div>
+        </div>
+        <div class="mnt-stat">
+          <div class="mnt-stat__num"><span data-count="61" data-suffix="%">61%</span></div>
+          <div class="mnt-stat__label">of mentees report improved<br>job performance outcomes</div>
+          <div class="mnt-stat__sub">Performance Lift</div>
+        </div>
+      </div>
+      <div class="mnt-stats-row" style="border-top:1px solid var(--border);">
+        <div class="mnt-stat">
+          <div class="mnt-stat__num" style="font-size:clamp(32px,4vw,52px);">1 in 3</div>
+          <div class="mnt-stat__label">People actively seek a mentor<br>but can't find the right match</div>
+          <div class="mnt-stat__sub">Unmet Need</div>
+        </div>
+        <div class="mnt-stat">
+          <div class="mnt-stat__num">80%</div>
+          <div class="mnt-stat__label">Who set structured goals with<br>a mentor achieve them</div>
+          <div class="mnt-stat__sub">Goal Achievement</div>
+        </div>
+        <div class="mnt-stat">
+          <div class="mnt-stat__num">20%</div>
+          <div class="mnt-stat__label">Achieve their full potential<br>without any mentorship support</div>
+          <div class="mnt-stat__sub">Unguided Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCOPE & TIMELINE -->
+  <section style="padding:72px 0;border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal">Scope &amp; Timeline</div>
+      <p class="body-lg reveal reveal-delay-1" style="max-width:580px;margin-top:16px;margin-bottom:48px;">End-to-end design process from initial research through to tested prototypes — covering every phase of the product design lifecycle.</p>
+      <div class="mnt-phases reveal reveal-delay-2">
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">01</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+          <div class="mnt-phase__name">Research</div>
+        </div>
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">02</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="mnt-phase__name">UI Design</div>
+        </div>
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">03</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 15l6 6m-11-4a7 7 0 1 1 0-14 7 7 0 0 1 0 14z"/></svg></div>
+          <div class="mnt-phase__name">UI Interaction</div>
+        </div>
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">04</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div class="mnt-phase__name">Prototyping</div>
+        </div>
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">05</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="mnt-phase__name">Discovery</div>
+        </div>
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">06</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <div class="mnt-phase__name">Design</div>
+        </div>
+        <div class="mnt-phase">
+          <div class="mnt-phase__num">07</div>
+          <div class="mnt-phase__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="mnt-phase__name">Usability Testing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHALLENGES -->
+  <section style="padding:72px 0;border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal">Challenges</div>
+      <div class="mnt-challenge reveal reveal-delay-1" style="margin-top:32px;">
+        <div>
+          <h2 class="mnt-challenge__heading">What makes mentorship hard to design for?</h2>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-top:20px;">Mentorship is deeply personal — the "right" match depends on industry, seniority, communication style, and even personality. Existing solutions were either too transactional (book a 30-min call) or too informal (find someone on LinkedIn). Neither created lasting, measurable relationships.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="padding:20px 24px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid var(--accent);">
+            <div style="font-size:13px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Challenge 01</div>
+            <div style="font-size:15px;font-weight:600;color:var(--text-1);">Trust & matching</div>
+            <div style="font-size:14px;color:var(--text-2);margin-top:4px;">How do you help users trust a mentor they've never met?</div>
+          </div>
+          <div style="padding:20px 24px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid #3C8CFF;">
+            <div style="font-size:13px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;color:#3C8CFF;margin-bottom:6px;">Challenge 02</div>
+            <div style="font-size:15px;font-weight:600;color:var(--text-1);">Progress visibility</div>
+            <div style="font-size:14px;color:var(--text-2);margin-top:4px;">Showing growth over time without making it feel clinical or corporate.</div>
+          </div>
+          <div style="padding:20px 24px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid #22C55E;">
+            <div style="font-size:13px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;color:#22C55E;margin-bottom:6px;">Challenge 03</div>
+            <div style="font-size:15px;font-weight:600;color:var(--text-1);">Retention beyond first session</div>
+            <div style="font-size:14px;color:var(--text-2);margin-top:4px;">Most mentor relationships die after 1–2 sessions without structure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH & STATISTICS -->
+  <section style="padding:72px 0;border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;" class="reveal">
+        <div>
+          <div class="section-label">Research</div>
+          <h2 style="font-family:var(--font-display);font-size:clamp(28px,3vw,40px);font-weight:800;letter-spacing:-0.02em;color:var(--text-1);margin-top:20px;line-height:1.2;">Mentorship Service Statistics</h2>
+          <p style="font-size:15px;color:var(--text-2);margin-top:16px;line-height:1.7;">Secondary research validated the market opportunity and informed our problem framing — the data made the case for a structured, long-term platform over a simple booking tool.</p>
+        </div>
+        <div class="mnt-mini-stats reveal reveal-delay-1">
+          <div class="mnt-mini-stat">
+            <div class="mnt-mini-stat__num">87%</div>
+            <div class="mnt-mini-stat__label">of employees say they'd benefit from having a mentor</div>
+          </div>
+          <div class="mnt-mini-stat">
+            <div class="mnt-mini-stat__num">61%</div>
+            <div class="mnt-mini-stat__label">of mentees show improved performance ratings</div>
+          </div>
+          <div class="mnt-mini-stat">
+            <div class="mnt-mini-stat__num">218%</div>
+            <div class="mnt-mini-stat__label">average ROI for structured mentorship programmes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT OF NO MENTORSHIP -->
+  <section style="padding:72px 0;border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal">Global Perspective</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.02em;color:var(--text-1);margin-top:16px;margin-bottom:40px;max-width:560px;" class="reveal reveal-delay-1">The Impact of No Mentorship</h2>
+      <div class="mnt-impact-grid reveal reveal-delay-2">
+        <div class="mnt-impact-card mnt-impact-card--orange">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Missed Growth</div>
+          <div class="mnt-impact-card__pct">41%</div>
+          <div class="mnt-impact-card__label">of professionals feel stagnant in their career growth without structured guidance or a mentor relationship.</div>
+        </div>
+        <div class="mnt-impact-card mnt-impact-card--blue">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#3C8CFF;margin-bottom:12px;">Knowledge Gap</div>
+          <div class="mnt-impact-card__pct">67%</div>
+          <div class="mnt-impact-card__label">of early-career professionals say they lack access to senior knowledge that could accelerate their trajectory.</div>
+        </div>
+        <div class="mnt-impact-card" style="background:var(--bg-elevated);border-color:var(--border);">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;">Key Insight</div>
+          <p style="font-size:15px;color:var(--text-1);line-height:1.7;font-style:italic;">"The problem isn't motivation — it's access. People want growth but can't find the right person to grow with."</p>
+          <div style="margin-top:16px;font-size:13px;color:var(--text-2);">— Synthesis from user interviews</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USER FLOW -->
+  <section style="padding:72px 0;border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal">User Flow</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-0.02em;color:var(--text-1);margin-top:16px;margin-bottom:8px;" class="reveal reveal-delay-1">From Main Screen to Connecting with a Mentor</h2>
+      <p style="font-size:15px;color:var(--text-2);max-width:560px;margin-bottom:40px;" class="reveal reveal-delay-1">A streamlined 5-step flow — browse → filter → view profile → book → connect. Every screen was tested for cognitive load and reduced to essential actions only.</p>
+
+      <!-- Flow Steps -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;" class="reveal reveal-delay-2">
+        <div style="display:flex;flex-direction:column;gap:12px;position:relative;">
+          <div style="width:48px;height:48px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;font-weight:800;color:#fff;">1</div>
+          <div style="height:160px;background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));border:1px solid var(--border);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Home &amp; Discover Feed</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-1);">Main Screen</div>
+          <div style="font-size:12px;color:var(--text-2);">Browse categories &amp; featured mentors</div>
+          <div style="position:absolute;right:-12px;top:60px;color:var(--accent);font-size:18px;">→</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;position:relative;">
+          <div style="width:48px;height:48px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-2);">2</div>
+          <div style="height:160px;background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));border:1px solid var(--border);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Filter by Domain,<br>Availability, Rating</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-1);">Filter &amp; Search</div>
+          <div style="font-size:12px;color:var(--text-2);">Smart filters for the right match</div>
+          <div style="position:absolute;right:-12px;top:60px;color:var(--accent);font-size:18px;">→</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;position:relative;">
+          <div style="width:48px;height:48px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-2);">3</div>
+          <div style="height:160px;background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));border:1px solid var(--border);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Mentor Bio, Reviews,<br>Expertise Tags</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-1);">Mentor Profile</div>
+          <div style="font-size:12px;color:var(--text-2);">Evaluate fit before committing</div>
+          <div style="position:absolute;right:-12px;top:60px;color:var(--accent);font-size:18px;">→</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;position:relative;">
+          <div style="width:48px;height:48px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-2);">4</div>
+          <div style="height:160px;background:linear-gradient(135deg,var(--bg-elevated),var(--bg-card));border:1px solid var(--border);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">Time Slot Picker,<br>Goal Setting</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-1);">Book Session</div>
+          <div style="font-size:12px;color:var(--text-2);">Pick time + set session goals</div>
+          <div style="position:absolute;right:-12px;top:60px;color:var(--accent);font-size:18px;">→</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#ff8c5a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;font-weight:800;color:#fff;">✓</div>
+          <div style="height:160px;background:linear-gradient(135deg,rgba(255,92,46,0.08),rgba(255,92,46,0.02));border:1px solid var(--border-accent);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--accent);">Connected! Chat<br>&amp; Track Progress</div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-1);">Connect &amp; Grow</div>
+          <div style="font-size:12px;color:var(--text-2);">Ongoing session + growth tracking</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM -->
+  <section style="padding:72px 0;border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="section-label reveal">Design System</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:32px;" class="reveal reveal-delay-1">
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text-1);margin-bottom:24px;">Colour Palette</h3>
+          <div class="mnt-ds-grid">
+            <div class="mnt-ds-swatch" style="background:#FF5C2E;">
+              <div><div class="mnt-ds-swatch__name" style="color:#fff;">Tangerine</div><div class="mnt-ds-swatch__hex" style="color:rgba(255,255,255,0.7);">#FF5C2E</div></div>
+            </div>
+            <div class="mnt-ds-swatch" style="background:#1A1A2E;">
+              <div><div class="mnt-ds-swatch__name" style="color:#fff;">Deep Navy</div><div class="mnt-ds-swatch__hex" style="color:rgba(255,255,255,0.7);">#1A1A2E</div></div>
+            </div>
+            <div class="mnt-ds-swatch" style="background:#F4F4F8;border-color:var(--border);">
+              <div><div class="mnt-ds-swatch__name" style="color:#1A1A2E;">Light Sand</div><div class="mnt-ds-swatch__hex" style="color:rgba(0,0,0,0.5);">#F4F4F8</div></div>
+            </div>
+            <div class="mnt-ds-swatch" style="background:#22C55E;">
+              <div><div class="mnt-ds-swatch__name" style="color:#fff;">Growth Green</div><div class="mnt-ds-swatch__hex" style="color:rgba(255,255,255,0.7);">#22C55E</div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text-1);margin-bottom:24px;">Type Scale</h3>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;align-items:baseline;gap:20px;padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--text-1);line-height:1;flex-shrink:0;">Aa</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--text-1);">Syne — Display</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">Headings · 800 weight</div></div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:20px;padding-bottom:16px;border-bottom:1px solid var(--border);">
+              <div style="font-size:28px;font-weight:400;color:var(--text-1);line-height:1;flex-shrink:0;">Aa</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--text-1);">Inter — Body</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">Body text · 15px/1.7</div></div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:20px;">
+              <div style="font-family:monospace;font-size:20px;color:var(--text-2);line-height:1;flex-shrink:0;">Aa</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--text-1);">JetBrains Mono</div><div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">Labels · Meta · 11px</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES / FINAL CTA -->
+  <section style="padding:80px 0;background:var(--bg-elevated);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;" class="reveal">
+        <div>
+          <div class="section-label" style="margin-bottom:24px;">Final Vision</div>
+          <h2 style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.02em;color:var(--text-1);line-height:1.15;">Connect to Mentor and<br><span style="color:var(--accent);">Discover on Growth</span></h2>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-top:20px;">The final design delivers a warm, trust-first experience — where finding and committing to the right mentor feels natural, not transactional.</p>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:32px;">
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-1);"><span style="color:var(--accent);">✓</span> Smart mentor matching algorithm</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-1);"><span style="color:var(--accent);">✓</span> Goal-setting and progress tracking</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-1);"><span style="color:var(--accent);">✓</span> Session scheduling and reminders</div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-1);"><span style="color:var(--accent);">✓</span> Community forums and knowledge sharing</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:var(--accent);">87%</div>
+            <div style="font-size:13px;color:var(--text-2);margin-top:8px;">User demand validated in research</div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;color:#22C55E;">218%</div>
+            <div style="font-size:13px;color:var(--text-2);margin-top:8px;">ROI potential for structured programmes</div>
+          </div>
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;text-align:center;grid-column:1/-1;">
+            <div style="font-size:14px;color:var(--text-2);font-style:italic;">"Tested with 12 participants — 92% task completion rate on first-time booking flow."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section style="padding:64px 0;">
+    <div class="container">
+      <div style="max-width:680px;margin:0 auto;" class="reveal">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px;border-left:3px solid var(--text-3);">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;">Reflection</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--text-1);margin-bottom:12px;">What I'd Do Differently</h3>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;">I focused heavily on the mentee journey and not enough on mentor motivation. Mentors are the supply-side of a two-sided marketplace — without designing for their experience and incentives first, adoption would likely stall. In a V2, I'd design the mentor onboarding and dashboard before touching the discovery flow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

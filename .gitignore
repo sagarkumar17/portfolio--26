@@ -1,0 +1,10 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Intermediate render files (PDF→image pipeline)
+*.ppm
+img/payu-super/*.ppm
+
+# Dev screenshots (not needed for deployment)
+screenshots/

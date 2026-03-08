@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayU Design System — Sagar Kumar</title>
+  <meta name="description" content="Building PayU's first unified design system — 30+ components, 40+ flowcharts, and 600+ hours of systematic design thinking across typography, color, spacing and layout."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    /* ── Brand accent for universal hero ── */
+    :root { --proj-accent: #10846d; }   /* PayU green-500 — brand color */
+
+    /* ── PayU Design System — Blueprint / Spec Sheet Layout ── */
+
+    /* Hero: dot-grid blueprint background */
+    .pds-hero {
+      padding: 40px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pds-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--border) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .pds-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to top, var(--bg-page), transparent);
+      pointer-events: none;
+    }
+
+    /* Spec label */
+    .pds-spec-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--proj-accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .pds-spec-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--proj-accent);
+    }
+
+    /* Hero title */
+    .pds-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 68px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--text-1);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .pds-hero__title em {
+      font-style: normal;
+      color: var(--proj-accent);
+    }
+
+    /* Spec metadata row */
+    .pds-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background: var(--bg-card);
+      margin: 40px 0;
+    }
+    .pds-meta__item {
+      flex: 1;
+      min-width: 120px;
+      padding: 20px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .pds-meta__item:last-child { border-right: none; }
+    .pds-meta__key {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .pds-meta__val {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-1);
+    }
+    .pds-meta__sub {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 2px;
+    }
+
+    /* Hero stat cards */
+    .pds-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+      position: relative;
+    }
+    .pds-hero-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pds-hero-stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--proj-accent);
+      opacity: 0.6;
+    }
+    .pds-hero-stat__num {
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--proj-accent);
+    }
+    .pds-hero-stat__label {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* Section anatomy: spec-divider */
+    .pds-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 72px 0 48px;
+    }
+    .pds-divider__num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--proj-accent);
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      background: rgba(255,92,46,0.08);
+      border: 1px solid rgba(255,92,46,0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .pds-divider__line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .pds-divider__title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.8vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      flex-shrink: 0;
+    }
+    .pds-divider__line2 {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* Two column prose split */
+    .pds-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .pds-lead {
+      font-size: clamp(17px, 1.8vw, 20px);
+      font-weight: 500;
+      color: var(--text-1);
+      line-height: 1.65;
+    }
+    .pds-body {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+
+    /* Problem indicators */
+    .pds-problems {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .pds-problem {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .pds-problem__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--proj-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .pds-problem__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 4px;
+    }
+    .pds-problem__desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.55;
+    }
+
+    /* Scope timeline */
+    .pds-scope-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+    }
+    .pds-scope-col {
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .pds-scope-col:last-child { border-right: none; }
+    .pds-scope-col::before {
+      content: attr(data-phase);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .pds-scope-col__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 10px;
+    }
+    .pds-scope-col__items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pds-scope-col__items li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .pds-scope-col__items li::before {
+      content: '→';
+      color: var(--proj-accent);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .pds-scope-col__items li:last-child { border-bottom: none; }
+
+    /* Research card grid */
+    .pds-research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .pds-r-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 24px;
+    }
+    .pds-r-card__tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .pds-r-card__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .pds-r-card__body {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Priority matrix */
+    .pds-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      aspect-ratio: 1.7;
+    }
+    .pds-matrix__cell {
+      background: var(--bg-card);
+      padding: 24px;
+    }
+    .pds-matrix__quad {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .pds-matrix__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pds-matrix__chip {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--text-1);
+      background: var(--bg-elevated);
+      font-weight: 500;
+    }
+    .pds-matrix__chip--accent {
+      background: rgba(255,92,46,0.08);
+      border-color: rgba(255,92,46,0.25);
+      color: var(--proj-accent);
+    }
+    .pds-matrix__chip--green {
+      background: rgba(16,132,109,0.1);
+      border-color: rgba(16,132,109,0.3);
+      color: #10846d;
+    }
+    .pds-matrix__chip--blue {
+      background: rgba(60,140,255,0.08);
+      border-color: rgba(60,140,255,0.25);
+      color: #3C8CFF;
+    }
+    .pds-matrix__chip--yellow {
+      background: rgba(219,180,41,0.1);
+      border-color: rgba(219,180,41,0.3);
+      color: #9b801d;
+    }
+    .pds-matrix-axes {
+      text-align: center;
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 8px;
+    }
+    .pds-matrix-axes span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text-3);
+    }
+
+    /* HMW problem statement */
+    .pds-hmw {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pds-hmw::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 32px;
+      font-family: var(--font-display);
+      font-size: 200px;
+      font-weight: 900;
+      color: var(--proj-accent);
+      opacity: 0.06;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .pds-hmw__label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--proj-accent);
+      margin-bottom: 20px;
+    }
+    .pds-hmw__text {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      line-height: 1.4;
+    }
+    .pds-hmw__text em {
+      font-style: normal;
+      color: var(--proj-accent);
+      border-bottom: 2px solid rgba(255,92,46,0.3);
+    }
+
+    /* ── COMPONENT LIBRARY — Visual centrepiece ── */
+
+    /* Color token swatches */
+    .pds-colors {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .pds-swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .pds-swatch__block {
+      height: 80px;
+      transition: transform 200ms ease;
+    }
+    .pds-swatch:hover .pds-swatch__block { transform: scale(1.04); }
+    .pds-swatch__info {
+      padding: 10px 12px;
+      background: var(--bg-card);
+    }
+    .pds-swatch__name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 2px;
+    }
+    .pds-swatch__hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+
+    /* Typography scale */
+    .pds-type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+    }
+    .pds-type-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 100px;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 150ms ease;
+    }
+    .pds-type-row:last-child { border-bottom: none; }
+    .pds-type-row:hover { background: var(--bg-elevated); }
+    .pds-type-row__meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+    }
+    .pds-type-row__sample {
+      color: var(--text-1);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pds-type-row__spec {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-3);
+      text-align: right;
+    }
+
+    /* Spacing tokens */
+    .pds-spacing {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pds-space-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 80px;
+      align-items: center;
+      gap: 20px;
+    }
+    .pds-space-row__name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-2);
+      letter-spacing: 0.06em;
+    }
+    .pds-space-row__bar-wrap {
+      background: var(--bg-elevated);
+      border-radius: 4px;
+      height: 12px;
+      overflow: hidden;
+    }
+    .pds-space-row__bar {
+      height: 100%;
+      background: var(--proj-accent);
+      border-radius: 4px;
+      opacity: 0.7;
+    }
+    .pds-space-row__val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-3);
+      text-align: right;
+    }
+
+    /* Grid system showcase */
+    .pds-grid-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .pds-grid-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 24px;
+      overflow: hidden;
+    }
+    .pds-grid-box__title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 16px;
+    }
+    .pds-grid-visual {
+      display: grid;
+      gap: 6px;
+      height: 80px;
+    }
+    .pds-grid-visual__col {
+      background: rgba(255,92,46,0.08);
+      border: 1px dashed rgba(255,92,46,0.3);
+      border-radius: 4px;
+    }
+
+    /* Component inventory chips */
+    .pds-comp-inventory {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .pds-comp-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      font-size: 13px;
+      color: var(--text-1);
+      transition: all 200ms ease;
+      cursor: default;
+    }
+    .pds-comp-chip:hover {
+      border-color: var(--proj-accent);
+      background: rgba(255,92,46,0.04);
+      color: var(--proj-accent);
+      transform: translateY(-2px);
+    }
+    .pds-comp-chip__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--proj-accent);
+      opacity: 0.5;
+    }
+    .pds-comp-chip:hover .pds-comp-chip__dot { opacity: 1; }
+
+    /* Findings list */
+    .pds-findings {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .pds-finding {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 22px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .pds-finding__num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--proj-accent);
+      opacity: 0.25;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .pds-finding__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 6px;
+    }
+    .pds-finding__body {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* Outcome stats row */
+    .pds-outcomes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .pds-outcome {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .pds-outcome__num {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--proj-accent);
+    }
+    .pds-outcome__label {
+      font-size: 13px;
+      color: var(--text-2);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .pds-2col { grid-template-columns: 1fr; }
+      .pds-hero-stats { grid-template-columns: 1fr; }
+      .pds-problems { grid-template-columns: 1fr; }
+      .pds-scope-grid { grid-template-columns: 1fr 1fr; }
+      .pds-research-grid { grid-template-columns: 1fr; }
+      .pds-matrix { aspect-ratio: auto; }
+      .pds-colors { grid-template-columns: repeat(3, 1fr); }
+      .pds-grid-showcase { grid-template-columns: 1fr; }
+      .pds-findings { grid-template-columns: 1fr; }
+      .pds-outcomes { grid-template-columns: repeat(2, 1fr); }
+      .pds-meta { flex-direction: column; }
+      .pds-meta__item { border-right: none; border-bottom: 1px solid var(--border); }
+      .pds-meta__item:last-child { border-bottom: none; }
+    }
+      /* Icon animation */
+    @keyframes iconPop {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .pds-problem__icon {
+      animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+    .pds-problem__icon:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+    .pds-problem__item:nth-child(1) .pds-problem__icon { animation-delay: 0.05s; }
+    .pds-problem__item:nth-child(2) .pds-problem__icon { animation-delay: 0.10s; }
+    .pds-problem__item:nth-child(3) .pds-problem__icon { animation-delay: 0.15s; }
+    .pds-problem__item:nth-child(4) .pds-problem__icon { animation-delay: 0.20s; }
+    .pds-problem__item:nth-child(5) .pds-problem__icon { animation-delay: 0.25s; }
+    .pds-problem__item:nth-child(6) .pds-problem__icon { animation-delay: 0.30s; }
+
+    </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ── BACK LINK ── -->
+  <div class="proj-back-wrap" style="position:relative;z-index:1;">
+    <div class="container">
+      <a href="work.html" class="proj-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section class="pds-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="proj-eyebrow reveal">Design System · PayU · 2023</div>
+
+      <h1 class="pds-hero__title reveal">
+        Building PayU's<br/><em>First Design System</em>
+      </h1>
+
+      <p style="font-size:clamp(16px,1.6vw,19px);color:var(--text-2);line-height:1.7;max-width:640px;" class="reveal">
+        A unified component library and token system that transformed how 50+ designers and developers at PayU shipped product — from inconsistent interfaces to a single source of truth.
+      </p>
+
+      <!-- Spec metadata strip -->
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">Lead Designer</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Platform</div>
+          <div class="proj-meta__v">Figma · Zeroheight</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Duration</div>
+          <div class="proj-meta__v">6 Months · 2022–2023</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Team</div>
+          <div class="proj-meta__v">3 Designers · 2 Front-end Devs</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Scope</div>
+          <div class="proj-meta__v">Research → Tokens → Components</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FINAL DESIGNS -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Main banner ── -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#1a0c00;width:100%;">
+        <img src="img/payuds_banner.jpg" alt="PayU Design System" loading="lazy" style="width:100%;height:auto;display:block;">
+      </div>
+
+      <!-- Hero stats -->
+      <div class="pds-hero-stats reveal">
+        <div class="pds-hero-stat">
+          <div class="pds-hero-stat__num"><span data-count="30" data-suffix="+">30+</span></div>
+          <div class="pds-hero-stat__label">Reusable components built across web, mobile, and admin interfaces</div>
+        </div>
+        <div class="pds-hero-stat">
+          <div class="pds-hero-stat__num"><span data-count="40" data-suffix="+">40+</span></div>
+          <div class="pds-hero-stat__label">User flows and process flowcharts mapped to component usage</div>
+        </div>
+        <div class="pds-hero-stat">
+          <div class="pds-hero-stat__num"><span data-count="600" data-suffix="+">600+</span></div>
+          <div class="pds-hero-stat__label">Hours invested in research, architecture, and systematic design thinking</div>
+        </div>
+      </div>
+
+      <!-- ── Optional extra rows — uncomment to add more screens ───
+      <div class="proj-visuals__grid">
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#1a0c00,#120800);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="PayU Design System — screen 2" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#1a0c00,#120800);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="PayU Design System — screen 3" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-visuals__row proj-visuals__row--3">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#1a0c00,#120800);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="PayU Design System — screen 4" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#1a0c00,#120800);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="PayU Design System — screen 5" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#1a0c00,#120800);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="PayU Design System — screen 6" loading="lazy">
+          </div>
+        </div>
+      </div>
+      ── end optional rows ── -->
+
+    </div>
+  </section>
+  <!-- ─── 01 · THE PRODUCT ─── -->
+  <section style="padding:0 0 0;">
+    <div class="container">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">01</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">The Product</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <div class="pds-2col reveal">
+        <div>
+          <p class="pds-lead">PayU is a leading fintech company serving merchants across South Asia, Latin America, and Europe — processing millions of transactions daily across web and mobile platforms.</p>
+        </div>
+        <div>
+          <p class="pds-body">As one of India's most widely used payment gateway providers, PayU's product suite spans merchant dashboards, consumer apps, B2B integrations, and admin tools. The sheer scale of the product — built over a decade with multiple teams — had resulted in fragmented, inconsistent UI across products.</p>
+          <p class="pds-body" style="margin-top:16px;">My mandate was to design and implement PayU's first unified design system: a shared language across products, from raw design tokens to fully documented, production-ready components.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 02 · NEED OF REVAMP ─── -->
+  <section style="padding:0; background:var(--bg-elevated); margin-top:80px;">
+    <div class="container" style="padding-top:64px; padding-bottom:64px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">02</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Need of Revamp</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <div class="pds-2col reveal" style="margin-bottom:40px;">
+        <div>
+          <p class="pds-lead">Years of product growth without a unified system had left PayU's UI fragmented — each team building components independently.</p>
+        </div>
+        <div>
+          <p class="pds-body">Designer interviews, codebase audits, and stakeholder conversations revealed a consistent pattern: developers were re-implementing the same components over and over, QA was catching visual regressions on every release, and designers couldn't hand off specs with confidence. The cost was enormous — in time, in inconsistency, and in user trust.</p>
+        </div>
+      </div>
+
+      <div class="pds-problems reveal">
+        <div class="pds-problem">
+          <div class="pds-problem__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <div>
+            <div class="pds-problem__title">No Shared Component Library</div>
+            <div class="pds-problem__desc">Each product team maintained their own Figma files with duplicated components, leading to inconsistent UI patterns across the platform.</div>
+          </div>
+        </div>
+        <div class="pds-problem">
+          <div class="pds-problem__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <div>
+            <div class="pds-problem__title">Inconsistent Visual Language</div>
+            <div class="pds-problem__desc">Colors, spacing, and typography varied significantly between products — 6+ different button styles, 4 navbar patterns, and no shared color palette.</div>
+          </div>
+        </div>
+        <div class="pds-problem">
+          <div class="pds-problem__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+          <div>
+            <div class="pds-problem__title">Redundant Development Effort</div>
+            <div class="pds-problem__desc">Front-end engineers were rebuilding the same components repeatedly, with no reusable code base or design-to-dev handoff standard.</div>
+          </div>
+        </div>
+        <div class="pds-problem">
+          <div class="pds-problem__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          <div>
+            <div class="pds-problem__title">Missing Design Tokens</div>
+            <div class="pds-problem__desc">No structured token system existed for spacing, radii, or elevation — making dark mode, theming, and product-level customisation near impossible.</div>
+          </div>
+        </div>
+        <div class="pds-problem">
+          <div class="pds-problem__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+          <div>
+            <div class="pds-problem__title">Slow Design-to-Dev Handoff</div>
+            <div class="pds-problem__desc">Without a shared reference, every spec review was a back-and-forth negotiation. Average handoff took 2–3× longer than industry benchmark.</div>
+          </div>
+        </div>
+        <div class="pds-problem">
+          <div class="pds-problem__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div>
+            <div class="pds-problem__title">Accessibility Gaps</div>
+            <div class="pds-problem__desc">No contrast checks, focus states, or ARIA guidelines were enforced at the component level — leaving the product exposed to compliance risk.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 03 · SCOPE AND PLAN ─── -->
+  <section style="padding:0;">
+    <div class="container" style="padding-top:80px; padding-bottom:80px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">03</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Scope &amp; Plan</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <p class="pds-body reveal" style="max-width:680px; margin-bottom:40px;">The project was structured in four phases over 6 months — each building on the last. We used a "crawl → walk → run" approach, starting with tokens before touching a single component.</p>
+
+      <div class="pds-scope-grid reveal">
+        <div class="pds-scope-col" data-phase="Phase 01 · Weeks 1–4">
+          <div class="pds-scope-col__title">Research &amp; Audit</div>
+          <ul class="pds-scope-col__items">
+            <li>UI component audit across all products</li>
+            <li>Designer + dev interviews (n=12)</li>
+            <li>Competitive benchmarking</li>
+            <li>Stakeholder alignment workshop</li>
+            <li>Accessibility compliance review</li>
+          </ul>
+        </div>
+        <div class="pds-scope-col" data-phase="Phase 02 · Weeks 5–10">
+          <div class="pds-scope-col__title">Token Foundation</div>
+          <ul class="pds-scope-col__items">
+            <li>Color primitives + semantic tokens</li>
+            <li>Typography scale definition</li>
+            <li>Spacing system (4px base unit)</li>
+            <li>Elevation + shadow tokens</li>
+            <li>Border radius + grid tokens</li>
+          </ul>
+        </div>
+        <div class="pds-scope-col" data-phase="Phase 03 · Weeks 11–20">
+          <div class="pds-scope-col__title">Component Library</div>
+          <ul class="pds-scope-col__items">
+            <li>30+ Figma components built</li>
+            <li>Variant + state documentation</li>
+            <li>Auto-layout + responsive specs</li>
+            <li>Dev handoff annotations</li>
+            <li>Zeroheight documentation</li>
+          </ul>
+        </div>
+        <div class="pds-scope-col" data-phase="Phase 04 · Weeks 21–26">
+          <div class="pds-scope-col__title">Adoption &amp; Scale</div>
+          <ul class="pds-scope-col__items">
+            <li>Team onboarding sessions</li>
+            <li>Contribution guidelines</li>
+            <li>Pattern library + flowcharts</li>
+            <li>Design system governance</li>
+            <li>Versioning + changelog</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 04 · RESEARCH & PLANNING ─── -->
+  <section style="background:var(--bg-elevated);">
+    <div class="container" style="padding-top:64px; padding-bottom:64px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">04</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Research &amp; Planning</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <div class="pds-research-grid reveal">
+        <div class="pds-r-card">
+          <span class="pds-r-card__tag">Component Audit</span>
+          <div class="pds-r-card__title">Visual Inventory Across Products</div>
+          <div class="pds-r-card__body">Catalogued 240+ unique UI elements across 6 PayU products. Found 18 unique button styles, 9 form input variants, and zero shared icon libraries — all contributing to visual inconsistency.</div>
+        </div>
+        <div class="pds-r-card">
+          <span class="pds-r-card__tag">User Interviews</span>
+          <div class="pds-r-card__title">Designers &amp; Developers (n=12)</div>
+          <div class="pds-r-card__body">Interviewed 8 designers and 4 developers about their current workflow. 10/12 cited "inconsistency between Figma and code" as their #1 pain point. Average handoff cycle was 4 days per component.</div>
+        </div>
+        <div class="pds-r-card">
+          <span class="pds-r-card__tag">Benchmarking</span>
+          <div class="pds-r-card__title">Industry Design Systems Studied</div>
+          <div class="pds-r-card__body">Analysed Material Design, Atlassian Design System, Salesforce Lightning, Carbon (IBM), and Razorpay Blade — extracting best practices in token naming, component architecture, and documentation.</div>
+        </div>
+        <div class="pds-r-card">
+          <span class="pds-r-card__tag">Workshop</span>
+          <div class="pds-r-card__title">Stakeholder Alignment</div>
+          <div class="pds-r-card__body">Ran a 3-hour cross-functional workshop with PMs, designers, and engineering leads to align on system goals, prioritisation criteria, and adoption strategy before any components were designed.</div>
+        </div>
+        <div class="pds-r-card">
+          <span class="pds-r-card__tag">Accessibility</span>
+          <div class="pds-r-card__title">WCAG 2.1 Compliance Audit</div>
+          <div class="pds-r-card__body">Checked all existing UI against WCAG 2.1 AA standards. Found 34 contrast failures, 12 missing focus states, and 0 ARIA label standards in the component codebase.</div>
+        </div>
+        <div class="pds-r-card">
+          <span class="pds-r-card__tag">Documentation</span>
+          <div class="pds-r-card__title">Defining Contribution Standards</div>
+          <div class="pds-r-card__body">Established criteria for what qualifies as a "system-ready" component: 3+ use cases across products, WCAG compliance, responsive spec, dev handoff annotation, and variant documentation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 05 · PRIORITY MATRIX ─── -->
+  <section style="padding:0;">
+    <div class="container" style="padding-top:80px; padding-bottom:80px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">05</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Priority Matrix</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <p class="pds-body reveal" style="max-width:680px; margin-bottom:40px;">With 240+ elements audited, we needed a clear prioritisation framework. We plotted components on an Impact vs. Effort matrix to determine sequencing — starting with high-impact, low-effort "quick wins" that would demonstrate value fast.</p>
+
+      <div class="reveal">
+        <div class="pds-matrix">
+          <div class="pds-matrix__cell">
+            <div class="pds-matrix__quad">🚀 High Impact · Low Effort — Ship First</div>
+            <div class="pds-matrix__items">
+              <span class="pds-matrix__chip pds-matrix__chip--accent">Color Tokens</span>
+              <span class="pds-matrix__chip pds-matrix__chip--accent">Typography Scale</span>
+              <span class="pds-matrix__chip pds-matrix__chip--accent">Button Component</span>
+              <span class="pds-matrix__chip pds-matrix__chip--accent">Input Fields</span>
+              <span class="pds-matrix__chip pds-matrix__chip--accent">Icon Library</span>
+            </div>
+          </div>
+          <div class="pds-matrix__cell">
+            <div class="pds-matrix__quad">🎯 High Impact · High Effort — Plan Carefully</div>
+            <div class="pds-matrix__items">
+              <span class="pds-matrix__chip pds-matrix__chip--blue">Navigation System</span>
+              <span class="pds-matrix__chip pds-matrix__chip--blue">Data Tables</span>
+              <span class="pds-matrix__chip pds-matrix__chip--blue">Form System</span>
+              <span class="pds-matrix__chip pds-matrix__chip--blue">Dark Mode Tokens</span>
+            </div>
+          </div>
+          <div class="pds-matrix__cell">
+            <div class="pds-matrix__quad">⚡ Low Impact · Low Effort — Fill Gaps</div>
+            <div class="pds-matrix__items">
+              <span class="pds-matrix__chip pds-matrix__chip--green">Tooltips</span>
+              <span class="pds-matrix__chip pds-matrix__chip--green">Badges</span>
+              <span class="pds-matrix__chip pds-matrix__chip--green">Dividers</span>
+              <span class="pds-matrix__chip pds-matrix__chip--green">Spacing Tokens</span>
+            </div>
+          </div>
+          <div class="pds-matrix__cell">
+            <div class="pds-matrix__quad">⏳ Low Impact · High Effort — Defer</div>
+            <div class="pds-matrix__items">
+              <span class="pds-matrix__chip pds-matrix__chip--yellow">Data Viz Library</span>
+              <span class="pds-matrix__chip pds-matrix__chip--yellow">Animation System</span>
+              <span class="pds-matrix__chip pds-matrix__chip--yellow">Custom Charts</span>
+            </div>
+          </div>
+        </div>
+        <div class="pds-matrix-axes">
+          <span>← LOW IMPACT</span>
+          <span>HIGH IMPACT →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 06 · RESEARCH FINDINGS ─── -->
+  <section style="background:var(--bg-elevated);">
+    <div class="container" style="padding-top:64px; padding-bottom:64px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">06</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Research Findings</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <div class="pds-findings reveal">
+        <div class="pds-finding">
+          <div class="pds-finding__num">01</div>
+          <div>
+            <div class="pds-finding__title">Engineers re-implemented components 3.2× on average</div>
+            <div class="pds-finding__body">Component audits found that every major UI element (buttons, forms, modals) had been implemented 3–5 times across different product repos, with slight variations each time — creating maintenance overhead and visual drift.</div>
+          </div>
+        </div>
+        <div class="pds-finding">
+          <div class="pds-finding__num">02</div>
+          <div>
+            <div class="pds-finding__title">Onboarding a new designer took 2+ weeks</div>
+            <div class="pds-finding__body">Without a centralised library, new designers had to reverse-engineer existing Figma files to understand "how things were done." The average ramp-up time to first meaningful contribution was 15 days.</div>
+          </div>
+        </div>
+        <div class="pds-finding">
+          <div class="pds-finding__num">03</div>
+          <div>
+            <div class="pds-finding__title">57% of design review time was spent on visual inconsistencies</div>
+            <div class="pds-finding__body">A 2-week sprint review log analysis showed that over half of design review feedback was about inconsistencies a shared system would have prevented — not new ideas, just fixing drift.</div>
+          </div>
+        </div>
+        <div class="pds-finding">
+          <div class="pds-finding__num">04</div>
+          <div>
+            <div class="pds-finding__title">Zero WCAG-compliant components existed pre-system</div>
+            <div class="pds-finding__body">An accessibility audit confirmed that no component in the pre-existing Figma libraries had been tested against WCAG 2.1 AA contrast ratios, focus state requirements, or keyboard navigation patterns.</div>
+          </div>
+        </div>
+        <div class="pds-finding">
+          <div class="pds-finding__num">05</div>
+          <div>
+            <div class="pds-finding__title">8 different colour values used as "primary orange"</div>
+            <div class="pds-finding__body">A colour audit found 8 distinct hex values used for PayU's signature orange across the product — ranging from #FF5C1E to #F04A0E. None were consistent with the brand guidelines document.</div>
+          </div>
+        </div>
+        <div class="pds-finding">
+          <div class="pds-finding__num">06</div>
+          <div>
+            <div class="pds-finding__title">Designers wanted "guardrails, not restrictions"</div>
+            <div class="pds-finding__body">A recurring theme from designer interviews: they didn't want a rigid system that limited creativity, but a strong token foundation and opinionated components that gave them a starting point — not a ceiling.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 07 · DEFINING PROBLEM STATEMENT ─── -->
+  <section style="padding:0;">
+    <div class="container" style="padding-top:80px; padding-bottom:80px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">07</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Defining the Problem</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <div class="pds-hmw reveal">
+        <div class="pds-hmw__label">How Might We</div>
+        <div class="pds-hmw__text">
+          How might we create a <em>scalable, token-driven design system</em> that gives PayU's product teams a shared visual language — reducing inconsistency, accelerating delivery, and making <em>accessibility a default</em> rather than an afterthought?
+        </div>
+      </div>
+
+      <div class="pds-2col reveal" style="margin-top:40px;">
+        <div>
+          <p class="pds-body" style="font-size:15px;font-weight:600;color:var(--text-1);margin-bottom:8px;">What success looks like</p>
+          <p class="pds-body">A designer should be able to open any Figma file, find the component they need in under 30 seconds, know it's correct, accessible, and approved — and hand it off to a developer who can implement it without a single back-and-forth clarification.</p>
+        </div>
+        <div>
+          <p class="pds-body" style="font-size:15px;font-weight:600;color:var(--text-1);margin-bottom:8px;">Constraints to design around</p>
+          <p class="pds-body">The system had to work within existing brand guidelines, be backward-compatible with live products, support dark mode from day one, and be maintainable by a small team without dedicated engineering resources.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 08 · DESIGNING COMPONENTS ─── -->
+  <section style="background:var(--bg-elevated); padding-bottom:80px;">
+    <div class="container" style="padding-top:64px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">08</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Designing Components</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <!-- ── Color System ── -->
+      <div style="margin-bottom:56px;" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Token Layer 01</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">Color System</div>
+          </div>
+          <div style="font-size:13px;color:var(--text-2);">3 palettes · 8 steps each</div>
+        </div>
+
+        <!-- ─ Palette helper styles ─ -->
+        <style>
+          .pal-section { margin-bottom: 32px; }
+          .pal-label { font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px; }
+          .pal-row { display:grid;grid-template-columns:repeat(8,1fr);gap:4px; }
+          .pal-swatch { border-radius:8px;overflow:hidden;cursor:default; }
+          .pal-swatch__block { width:100%;aspect-ratio:1/1; }
+          .pal-swatch__meta { padding:8px 4px 4px; }
+          .pal-swatch__step { font-family:var(--font-mono);font-size:9px;color:var(--text-3);display:block;margin-bottom:2px; }
+          .pal-swatch__hex { font-family:var(--font-mono);font-size:9px;color:var(--text-2);display:block; }
+          .pal-swatch--main .pal-swatch__block { outline:2px solid var(--proj-accent);outline-offset:-2px; }
+          .pal-swatch--main .pal-swatch__step { color:var(--proj-accent);font-weight:600; }
+          .pal-swatch--main .pal-swatch__hex { color:var(--proj-accent); }
+          .pal-badge { display:inline-flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:9px;font-weight:600;padding:2px 7px;border-radius:20px;margin-top:4px; }
+          @media(max-width:640px){ .pal-row{grid-template-columns:repeat(4,1fr);} }
+        </style>
+
+        <!-- Primary: PayU Green -->
+        <div class="pal-section">
+          <div class="pal-label">Primary Color — PayU Green</div>
+          <div class="pal-row">
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#f7fcfc;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-10</span><span class="pal-swatch__hex">#f7fcfc</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#e7f3f1;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-50</span><span class="pal-swatch__hex">#e7f3f1</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#b5dad3;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-100</span><span class="pal-swatch__hex">#b5dad3</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#41a18d;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-400</span><span class="pal-swatch__hex">#41a18d</span></div>
+            </div>
+            <div class="pal-swatch pal-swatch--main">
+              <div class="pal-swatch__block" style="background:#10846d;position:relative;">
+                <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:#dbb429;color:#0e342c;font-family:var(--font-mono);font-size:7px;font-weight:700;padding:1px 5px;border-radius:10px;white-space:nowrap;">Main Color</div>
+              </div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-500</span><span class="pal-swatch__hex">#10846d</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#0c6150;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-700</span><span class="pal-swatch__hex">#0c6150</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#094b3e;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-800</span><span class="pal-swatch__hex">#094b3e</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#0e342c;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">green-900</span><span class="pal-swatch__hex">#0e342c</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary: Yellow -->
+        <div class="pal-section">
+          <div class="pal-label">Secondary Color — Yellow</div>
+          <div class="pal-row">
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#fcfcf7;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-10</span><span class="pal-swatch__hex">#fcfcf7</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#fbf8ea;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-50</span><span class="pal-swatch__hex">#fbf8ea</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#f4e8bd;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-100</span><span class="pal-swatch__hex">#f4e8bd</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#e2c354;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-400</span><span class="pal-swatch__hex">#e2c354</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#dbb429;position:relative;">
+                <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:#dbb429;color:#0e342c;font-family:var(--font-mono);font-size:7px;font-weight:700;padding:1px 5px;border-radius:10px;white-space:nowrap;border:1px solid #0e342c;">Main Color</div>
+              </div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-500</span><span class="pal-swatch__hex">#dbb429</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#9b801d;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-700</span><span class="pal-swatch__hex">#9b801d</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#786317;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-800</span><span class="pal-swatch__hex">#786317</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#4a3c0a;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">yellow-900</span><span class="pal-swatch__hex">#4a3c0a</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary: Red -->
+        <div class="pal-section" style="margin-bottom:0;">
+          <div class="pal-label">Secondary Color — Red</div>
+          <div class="pal-row">
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#fff5f5;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-10</span><span class="pal-swatch__hex">#fff5f5</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#fee2e2;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-50</span><span class="pal-swatch__hex">#fee2e2</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#fecaca;border:1px solid var(--border);"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-100</span><span class="pal-swatch__hex">#fecaca</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#f87171;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-400</span><span class="pal-swatch__hex">#f87171</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#ef4444;position:relative;">
+                <div style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:#ef4444;color:#fff;font-family:var(--font-mono);font-size:7px;font-weight:700;padding:1px 5px;border-radius:10px;white-space:nowrap;border:1px solid rgba(255,255,255,0.4);">Main Color</div>
+              </div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-500</span><span class="pal-swatch__hex">#ef4444</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#dc2626;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-700</span><span class="pal-swatch__hex">#dc2626</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#b91c1c;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-800</span><span class="pal-swatch__hex">#b91c1c</span></div>
+            </div>
+            <div class="pal-swatch">
+              <div class="pal-swatch__block" style="background:#7f1d1d;"></div>
+              <div class="pal-swatch__meta"><span class="pal-swatch__step">red-900</span><span class="pal-swatch__hex">#7f1d1d</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Typography Scale ── -->
+      <div style="margin-bottom:56px;" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Token Layer 02</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">Typography Scale</div>
+          </div>
+          <div style="font-size:13px;color:var(--text-2);">8 type steps · 2 font families</div>
+        </div>
+        <div class="pds-type-scale">
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">display-2xl</div>
+            <div class="pds-type-row__sample" style="font-size:48px;font-weight:800;letter-spacing:-0.04em;">Display</div>
+            <div class="pds-type-row__spec">48px / 800</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">display-xl</div>
+            <div class="pds-type-row__sample" style="font-size:36px;font-weight:700;letter-spacing:-0.03em;">Heading 1</div>
+            <div class="pds-type-row__spec">36px / 700</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">heading-lg</div>
+            <div class="pds-type-row__sample" style="font-size:28px;font-weight:700;">Heading 2</div>
+            <div class="pds-type-row__spec">28px / 700</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">heading-md</div>
+            <div class="pds-type-row__sample" style="font-size:22px;font-weight:600;">Heading 3</div>
+            <div class="pds-type-row__spec">22px / 600</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">body-lg</div>
+            <div class="pds-type-row__sample" style="font-size:17px;">Body Large — default prose size</div>
+            <div class="pds-type-row__spec">17px / 400</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">body-md</div>
+            <div class="pds-type-row__sample" style="font-size:15px;">Body Medium — secondary text</div>
+            <div class="pds-type-row__spec">15px / 400</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">label-sm</div>
+            <div class="pds-type-row__sample" style="font-size:13px;font-weight:500;">Label / Caption</div>
+            <div class="pds-type-row__spec">13px / 500</div>
+          </div>
+          <div class="pds-type-row">
+            <div class="pds-type-row__meta">mono-xs</div>
+            <div class="pds-type-row__sample" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;">Overline / Code</div>
+            <div class="pds-type-row__spec">11px mono</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Font Families ── -->
+      <div style="margin-bottom:56px;" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Token Layer 02b</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">Font Families</div>
+          </div>
+          <div style="font-size:13px;color:var(--text-2);">2 families · 8 weights</div>
+        </div>
+
+        <!-- Two-column font cards -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+
+          <!-- Primary: Poppins -->
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div>
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;">Primary Typeface</div>
+                <div style="font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:var(--text-1);letter-spacing:-0.01em;">Poppins</div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);text-align:right;line-height:1.6;">Geometric<br>Sans-Serif</div>
+            </div>
+            <!-- Weight ramp -->
+            <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border);padding-top:16px;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:300;color:var(--text-1);">Light</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">300</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:400;color:var(--text-1);">Regular</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">400</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:500;color:var(--text-1);">Medium</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">500</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:600;color:var(--text-1);">SemiBold</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">600</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:var(--text-1);">Bold</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">700</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:var(--text-1);">ExtraBold</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">800</span>
+              </div>
+            </div>
+            <!-- Usage chips -->
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Headings</span>
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Buttons</span>
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Body Copy</span>
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Navigation</span>
+            </div>
+          </div>
+
+          <!-- Secondary: DM Mono / JetBrains Mono -->
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div>
+                <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;">Monospace Typeface</div>
+                <div style="font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--text-1);">DM Mono</div>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);text-align:right;line-height:1.6;">Fixed-Width<br>Mono</div>
+            </div>
+            <!-- Weight ramp -->
+            <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border);padding-top:16px;">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:var(--font-mono);font-size:16px;font-weight:300;color:var(--text-1);">Light</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">300</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:var(--font-mono);font-size:16px;font-weight:400;color:var(--text-1);">Regular</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">400</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:var(--font-mono);font-size:16px;font-weight:500;color:var(--text-1);">Medium</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">500</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:var(--font-mono);font-size:14px;font-weight:400;color:var(--text-1);letter-spacing:0.05em;">AMOUNT: ₹1,24,500.00</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">Data</span>
+              </div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                <span style="font-family:var(--font-mono);font-size:14px;font-weight:400;color:var(--text-1);letter-spacing:0.04em;">TXN-2024-00389401</span>
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);">ID</span>
+              </div>
+            </div>
+            <!-- Usage chips -->
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Transaction IDs</span>
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Amounts</span>
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Overlines</span>
+              <span style="font-family:var(--font-mono);font-size:9px;background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.25);color:var(--proj-accent);padding:3px 8px;border-radius:20px;">Code Snippets</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Type anatomy strip -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px 28px;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;">Live Type Anatomy</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+            <!-- Poppins showcase -->
+            <div>
+              <div style="font-family:'Poppins',sans-serif;font-size:36px;font-weight:700;color:var(--text-1);line-height:1.1;letter-spacing:-0.01em;margin-bottom:4px;">Transaction<br>Summary</div>
+              <div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:400;color:var(--text-2);margin-bottom:16px;">Your payments, settlements and payouts — in one place.</div>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <button style="font-family:'Poppins',sans-serif;background:var(--proj-accent);color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;font-weight:600;cursor:default;">View Report</button>
+                <button style="font-family:'Poppins',sans-serif;background:transparent;color:var(--proj-accent);border:1.5px solid var(--proj-accent);border-radius:6px;padding:7px 18px;font-size:13px;font-weight:500;cursor:default;">Export</button>
+              </div>
+            </div>
+            <!-- Stats block -->
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:10px;">
+              <div style="background:var(--bg-elevated);border-radius:8px;padding:14px 16px;">
+                <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;">Total Volume</div>
+                <div style="font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--text-1);">₹48,23,140.00</div>
+                <div style="font-family:'Poppins',sans-serif;font-size:12px;color:var(--proj-accent);font-weight:500;margin-top:2px;">↑ 12.4% vs last month</div>
+              </div>
+              <div style="background:var(--bg-elevated);border-radius:8px;padding:14px 16px;">
+                <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;">Success Rate</div>
+                <div style="font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--text-1);">94.7<span style="font-size:14px;font-weight:400;color:var(--text-2);">%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Iconography ── -->
+      <div style="margin-bottom:56px;" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Token Layer 02c</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">Iconography</div>
+          </div>
+          <div style="font-size:13px;color:var(--text-2);">Custom icon library · 4 sizes</div>
+        </div>
+
+        <!-- Size scale -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;">Icon Size Scale</div>
+          <div style="display:flex;align-items:flex-end;gap:32px;flex-wrap:wrap;">
+            <!-- 16px -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);text-align:center;">16px<br>Inline</div>
+            </div>
+            <!-- 20px -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);text-align:center;">20px<br>Default</div>
+            </div>
+            <!-- 24px -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);text-align:center;">24px<br>Nav / CTA</div>
+            </div>
+            <!-- 32px -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--proj-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);text-align:center;">32px<br>Feature</div>
+            </div>
+            <div style="flex:1;min-width:160px;background:var(--bg-elevated);border-radius:8px;padding:12px 16px;">
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-3);margin-bottom:6px;">Style Guide</div>
+              <div style="font-size:12px;color:var(--text-2);line-height:1.6;">2px stroke weight<br>Round line-cap & join<br>24×24 viewBox<br>Optical corrections applied</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon categories grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;">
+
+          <!-- Navigation -->
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 16px;">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:14px;">Navigation</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+              <!-- Home -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">home</span>
+              </div>
+              <!-- Chart -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">analytics</span>
+              </div>
+              <!-- Settings -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">settings</span>
+              </div>
+              <!-- Menu -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">menu</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 16px;">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:14px;">Actions</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">add</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">delete</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">edit</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">download</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Finance / Payments -->
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 16px;">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:14px;">Finance</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">card</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">currency</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">transfer</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">invoice</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status -->
+          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 16px;">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:14px;">Status</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10846d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">success</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">error</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dbb429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">warning</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span style="font-family:var(--font-mono);font-size:7px;color:var(--text-3);">info</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end icon categories grid -->
+
+        <!-- Dos & Don'ts -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+          <div style="background:rgba(16,132,109,0.05);border:1px solid rgba(16,132,109,0.2);border-radius:10px;padding:18px 20px;">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:12px;">✓ Do</div>
+            <ul style="margin:0;padding-left:16px;font-size:13px;color:var(--text-2);line-height:1.9;">
+              <li>Use 2px stroke for all icons at 20–24px</li>
+              <li>Pair icon with a label for accessibility</li>
+              <li>Use green-500 for active / selected state</li>
+              <li>Align to 4px grid at all sizes</li>
+            </ul>
+          </div>
+          <div style="background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:18px 20px;">
+            <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#ef4444;margin-bottom:12px;">✗ Don't</div>
+            <ul style="margin:0;padding-left:16px;font-size:13px;color:var(--text-2);line-height:1.9;">
+              <li>Mix outline and filled icons in the same view</li>
+              <li>Scale icons to non-standard sizes (e.g. 18px)</li>
+              <li>Use icons without sufficient touch target (min 44px)</li>
+              <li>Apply multiple colors to a single icon</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Spacing Tokens ── -->
+      <div style="margin-bottom:56px;" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Token Layer 03</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">Spacing Tokens</div>
+          </div>
+          <div style="font-size:13px;color:var(--text-2);">Base 4px unit · 10 steps</div>
+        </div>
+        <div class="pds-spacing">
+          <div class="pds-space-row"><div class="pds-space-row__name">space-1</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:2%"></div></div><div class="pds-space-row__val">4px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-2</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:4%"></div></div><div class="pds-space-row__val">8px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-3</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:6%"></div></div><div class="pds-space-row__val">12px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-4</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:8%"></div></div><div class="pds-space-row__val">16px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-5</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:12%"></div></div><div class="pds-space-row__val">20px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-6</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:16%"></div></div><div class="pds-space-row__val">24px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-8</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:24%"></div></div><div class="pds-space-row__val">32px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-10</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:32%"></div></div><div class="pds-space-row__val">40px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-12</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:40%"></div></div><div class="pds-space-row__val">48px</div></div>
+          <div class="pds-space-row"><div class="pds-space-row__name">space-16</div><div class="pds-space-row__bar-wrap"><div class="pds-space-row__bar" style="width:54%"></div></div><div class="pds-space-row__val">64px</div></div>
+        </div>
+      </div>
+
+      <!-- ── Layout Grids ── -->
+      <div style="margin-bottom:56px;" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Token Layer 04</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">Layout Grids</div>
+          </div>
+          <div style="font-size:13px;color:var(--text-2);">3 breakpoints · adaptive columns</div>
+        </div>
+        <div class="pds-grid-showcase">
+          <div class="pds-grid-box">
+            <div class="pds-grid-box__title">Desktop — 12 Columns · 24px Gutter</div>
+            <div class="pds-grid-visual" style="grid-template-columns:repeat(12,1fr);">
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+            </div>
+          </div>
+          <div class="pds-grid-box">
+            <div class="pds-grid-box__title">Tablet — 8 Columns · 20px Gutter</div>
+            <div class="pds-grid-visual" style="grid-template-columns:repeat(8,1fr);">
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+            </div>
+          </div>
+          <div class="pds-grid-box">
+            <div class="pds-grid-box__title">Mobile — 4 Columns · 16px Gutter</div>
+            <div class="pds-grid-visual" style="grid-template-columns:repeat(4,1fr);">
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+            </div>
+          </div>
+          <div class="pds-grid-box">
+            <div class="pds-grid-box__title">Admin / Dense — 16 Columns · 16px Gutter</div>
+            <div class="pds-grid-visual" style="grid-template-columns:repeat(16,1fr);">
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+              <div class="pds-grid-visual__col"></div><div class="pds-grid-visual__col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Component Inventory ── -->
+      <div class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Component Library</div>
+            <div style="font-size:20px;font-weight:700;color:var(--text-1);">30+ Components Shipped</div>
+          </div>
+        </div>
+        <div class="pds-comp-inventory">
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Button</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Input Field</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Dropdown Select</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Checkbox</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Radio Button</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Toggle Switch</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Modal Dialog</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Toast / Alert</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Tooltip</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Badge</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Tag / Chip</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Breadcrumb</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Pagination</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Navigation Bar</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Sidebar Nav</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Tab Bar</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Data Table</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Card</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Avatar</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Icon System</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Progress Bar</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Skeleton Loader</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Empty State</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Form Layout</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Search Bar</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Date Picker</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Stepper</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Accordion</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Divider</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Stat Card</div>
+          <div class="pds-comp-chip"><span class="pds-comp-chip__dot"></span>Status Indicator</div>
+        </div>
+      </div>
+
+
+      <!-- ── Component Details ── -->
+      <div class="reveal" style="margin-top:80px;">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Detailed Documentation</div>
+        <div style="font-size:20px;font-weight:700;color:var(--text-1);margin-bottom:40px;">Component Specifications</div>
+
+        <!-- Buttons -->
+        <div style="margin-bottom:48px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:16px;">Buttons</div>
+          <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:28px;">
+            <div style="font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:6px;">Button Types</div>
+            <div style="font-size:12px;color:var(--text-2);margin-bottom:20px;">Buttons play a crucial role in guiding user interactions across the PayU platform.</div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:24px;">
+              <button style="background:var(--proj-accent);color:#fff;border:none;border-radius:6px;padding:10px 20px;font-size:13px;font-weight:600;cursor:default;">Primary</button>
+              <button style="background:transparent;color:var(--proj-accent);border:1.5px solid var(--proj-accent);border-radius:6px;padding:9px 20px;font-size:13px;font-weight:500;cursor:default;">Secondary</button>
+              <button style="background:transparent;color:var(--text-2);border:none;padding:9px 20px;font-size:13px;font-weight:500;cursor:default;">Tertiary</button>
+              <button style="background:#DC2626;color:#fff;border:none;border-radius:6px;padding:10px 20px;font-size:13px;font-weight:600;cursor:default;">Delete</button>
+              <button style="background:transparent;color:var(--proj-accent);border:none;padding:9px 20px;font-size:13px;text-decoration:underline;cursor:default;">Link Button</button>
+              <button style="background:transparent;color:var(--text-1);border:1px solid var(--border);border-radius:6px;padding:9px 20px;font-size:13px;cursor:default;">Tools Button</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+              <div style="background:var(--bg-card);border-radius:8px;padding:16px;">
+                <div style="font-size:11px;font-weight:600;color:var(--text-1);margin-bottom:4px;">Default <span style="font-family:var(--font-mono);font-size:10px;color:var(--proj-accent);margin-left:6px;">40px</span></div>
+                <div style="font-size:11px;color:var(--text-3);">For primary actions and CTAs</div>
+              </div>
+              <div style="background:var(--bg-card);border-radius:8px;padding:16px;">
+                <div style="font-size:11px;font-weight:600;color:var(--text-1);margin-bottom:4px;">Medium <span style="font-family:var(--font-mono);font-size:10px;color:var(--proj-accent);margin-left:6px;">32px</span></div>
+                <div style="font-size:11px;color:var(--text-3);">Paired with input fields</div>
+              </div>
+              <div style="background:var(--bg-card);border-radius:8px;padding:16px;">
+                <div style="font-size:11px;font-weight:600;color:var(--text-1);margin-bottom:4px;">Small <span style="font-family:var(--font-mono);font-size:10px;color:var(--proj-accent);margin-left:6px;">24px</span></div>
+                <div style="font-size:11px;color:var(--text-3);">Limited vertical space contexts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selections -->
+        <div style="margin-bottom:48px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:16px;">Selection Controls</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+              <div style="font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:16px;">Toggle Switch</div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:36px;height:20px;background:var(--proj-accent);border-radius:10px;position:relative;"><div style="position:absolute;right:2px;top:2px;width:16px;height:16px;background:#fff;border-radius:50%;"></div></div>
+                  <span style="font-size:12px;color:var(--text-2);">Toggle Active</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:36px;height:20px;background:var(--text-3);border-radius:10px;position:relative;"><div style="position:absolute;left:2px;top:2px;width:16px;height:16px;background:#fff;border-radius:50%;"></div></div>
+                  <span style="font-size:12px;color:var(--text-2);">Toggle Inactive</span>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+              <div style="font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:16px;">Checkboxes</div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:16px;height:16px;border:1.5px solid var(--border-strong);border-radius:3px;"></div>
+                  <span style="font-size:12px;color:var(--text-2);">Unchecked</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:16px;height:16px;background:var(--proj-accent);border-radius:3px;display:flex;align-items:center;justify-content:center;"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                  <span style="font-size:12px;color:var(--text-2);">Checked</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:16px;height:16px;background:var(--proj-accent);border-radius:3px;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:2px;background:#fff;border-radius:1px;"></div></div>
+                  <span style="font-size:12px;color:var(--text-2);">Intermediate</span>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+              <div style="font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:16px;">Radio Button</div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:16px;height:16px;border:2px solid var(--proj-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:7px;height:7px;background:var(--proj-accent);border-radius:50%;"></div></div>
+                  <span style="font-size:12px;color:var(--text-2);">On Active</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:16px;height:16px;border:1.5px solid var(--border-strong);border-radius:50%;"></div>
+                  <span style="font-size:12px;color:var(--text-2);">Off Active</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:16px;height:16px;border:1.5px solid var(--border);border-radius:50%;opacity:0.4;"></div>
+                  <span style="font-size:12px;color:var(--text-3);">Off Disabled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div style="margin-bottom:48px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:16px;">Navigation</div>
+          <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:24px;">
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--text-1);margin-bottom:12px;">Side Navigation</div>
+                <div style="background:var(--bg-card);border-radius:8px;overflow:hidden;">
+                  <div style="background:#0e342c;padding:12px 14px;display:flex;align-items:center;gap:8px;">
+                    <div style="width:28px;height:14px;background:#fff;border-radius:2px;opacity:0.9;"></div>
+                    <div style="width:60px;height:8px;background:rgba(255,255,255,0.3);border-radius:4px;"></div>
+                  </div>
+                  <div style="padding:8px 0;">
+                    <div style="padding:8px 14px;display:flex;align-items:center;gap:8px;border-left:3px solid var(--proj-accent);background:rgba(16,132,109,0.08);">
+                      <div style="width:12px;height:12px;background:var(--proj-accent);border-radius:2px;"></div>
+                      <div style="font-size:11px;color:var(--text-1);font-weight:500;">Business Summary</div>
+                    </div>
+                    <div style="padding:8px 14px;display:flex;align-items:center;gap:8px;">
+                      <div style="width:12px;height:12px;background:var(--text-3);border-radius:2px;"></div>
+                      <div style="font-size:11px;color:var(--text-2);">Transactions</div>
+                    </div>
+                    <div style="padding:8px 14px;display:flex;align-items:center;gap:8px;">
+                      <div style="width:12px;height:12px;background:var(--text-3);border-radius:2px;"></div>
+                      <div style="font-size:11px;color:var(--text-2);">Settlements</div>
+                    </div>
+                    <div style="padding:8px 14px;display:flex;align-items:center;gap:8px;">
+                      <div style="width:12px;height:12px;background:var(--text-3);border-radius:2px;"></div>
+                      <div style="font-size:11px;color:var(--text-2);">Reports</div>
+                    </div>
+                    <div style="padding:8px 14px;margin-top:4px;">
+                      <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Payment Products</div>
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <div style="width:12px;height:12px;background:var(--text-3);border-radius:2px;"></div>
+                        <div style="font-size:11px;color:var(--text-2);">Payment Tools ↓</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--text-1);margin-bottom:12px;">Header — Desktop</div>
+                <div style="background:#0e342c;border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;">
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="width:32px;height:16px;background:#fff;border-radius:2px;"></div>
+                    <div style="background:rgba(255,255,255,0.15);border-radius:4px;padding:6px 12px;display:flex;align-items:center;gap:6px;">
+                      <div style="width:12px;height:12px;background:rgba(255,255,255,0.6);border-radius:2px;"></div>
+                      <div style="font-size:11px;color:#fff;font-weight:500;">Payments ↓</div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 12px;display:flex;align-items:center;gap:6px;">
+                      <div style="width:7px;height:7px;background:#4ade80;border-radius:50%;"></div>
+                      <div style="font-size:11px;color:#fff;">Live Mode ↓</div>
+                    </div>
+                    <div style="width:8px;height:8px;background:rgba(255,255,255,0.4);border-radius:50%;"></div>
+                    <div style="width:8px;height:8px;background:rgba(255,255,255,0.4);border-radius:50%;"></div>
+                    <div style="width:8px;height:8px;background:rgba(255,255,255,0.4);border-radius:50%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags & Badges -->
+        <div style="margin-bottom:48px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:16px;">Tags, Chips & Badges</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+              <div style="font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:6px;">Light Mode</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+                <span style="border:1px solid var(--border-strong);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--text-2);">Chip</span>
+                <span style="border:1px solid var(--border-strong);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--text-2);display:flex;align-items:center;gap:4px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--proj-accent);"></div>Chip</span>
+                <span style="background:var(--proj-accent);border-radius:20px;padding:4px 12px;font-size:11px;color:#fff;">Active</span>
+                <span style="background:rgba(16,132,109,0.1);border:1px solid rgba(16,132,109,0.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--proj-accent);">Status</span>
+              </div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-1);margin-bottom:10px;">Dark Mode</div>
+              <div style="background:#1a1a2e;border-radius:8px;padding:12px;display:flex;gap:8px;flex-wrap:wrap;">
+                <span style="border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,0.7);">Chip</span>
+                <span style="background:rgba(16,132,109,0.25);border-radius:20px;padding:4px 12px;font-size:11px;color:#4ade80;">Active</span>
+                <span style="border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:3px 10px;font-size:11px;color:rgba(255,255,255,0.5);">NEW</span>
+              </div>
+            </div>
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+              <div style="font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:16px;">Badges</div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                  <div style="width:36px;height:36px;background:#1D4ED8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">+8</div>
+                  <div style="font-size:10px;color:var(--text-3);">Blue</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                  <div style="width:36px;height:36px;background:#D97706;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">+8</div>
+                  <div style="font-size:10px;color:var(--text-3);">Amber</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                  <div style="width:36px;height:36px;background:#0891B2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">+8</div>
+                  <div style="font-size:10px;color:var(--text-3);">Teal</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                  <div style="width:36px;height:36px;background:#7C3AED;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">+8</div>
+                  <div style="font-size:10px;color:var(--text-3);">Violet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal & Popups -->
+        <div style="margin-bottom:48px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:16px;">Modal & Popups</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:20px;">
+              <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
+                <div style="width:36px;height:36px;background:rgba(16,132,109,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8L6.5 11.5L13 4" stroke="#10846d" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-1);">Process Successful</div>
+                  <div style="font-size:11px;color:var(--text-3);margin-top:3px;line-height:1.5;">Operation completed without errors.</div>
+                </div>
+              </div>
+              <div style="background:rgba(16,132,109,0.06);border-radius:6px;padding:10px;display:flex;justify-content:flex-end;">
+                <button style="background:var(--proj-accent);color:#fff;border:none;border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:default;">Ok, Got it</button>
+              </div>
+            </div>
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:20px;">
+              <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
+                <div style="width:36px;height:36px;background:rgba(220,38,38,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="#DC2626" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-1);">Process Failed</div>
+                  <div style="font-size:11px;color:var(--text-3);margin-top:3px;line-height:1.5;">An error occurred. Please try again.</div>
+                </div>
+              </div>
+              <div style="background:rgba(220,38,38,0.05);border-radius:6px;padding:10px;display:flex;justify-content:flex-end;gap:8px;">
+                <button style="background:transparent;color:var(--text-2);border:1px solid var(--border-strong);border-radius:5px;padding:6px 14px;font-size:11px;cursor:default;">Close</button>
+                <button style="background:#DC2626;color:#fff;border:none;border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:default;">Try again</button>
+              </div>
+            </div>
+            <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:20px;">
+              <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
+                <div style="width:36px;height:36px;background:rgba(217,119,6,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-size:16px;font-weight:700;color:#D97706;">!</span>
+                </div>
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--text-1);">System Warning</div>
+                  <div style="font-size:11px;color:var(--text-3);margin-top:3px;line-height:1.5;">Review before proceeding.</div>
+                </div>
+              </div>
+              <div style="background:rgba(217,119,6,0.05);border-radius:6px;padding:10px;display:flex;justify-content:flex-end;gap:8px;">
+                <button style="background:transparent;color:var(--text-2);border:1px solid var(--border-strong);border-radius:5px;padding:6px 14px;font-size:11px;cursor:default;">Close</button>
+                <button style="background:#D97706;color:#fff;border:none;border-radius:5px;padding:6px 14px;font-size:11px;font-weight:600;cursor:default;">Take action</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Range Selector -->
+        <div style="margin-bottom:48px;">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--proj-accent);margin-bottom:16px;">Range Selector</div>
+          <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:24px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+              <div>
+                <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">With Single Nod</div>
+                <div style="font-size:11px;color:var(--text-3);margin-bottom:8px;">Range Category</div>
+                <div style="position:relative;height:4px;background:var(--bg-hover);border-radius:2px;margin:16px 0;">
+                  <div style="position:absolute;left:0;right:60%;height:100%;background:var(--proj-accent);border-radius:2px;"></div>
+                  <div style="position:absolute;left:40%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;background:var(--proj-accent);border-radius:50%;border:2px solid #fff;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--text-3);">
+                  <span>₹00</span><span>₹100</span>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:12px;color:var(--text-2);margin-bottom:12px;">With Dual Nod</div>
+                <div style="font-size:11px;color:var(--text-3);margin-bottom:8px;">Range Category</div>
+                <div style="position:relative;height:4px;background:var(--bg-hover);border-radius:2px;margin:16px 0;">
+                  <div style="position:absolute;left:20%;right:30%;height:100%;background:var(--proj-accent);border-radius:2px;"></div>
+                  <div style="position:absolute;left:20%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;background:var(--proj-accent);border-radius:50%;border:2px solid #fff;"></div>
+                  <div style="position:absolute;left:70%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;background:var(--proj-accent);border-radius:50%;border:2px solid #fff;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;color:var(--text-3);">
+                  <span>₹00</span><span>₹100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── New Product Look ── -->
+      <div class="reveal" style="margin-top:80px;">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Design System in Action</div>
+        <div style="font-size:20px;font-weight:700;color:var(--text-1);margin-bottom:8px;">New Product Look</div>
+        <div style="font-size:14px;color:var(--text-2);margin-bottom:40px;">We applied the design system to redesign the PayU dashboard and mobile app end-to-end.</div>
+
+        <!-- Dashboard screens: replaced with actual screenshots -->
+        <!-- Business Summary + Transaction side by side -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#1a0c00;">
+            <img src="img/Business_Summary_Page.jpg" alt="PayU Design System — Business Summary Page" loading="lazy" style="width:100%;height:auto;display:block;">
+          </div>
+          <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#1a0c00;">
+            <img src="img/Transaction_DSpayu.jpg" alt="PayU Design System — Transaction Page" loading="lazy" style="width:100%;height:auto;display:block;">
+          </div>
+        </div>
+        <!-- Settings full-width -->
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#1a0c00;width:100%;margin-bottom:48px;">
+          <img src="img/settings_DSpayu.jpg" alt="PayU Design System — Settings Page" loading="lazy" style="width:100%;height:auto;display:block;">
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- ─── 09 · OUTCOMES ─── -->
+  <section style="padding:0;">
+    <div class="container" style="padding-top:80px; padding-bottom:100px;">
+      <div class="pds-divider reveal">
+        <span class="pds-divider__num">09</span>
+        <div class="pds-divider__line"></div>
+        <span class="pds-divider__title">Outcomes</span>
+        <div class="pds-divider__line2"></div>
+      </div>
+
+      <div class="pds-outcomes reveal">
+        <div class="pds-outcome">
+          <div class="pds-outcome__num">40%</div>
+          <div class="pds-outcome__label">Reduction in design-to-dev handoff time across all product teams</div>
+        </div>
+        <div class="pds-outcome">
+          <div class="pds-outcome__num">3×</div>
+          <div class="pds-outcome__label">Faster onboarding for new designers joining PayU</div>
+        </div>
+        <div class="pds-outcome">
+          <div class="pds-outcome__num">100%</div>
+          <div class="pds-outcome__label">WCAG 2.1 AA compliance for all shipped components</div>
+        </div>
+        <div class="pds-outcome">
+          <div class="pds-outcome__num">8→1</div>
+          <div class="pds-outcome__label">Colour values for "primary orange" unified into a single token</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPLORE MORE WORK -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

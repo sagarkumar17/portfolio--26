@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CN Express Pass — Intermodal Driver App — Sagar Kumar</title>
+  <meta name="description" content="A mobile app replacing paper-based entry passes for CN Rail's intermodal truck drivers — designed with Double Diamond framework and Six Thinking Hats."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    /* ── Brand accent for universal hero ── */
+    :root { --proj-accent: #3C8CFF; }
+
+    /* CN Express — Split overview + chapter layout */
+    .cn-overview { display:grid; grid-template-columns:300px 1fr; gap:0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .cn-overview__sidebar { padding:32px; background:var(--bg-card); border-right:1px solid var(--border); }
+    .cn-overview__main { padding:40px 48px; }
+    .cn-overview__row { margin-bottom:24px; }
+    .cn-overview__row:last-child { margin-bottom:0; }
+    .cn-overview__label { font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-3); margin-bottom:5px; }
+    .cn-overview__val { font-size:14px; font-weight:600; color:var(--text-1); }
+
+    /* Chapter sections */
+    .cn-chapter { border-top:1px solid var(--border); padding:72px 0; }
+    .cn-chapter__label { display:inline-flex; align-items:center; gap:12px; margin-bottom:40px; }
+    .cn-chapter__num { font-family:var(--font-display); font-size:clamp(72px,10vw,120px); font-weight:800; color:var(--accent); opacity:0.12; letter-spacing:-0.04em; line-height:1; float:left; margin-right:24px; margin-top:-8px; }
+    .cn-chapter__title { font-family:var(--font-display); font-size:clamp(28px,3.5vw,44px); font-weight:800; letter-spacing:-0.02em; color:var(--text-1); }
+    .cn-chapter__badge { font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); background:rgba(255,92,46,0.08); border:1px solid rgba(255,92,46,0.2); border-radius:20px; padding:4px 12px; }
+
+    /* Double Diamond visual */
+    .cn-diamond { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:2px; background:var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .cn-diamond__quad { padding:32px 24px; background:var(--bg-card); text-align:center; }
+    .cn-diamond__phase { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+    .cn-diamond__name { font-family:var(--font-display); font-size:20px; font-weight:800; color:var(--text-1); margin-bottom:8px; }
+    .cn-diamond__desc { font-size:13px; color:var(--text-2); line-height:1.5; }
+
+    /* Six Thinking Hats */
+    .cn-hats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .cn-hat { border-radius:var(--r-xl); padding:28px 24px; border:1px solid var(--border); }
+    .cn-hat__top { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .cn-hat__dot { width:32px; height:32px; border-radius:8px; flex-shrink:0; }
+    .cn-hat__name { font-size:15px; font-weight:700; color:var(--text-1); }
+    .cn-hat__focus { font-size:12px; color:var(--text-2); }
+    .cn-hat__content { font-size:14px; color:var(--text-2); line-height:1.65; }
+
+    /* Persona card */
+    .cn-persona { display:grid; grid-template-columns:200px 1fr; gap:0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .cn-persona__avatar { background:linear-gradient(135deg,#0d1a35,#1a2d56); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:32px 24px; text-align:center; }
+    .cn-persona__avatar-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--proj-accent); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .cn-persona__avatar-name { font-weight:700; font-size:15px; color:#fff; }
+    .cn-persona__avatar-role { font-size:12px; color:rgba(255,255,255,0.5); font-family:var(--font-mono); }
+    .cn-persona__body { padding:36px; background:var(--bg-card); }
+    .cn-persona__row { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .cn-persona__item__label { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:6px; }
+    .cn-persona__item__val { font-size:14px; color:var(--text-1); line-height:1.5; }
+
+    /* Journey map */
+    .cn-journey { display:grid; grid-template-columns:repeat(5,1fr); gap:0; border:1px solid var(--border); border-radius:var(--r-xl); overflow:hidden; }
+    .cn-journey__stage { padding:24px 16px; border-right:1px solid var(--border); }
+    .cn-journey__stage:last-child { border-right:none; }
+    .cn-journey__stage-name { font-size:12px; font-weight:700; color:var(--text-1); margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+    .cn-journey__emotion { font-size:22px; margin-bottom:8px; text-align:center; }
+    .cn-journey__action { font-size:12px; color:var(--text-2); line-height:1.5; margin-bottom:8px; }
+    .cn-journey__pain { font-size:11px; color:var(--accent); padding:6px 10px; background:rgba(255,92,46,0.06); border-radius:6px; }
+
+    /* Redesigned flow */
+    .cn-flow { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .cn-flow-step { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-xl); padding:28px 24px; position:relative; }
+    .cn-flow-step::after { content:'→'; position:absolute; right:-14px; top:50%; transform:translateY(-50%); color:var(--accent); font-size:20px; z-index:1; }
+    .cn-flow-step:last-child::after { display:none; }
+    .cn-flow-step__num { font-family:var(--font-display); font-size:48px; font-weight:800; color:var(--accent); opacity:0.15; line-height:1; margin-bottom:-8px; }
+    .cn-flow-step__title { font-size:16px; font-weight:700; color:var(--text-1); }
+    .cn-flow-step__desc { font-size:13px; color:var(--text-2); margin-top:6px; line-height:1.5; }
+
+    @media (max-width:900px) {
+      .cn-overview { grid-template-columns:1fr; }
+      .cn-overview__sidebar { border-right:none; border-bottom:1px solid var(--border); }
+      .cn-diamond { grid-template-columns:1fr 1fr; }
+      .cn-hats { grid-template-columns:1fr 1fr; }
+      .cn-persona { grid-template-columns:1fr; }
+      .cn-persona__row { grid-template-columns:1fr; }
+      .cn-journey { grid-template-columns:repeat(3,1fr); }
+      .cn-flow { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .cn-hats { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ── BACK LINK ── -->
+  <div class="proj-back-wrap">
+    <div class="container">
+      <a href="work.html" class="proj-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All Work
+      </a>
+    </div>
+  </div>
+
+  <!-- ── UNIVERSAL PROJECT HERO ── -->
+  <section class="proj-hero-section">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2C · CN Rail · Mobile · 2022</div>
+      <h1 class="proj-title reveal">CN Express Pass<br><em>Intermodal Driver App</em></h1>
+      <p class="proj-sub reveal">Replacing paper-based gate passes with a QR-first digital solution for CN Rail's intermodal truck drivers — designed through Double Diamond and Six Thinking Hats to align multi-stakeholder requirements.</p>
+
+      <!-- Meta strip -->
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Client</div>
+          <div class="proj-meta__v">CN Rail</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">Lead Designer</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Platform</div>
+          <div class="proj-meta__v">Mobile · iOS</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Duration</div>
+          <div class="proj-meta__v">3 Months</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Method</div>
+          <div class="proj-meta__v">Double Diamond</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DESIGNS -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Main banner ── -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#030d1a;width:100%;">
+        <img src="img/Cn_banner.jpg" alt="CN Express Pass — Driver App" loading="lazy" style="width:100%;height:auto;display:block;">
+      </div>
+
+      <!-- ── Optional extra rows — uncomment to add more screens ───
+      <div class="proj-visuals__grid">
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#030d1a,#050e20);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="CN Express Pass — screen 2" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#030d1a,#050e20);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="CN Express Pass — screen 3" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-visuals__row proj-visuals__row--3">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#030d1a,#050e20);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="CN Express Pass — screen 4" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#030d1a,#050e20);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="CN Express Pass — screen 5" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#030d1a,#050e20);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="CN Express Pass — screen 6" loading="lazy">
+          </div>
+        </div>
+      </div>
+      ── end optional rows ── -->
+
+    </div>
+  </section>
+  <!-- OVERVIEW CARD — PROJECT DETAILS -->
+  <section style="padding:72px 0;">
+    <div class="container">
+      <div class="section-label reveal" style="margin-bottom:32px;">Overview of App</div>
+      <div class="cn-overview reveal reveal-delay-1">
+        <div class="cn-overview__sidebar">
+          <div class="cn-overview__row"><div class="cn-overview__label">Client</div><div class="cn-overview__val">CN Rail</div></div>
+          <div class="cn-overview__row"><div class="cn-overview__label">Role</div><div class="cn-overview__val">Product Designer</div></div>
+          <div class="cn-overview__row"><div class="cn-overview__label">Date</div><div class="cn-overview__val">2022 · 6 Weeks</div></div>
+          <div class="cn-overview__row"><div class="cn-overview__label">Services</div><div class="cn-overview__val">Research · UX · Prototype · Testing</div></div>
+          <div class="cn-overview__row"><div class="cn-overview__label">Platform</div><div class="cn-overview__val">iOS · Android</div></div>
+          <div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--border);">
+            <a href="#" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent);font-weight:600;">View Prototype <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+        <div class="cn-overview__main">
+          <h3 style="font-size:22px;font-weight:700;color:var(--text-1);margin-bottom:16px;">About the App</h3>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:20px;">CN Express Pass is a mobile application designed to digitalise the intermodal terminal gate access process for CN Rail. Intermodal truck drivers previously carried physical paper passes — prone to damage, loss, and creating bottlenecks at busy terminal gates.</p>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:28px;">The app replaces paper entirely: drivers receive, view, and present a QR-based digital pass on their phone. Offline support ensures passes are accessible without cell coverage at remote terminals.</p>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text-1);margin-bottom:12px;">Available Functionality</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);"><span style="color:var(--accent);font-size:16px;">→</span> Digital QR pass display</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);"><span style="color:var(--accent);font-size:16px;">→</span> Offline-first pass caching</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);"><span style="color:var(--accent);font-size:16px;">→</span> Pass validity status indicator</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);"><span style="color:var(--accent);font-size:16px;">→</span> Multi-terminal pass management</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);"><span style="color:var(--accent);font-size:16px;">→</span> Push notification alerts</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);"><span style="color:var(--accent);font-size:16px;">→</span> Audit trail for compliance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 1: DESIGN PROCESS -->
+  <div class="cn-chapter">
+    <div class="container">
+      <div class="cn-chapter__label reveal">
+        <span class="cn-chapter__badge">Chapter 01</span>
+      </div>
+      <div style="overflow:hidden;" class="reveal reveal-delay-1">
+        <span class="cn-chapter__num">01</span>
+        <h2 class="cn-chapter__title">Design Process</h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:580px;margin-top:16px;clear:both;">Applied the Double Diamond framework — diverging to explore the problem space, converging to define the solution, then diverging again for ideation before converging on the final design.</p>
+      </div>
+      <div class="cn-diamond reveal reveal-delay-2" style="margin-top:40px;">
+        <div class="cn-diamond__quad">
+          <div class="cn-diamond__phase" style="color:#3C8CFF;">Discover</div>
+          <div class="cn-diamond__name">Explore</div>
+          <div class="cn-diamond__desc">Field research, driver interviews, terminal observations, competitor benchmarking</div>
+        </div>
+        <div class="cn-diamond__quad">
+          <div class="cn-diamond__phase" style="color:#22C55E;">Define</div>
+          <div class="cn-diamond__name">Synthesise</div>
+          <div class="cn-diamond__desc">Affinity mapping, problem framing, Six Thinking Hats stakeholder alignment</div>
+        </div>
+        <div class="cn-diamond__quad">
+          <div class="cn-diamond__phase" style="color:var(--accent);">Develop</div>
+          <div class="cn-diamond__name">Ideate</div>
+          <div class="cn-diamond__desc">User flows, wireframes, interaction concepts, offline architecture decisions</div>
+        </div>
+        <div class="cn-diamond__quad">
+          <div class="cn-diamond__phase" style="color:#F59E0B;">Deliver</div>
+          <div class="cn-diamond__name">Ship</div>
+          <div class="cn-diamond__desc">Hi-fi prototype, usability testing, iteration, final design handoff</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 2: SIX THINKING HATS -->
+  <div class="cn-chapter" style="background:var(--bg-elevated);">
+    <div class="container">
+      <div class="cn-chapter__label reveal">
+        <span class="cn-chapter__badge">Chapter 02</span>
+      </div>
+      <div style="overflow:hidden;" class="reveal reveal-delay-1">
+        <span class="cn-chapter__num">02</span>
+        <h2 class="cn-chapter__title">Six Thinking Hats</h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:580px;margin-top:16px;clear:both;">Ran a structured Six Thinking Hats workshop with 8 stakeholders across 3 departments — drivers, terminal managers, and IT security — to surface all perspectives in a single session.</p>
+      </div>
+      <div class="cn-hats reveal reveal-delay-2" style="margin-top:40px;">
+        <div class="cn-hat" style="background:var(--bg-card);">
+          <div class="cn-hat__top"><div class="cn-hat__dot" style="background:#FAFAFA;border:1px solid var(--border);"></div><div><div class="cn-hat__name">White Hat</div><div class="cn-hat__focus" style="color:#888;">Facts &amp; Data</div></div></div>
+          <div class="cn-hat__content">20% of gate delays are paper-pass related. 100% of terminals still use physical passes. No digital competitor in CN's ecosystem.</div>
+        </div>
+        <div class="cn-hat" style="background:var(--bg-card);">
+          <div class="cn-hat__top"><div class="cn-hat__dot" style="background:#EF4444;"></div><div><div class="cn-hat__name">Red Hat</div><div class="cn-hat__focus" style="color:var(--text-3);">Emotions &amp; Feelings</div></div></div>
+          <div class="cn-hat__content">Drivers feel anxious about pass validity at gates. Terminal managers frustrated by manual re-issuance. IT concerned about security vulnerabilities.</div>
+        </div>
+        <div class="cn-hat" style="background:var(--bg-card);">
+          <div class="cn-hat__top"><div class="cn-hat__dot" style="background:#1C1C1E;border:1px solid var(--border);"></div><div><div class="cn-hat__name">Black Hat</div><div class="cn-hat__focus" style="color:var(--text-3);">Risks &amp; Caution</div></div></div>
+          <div class="cn-hat__content">Phone battery failure at gate, connectivity issues, QR spoofing risk, driver resistance to digital change, compliance audit requirements.</div>
+        </div>
+        <div class="cn-hat" style="background:var(--bg-card);">
+          <div class="cn-hat__top"><div class="cn-hat__dot" style="background:#F59E0B;"></div><div><div class="cn-hat__name">Yellow Hat</div><div class="cn-hat__focus" style="color:var(--text-3);">Optimism &amp; Value</div></div></div>
+          <div class="cn-hat__content">Faster gate processing, eliminated re-issuance cost, real-time pass status, better compliance tracking, scale to all CN terminals.</div>
+        </div>
+        <div class="cn-hat" style="background:var(--bg-card);">
+          <div class="cn-hat__top"><div class="cn-hat__dot" style="background:#22C55E;"></div><div><div class="cn-hat__name">Green Hat</div><div class="cn-hat__focus" style="color:var(--text-3);">Creativity &amp; Ideas</div></div></div>
+          <div class="cn-hat__content">Offline-first QR caching, biometric backup, integration with existing dispatch system, wearable device support for future.</div>
+        </div>
+        <div class="cn-hat" style="background:var(--bg-card);">
+          <div class="cn-hat__top"><div class="cn-hat__dot" style="background:#3C8CFF;"></div><div><div class="cn-hat__name">Blue Hat</div><div class="cn-hat__focus" style="color:var(--text-3);">Process &amp; Control</div></div></div>
+          <div class="cn-hat__content">Session alignment: security audit trail non-negotiable. Driver UX must be 3 taps max. Offline support mandatory. Phased rollout by terminal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 3: USER PERSONA -->
+  <div class="cn-chapter">
+    <div class="container">
+      <div class="cn-chapter__label reveal">
+        <span class="cn-chapter__badge">Chapter 03</span>
+      </div>
+      <div style="overflow:hidden;" class="reveal reveal-delay-1">
+        <span class="cn-chapter__num">03</span>
+        <h2 class="cn-chapter__title">User Persona</h2>
+      </div>
+      <div class="cn-persona reveal reveal-delay-2" style="margin-top:40px;">
+        <div class="cn-persona__avatar">
+          <div class="cn-persona__avatar-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <div class="cn-persona__avatar-name">Christina Roman</div>
+          <div class="cn-persona__avatar-role">Intermodal Driver</div>
+        </div>
+        <div class="cn-persona__body">
+          <div class="cn-persona__row" style="margin-bottom:24px;">
+            <div>
+              <div class="cn-persona__item__label">Age &amp; Experience</div>
+              <div class="cn-persona__item__val">38 years old · 12 years driving</div>
+            </div>
+            <div>
+              <div class="cn-persona__item__label">Tech Comfort Level</div>
+              <div class="cn-persona__item__val">Moderate — uses smartphone daily, prefers simplicity</div>
+            </div>
+            <div>
+              <div class="cn-persona__item__label">Typical Work Day</div>
+              <div class="cn-persona__item__val">3–5 terminal visits · multiple pass requirements</div>
+            </div>
+            <div>
+              <div class="cn-persona__item__label">Biggest Frustration</div>
+              <div class="cn-persona__item__val">Arriving at gate with an expired or damaged pass</div>
+            </div>
+          </div>
+          <div style="padding-top:20px;border-top:1px solid var(--border);">
+            <div class="cn-persona__item__label" style="margin-bottom:8px;">Design Constraints from Persona</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-size:12px;color:var(--accent);background:rgba(255,92,46,0.08);border:1px solid rgba(255,92,46,0.2);padding:4px 12px;border-radius:20px;">Glove-friendly targets ≥44px</span>
+              <span style="font-size:12px;color:#3C8CFF;background:rgba(60,140,255,0.08);border:1px solid rgba(60,140,255,0.2);padding:4px 12px;border-radius:20px;">QR readable in direct sunlight</span>
+              <span style="font-size:12px;color:#22C55E;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:4px 12px;border-radius:20px;">Offline-first architecture</span>
+              <span style="font-size:12px;color:#F59E0B;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);padding:4px 12px;border-radius:20px;">Max 3 taps to show pass</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 4: USER JOURNEY MAPPING -->
+  <div class="cn-chapter" style="background:var(--bg-elevated);">
+    <div class="container">
+      <div class="cn-chapter__label reveal">
+        <span class="cn-chapter__badge">Chapter 04</span>
+      </div>
+      <div style="overflow:hidden;" class="reveal reveal-delay-1">
+        <span class="cn-chapter__num">04</span>
+        <h2 class="cn-chapter__title">User Journey Mapping</h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:580px;margin-top:16px;clear:both;">Mapped the end-to-end journey from route assignment to successful gate scan — revealing 6 unnecessary steps in the existing process. The redesigned flow reduced driver actions from 9 to 3.</p>
+      </div>
+      <div class="reveal reveal-delay-2" style="margin-top:40px;overflow-x:auto;">
+        <div class="cn-journey" style="min-width:700px;">
+          <div class="cn-journey__stage">
+            <div class="cn-journey__stage-name">Route Assigned</div>
+            <div class="cn-journey__emotion">📋</div>
+            <div class="cn-journey__action">Driver receives route from dispatcher via phone call or paper slip</div>
+            <div class="cn-journey__pain">No digital record, easy to lose information</div>
+          </div>
+          <div class="cn-journey__stage">
+            <div class="cn-journey__stage-name">Collect Paper Pass</div>
+            <div class="cn-journey__emotion">🏢</div>
+            <div class="cn-journey__action">Driver visits CN office to collect physical paper pass — 1–2 hour wait common</div>
+            <div class="cn-journey__pain">Major time sink, bottleneck especially at shift changes</div>
+          </div>
+          <div class="cn-journey__stage">
+            <div class="cn-journey__stage-name">Drive to Terminal</div>
+            <div class="cn-journey__emotion">🚛</div>
+            <div class="cn-journey__action">Driver carries paper pass — risk of damage from weather, spills, or loss</div>
+            <div class="cn-journey__pain">Anxiety about pass validity throughout journey</div>
+          </div>
+          <div class="cn-journey__stage">
+            <div class="cn-journey__stage-name">Gate Check-in</div>
+            <div class="cn-journey__emotion">😰</div>
+            <div class="cn-journey__action">Present paper pass to security guard for manual verification — 5–10 min per vehicle</div>
+            <div class="cn-journey__pain">High-stress moment — any issue delays entire queue</div>
+          </div>
+          <div class="cn-journey__stage">
+            <div class="cn-journey__stage-name">Terminal Access</div>
+            <div class="cn-journey__emotion">✅</div>
+            <div class="cn-journey__action">Gate opens, driver enters terminal to complete delivery or pickup</div>
+            <div class="cn-journey__pain">Entire process repeated for each terminal visit</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding:20px 24px;background:var(--bg-card);border:1px solid var(--border-accent);border-radius:var(--r-lg);border-left:3px solid var(--accent);" class="reveal">
+        <div style="font-size:13px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Key Finding</div>
+        <p style="font-size:15px;color:var(--text-1);">The journey map identified <strong>6 unnecessary steps</strong> that could be entirely eliminated with a digital pass. The biggest pain wasn't at the gate — it was the anticipatory anxiety during the drive, not knowing if the pass was still valid.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 5: BENCHMARKING -->
+  <div class="cn-chapter">
+    <div class="container">
+      <div class="cn-chapter__label reveal">
+        <span class="cn-chapter__badge">Chapter 05</span>
+      </div>
+      <div style="overflow:hidden;" class="reveal reveal-delay-1">
+        <span class="cn-chapter__num">05</span>
+        <h2 class="cn-chapter__title">Benchmarking &amp;<br>Understanding Reviews</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px;" class="reveal reveal-delay-2">
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text-1);margin-bottom:20px;">Competitive Landscape</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-size:14px;font-weight:600;color:var(--text-1);">Traditional Paper Pass</div><div style="font-size:12px;color:var(--text-2);">Current CN System</div></div>
+              <span style="font-size:12px;color:#EF4444;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);padding:3px 10px;border-radius:20px;">Legacy</span>
+            </div>
+            <div style="padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-size:14px;font-weight:600;color:var(--text-1);">Port Authority Apps</div><div style="font-size:12px;color:var(--text-2);">Govt digital passes — complex UX</div></div>
+              <span style="font-size:12px;color:#F59E0B;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);padding:3px 10px;border-radius:20px;">Partial</span>
+            </div>
+            <div style="padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);display:flex;justify-content:space-between;align-items:center;">
+              <div><div style="font-size:14px;font-weight:600;color:var(--text-1);">Event QR Passes</div><div style="font-size:12px;color:var(--text-2);">Eventbrite, Ticketmaster patterns</div></div>
+              <span style="font-size:12px;color:#22C55E;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:3px 10px;border-radius:20px;">Inspiration</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:18px;font-weight:700;color:var(--text-1);margin-bottom:20px;">Driver Review Insights</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);">
+              <div style="font-size:14px;color:var(--text-1);font-style:italic;margin-bottom:8px;">"I've missed 3 gates this year because my paper got soaked in the rain."</div>
+              <div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">Driver interview — Quebec terminal</div>
+            </div>
+            <div style="padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);">
+              <div style="font-size:14px;color:var(--text-1);font-style:italic;margin-bottom:8px;">"There's no way to check if my pass is still valid. I find out at the gate."</div>
+              <div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono);">Driver interview — Ontario terminal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 6: REDESIGNED USER FLOW -->
+  <div class="cn-chapter" style="background:var(--bg-elevated);">
+    <div class="container">
+      <div class="cn-chapter__label reveal">
+        <span class="cn-chapter__badge">Chapter 06</span>
+      </div>
+      <div style="overflow:hidden;" class="reveal reveal-delay-1">
+        <span class="cn-chapter__num">06</span>
+        <h2 class="cn-chapter__title">Redesigned Workflow</h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:580px;margin-top:16px;clear:both;">From 9 driver actions down to 3. The entire flow is designed around the gate moment — maximum clarity, minimum steps, offline-resilient.</p>
+      </div>
+      <div class="cn-flow reveal reveal-delay-2" style="margin-top:40px;">
+        <div class="cn-flow-step">
+          <div class="cn-flow-step__num">1</div>
+          <div class="cn-flow-step__title">Receive Assignment</div>
+          <div class="cn-flow-step__desc">Dispatcher pushes route + pass digitally. App notifies driver immediately. No office visit required.</div>
+          <div style="margin-top:12px;font-size:12px;color:var(--accent);font-family:var(--font-mono);">WAS: collect at office</div>
+        </div>
+        <div class="cn-flow-step">
+          <div class="cn-flow-step__num">2</div>
+          <div class="cn-flow-step__title">Open App → Tap Terminal</div>
+          <div class="cn-flow-step__desc">Pass cached offline on device. One tap shows the relevant terminal's QR code. Status badge confirms validity.</div>
+          <div style="margin-top:12px;font-size:12px;color:var(--accent);font-family:var(--font-mono);">WAS: carry physical paper</div>
+        </div>
+        <div class="cn-flow-step">
+          <div class="cn-flow-step__num">3</div>
+          <div class="cn-flow-step__title">Show QR at Gate</div>
+          <div class="cn-flow-step__desc">Scanner reads QR in &lt;2 seconds. Audit trail logged automatically. Gate opens. Done.</div>
+          <div style="margin-top:12px;font-size:12px;color:var(--accent);font-family:var(--font-mono);">WAS: 5–10 min manual check</div>
+        </div>
+      </div>
+
+      <!-- Outcomes -->
+      <div style="margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="reveal">
+        <div style="padding:28px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);text-align:center;">
+          <div style="font-family:var(--font-display);font-size:40px;font-weight:800;color:var(--accent);letter-spacing:-0.03em;">9→3</div>
+          <div style="font-size:13px;color:var(--text-2);margin-top:8px;">Driver actions to gain gate access</div>
+        </div>
+        <div style="padding:28px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);text-align:center;">
+          <div style="font-family:var(--font-display);font-size:40px;font-weight:800;color:#22C55E;letter-spacing:-0.03em;">100%</div>
+          <div style="font-size:13px;color:var(--text-2);margin-top:8px;">Paperless — all passes digital QR</div>
+        </div>
+        <div style="padding:28px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);text-align:center;">
+          <div style="font-family:var(--font-display);font-size:40px;font-weight:800;color:#3C8CFF;letter-spacing:-0.03em;">0G</div>
+          <div style="font-size:13px;color:var(--text-2);margin-top:8px;">Cell signal needed — offline-first</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 07 — Visual Design -->
+  <div class="cn-chapter reveal">
+    <div class="container">
+      <div class="cn-chapter__label">
+        <span class="cn-chapter__badge">Chapter 07</span>
+      </div>
+      <span class="cn-chapter__num">07</span>
+      <h2 class="cn-chapter__title">Visual Design</h2>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:680px;margin-top:16px;margin-bottom:40px;">High-fidelity screens bringing the redesigned workflow to life — offline-first UI, QR-based digital pass, and a minimal driver-focused interface built for real terminal conditions.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#030d1a;">
+          <img src="img/cn-2.jpg" alt="CN Express Pass — Visual Design Screen 1" loading="lazy" style="width:100%;height:auto;display:block;">
+        </div>
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#030d1a;">
+          <img src="img/cn-3.jpg" alt="CN Express Pass — Visual Design Screen 2" loading="lazy" style="width:100%;height:auto;display:block;">
+        </div>
+        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#030d1a;">
+          <img src="img/cn-4.jpg" alt="CN Express Pass — Visual Design Screen 3" loading="lazy" style="width:100%;height:auto;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <section style="padding:72px 0;">
+    <div class="container">
+      <div style="max-width:680px;" class="reveal">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:40px;border-left:3px solid var(--text-3);">
+          <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;">Reflection</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--text-1);margin-bottom:12px;">What I'd Do Differently</h3>
+          <p style="font-size:15px;color:var(--text-2);line-height:1.7;">The Six Thinking Hats session was highly effective for stakeholder alignment, but I would push for an additional round of usability testing at an actual terminal gate. Real conditions — sunlight, gloves, time pressure — are hard to replicate in a lab. I believe an on-site test would have surfaced the QR code sizing issue one full sprint earlier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

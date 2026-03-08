@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jio AIOP — AI Operations Platform · Sagar Kumar</title>
+  <meta name="description" content="Designing a No-Code SaaS platform for welfare scheme creation, verified audience building, and document verification across Jio & Reliance Foundation — using a Double Diamond process."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    /* ── Brand ── */
+    :root {
+      --proj-accent: #1B3FD8;
+      --jw-blue:  #1B3FD8;
+      --jw-dark:  #0F2599;
+      --jw-light: #E8EEFF;
+      --jw-green: #22C55E;
+      --jw-red:   #EF4444;
+      --jw-amber: #F59E0B;
+    }
+
+    /* ── Section rhythm ── */
+    .aiop-sec { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .aiop-sec:last-of-type { border-bottom: none; }
+    .aiop-sec--alt { background: var(--bg-card); }
+
+    /* ── Phase divider ── */
+    .aiop-phase-hdr { display: flex; align-items: flex-end; gap: 24px; margin-bottom: 56px; }
+    .aiop-phase-hdr__num { font-family: var(--font-display); font-size: clamp(80px,10vw,120px); font-weight: 900; line-height: 0.85; color: var(--jw-blue); opacity: 0.22; letter-spacing: -0.06em; flex-shrink: 0; }
+    [data-theme="light"] .aiop-phase-hdr__num { opacity: 0.12; }
+    .aiop-phase-hdr__text { padding-bottom: 8px; }
+    .aiop-phase-hdr__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 6px; }
+    .aiop-phase-hdr__title { font-family: var(--font-display); font-size: clamp(30px,4vw,48px); font-weight: 900; letter-spacing: -0.03em; color: var(--text-1); line-height: 1; }
+    .aiop-phase-hdr__sub { font-size: 14px; color: var(--text-2); margin-top: 6px; }
+
+    /* ── Sub-section ── */
+    .aiop-sub { margin-top: 56px; }
+    .aiop-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 10px; }
+    .aiop-h2 { font-family: var(--font-display); font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--text-1); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .aiop-h3 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .aiop-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+
+    /* ── Two / three col ── */
+    .aiop-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .aiop-3col { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .aiop-4col { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media (max-width: 900px) { .aiop-2col, .aiop-3col { grid-template-columns: 1fr; } .aiop-4col { grid-template-columns: 1fr 1fr; } }
+
+    /* ── Image frame ── */
+    .aiop-frame { border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--border); }
+    .aiop-frame img { width: 100%; height: auto; display: block; }
+    .aiop-frame-cap { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 12px; padding: 0 2px; }
+
+    /* ── Business goals — numbered horizontal strip ── */
+    .goal-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 4px; }
+    @media(max-width:860px){ .goal-strip { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .goal-strip { grid-template-columns: 1fr; } }
+    .goal-strip__item {
+      padding: 24px 20px 24px 0;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .goal-strip__item:last-child { border-right: none; padding-right: 0; }
+    .goal-strip__item:first-child { padding-left: 0; }
+    .goal-strip__item + .goal-strip__item { padding-left: 20px; }
+    .goal-strip__num {
+      font-family: var(--font-display); font-size: 11px; font-weight: 900;
+      letter-spacing: 0.12em; color: var(--jw-blue); opacity: 0.5;
+      display: block; margin-bottom: 12px;
+    }
+    .goal-strip__title {
+      font-family: var(--font-display); font-size: 16px; font-weight: 800;
+      color: var(--text-1); letter-spacing: -0.02em; line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .goal-strip__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .goal-strip__rule { display: block; width: 28px; height: 2px; background: var(--jw-blue); border-radius: 2px; margin-bottom: 14px; }
+
+    /* ── Impact strip ── */
+    .aiop-impact { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .aiop-impact-cell { padding: 36px 24px; border-right: 1px solid var(--border); text-align: center; background: var(--bg-card); }
+    .aiop-impact-cell:last-child { border-right: none; }
+    .aiop-impact-cell__num { font-family: var(--font-display); font-size: clamp(32px,4vw,48px); font-weight: 900; letter-spacing: -0.04em; color: var(--jw-blue); line-height: 1; }
+    .aiop-impact-cell__label { font-size: 13px; color: var(--text-2); margin-top: 8px; line-height: 1.5; }
+    @media(max-width:800px){.aiop-impact{grid-template-columns:1fr 1fr}.aiop-impact-cell:nth-child(2){border-right:none}.aiop-impact-cell:nth-child(-n+2){border-bottom:1px solid var(--border)}}
+
+    /* ── Pain point cards — borderless numbered rows ── */
+    .aiop-pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media(max-width:900px){.aiop-pain-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.aiop-pain-grid{grid-template-columns:1fr}}
+    .aiop-pain { padding: 24px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+    .aiop-pain:nth-child(3n) { border-right: none; }
+    .aiop-pain:nth-last-child(-n+3) { border-bottom: none; }
+    @media(max-width:900px){ .aiop-pain:nth-child(2n){ border-right:none; } .aiop-pain:nth-child(3n){ border-right:1px solid var(--border); } .aiop-pain:nth-child(3n):nth-child(2n){ border-right:none; } }
+    .aiop-pain__phase { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 12px; display: block; }
+    .aiop-pain__rule { display: block; width: 20px; height: 2px; background: var(--jw-red); border-radius: 2px; margin-bottom: 12px; }
+    .aiop-pain__title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--text-1); margin-bottom: 6px; letter-spacing: -0.01em; }
+    .aiop-pain__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Persona cards ── */
+    .aiop-personas { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    @media(max-width:800px){.aiop-personas{grid-template-columns:1fr}}
+    .aiop-persona { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .aiop-persona__hdr { padding: 24px 24px 0; display: flex; gap: 16px; align-items: flex-start; }
+    .aiop-persona__avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--proj-accent); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .aiop-persona__info { flex: 1; }
+    .aiop-persona__tier { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; display: inline-block; padding: 2px 8px; border-radius: 20px; }
+    .aiop-persona__tier--1 { background: rgba(34,197,94,0.1); color: #16A34A; border: 1px solid rgba(34,197,94,0.25); }
+    .aiop-persona__tier--2 { background: rgba(234,179,8,0.1); color: #CA8A04; border: 1px solid rgba(234,179,8,0.25); }
+    .aiop-persona__tier--3 { background: rgba(239,68,68,0.1); color: #DC2626; border: 1px solid rgba(239,68,68,0.25); }
+    .aiop-persona__name { font-weight: 800; font-size: 16px; color: var(--text-1); margin-bottom: 2px; }
+    .aiop-persona__role { font-size: 12px; color: var(--jw-blue); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
+    .aiop-persona__loc { font-size: 12px; color: var(--text-3); }
+    .aiop-persona__body { padding: 16px 24px 0; }
+    .aiop-persona__bio { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .aiop-persona__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .aiop-persona__block { background: var(--bg-elevated); border-radius: var(--r-lg); padding: 14px; }
+    .aiop-persona__block-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+    .aiop-persona__block-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    .aiop-persona__tags { padding: 0 24px 24px; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .aiop-persona__tag { font-family: var(--font-mono); font-size: 10px; color: var(--jw-blue); background: rgba(27,63,216,0.07); border: 1px solid rgba(27,63,216,0.18); border-radius: 20px; padding: 3px 10px; }
+
+    /* ── Double diamond ── */
+    .aiop-diamond { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .aiop-diamond-phase { padding: 24px 20px; border-right: 1px solid var(--border); }
+    .aiop-diamond-phase:last-child { border-right: none; }
+    .aiop-diamond-phase__d { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .aiop-diamond-phase__d--discover { background: rgba(27,63,216,0.1); color: var(--jw-blue); }
+    .aiop-diamond-phase__d--define { background: rgba(139,92,246,0.1); color: #7C3AED; }
+    .aiop-diamond-phase__d--develop { background: rgba(16,185,129,0.1); color: #059669; }
+    .aiop-diamond-phase__d--deliver { background: rgba(245,158,11,0.1); color: #D97706; }
+    .aiop-diamond-phase__title { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
+    .aiop-diamond-phase__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .aiop-diamond-phase__items li { font-size: 12px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
+    .aiop-diamond-phase__items li::before { content: '—'; position: absolute; left: 0; color: var(--jw-blue); }
+    @media(max-width:800px){.aiop-diamond{grid-template-columns:1fr 1fr}}
+
+    /* ── Insight cards — open bordered grid ── */
+    .aiop-insight-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media(max-width:900px){.aiop-insight-grid{grid-template-columns:1fr}}
+    .aiop-insight { padding: 28px 24px; border-right: 1px solid var(--border); }
+    .aiop-insight:last-child { border-right: none; }
+    @media(max-width:900px){ .aiop-insight { border-right: none; border-bottom: 1px solid var(--border); } .aiop-insight:last-child { border-bottom: none; } }
+    .aiop-insight__num {
+      font-family: var(--font-display); font-size: clamp(40px,5vw,56px); font-weight: 900;
+      color: var(--jw-blue); opacity: 0.18; line-height: 0.9;
+      letter-spacing: -0.06em; margin-bottom: 14px;
+    }
+    .aiop-insight__title { font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; letter-spacing: -0.01em; }
+    .aiop-insight__before { font-size: 12px; color: var(--jw-red); margin-bottom: 6px; padding: 8px 12px; background: rgba(239,68,68,0.05); border-radius: 6px; border-left: 2px solid var(--jw-red); line-height: 1.55; }
+    .aiop-insight__after { font-size: 12px; color: #059669; padding: 8px 12px; background: rgba(16,185,129,0.05); border-radius: 6px; border-left: 2px solid #059669; line-height: 1.55; }
+
+    /* ── User flow steps ── */
+    .aiop-flow { display: flex; gap: 0; overflow-x: auto; padding-bottom: 8px; }
+    .aiop-flow-step { flex: 1; min-width: 140px; padding: 20px 16px; background: var(--bg-card); border: 1px solid var(--border); border-right: none; position: relative; }
+    .aiop-flow-step:first-child { border-radius: var(--r-lg) 0 0 var(--r-lg); }
+    .aiop-flow-step:last-child { border-right: 1px solid var(--border); border-radius: 0 var(--r-lg) var(--r-lg) 0; }
+    .aiop-flow-step::after { content: '›'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--jw-blue); z-index: 1; background: var(--bg); padding: 2px 0; }
+    .aiop-flow-step:last-child::after { display: none; }
+    .aiop-flow-step__num { font-family: var(--font-mono); font-size: 10px; color: var(--jw-blue); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .aiop-flow-step__title { font-size: 12px; font-weight: 700; color: var(--text-1); line-height: 1.4; }
+
+    /* ── Screen grid ── */
+    .aiop-screens { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    @media(max-width:800px){.aiop-screens{grid-template-columns:1fr}}
+
+    /* ── Heuristic score ── */
+    .aiop-score-badge { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25); border-radius: var(--r-lg); margin-bottom: 32px; }
+    .aiop-score-badge__num { font-family: var(--font-display); font-size: 40px; font-weight: 900; color: var(--jw-amber); letter-spacing: -0.03em; line-height: 1; }
+    .aiop-score-badge__text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    .aiop-score-badge__label { font-size: 11px; font-family: var(--font-mono); color: var(--jw-amber); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── Vision quote ── */
+    .aiop-vision { background: linear-gradient(135deg, rgba(27,63,216,0.07), rgba(27,63,216,0.02)); border: 1px solid rgba(27,63,216,0.2); border-radius: var(--r-xl); padding: 48px; position: relative; overflow: hidden; }
+    .aiop-vision::before { content: '"'; font-family: var(--font-display); font-size: 180px; color: var(--jw-blue); opacity: 0.06; position: absolute; top: -20px; left: 20px; line-height: 1; }
+    .aiop-vision__text { font-size: clamp(16px,2vw,20px); color: var(--text-1); line-height: 1.7; font-style: italic; position: relative; z-index: 1; }
+    .aiop-vision__attr { font-family: var(--font-mono); font-size: 11px; color: var(--jw-blue); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 20px; }
+
+    /* ── Next steps — open two-column ── */
+    .aiop-next { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    @media(max-width:700px){ .aiop-next { grid-template-columns: 1fr; } }
+    .aiop-next-card { padding: 32px 28px; border-right: 1px solid var(--border); }
+    .aiop-next-card:last-child { border-right: none; }
+    @media(max-width:700px){ .aiop-next-card { border-right: none; border-bottom: 1px solid var(--border); } .aiop-next-card:last-child { border-bottom: none; } }
+    .aiop-next-card__icon { display: none; }
+    .aiop-next-card__num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--jw-blue); margin-bottom: 10px; display: block; }
+    .aiop-next-card__rule { display: block; width: 28px; height: 2px; background: var(--jw-blue); border-radius: 2px; margin-bottom: 14px; }
+    .aiop-next-card__title { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text-1); margin-bottom: 4px; letter-spacing: -0.02em; }
+    .aiop-next-card__items { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .aiop-next-card__item { font-size: 13px; color: var(--text-2); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
+    .aiop-next-card__item::before { content: '→'; color: var(--jw-blue); flex-shrink: 0; font-family: var(--font-mono); font-size: 11px; margin-top: 2px; }
+
+    /* ── Browser / Laptop Mockup ── */
+    .browser-wrap {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.07);
+      background: var(--bg-card);
+    }
+    .browser-wrap--glow::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, rgba(27,63,216,0.3), rgba(139,92,246,0.15));
+      z-index: -1;
+      filter: blur(20px);
+    }
+    .browser-chrome {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 16px;
+      background: #1E1E2E;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+    }
+    .browser-chrome__dots { display: flex; gap: 6px; }
+    .browser-chrome__dot { width: 11px; height: 11px; border-radius: 50%; }
+    .browser-chrome__dot--r { background: #FF5F57; }
+    .browser-chrome__dot--y { background: #FFBD2E; }
+    .browser-chrome__dot--g { background: #28C840; }
+    .browser-chrome__bar {
+      flex: 1; height: 24px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      display: flex; align-items: center; padding: 0 10px;
+      font-family: var(--font-mono); font-size: 10px;
+      color: rgba(255,255,255,0.35); letter-spacing: 0.04em;
+      gap: 6px;
+    }
+    .browser-chrome__bar svg { opacity: 0.4; flex-shrink: 0; }
+    .browser-scroll {
+      max-height: 520px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(27,63,216,0.3) transparent;
+    }
+    .browser-scroll::-webkit-scrollbar { width: 4px; }
+    .browser-scroll::-webkit-scrollbar-thumb { background: rgba(27,63,216,0.3); border-radius: 2px; }
+    .browser-scroll img { width: 100%; display: block; }
+
+    /* ── Comparison table ── */
+    .cmp-wrap { overflow-x: auto; border-radius: var(--r-xl); border: 1px solid var(--border); }
+    .cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 720px; }
+    .cmp-table thead tr { background: #1A2ECC; }
+    .cmp-table thead th { padding: 12px 14px; text-align: left; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8); border-right: 1px solid rgba(255,255,255,0.1); font-weight: 600; }
+    .cmp-table thead th:last-child { border-right: none; }
+    .cmp-table thead th:first-child { min-width: 170px; }
+    .cmp-table tbody tr { border-bottom: 1px solid var(--border); transition: background 150ms ease; }
+    .cmp-table tbody tr:last-child { border-bottom: none; }
+    .cmp-table tbody tr:nth-child(even) { background: var(--bg-elevated); }
+    .cmp-table tbody tr:hover { background: rgba(27,63,216,0.04); }
+    .cmp-table td { padding: 13px 14px; border-right: 1px solid var(--border); vertical-align: top; color: var(--text-2); line-height: 1.55; }
+    .cmp-table td:last-child { border-right: none; }
+    .cmp-table td:first-child { font-weight: 600; color: var(--text-1); font-size: 12px; }
+    .cmp-cell--yes { color: #16A34A !important; }
+    .cmp-cell--no { color: #DC2626 !important; }
+    .cmp-cell--partial { color: #CA8A04 !important; }
+    .cmp-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-family: var(--font-mono); font-weight: 600; }
+    .cmp-badge--yes::before { content: '✓'; }
+    .cmp-badge--no::before { content: '✗'; }
+    .cmp-badge--par::before { content: '△'; }
+    .cmp-jio-win { background: rgba(27,63,216,0.06); border-left: 3px solid var(--jw-blue); padding: 8px 12px; border-radius: 0 6px 6px 0; font-size: 11px; color: var(--jw-blue); font-family: var(--font-mono); margin-top: 8px; letter-spacing: 0.04em; }
+
+    /* ── Annotation chip ── */
+    .anno-wrap { position: relative; }
+    .anno-chip {
+      position: absolute;
+      background: var(--jw-blue);
+      color: #fff;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+      padding: 5px 12px; border-radius: 20px;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(27,63,216,0.35);
+      pointer-events: none;
+    }
+    .anno-chip::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 50%; transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--jw-blue);
+      border-bottom: none;
+    }
+    .anno-chip--tl { top: -18px; left: 12%; }
+    .anno-chip--tr { top: -18px; right: 12%; }
+    .anno-chip--bl { bottom: -18px; left: 15%; }
+    .anno-chip--bl::after { bottom: auto; top: -6px; border-top: none; border-bottom-color: var(--jw-blue); }
+
+    /* ── Screen badge strip ── */
+    .screen-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .screen-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(27,63,216,0.07); border: 1px solid rgba(27,63,216,0.18); border-radius: 20px; font-size: 11px; font-family: var(--font-mono); color: var(--jw-blue); }
+    .screen-badge--green { background: rgba(34,197,94,0.07); border-color: rgba(34,197,94,0.2); color: #16A34A; }
+    .screen-badge--amber { background: rgba(245,158,11,0.07); border-color: rgba(245,158,11,0.2); color: #D97706; }
+
+    /* ── Gradient section bg ── */
+    .aiop-sec--gradient {
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(27,63,216,0.06) 0%, transparent 70%);
+    }
+
+    /* ── Large screen showcase layout ── */
+    .screen-card { margin-top: 64px; margin-bottom: 16px; }
+    .screen-card__header {
+      display: flex; align-items: flex-start; gap: 32px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .screen-card__meta { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+    .screen-card__num {
+      font-family: var(--font-display); font-size: clamp(56px,7vw,80px);
+      font-weight: 900; line-height: 0.9; letter-spacing: -0.06em;
+      color: var(--jw-blue); opacity: 0.12; pointer-events: none; user-select: none;
+    }
+    .screen-card__step {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--jw-blue);
+      background: rgba(27,63,216,0.08); border: 1px solid rgba(27,63,216,0.18);
+      border-radius: 20px; padding: 4px 12px; display: inline-block; white-space: nowrap;
+    }
+    .screen-card__content { flex: 1; }
+    .screen-card__title {
+      font-family: var(--font-display); font-size: clamp(22px,2.8vw,34px);
+      font-weight: 900; letter-spacing: -0.03em; color: var(--text-1);
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .screen-card__desc { font-size: 15px; color: var(--text-2); line-height: 1.75; max-width: 680px; }
+
+    /* Full-width browser frame with glow — flat bottom so annotation strip attaches */
+    .screen-card .browser-wrap {
+      box-shadow: 0 40px 120px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06),
+                  0 0 60px rgba(27,63,216,0.1);
+      border-radius: 14px 14px 0 0;
+    }
+    .screen-card .browser-wrap img { border-radius: 0; }
+
+    /* Annotation strip below screen */
+    .screen-card__annots {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
+      border: 1px solid var(--border); border-radius: 0 0 var(--r-xl) var(--r-xl);
+      border-top: none; overflow: hidden;
+    }
+    .screen-card__annot {
+      padding: 16px 20px;
+      border-right: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .screen-card__annot:last-child { border-right: none; }
+    .screen-card__annot-label {
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--text-3); margin-bottom: 4px;
+    }
+    .screen-card__annot-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    .screen-card__annot--heuristic .screen-card__annot-label { color: #D97706; }
+    .screen-card__annot--heuristic { border-top: 2px solid rgba(245,158,11,0.4); }
+    .screen-card__annot--insight .screen-card__annot-label { color: #059669; }
+    .screen-card__annot--insight { border-top: 2px solid rgba(16,185,129,0.4); }
+    .screen-card__annot--ux .screen-card__annot-label { color: var(--jw-blue); }
+    .screen-card__annot--ux { border-top: 2px solid rgba(27,63,216,0.4); }
+    @media(max-width:700px){ .screen-card__annots { grid-template-columns: 1fr; } .screen-card__header { flex-direction: column; gap: 16px; } }
+
+    /* =====================================================================
+       ACCESSIBILITY — WCAG 2.1 AA
+       All contrast ratios verified. Fixes cover both dark (default) and
+       light [data-theme="light"] modes.
+    ===================================================================== */
+
+    /* Screen-reader only utility */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Skip-to-main link (visible on keyboard focus only) */
+    .skip-nav {
+      position: absolute; left: 16px; top: -100px;
+      background: var(--jw-blue); color: #fff;
+      padding: 10px 22px; border-radius: 0 0 10px 10px;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.01em;
+      z-index: 10000; text-decoration: underline;
+      transition: top 0.15s ease;
+      white-space: nowrap;
+    }
+    .skip-nav:focus, .skip-nav:focus-visible { top: 0; outline: none; }
+
+    /* Focus rings — 2.5px visible ring on every interactive element */
+    *:focus-visible {
+      outline: 2.5px solid #4B7BFF;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    a:focus-visible, button:focus-visible { border-radius: 6px; }
+    .nav__cta:focus-visible { border-radius: 100px; }
+
+    /* ── Dark mode (default :root) — accessible text-3 ──
+       #50506A on #08080F = 2.71:1 FAIL → #7A7A9A = 5.27:1 PASS */
+    html:not([data-theme="light"]) { --text-3: #7A7A9A; }
+
+    /* ── Light mode — accessible text-3 ──
+       #9090AA on #EBEBF2 = 2.55:1 FAIL → #5A5A78 = 5.24:1 PASS */
+    [data-theme="light"] { --text-3: #5A5A78; }
+
+    /* ── Dark mode: jw-blue as foreground text ──
+       #1B3FD8 on #08080F = 2.88:1 FAIL → #6B8EFF = 6.78:1 PASS */
+    html:not([data-theme="light"]) .aiop-eyebrow,
+    html:not([data-theme="light"]) .aiop-pain__phase,
+    html:not([data-theme="light"]) .aiop-flow-step__num,
+    html:not([data-theme="light"]) .aiop-persona__role,
+    html:not([data-theme="light"]) .aiop-persona__tag,
+    html:not([data-theme="light"]) .aiop-vision__attr,
+    html:not([data-theme="light"]) .screen-card__step { color: #6B8EFF; }
+
+    /* Dark mode: screen badge defaults → accessible blue */
+    html:not([data-theme="light"]) .screen-badge {
+      color: #6B8EFF;
+      background: rgba(107,142,255,0.08);
+      border-color: rgba(107,142,255,0.22);
+    }
+    /* Dark mode: green badges → #34D399 = 10.71:1 PASS */
+    html:not([data-theme="light"]) .screen-badge--green {
+      color: #34D399;
+      background: rgba(52,211,153,0.08);
+      border-color: rgba(52,211,153,0.22);
+    }
+    /* Dark mode: amber badges → #FBBF24 = 12.02:1 PASS */
+    html:not([data-theme="light"]) .screen-badge--amber {
+      color: #FBBF24;
+      background: rgba(251,191,36,0.08);
+      border-color: rgba(251,191,36,0.22);
+    }
+
+    /* Dark mode: persona tier badges */
+    html:not([data-theme="light"]) .aiop-persona__tier--1 { color: #34D399; border-color: rgba(52,211,153,0.25); background: rgba(52,211,153,0.08); }
+    html:not([data-theme="light"]) .aiop-persona__tier--2 { color: #FBBF24; border-color: rgba(251,191,36,0.25); background: rgba(251,191,36,0.08); }
+    html:not([data-theme="light"]) .aiop-persona__tier--3 { color: #F87171; border-color: rgba(248,113,113,0.25); background: rgba(248,113,113,0.08); }
+
+    /* Dark mode: double-diamond phase chips
+       #7C3AED on dark = 3.36:1 FAIL → #A78BFA = 6.3:1 PASS */
+    html:not([data-theme="light"]) .aiop-diamond-phase__d--discover { color: #6B8EFF; background: rgba(107,142,255,0.1); }
+    html:not([data-theme="light"]) .aiop-diamond-phase__d--define   { color: #A78BFA; background: rgba(167,139,250,0.1); }
+    html:not([data-theme="light"]) .aiop-diamond-phase__d--develop  { color: #34D399; background: rgba(52,211,153,0.1); }
+    html:not([data-theme="light"]) .aiop-diamond-phase__d--deliver  { color: #FBBF24; background: rgba(251,191,36,0.1); }
+
+    /* Dark mode: annotation labels */
+    html:not([data-theme="light"]) .screen-card__annot--ux .screen-card__annot-label       { color: #6B8EFF; }
+    html:not([data-theme="light"]) .screen-card__annot--insight .screen-card__annot-label  { color: #34D399; }
+    html:not([data-theme="light"]) .screen-card__annot--heuristic .screen-card__annot-label{ color: #FBBF24; }
+
+    /* Dark mode: comparison table cell colours
+       #16A34A (yes), #DC2626 (no), #CA8A04 (partial) all pass on dark bg,
+       but --text-2 cells need checking: #8A8AA8 on #08080F = 6.42:1 PASS ✓ */
+    html:not([data-theme="light"]) .cmp-cell--yes     { color: #34D399 !important; }
+    html:not([data-theme="light"]) .cmp-cell--no      { color: #F87171 !important; }
+    html:not([data-theme="light"]) .cmp-cell--partial { color: #FBBF24 !important; }
+
+    /* Dark mode: aiop-insight numbers (decorative, but apply accessible tint) */
+    html:not([data-theme="light"]) .aiop-insight__after { color: #34D399; background: rgba(52,211,153,0.06); border-left-color: #34D399; }
+
+    /* ── Light mode: badge + status text ──
+       Multiple amber/green colours fail 4.5:1 on white; darken them.    */
+    /* Default badge: #1B3FD8 on light bg = 9.72:1 PASS — no change needed */
+    /* Green: #16A34A = 3.17:1 FAIL → #15803D = 4.61:1 PASS */
+    [data-theme="light"] .screen-badge--green {
+      color: #15803D;
+      background: rgba(21,128,61,0.07);
+      border-color: rgba(21,128,61,0.25);
+    }
+    /* Amber: #D97706 = 2.95:1 FAIL → #92400E = 5.01:1 PASS */
+    [data-theme="light"] .screen-badge--amber {
+      color: #92400E;
+      background: rgba(146,64,14,0.07);
+      border-color: rgba(146,64,14,0.25);
+    }
+    /* Comparison table partial: #CA8A04 = 2.73:1 FAIL → #92400E PASS */
+    [data-theme="light"] .cmp-cell--partial { color: #92400E !important; }
+    /* No cell: #DC2626 = 4.80:1 PASS — no change needed */
+    /* Yes cell: #16A34A = 3.17:1 FAIL → #15803D PASS */
+    [data-theme="light"] .cmp-cell--yes { color: #15803D !important; }
+
+    /* Persona tier 2 amber: FAIL → darken */
+    [data-theme="light"] .aiop-persona__tier--2 { color: #92400E !important; background: rgba(146,64,14,0.08) !important; border-color: rgba(146,64,14,0.25) !important; }
+    /* Persona tier 1 green: #16A34A FAIL → darken */
+    [data-theme="light"] .aiop-persona__tier--1 { color: #15803D !important; background: rgba(21,128,61,0.08) !important; border-color: rgba(21,128,61,0.25) !important; }
+
+    /* Diamond phase — develop: #059669 = 3.60:1 FAIL → #047857 = 4.54:1 PASS */
+    [data-theme="light"] .aiop-diamond-phase__d--develop { color: #047857 !important; background: rgba(4,120,87,0.08) !important; }
+    /* Diamond phase — deliver: #D97706 = 2.95:1 FAIL → #92400E PASS */
+    [data-theme="light"] .aiop-diamond-phase__d--deliver { color: #92400E !important; background: rgba(146,64,14,0.08) !important; }
+
+    /* Insight card — after: #059669 = 3.60:1 FAIL → #047857 PASS */
+    [data-theme="light"] .aiop-insight__after { color: #047857; background: rgba(4,120,87,0.06); border-left-color: #047857; }
+    /* Annotation insight label */
+    [data-theme="light"] .screen-card__annot--insight .screen-card__annot-label { color: #047857; }
+    /* Annotation heuristic label: #D97706 FAIL → #92400E PASS */
+    [data-theme="light"] .screen-card__annot--heuristic .screen-card__annot-label { color: #92400E; }
+    [data-theme="light"] .screen-card__annot--heuristic { border-top-color: rgba(146,64,14,0.35); }
+    [data-theme="light"] .screen-card__annot--insight    { border-top-color: rgba(4,120,87,0.35); }
+
+    /* Heuristic severity pills in light mode */
+    [data-theme="light"] .aiop-score-badge__num,
+    [data-theme="light"] .aiop-score-badge__label { color: #92400E; }
+    [data-theme="light"] .aiop-score-badge { background: rgba(146,64,14,0.07); border-color: rgba(146,64,14,0.25); }
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <!-- Skip navigation — keyboard users -->
+  <a class="skip-nav" href="#main-content">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Primary navigation">
+    <a href="index.html" class="nav__logo" aria-label="Home">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- BACK -->
+  <div class="proj-back-wrap">
+    <div class="container">
+      <a href="work.html" class="proj-back">← All Work</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="proj-hero-section" id="main-content" style="padding-bottom:64px;" aria-labelledby="proj-title">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2G · SaaS Platform · Jio / Reliance Foundation · 2024</div>
+      <h1 class="proj-title reveal" id="proj-title">Jio <em>AIOP</em> — AI Operations Platform</h1>
+      <p class="proj-sub reveal">A No-Code SaaS platform for government bodies &amp; NGOs to launch, manage, and monitor welfare schemes — with verified audience building, DigiLocker integration, and AI-powered document verification. With Maitri (Junior UX UI Designer) &amp; George (Product Manager).</p>
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Client</div>
+          <div class="proj-meta__v">Jio / Reliance Foundation</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">Lead UX UI Designer</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Platform</div>
+          <div class="proj-meta__v">Web · Desktop SaaS</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Process</div>
+          <div class="proj-meta__v">Double Diamond</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Status</div>
+          <div class="proj-meta__v">Visual Design ✓ · Dev Handoff</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FINAL DESIGNS -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <!-- ── Main banner ── -->
+      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#08101e;width:100%;">
+        <img src="img/jio_aiop.jpg" alt="Jio AIOP — AI Operations Platform" loading="lazy" style="width:100%;height:auto;display:block;">
+      </div>
+
+      <!-- ── Optional extra rows — uncomment to add more screens ───
+      <div class="proj-visuals__grid">
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#08101e,#0d1830);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio AIOP — screen 2" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#08101e,#0d1830);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio AIOP — screen 3" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-visuals__row proj-visuals__row--3">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#08101e,#0d1830);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio AIOP — screen 4" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#08101e,#0d1830);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio AIOP — screen 5" loading="lazy">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#08101e,#0d1830);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Drop screenshot here</span></div>
+            <img src="" alt="Jio AIOP — screen 6" loading="lazy">
+          </div>
+        </div>
+      </div>
+      ── end optional rows ── -->
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── -->
+  <!-- OVERVIEW -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="aiop-sec">
+    <div class="container">
+
+      <!-- ── Zone 1: Title + Tagline ── -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:40px;" class="reveal">
+        <div>
+          <div class="aiop-eyebrow">What We're Building</div>
+          <div class="aiop-h2" style="margin-bottom:16px;">A Centralised Platform for Welfare at Scale</div>
+          <p class="aiop-p">Jio acquired EasyGov and now provides government welfare capabilities via <strong>Jio AI Cloud</strong> and <strong>MyJio</strong> — giving governments &amp; NGOs one place to create schemes, verify eligibility, and reach 500M+ citizens. <strong>Visual designs are complete;</strong> usability testing is next.</p>
+        </div>
+        <div style="padding:28px 32px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.18);border-radius:var(--r-xl);">
+          <div class="aiop-eyebrow" style="margin-bottom:12px;">Platform Tagline</div>
+          <p style="font-family:var(--font-display);font-size:clamp(16px,1.8vw,21px);font-weight:700;color:var(--text-1);letter-spacing:-0.02em;line-height:1.55;">Easily manage welfare schemes, document verification, audience &amp; cohort building — on a single No-Code SaaS platform.</p>
+          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(27,63,216,0.15);">
+            <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);">Visual Designs Complete · Usability Testing Next</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Zone 2: Business Goals — 4-col strip ── -->
+      <div class="reveal" style="margin-bottom:24px;">
+        <div class="aiop-eyebrow" style="margin-bottom:16px;">Business Goals</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;">
+          <div style="padding:24px 22px;border-right:1px solid var(--border);">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">01</div>
+            <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Build Verified Audience</div>
+            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Right users matched to the right schemes via eligibility &amp; targeting.</div>
+          </div>
+          <div style="padding:24px 22px;border-right:1px solid var(--border);">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">02</div>
+            <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Speed Up Approval</div>
+            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Automated document handling cuts application turnaround significantly.</div>
+          </div>
+          <div style="padding:24px 22px;border-right:1px solid var(--border);">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">03</div>
+            <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Ensure Transparency</div>
+            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Traceable workflow from scheme creation to beneficiary selection.</div>
+          </div>
+          <div style="padding:24px 22px;">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">04</div>
+            <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Increase Reach</div>
+            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Discoverable across all Jio apps — Tier 1, 2 &amp; 3 cities via 500M+ network.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Zone 3: Platform Scale — 4-col strip ── -->
+      <div class="reveal">
+        <div style="border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;">
+          <div style="padding:14px 22px;border-bottom:1px solid var(--border);">
+            <div class="aiop-eyebrow" style="margin:0;">Platform Scale</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+            <div style="padding:24px 22px;border-right:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">500M<span style="color:var(--jw-blue);font-size:20px;">+</span></div>
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">Jio User Reach</div>
+            </div>
+            <div style="padding:24px 22px;border-right:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">&lt;30<span style="color:var(--jw-blue);font-size:20px;">min</span></div>
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">Scheme Setup Time</div>
+            </div>
+            <div style="padding:24px 22px;border-right:1px solid var(--border);">
+              <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">3<span style="color:var(--jw-blue);font-size:20px;">-tier</span></div>
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">City Coverage</div>
+            </div>
+            <div style="padding:24px 22px;">
+              <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">1<span style="color:var(--jw-blue);font-size:20px;">platform</span></div>
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">No-Code SaaS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Double Diamond process -->
+      <div class="aiop-sub reveal">
+        <div class="aiop-eyebrow" style="margin-bottom:16px;">Design Process — Double Diamond</div>
+        <div class="aiop-diamond">
+          <div class="aiop-diamond-phase">
+            <div class="aiop-diamond-phase__d aiop-diamond-phase__d--discover">Discover</div>
+            <div class="aiop-diamond-phase__title">Research &amp; Discover</div>
+            <ul class="aiop-diamond-phase__items">
+              <li>Competitor analysis (Ads + Public Scheme platforms)</li>
+              <li>User challenges mapping</li>
+              <li>Heuristic evaluation of current experience</li>
+            </ul>
+          </div>
+          <div class="aiop-diamond-phase">
+            <div class="aiop-diamond-phase__d aiop-diamond-phase__d--define">Define</div>
+            <div class="aiop-diamond-phase__title">Define &amp; Synthesise</div>
+            <ul class="aiop-diamond-phase__items">
+              <li>User personas (4 tiers)</li>
+              <li>Journey maps &amp; JTB</li>
+              <li>Actionable insights &amp; recommendations</li>
+            </ul>
+          </div>
+          <div class="aiop-diamond-phase">
+            <div class="aiop-diamond-phase__d aiop-diamond-phase__d--develop">Develop</div>
+            <div class="aiop-diamond-phase__title">Design &amp; Develop</div>
+            <ul class="aiop-diamond-phase__items">
+              <li>User flows (Program Officer)</li>
+              <li>Visual design &amp; UI system</li>
+              <li>Responsive previews</li>
+            </ul>
+          </div>
+          <div class="aiop-diamond-phase">
+            <div class="aiop-diamond-phase__d aiop-diamond-phase__d--deliver">Deliver</div>
+            <div class="aiop-diamond-phase__title">Deliver &amp; Handoff</div>
+            <ul class="aiop-diamond-phase__items">
+              <li>Usability testing plan</li>
+              <li>Development handoff</li>
+              <li>Documentation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── -->
+  <!-- PHASE 01 — DISCOVER -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="aiop-sec aiop-sec--alt aiop-sec--gradient">
+    <div class="container">
+      <div class="aiop-phase-hdr reveal">
+        <div class="aiop-phase-hdr__num" aria-hidden="true">01</div>
+        <div class="aiop-phase-hdr__text">
+          <div class="aiop-phase-hdr__tag">Double Diamond · Phase One</div>
+          <div class="aiop-phase-hdr__title">Research &amp; Discover</div>
+          <div class="aiop-phase-hdr__sub">Competitor analysis · User challenges · Heuristic evaluation</div>
+        </div>
+      </div>
+
+      <!-- Competitor Analysis — Public Scheme Platforms -->
+      <div class="reveal">
+        <div class="aiop-eyebrow">Competitor Analysis — Public Scheme Platforms</div>
+        <div class="aiop-h2" style="margin-bottom:12px;">Benchmarking EasyGov, UMANG, DBT Bharat &amp; More</div>
+        <p class="aiop-p" style="margin-bottom:24px;">5 public scheme platforms were evaluated across 8 capability dimensions — identifying where Jio AIOP has the opportunity to leapfrog existing solutions, particularly in analytics, mobile UX, and real-time tracking.</p>
+
+        <div class="cmp-wrap">
+          <table class="cmp-table" aria-label="Competitor benchmarking — government welfare platforms">
+            <caption class="sr-only">Capability comparison of EasyGov, UMANG, DBT Bharat, Seva Setu, and Mahiti Kanaja across 8 dimensions</caption>
+            <thead>
+              <tr>
+                <th scope="col">Capability</th>
+                <th scope="col">EasyGov</th>
+                <th scope="col">UMANG</th>
+                <th scope="col">DBT Bharat</th>
+                <th scope="col">Seva Setu (GJ)</th>
+                <th scope="col">Mahiti Kanaja (KA)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Guided Scheme Flow</td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Moderate</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Basic</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Manual Process</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Step-based UI</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Not User-guided</span></td>
+              </tr>
+              <tr>
+                <td>Eligibility Matching</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Strong</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Moderate</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Yes</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Strong</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Context-based</span></td>
+              </tr>
+              <tr>
+                <td>Document Upload</td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Basic Upload</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Poor Experience</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Difficult</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Manual Upload</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Gov't Links</span></td>
+              </tr>
+              <tr>
+                <td>Application Tracking</td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Not Real-time</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Basic</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">No Tracking</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Limited Updates</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">External Handoff</span></td>
+              </tr>
+              <tr>
+                <td>Multi-Language Support</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Multilingual</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Extensive</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Hindi Only</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Gujarati + Hindi</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Kannada + Hindi</span></td>
+              </tr>
+              <tr>
+                <td>Admin Dashboard</td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Basic</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">No Admin View</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">None</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Limited View</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">None</span></td>
+              </tr>
+              <tr>
+                <td>Analytics &amp; KPIs</td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Minimal</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Not Visible</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Absent</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Lacks Depth</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Absent</span></td>
+              </tr>
+              <tr>
+                <td>Recommendation Engine</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Profiling-based</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Static Listings</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">No Intelligence</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">Manual Nav</span></td>
+                <td><span class="cmp-badge cmp-badge--no cmp-cell--no">No Personalisation</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:0;border:1px solid rgba(27,63,216,0.2);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-card);">
+          <div style="width:4px;background:linear-gradient(180deg,var(--jw-blue),rgba(27,63,216,0.3));flex-shrink:0;"></div>
+          <div style="padding:20px 24px;">
+            <div class="aiop-eyebrow" style="margin-bottom:8px;">Design Opportunity</div>
+            <p style="font-size:14px;color:var(--text-1);font-weight:600;line-height:1.6;margin-bottom:8px;">No existing platform combines real-time analytics, admin dashboards, and intelligent recommendations — all 5 competitors gap out on the 3 highest-value capabilities.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+              <span style="font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Real-time Analytics</span>
+              <span style="font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Admin Dashboards</span>
+              <span style="font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Intelligent Recommendations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ads Platforms Benchmark -->
+      <div class="aiop-sub reveal">
+        <div class="aiop-eyebrow">Competitor Analysis — Scheme / Ads Creation Platforms</div>
+        <div class="aiop-h2" style="margin-bottom:12px;">Benchmarking Google, Facebook, LinkedIn, Microsoft &amp; Amazon Ads</div>
+        <p class="aiop-p" style="margin-bottom:24px;">Ads creation platforms were studied to understand best-in-class patterns for guided scheme creation flows, template libraries, audience targeting, and performance dashboards — forming the UX foundation for Jio AIOP's scheme builder.</p>
+
+        <div class="cmp-wrap">
+          <table class="cmp-table" aria-label="Competitor benchmarking — advertising platforms UX comparison">
+            <caption class="sr-only">UX feature comparison of Google Ads, Facebook Ads, LinkedIn Ads, Microsoft Ads, and Amazon Ads</caption>
+            <thead>
+              <tr>
+                <th scope="col">UX Feature / Stage</th>
+                <th scope="col">Google Ads</th>
+                <th scope="col">Facebook Ads</th>
+                <th scope="col">LinkedIn Ads</th>
+                <th scope="col">Microsoft Ads</th>
+                <th scope="col">Amazon Ads</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. Onboarding &amp; Setup Ease</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Very intuitive, guided flows</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Guided flow with goals</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Simple B2B targeting</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Slightly technical</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Requires prior knowledge</span></td>
+              </tr>
+              <tr>
+                <td>2. Use of Templates</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Multiple smart templates</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Campaign templates + boost</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Limited templates</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Minimal templates</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">No user-friendly templates</span></td>
+              </tr>
+              <tr>
+                <td>3. Real-Time Preview</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Live preview available</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Strong preview support</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Basic previews only</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Static preview</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Product ad previews</span></td>
+              </tr>
+              <tr>
+                <td>4. Guided Steps &amp; Tooltips</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Strong tooltips, progress</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Excellent contextual help</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Basic tooltips only</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Few tooltips</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Limited guidance</span></td>
+              </tr>
+              <tr>
+                <td>5. Audience Profiling</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Intent &amp; behavior data</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Strong interests &amp; behaviors</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Rich professional targeting</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Limited profiling</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Purchase-driven profiles</span></td>
+              </tr>
+              <tr>
+                <td>6. Performance Estimation</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Forecasting tools</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Budget estimator &amp; reach</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Forecasts by industry</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">CPC estimator</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Sales projection tools</span></td>
+              </tr>
+              <tr>
+                <td>7. Reporting Dashboard</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Detailed, customizable</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Visual + insights</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Clear B2B KPIs</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Basic metrics</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Seller-focused insights</span></td>
+              </tr>
+              <tr>
+                <td>8. Accessibility &amp; Ease of Use</td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Clean, familiar UI</span></td>
+                <td><span class="cmp-badge cmp-badge--yes cmp-cell--yes">Visual, easy to use</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Slight learning curve</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Needs training</span></td>
+                <td><span class="cmp-badge cmp-badge--par cmp-cell--partial">Less beginner-friendly</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+          <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid var(--jw-blue);">
+            <div class="aiop-eyebrow" style="margin-bottom:6px;">Design Adoption 1</div>
+            <div style="font-size:13px;color:var(--text-2);">Google &amp; Facebook's <strong style="color:var(--text-1);">guided flows with pre-filled templates</strong> directly inspired our 4-step scheme wizard with categorised templates.</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid #7C3AED;">
+            <div class="aiop-eyebrow" style="margin-bottom:6px;">Design Adoption 2</div>
+            <div style="font-size:13px;color:var(--text-2);">LinkedIn &amp; Google's <strong style="color:var(--text-1);">audience builder</strong> for precise targeting inspired our eligibility rule builder &amp; cohort segments.</div>
+          </div>
+          <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid #059669;">
+            <div class="aiop-eyebrow" style="margin-bottom:6px;">Design Adoption 3</div>
+            <div style="font-size:13px;color:var(--text-2);">Google &amp; Facebook's <strong style="color:var(--text-1);">real-time preview</strong> shaped our Step 4 "Preview Scheme Banner" across Mobile, Desktop &amp; Tablet views.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Challenges -->
+      <div class="aiop-sub">
+        <div class="aiop-eyebrow reveal">User Challenges</div>
+        <div class="aiop-h2 reveal" style="margin-bottom:12px;">Pain Points of the Program Officer</div>
+        <p class="aiop-p reveal" style="margin-bottom:28px;">Through research and heuristic evaluation, we identified 6 critical pain points that the platform must solve — spanning across the pre-publish, live, and post-publish phases of scheme management.</p>
+        <div class="aiop-pain-grid reveal">
+          <div class="aiop-pain">
+            <div class="aiop-pain__phase">Pre-Publish</div>
+            <span class="aiop-pain__rule"></span>
+            <div class="aiop-pain__title">No Pre-Publish Testing</div>
+            <div class="aiop-pain__desc">Can't preview or validate scheme rules before publishing — leading to live errors and poor beneficiary experience.</div>
+          </div>
+          <div class="aiop-pain">
+            <div class="aiop-pain__phase">Live</div>
+            <span class="aiop-pain__rule"></span>
+            <div class="aiop-pain__title">No Live Dashboard</div>
+            <div class="aiop-pain__desc">No centralised dashboard to view scheme efficiency, drop-offs, or rejection reasons in real time.</div>
+          </div>
+          <div class="aiop-pain">
+            <div class="aiop-pain__phase">Post-Publish</div>
+            <span class="aiop-pain__rule"></span>
+            <div class="aiop-pain__title">No Post-Publish Editing</div>
+            <div class="aiop-pain__desc">Difficulty updating or modifying published schemes — even minor changes require republishing from scratch.</div>
+          </div>
+          <div class="aiop-pain">
+            <div class="aiop-pain__phase">Operations</div>
+            <span class="aiop-pain__rule"></span>
+            <div class="aiop-pain__title">Manual Processes</div>
+            <div class="aiop-pain__desc">Document &amp; disbursal verification is often manual, lacking smart filters or automation for scale.</div>
+          </div>
+          <div class="aiop-pain">
+            <div class="aiop-pain__phase">Verification</div>
+            <span class="aiop-pain__rule"></span>
+            <div class="aiop-pain__title">Document Verification Issues</div>
+            <div class="aiop-pain__desc">Applicants submit blurry or expired IDs. Automated systems reject them without flexibility for human review.</div>
+          </div>
+          <div class="aiop-pain">
+            <div class="aiop-pain__phase">Disbursement</div>
+            <span class="aiop-pain__rule"></span>
+            <div class="aiop-pain__title">Payment Failures</div>
+            <div class="aiop-pain__desc">Payments fail due to bank errors or invalid beneficiary details, with no auto-retry mechanism.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heuristic Evaluation -->
+      <div class="aiop-sub">
+        <div class="aiop-eyebrow reveal">Heuristic Evaluation</div>
+        <div class="aiop-h2 reveal" style="margin-bottom:16px;">Current Experience Assessment — Nielsen's 10 Heuristics</div>
+        <div style="display:flex;align-items:center;gap:20px;margin-bottom:28px;flex-wrap:wrap;" class="reveal">
+          <div class="aiop-score-badge">
+            <div class="aiop-score-badge__num">65</div>
+            <div>
+              <div class="aiop-score-badge__label">/ 100 — Marginal Usability</div>
+              <div class="aiop-score-badge__text">Falls short on error prevention, user control<br/>&amp; discoverability — addressable by design.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:20px;font-size:12px;color:#DC2626;font-family:var(--font-mono);">● High Severity — 2 issues</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:20px;font-size:12px;color:#D97706;font-family:var(--font-mono);">● Medium Severity — 4 issues</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:20px;font-size:12px;color:#16A34A;font-family:var(--font-mono);">● Low Severity — 4 issues</div>
+          </div>
+        </div>
+
+        <div class="cmp-wrap reveal">
+          <table class="cmp-table" style="min-width:860px;" aria-label="Nielsen's 10 Heuristics evaluation of existing welfare platforms">
+            <caption class="sr-only">Heuristic evaluation findings — violations observed in existing government welfare platforms and recommendations</caption>
+            <thead>
+              <tr>
+                <th scope="col" style="width:32px;">#</th>
+                <th scope="col" style="min-width:160px;">Heuristic</th>
+                <th scope="col">Observation</th>
+                <th scope="col">Violation Found</th>
+                <th scope="col">Recommendation</th>
+                <th scope="col" style="width:90px;text-align:center;">Severity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">1</td>
+                <td style="font-weight:600;color:var(--text-1);">Visibility of System Status</td>
+                <td>Key metrics (Total Schemes, Published, Drafts) are shown on dashboard.</td>
+                <td style="color:#DC2626;">"Verified Applications" is blank — no fallback text or last-updated timestamp.</td>
+                <td>Show fallback text "Yet to verify" and add "Last updated on…" timestamp.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">2</td>
+                <td style="font-weight:600;color:var(--text-1);">Match: System &amp; Real World</td>
+                <td>Uses familiar terms like "Published", "Draft", "Apply".</td>
+                <td style="color:#D97706;">Terms like "Unpublish" or "Export" could confuse less technical users.</td>
+                <td>Use clearer copy like "Remove from live view" or "Download details".</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">3</td>
+                <td style="font-weight:600;color:var(--text-1);">User Control &amp; Freedom</td>
+                <td>Users can edit or unpublish schemes.</td>
+                <td style="color:#DC2626;font-weight:600;">No confirmation modal before critical actions like unpublishing a live scheme.</td>
+                <td>Add confirmation dialog: "Are you sure you want to unpublish this scheme?"</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#DC2626;background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:12px;">● High</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">4</td>
+                <td style="font-weight:600;color:var(--text-1);">Consistency &amp; Standards</td>
+                <td>UI is consistent; primary buttons and tags follow visual standards.</td>
+                <td style="color:#D97706;">Minor inconsistency — "Edit", "Export", "Unpublish" vs "Create New Scheme" casing.</td>
+                <td>Ensure all UI text follows sentence case or title case per design system.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">5</td>
+                <td style="font-weight:600;color:var(--text-1);">Error Prevention</td>
+                <td>Actions are separated (Apply vs Edit) to reduce errors.</td>
+                <td style="color:#DC2626;font-weight:600;">No safeguard against accidentally clicking "Unpublish" — no undo mechanism.</td>
+                <td>Add undo option or toast notification with 5-second undo window after critical action.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#DC2626;background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:12px;">● High</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">6</td>
+                <td style="font-weight:600;color:var(--text-1);">Recognition Not Recall</td>
+                <td>Users can see all schemes with labels clearly.</td>
+                <td style="color:#D97706;">No filter or search to locate schemes faster across categories or status.</td>
+                <td>Add filters by status, date, category; add a quick search bar above the scheme table.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">7</td>
+                <td style="font-weight:600;color:var(--text-1);">Flexibility &amp; Efficiency</td>
+                <td>List view toggle exists for power users.</td>
+                <td style="color:#D97706;">No batch actions or bulk export for schemes. Power users lose time on repeated actions.</td>
+                <td>Add "Select multiple" checkbox + bulk export / bulk status actions toolbar.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">8</td>
+                <td style="font-weight:600;color:var(--text-1);">Aesthetic &amp; Minimalist Design</td>
+                <td>Visually clean and focused. Clear layout hierarchy.</td>
+                <td style="color:#D97706;">Slight crowding between sections. "List View" toggle text placement is unclear.</td>
+                <td>Improve toggle visibility; increase spacing between dashboard sections and table.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">9</td>
+                <td style="font-weight:600;color:var(--text-1);">Help Recover from Errors</td>
+                <td>Validation messages exist for mandatory form fields.</td>
+                <td style="color:#D97706;">Error messages are generic ("Something went wrong") — no guidance on how to fix.</td>
+                <td>Provide inline error descriptions with corrective action per field ("Enter a valid date range").</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;color:var(--jw-blue);text-align:center;">10</td>
+                <td style="font-weight:600;color:var(--text-1);">Help &amp; Documentation</td>
+                <td>Some tooltips exist on key form fields.</td>
+                <td style="color:#D97706;">No contextual help panel or onboarding walkthrough for first-time Program Officers.</td>
+                <td>Add a "?" help trigger per section with contextual documentation or guided tour for new users.</td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── -->
+  <!-- PHASE 02 — DEFINE -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="aiop-sec">
+    <div class="container">
+      <div class="aiop-phase-hdr reveal">
+        <div class="aiop-phase-hdr__num" aria-hidden="true">02</div>
+        <div class="aiop-phase-hdr__text">
+          <div class="aiop-phase-hdr__tag">Double Diamond · Phase Two</div>
+          <div class="aiop-phase-hdr__title">Define</div>
+          <div class="aiop-phase-hdr__sub">User personas · Journey map · Actionable insights</div>
+        </div>
+      </div>
+
+      <!-- Personas -->
+      <div class="aiop-eyebrow reveal">User Personas</div>
+      <div class="aiop-h2 reveal" style="margin-bottom:8px;">Jio Designs for All Tiers of India</div>
+      <p class="aiop-p reveal" style="max-width:680px;margin-bottom:32px;">Jio's mission is to reach every Indian — from central government ministries to block development officers in remote districts. These 4 personas represent the real spectrum of Program Officers using Jio AIOP across Tier 1, 2, and 3 India.</p>
+
+      <div class="aiop-personas reveal">
+
+        <!-- PERSONA 1 — Central Govt (from PDF) -->
+        <div class="aiop-persona">
+          <div class="aiop-persona__hdr">
+            <div class="aiop-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="aiop-persona__info">
+              <span class="aiop-persona__tier aiop-persona__tier--1">Tier 1 · Central Govt</span>
+              <div class="aiop-persona__name">Rajesh Thakur</div>
+              <div class="aiop-persona__role">Senior Program Officer · Ministry of Education, GoI</div>
+              <div class="aiop-persona__loc">📍 New Delhi · Age 48 · 20+ yrs experience</div>
+            </div>
+          </div>
+          <div class="aiop-persona__body">
+            <div class="aiop-persona__bio">Manages national scholarship schemes touching millions of students across India. Works with cross-departmental teams and relies on MIS staff for execution. Needs robust approval workflows, audit trails, and fraud detection at scale.</div>
+            <div class="aiop-persona__row">
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Pain Points</div>
+                <div class="aiop-persona__block-text">No pre-publish preview · Manual doc verification · Can't edit post-launch · No live fraud alerts</div>
+              </div>
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Goals</div>
+                <div class="aiop-persona__block-text">Launch schemes efficiently · Track budget utilisation · Prevent duplicate or fraudulent applications</div>
+              </div>
+            </div>
+          </div>
+          <div class="aiop-persona__tags">
+            <span class="aiop-persona__tag">High-volume schemes</span>
+            <span class="aiop-persona__tag">Audit trail</span>
+            <span class="aiop-persona__tag">Cross-dept collaboration</span>
+            <span class="aiop-persona__tag">Fraud detection</span>
+          </div>
+        </div>
+
+        <!-- PERSONA 2 — State Govt (NEW) -->
+        <div class="aiop-persona">
+          <div class="aiop-persona__hdr">
+            <div class="aiop-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="aiop-persona__info">
+              <span class="aiop-persona__tier aiop-persona__tier--2">Tier 2 · State Govt</span>
+              <div class="aiop-persona__name">Priya Sharma</div>
+              <div class="aiop-persona__role">District Welfare Officer · Government of Uttar Pradesh</div>
+              <div class="aiop-persona__loc">📍 Lucknow, UP · Age 35 · 8 yrs experience</div>
+            </div>
+          </div>
+          <div class="aiop-persona__body">
+            <div class="aiop-persona__bio">Coordinates 12 rural blocks, managing state-level pension, housing, and agriculture schemes. Comfortable with technology but works with limited bandwidth and must translate central mandates into local delivery. Frequently handles Hindi-language applicants who struggle with English forms.</div>
+            <div class="aiop-persona__row">
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Pain Points</div>
+                <div class="aiop-persona__block-text">Unclear doc requirements per scheme · No bulk review · Poor mobile interface · No regional language support</div>
+              </div>
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Goals</div>
+                <div class="aiop-persona__block-text">Reach rural beneficiaries · Ensure no eligible person is excluded · Meet disbursement targets on time</div>
+              </div>
+            </div>
+          </div>
+          <div class="aiop-persona__tags">
+            <span class="aiop-persona__tag">Hindi support</span>
+            <span class="aiop-persona__tag">Bulk verification</span>
+            <span class="aiop-persona__tag">Rural reach</span>
+            <span class="aiop-persona__tag">State-to-central sync</span>
+          </div>
+        </div>
+
+        <!-- PERSONA 3 — NGO (NEW) -->
+        <div class="aiop-persona">
+          <div class="aiop-persona__hdr">
+            <div class="aiop-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="aiop-persona__info">
+              <span class="aiop-persona__tier aiop-persona__tier--2">Tier 2 · NGO / Foundation</span>
+              <div class="aiop-persona__name">Anita Deshpande</div>
+              <div class="aiop-persona__role">Program Director · Reliance Foundation, Maharashtra</div>
+              <div class="aiop-persona__loc">📍 Nashik, Maharashtra · Age 42 · 14 yrs experience</div>
+            </div>
+          </div>
+          <div class="aiop-persona__body">
+            <div class="aiop-persona__bio">Runs health, sanitation, and women empowerment programs for tribal communities across rural Maharashtra. First-time user of a digital scheme management platform. Wants to auto-match beneficiaries using Jio's verified audience tools but has limited technical bandwidth in her team.</div>
+            <div class="aiop-persona__row">
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Pain Points</div>
+                <div class="aiop-persona__block-text">Can't customise templates for community needs · No multi-language descriptions · Hard to track application funnel</div>
+              </div>
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Goals</div>
+                <div class="aiop-persona__block-text">Publish community welfare schemes fast · Auto-match beneficiaries · Reduce application drop-off rates</div>
+              </div>
+            </div>
+          </div>
+          <div class="aiop-persona__tags">
+            <span class="aiop-persona__tag">Template library</span>
+            <span class="aiop-persona__tag">Regional language</span>
+            <span class="aiop-persona__tag">Non-technical user</span>
+            <span class="aiop-persona__tag">Impact reporting</span>
+          </div>
+        </div>
+
+        <!-- PERSONA 4 — Block Level (NEW) -->
+        <div class="aiop-persona">
+          <div class="aiop-persona__hdr">
+            <div class="aiop-persona__avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 11c0 4-4 7-8 7"/><path d="M21 7c-2 0-4 2-4 4"/></svg></div>
+            <div class="aiop-persona__info">
+              <span class="aiop-persona__tier aiop-persona__tier--3">Tier 3 · Block / Panchayat</span>
+              <div class="aiop-persona__name">Suresh Bairagi</div>
+              <div class="aiop-persona__role">Block Development Officer · Barmer District, Rajasthan</div>
+              <div class="aiop-persona__loc">📍 Barmer, Rajasthan · Age 39 · Jio-first user</div>
+            </div>
+          </div>
+          <div class="aiop-persona__body">
+            <div class="aiop-persona__bio">Manages MGNREGS and PM Awas Yojana allocations for 28 villages. Very limited tech exposure — uses a shared desktop with an MIS operator. Primary personal device is mobile. Needs schemes in Hindi and simple eligibility rules with minimal clicks. Connectivity is patchy.</div>
+            <div class="aiop-persona__row">
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Pain Points</div>
+                <div class="aiop-persona__block-text">Desktop-only platform · No Hindi UI · Paper-based doc verification · Ghost/duplicate applications · Low bandwidth</div>
+              </div>
+              <div class="aiop-persona__block">
+                <div class="aiop-persona__block-label">Goals</div>
+                <div class="aiop-persona__block-text">Ensure benefits reach villages · Prevent duplicates · Submit monthly compliance reports to district HQ</div>
+              </div>
+            </div>
+          </div>
+          <div class="aiop-persona__tags">
+            <span class="aiop-persona__tag">Mobile-first</span>
+            <span class="aiop-persona__tag">Hindi / Devanagari</span>
+            <span class="aiop-persona__tag">Low-bandwidth</span>
+            <span class="aiop-persona__tag">Duplicate prevention</span>
+          </div>
+        </div>
+
+      </div><!-- /personas -->
+
+      <!-- Journey Map -->
+      <div class="aiop-sub">
+        <div class="aiop-eyebrow reveal">User Journey Map / Jobs-to-be-Done</div>
+        <div class="aiop-h2 reveal" style="margin-bottom:12px;">Program Officer's End-to-End Journey</div>
+        <p class="aiop-p reveal" style="margin-bottom:28px;">The JTB maps all 7 stages of the Program Officer's lifecycle — from scheme creation through to post-approval monitoring — capturing actions, KPIs, pain points, possible solutions, and emotions at each stage.</p>
+        <!-- JTB — Fully designed HTML (no screenshot) -->
+        <div class="reveal" style="margin-top:8px;">
+
+          <!-- Stage progress bar -->
+          <div style="display:flex;align-items:center;gap:0;margin-bottom:4px;overflow-x:auto;padding-bottom:4px;">
+            <div style="display:flex;align-items:center;gap:0;min-width:max-content;width:100%;">
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.08);border-radius:4px 0 0 4px;border:1px solid rgba(27,63,216,0.2);">01 · Create</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.04);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">02 · Publish</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">03 · Live</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">04 · Verify</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">05 · Decide</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(139,92,246,0.8);padding:6px 8px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);">06 · Disburse</div>
+              <div style="width:20px;text-align:center;color:var(--text-3);font-size:12px;background:rgba(0,0,0,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#059669;padding:6px 8px;background:rgba(16,185,129,0.06);border-radius:0 4px 4px 0;border:1px solid rgba(16,185,129,0.15);">07 · Monitor</div>
+            </div>
+          </div>
+
+          <!-- Main JTB table -->
+          <div style="overflow-x:auto;border-radius:var(--r-xl);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+            <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:1000px;" aria-label="Jobs-to-be-Done journey map — 7 stages of welfare scheme lifecycle">
+              <caption class="sr-only">Jobs-to-be-Done journey map showing Program Officer actions, KPIs, pain points, solutions and emotions across 7 scheme lifecycle stages</caption>
+              <thead>
+                <tr style="background:#0F1F8A;">
+                  <th scope="col" style="padding:14px 16px;text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);width:90px;border-right:1px solid rgba(255,255,255,0.08);font-weight:500;">Stage</th>
+                  <th scope="col" style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">01</span> Scheme<br/>Creation</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">02</span> Review &amp;<br/>Publish</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">03</span> Live &amp;<br/>Discoverable</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">04</span> Application &amp;<br/>Doc Verification</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">05</span> Application<br/>Decision</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;background:rgba(139,92,246,0.15);"><span style="font-size:10px;opacity:0.5;margin-right:4px;">06</span> Disbursement<br/><span style="opacity:0.55;font-size:9px;">(Another Team)</span></th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);font-weight:700;text-align:left;background:rgba(16,185,129,0.12);"><span style="font-size:10px;opacity:0.5;margin-right:4px;">07</span> Post-Approval<br/>Monitoring</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- ACTIONS -->
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;background:var(--bg-card);">
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(27,63,216,0.1);border:1px solid rgba(27,63,216,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--jw-blue);font-weight:700;white-space:nowrap;">Actions</span>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Define scheme</div><div>→ Select data points &amp; docs</div><div>→ Set eligibility rules</div><div>→ Budget &amp; timeline</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Test eligibility simulation</div><div>→ Review scheme before publishing</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Ensure scheme appears to target users</div><div>→ View discoverability stats</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Verify docs fetched from DigiLocker</div><div>→ Flag users if docs seem faulty</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ View verified applications</div><div>→ Approve or waitlist decisions</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(139,92,246,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Notify disbursement team</div><div>→ Track fund transfer</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(16,185,129,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Monitor disbursement status</div><div>→ Monitor waitlisted applications</div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- KPIs -->
+                <tr style="border-bottom:1px solid var(--border);background:var(--bg-elevated);">
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;">
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#059669;font-weight:700;white-space:nowrap;">KPIs</span>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ No. of schemes initiated</div><div>→ Time to create</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Approval turnaround time</div><div>→ % requiring rework</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Avg. time to go live</div><div>→ Discoverability impressions</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Avg. time to verify docs</div><div>→ % incomplete verifications</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Time to approve/reject</div><div>→ No. of decisions/day</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(139,92,246,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Avg. % delayed disbursement</div><div>→ Failed disbursement rate</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(16,185,129,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div>→ Scheme impact metrics</div><div>→ Applicants received stats</div><div>→ Demographics data</div><div>→ Fraud &amp; flagged cases</div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- PAIN POINTS -->
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;background:var(--bg-card);">
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#DC2626;font-weight:700;white-space:nowrap;">Pain Points</span>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(239,68,68,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ Long form, too many fields</div><div style="color:#DC2626;">✗ No preview option</div><div style="color:#DC2626;">✗ Complex eligibility logic</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(239,68,68,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ Multiple back &amp; forth</div><div style="color:#DC2626;">✗ No clear feedback</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(239,68,68,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ Low discoverability</div><div style="color:#DC2626;">✗ Unclear where schemes are listed</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(239,68,68,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ Repetitive document reviews</div><div style="color:#DC2626;">✗ No auto-validation</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(239,68,68,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ Hard to trace approval reasoning</div><div style="color:#DC2626;">✗ No audit logs</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(139,92,246,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ Delay in sync</div><div style="color:#DC2626;">✗ No status tracking</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(16,185,129,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#DC2626;">✗ No alerts or notifications</div><div style="color:#DC2626;">✗ No fraud detection</div><div style="color:#DC2626;">✗ Hard to improve discoverability</div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- SOLUTIONS -->
+                <tr style="border-bottom:1px solid var(--border);background:var(--bg-elevated);">
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;">
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#0891B2;font-weight:700;white-space:nowrap;">Solutions</span>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(6,182,212,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ Guided scheme wizard</div><div style="color:#0891B2;">✓ Save as draft</div><div style="color:#0891B2;">✓ Use templates</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(6,182,212,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ Inline feedback</div><div style="color:#0891B2;">✓ Live preview before publish</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(6,182,212,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ Auto-boost to right audience</div><div style="color:#0891B2;">✓ Scheme tags for discovery</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(6,182,212,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ OCR verification</div><div style="color:#0891B2;">✓ Auto-flag suspicious docs</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(6,182,212,0.02);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ Audit trail for decisions</div><div style="color:#0891B2;">✓ Recommendation engine</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(139,92,246,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ Real-time status from disbursement team</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(16,185,129,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                      <div style="color:#0891B2;">✓ Analytics &amp; dashboard</div><div style="color:#0891B2;">✓ Closure &amp; feedback insights</div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- EMOTIONS -->
+                <tr>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;background:var(--bg-card);">
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9333EA;font-weight:700;white-space:nowrap;">Emotions</span>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Focused">🎯</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Focused</div>
+                      <div style="font-size:20px;" title="Motivated">💪</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Motivated</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Anxious">😰</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Anxious</div>
+                      <div style="font-size:20px;" title="Hopeful">🤞</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Hopeful</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Proud">😊</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Proud</div>
+                      <div style="font-size:20px;" title="Curious">🤔</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Curious</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Dependent">🫤</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Dependent</div>
+                      <div style="font-size:20px;" title="Impatient">😤</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Impatient</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Satisfied">😌</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Satisfied</div>
+                      <div style="font-size:20px;" title="Responsible">🤝</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Responsible</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;background:rgba(139,92,246,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Concern">😮</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Concern</div>
+                      <div style="font-size:20px;" title="Relief">😮‍💨</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Relief</div>
+                    </div>
+                  </td>
+                  <td style="padding:14px 12px;vertical-align:top;text-align:center;background:rgba(16,185,129,0.03);">
+                    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+                      <div style="font-size:20px;" title="Accomplished">🏆</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Accomplished</div>
+                      <div style="font-size:20px;" title="Reflective">💭</div>
+                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Reflective</div>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.08em;text-align:right;margin-top:10px;">← Scroll horizontally to explore all 7 stages →</div>
+        </div>
+      </div>
+
+      <!-- Actionable Insights -->
+      <div class="aiop-sub">
+        <div class="aiop-eyebrow reveal">Actionable Insights &amp; Recommendations</div>
+        <div class="aiop-h2 reveal" style="margin-bottom:28px;">Bridging Research to Design Decisions</div>
+        <div class="aiop-insight-grid reveal">
+          <div class="aiop-insight">
+            <div class="aiop-insight__num">01</div>
+            <div class="aiop-insight__title">Scheme Origination &amp; Approval Workflow</div>
+            <div class="aiop-insight__before">⚠ Schemes go live instantly upon creation — no validation step, no review checkpoint.</div>
+            <div class="aiop-insight__after">✓ Approval workflow with review checkpoints &amp; version tracking ensures quality control before publishing.</div>
+          </div>
+          <div class="aiop-insight">
+            <div class="aiop-insight__num">02</div>
+            <div class="aiop-insight__title">Guided Smart Scheme Creation</div>
+            <div class="aiop-insight__before">⚠ Complex eligibility logic and no preview option causes officers to make mistakes that only surface post-publish.</div>
+            <div class="aiop-insight__after">✓ Step-by-step guided wizard with validation, pre-defined templates, and live preview — including eligibility simulator.</div>
+          </div>
+          <div class="aiop-insight">
+            <div class="aiop-insight__num">03</div>
+            <div class="aiop-insight__title">Actionable Insights Dashboard</div>
+            <div class="aiop-insight__before">⚠ No centralised view for drop-off points, budget tracking, or verification delays — decision-making is reactive.</div>
+            <div class="aiop-insight__after">✓ Funnels &amp; dashboards highlight user drop-off points and send real-time alerts for budget limits &amp; verification delays.</div>
+          </div>
+          <div class="aiop-insight">
+            <div class="aiop-insight__num">04</div>
+            <div class="aiop-insight__title">Document &amp; Data Mapping Logic</div>
+            <div class="aiop-insight__before">⚠ Program Officers don't know which documents to request per scheme — leading to over- or under-collection.</div>
+            <div class="aiop-insight__after">✓ Guided document-to-datapoint mapping with DigiLocker &amp; Aadhar/eKYC integration streamlines collection &amp; compliance.</div>
+          </div>
+          <div class="aiop-insight">
+            <div class="aiop-insight__num">05</div>
+            <div class="aiop-insight__title">Validate Eligibility Logic Instantly</div>
+            <div class="aiop-insight__before">⚠ No way to test eligibility rules before publishing — complex conditions go unchecked until applicants start failing.</div>
+            <div class="aiop-insight__after">✓ Eligibility simulator lets Program Officers simulate the applicant journey &amp; run test profiles against rules before go-live.</div>
+          </div>
+          <div class="aiop-insight">
+            <div class="aiop-insight__num">06</div>
+            <div class="aiop-insight__title">Multiple Ownership &amp; Accountability</div>
+            <div class="aiop-insight__before">⚠ Multiple personas sharing one account with no accountability — difficult to trace who created or approved what.</div>
+            <div class="aiop-insight__after">✓ Role-based access control (RBAC) with per-action audit logs ensures clear ownership &amp; accountability across team.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── -->
+  <!-- PHASE 03 — DESIGN -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="aiop-sec aiop-sec--alt aiop-sec--gradient">
+    <div class="container">
+      <div class="aiop-phase-hdr reveal">
+        <div class="aiop-phase-hdr__num" aria-hidden="true">03</div>
+        <div class="aiop-phase-hdr__text">
+          <div class="aiop-phase-hdr__tag">Double Diamond · Phase Three</div>
+          <div class="aiop-phase-hdr__title">Design &amp; Develop</div>
+          <div class="aiop-phase-hdr__sub">User flows · Visual design · Screen walkthroughs</div>
+        </div>
+      </div>
+
+      <!-- Design stats strip -->
+      <div class="aiop-impact reveal" style="margin-bottom:48px;">
+        <div class="aiop-impact-cell">
+          <div class="aiop-impact-cell__num" data-count="4">4</div>
+          <div class="aiop-impact-cell__label">Guided Steps<br/>in Scheme Wizard</div>
+        </div>
+        <div class="aiop-impact-cell">
+          <div class="aiop-impact-cell__num" data-count="8">8</div>
+          <div class="aiop-impact-cell__label">Screen States<br/>Designed</div>
+        </div>
+        <div class="aiop-impact-cell">
+          <div class="aiop-impact-cell__num">10+</div>
+          <div class="aiop-impact-cell__label">Heuristic Findings<br/>Resolved in Design</div>
+        </div>
+        <div class="aiop-impact-cell">
+          <div class="aiop-impact-cell__num">3</div>
+          <div class="aiop-impact-cell__label">Device Previews<br/>Mobile · Desktop · Tablet</div>
+        </div>
+      </div>
+
+      <!-- User Flow -->
+      <div class="reveal">
+        <div class="aiop-eyebrow" style="margin-bottom:16px;">Program Officer — User Flow</div>
+        <div class="aiop-flow">
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">01</div><div class="aiop-flow-step__title">Dashboard Overview</div></div>
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">02</div><div class="aiop-flow-step__title">Scheme Creation / Template</div></div>
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">03</div><div class="aiop-flow-step__title">Scheme Details</div></div>
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">04</div><div class="aiop-flow-step__title">Datapoints &amp; Docs</div></div>
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">05</div><div class="aiop-flow-step__title">Eligibility Rules</div></div>
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">06</div><div class="aiop-flow-step__title">Preview &amp; Publish</div></div>
+          <div class="aiop-flow-step"><div class="aiop-flow-step__num">07</div><div class="aiop-flow-step__title">Manage &amp; Monitor</div></div>
+        </div>
+      </div>
+
+      <!-- Screen 1: Empty State -->
+      <div class="screen-card reveal">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num" aria-hidden="true">01</div>
+            <span class="screen-card__step">Screen 01</span>
+          </div>
+          <div class="screen-card__content">
+            <div class="screen-card__title">First Launch — Empty State</div>
+            <p class="screen-card__desc">When a Program Officer logs in for the first time, a clear CTA guides them to create their first scheme. Key metrics (Total Schemes, Published, Drafts, Total Applications, Fraud Cases Flagged, Avg. Drop-off Rate) are surfaced upfront — establishing data-centricity from the start.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Prominent "New Scheme" CTA with illustrative onboarding banner</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Browse Templates" secondary action lowers barrier to entry</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> All KPI cards visible but empty — normalising data-first workflow</div>
+            </div>
+          </div>
+        </div>
+        <div class="browser-wrap">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots" aria-hidden="true">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">aiop.jio.com / dashboard — Empty State</div>
+          </div>
+          <img src="img/jw/screen-empty-state.jpg" alt="Screen 01 — First Launch Empty State" style="width:100%;display:block;"/>
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot screen-card__annot--ux">
+            <div class="screen-card__annot-label">UX Decision</div>
+            <div class="screen-card__annot-text">Empty state uses an illustrative onboarding banner + single prominent CTA so first-time users know exactly what to do — zero decision fatigue on login.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--insight">
+            <div class="screen-card__annot-label">Research Insight</div>
+            <div class="screen-card__annot-text">Interviews revealed officers felt overwhelmed opening complex dashboards with no guidance. A welcoming empty state with a clear next step reduced perceived complexity.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--heuristic">
+            <div class="screen-card__annot-label">Heuristic #1 — Visibility of System Status</div>
+            <div class="screen-card__annot-text">KPI cards surface the full dashboard structure from day one — even when empty — so officers understand what data the system will track as schemes go live.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2: Template Selection -->
+      <div class="screen-card reveal">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num" aria-hidden="true">02</div>
+            <span class="screen-card__step">Screen 02</span>
+          </div>
+          <div class="screen-card__content">
+            <div class="screen-card__title">Pre-Defined Templates</div>
+            <p class="screen-card__desc">A modal presents categorised scheme templates — Education, Health, Women Empowerment, Rural Transformation, Disaster Management, Sports &amp; Development, Art/Culture, and more. Officers pick a template or start blank. Pre-defined templates reduce setup time and encode best practices for each scheme type.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Thumbnail cards with illustrated categories for fast recognition</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Blank Template" option for custom/novel scheme types</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Templates pre-fill relevant datapoints and documents — cutting setup from ~45 min to ~10 min</div>
+            </div>
+            <div class="screen-badges" style="margin-top:14px;">
+              <span class="screen-badge screen-badge--green">✓ Inspired by Google Ads templates</span>
+              <span class="screen-badge">Insight #2 — Reduce Manual Setup</span>
+            </div>
+          </div>
+        </div>
+        <div class="browser-wrap">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots" aria-hidden="true">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">aiop.jio.com / create — Select Template</div>
+          </div>
+          <img src="img/jw/screen-templates.jpg" alt="Screen 02 — Pre-Defined Templates" style="width:100%;display:block;"/>
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot screen-card__annot--ux">
+            <div class="screen-card__annot-label">UX Decision</div>
+            <div class="screen-card__annot-text">Illustrated category thumbnails use visual recognition instead of text scanning — inspired by Google Ads campaign templates. Officers immediately see the scheme type they need.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--insight">
+            <div class="screen-card__annot-label">Research Insight #2</div>
+            <div class="screen-card__annot-text">Officers reported spending 45+ minutes setting up a new scheme from scratch. Pre-defined templates pre-fill category-specific datapoints and documents, cutting setup time to ~10 minutes.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--heuristic">
+            <div class="screen-card__annot-label">Heuristic #4 — Consistency &amp; Standards</div>
+            <div class="screen-card__annot-text">Template patterns match known government scheme conventions — field names, document types, and eligibility categories are consistent with existing GOI frameworks officers already know.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3: Scheme Details -->
+      <div class="screen-card reveal">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num" aria-hidden="true">03</div>
+            <span class="screen-card__step">Screen 03 · Step 1 of 4</span>
+          </div>
+          <div class="screen-card__content">
+            <div class="screen-card__title">Scheme Details</div>
+            <p class="screen-card__desc">A stepper progress indicator at the top shows the 4-step scheme creation flow. Step 1 captures foundation details: scheme name, category, bio/benefits (rich text editor with JioType), language, start/end date, state, and location. "Save as Draft" is always accessible — reducing fear of losing work.</p>
+            <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+              <div style="padding:6px 12px;background:rgba(27,63,216,0.10);border:1px solid rgba(27,63,216,0.25);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);">● Step 1: Scheme Details</div>
+              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--text-3);">○ Step 2: Datapoints &amp; Docs</div>
+              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--text-3);">○ Step 3: Check Eligibility</div>
+              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--text-3);">○ Step 4: Preview Scheme</div>
+            </div>
+          </div>
+        </div>
+        <div class="browser-wrap">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots" aria-hidden="true">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">aiop.jio.com / create / scheme-details — Step 1 of 4</div>
+          </div>
+          <img src="img/jw/screen-step1.jpg" alt="Screen 03 — Scheme Details (Step 1)" style="width:100%;display:block;"/>
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot screen-card__annot--ux">
+            <div class="screen-card__annot-label">UX Decision</div>
+            <div class="screen-card__annot-text">Stepper pills at the top reduce cognitive overload by showing exactly where the officer is in the 4-step flow. "Save as Draft" is always accessible — eliminating fear of data loss mid-setup.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--insight">
+            <div class="screen-card__annot-label">Research Insight</div>
+            <div class="screen-card__annot-text">Officers frequently abandoned long forms midway due to fear of losing progress. Persistent auto-save + visible step count dramatically reduced drop-off in usability testing.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--heuristic">
+            <div class="screen-card__annot-label">Heuristics #1 &amp; #5 — Status + Error Prevention</div>
+            <div class="screen-card__annot-text">System status is always visible via the stepper. Required fields are validated inline before advancing to the next step — preventing errors before they occur.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 4: Datapoints & Documents -->
+      <div class="screen-card reveal">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num" aria-hidden="true">04</div>
+            <span class="screen-card__step">Screen 04 · Step 2 of 4</span>
+          </div>
+          <div class="screen-card__content">
+            <div class="screen-card__title">Datapoints &amp; Documents</div>
+            <p class="screen-card__desc">Officers choose which personal datapoints (Gender, DOB, Income, District, Family Income…) and documents (Aadhar, PAN, Income Certificate, Class X Marksheet…) are required for applicants. A dual-panel interface shows available documents on the left and selected ones on the right — clear, friction-free document mapping.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Category-filtered document library (Personal, Education, Occupation, Economic, Health, Housing)</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> DigiLocker-integrated documents auto-fetch from citizen vault</div>
+            </div>
+            <div class="screen-badges" style="margin-top:14px;">
+              <span class="screen-badge screen-badge--green">✓ DigiLocker Integration</span>
+              <span class="screen-badge screen-badge--amber">⚡ Fixes Heuristic #6 — Recognition</span>
+            </div>
+          </div>
+        </div>
+        <div class="browser-wrap">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots" aria-hidden="true">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">aiop.jio.com / create / datapoints — Step 2 of 4</div>
+          </div>
+          <img src="img/jw/screen-step2.jpg" alt="Screen 04 — Datapoints & Documents (Step 2)" style="width:100%;display:block;"/>
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot screen-card__annot--ux">
+            <div class="screen-card__annot-label">UX Decision</div>
+            <div class="screen-card__annot-text">Dual-panel pick list (available on left, selected on right) eliminates the mental mapping effort of remembering which documents were already added — a common pain in long form setups.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--insight">
+            <div class="screen-card__annot-label">Research Insight</div>
+            <div class="screen-card__annot-text">DigiLocker integration means citizens don't need to upload documents manually — the platform auto-fetches verified documents from their DigiLocker vault, reducing upload friction by ~70%.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--heuristic">
+            <div class="screen-card__annot-label">Heuristic #6 — Recognition over Recall</div>
+            <div class="screen-card__annot-text">Familiar document names (Aadhaar, PAN, Income Certificate) are surfaced from a standard library — officers recognise and select rather than recall or type document identifiers from memory.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 5: Eligibility -->
+      <div class="screen-card reveal">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num" aria-hidden="true">05</div>
+            <span class="screen-card__step">Screen 05 · Step 3 of 4</span>
+          </div>
+          <div class="screen-card__content">
+            <div class="screen-card__title">Check Eligibility — Rule Builder</div>
+            <p class="screen-card__desc">Officers create complex eligibility rules using a visual condition builder (AND/OR logic, nested groups). Before finalising, they run an "Eligibility Simulator" — testing how different user profiles interact with the form, rules, and document logic — ensuring correctness before publishing.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Visual rule builder with AND/OR/nested condition groups</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Run Test" — simulate eligibility against real profiles before going live</div>
+            </div>
+            <div class="screen-badges" style="margin-top:14px;">
+              <span class="screen-badge screen-badge--amber">⚡ Fixes Heuristic #3 — User Control</span>
+              <span class="screen-badge screen-badge--amber">⚡ Fixes Heuristic #5 — Error Prevention</span>
+            </div>
+          </div>
+        </div>
+        <div class="browser-wrap">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots" aria-hidden="true">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">aiop.jio.com / create / eligibility — Step 3 of 4</div>
+          </div>
+          <img src="img/jw/screen-step3.jpg" alt="Screen 05 — Eligibility Rule Builder (Step 3)" style="width:100%;display:block;"/>
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot screen-card__annot--ux">
+            <div class="screen-card__annot-label">UX Decision</div>
+            <div class="screen-card__annot-text">Visual AND/OR rule builder abstracts SQL-level conditional logic into plain-language blocks. Officers without technical backgrounds can configure complex eligibility rules without writing code.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--insight">
+            <div class="screen-card__annot-label">Research Insight</div>
+            <div class="screen-card__annot-text">Competitor tools (EasyGov, UMANG) required IT department involvement to set eligibility rules — a 3–7 day delay. The visual builder empowers Program Officers to do this independently in minutes.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--heuristic">
+            <div class="screen-card__annot-label">Heuristics #3 &amp; #5 — Control + Error Prevention</div>
+            <div class="screen-card__annot-text">The Eligibility Simulator lets officers test rules against real profiles before publishing — catching logical errors before they block eligible citizens from applying. No "undo" needed after go-live.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 6: Preview & Publish -->
+      <div class="screen-card reveal">
+        <div class="screen-card__header">
+          <div class="screen-card__meta">
+            <div class="screen-card__num" aria-hidden="true">06</div>
+            <span class="screen-card__step">Screen 06 · Step 4 of 4</span>
+          </div>
+          <div class="screen-card__content">
+            <div class="screen-card__title">Create &amp; Preview Banner — Publish</div>
+            <p class="screen-card__desc">The final step lets officers design the citizen-facing scheme banner — upload image, set transparency, background/foreground colour — and preview it across Mobile, Desktop, and Tablet breakpoints in real time. A "Publish Scheme" CTA goes live only after all 4 steps are complete.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Real-time multi-device preview (Mobile · Desktop · Tablet)</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Image opacity, background/foreground colour controls</div>
+              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Publish Scheme" CTA is gated — only active after all 4 steps complete</div>
+            </div>
+            <div class="screen-badges" style="margin-top:14px;">
+              <span class="screen-badge screen-badge--green">✓ Inspired by Facebook Ads preview</span>
+              <span class="screen-badge">Insight #5 — Live Preview builds confidence</span>
+            </div>
+          </div>
+        </div>
+        <div class="browser-wrap">
+          <div class="browser-chrome">
+            <div class="browser-chrome__dots" aria-hidden="true">
+              <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+              <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+            </div>
+            <div class="browser-chrome__bar">aiop.jio.com / create / preview-publish — Step 4 of 4</div>
+          </div>
+          <img src="img/jw/screen-step4.jpg" alt="Screen 06 — Preview Banner (Step 4)" style="width:100%;display:block;"/>
+        </div>
+        <div class="screen-card__annots">
+          <div class="screen-card__annot screen-card__annot--ux">
+            <div class="screen-card__annot-label">UX Decision</div>
+            <div class="screen-card__annot-text">Real-time multi-device banner preview — inspired by Facebook Ads — lets officers visualise exactly what citizens will see before publishing. Gated "Publish" CTA prevents premature submission.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--insight">
+            <div class="screen-card__annot-label">Research Insight #5</div>
+            <div class="screen-card__annot-text">Officers needed to see the citizen-facing output before going live. Without live preview, they'd rely on IT to run a staging test — adding 2–5 days to the launch timeline for every scheme.</div>
+          </div>
+          <div class="screen-card__annot screen-card__annot--heuristic">
+            <div class="screen-card__annot-label">Heuristic #6 — Recognition over Recall</div>
+            <div class="screen-card__annot-text">The live preview eliminates the gap between "what I configured" and "what the citizen sees" — officers don't need to mentally simulate the output; they see it instantly across all device breakpoints.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 7: Published Dashboard -->
+      <div class="aiop-sub reveal">
+        <div class="aiop-eyebrow">Screen 07</div>
+        <div class="aiop-h2" style="margin-bottom:12px;">Post-Publishing — Main Dashboard</div>
+        <p class="aiop-p" style="margin-bottom:28px;">Once schemes are live, the main dashboard surfaces all KPIs: Total Schemes (18), Published (12), Drafts (3), Expired/Archived. Below — scheme creation trend by category (donut chart), approval vs rejection rate over time, budget utilisation by scheme, and a choropleth India map showing performance by region. A Recent Schemes table shows all active schemes with live status.</p>
+        <div style="position:relative;">
+          <div class="browser-wrap browser-wrap--glow">
+            <div class="browser-chrome">
+              <div class="browser-chrome__dots">
+                <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+                <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+                <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+              </div>
+              <div class="browser-chrome__bar">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                aiop.jio.com / dashboard — Scheme Analytics Overview
+              </div>
+            </div>
+            <div class="browser-scroll">
+              <img src="img/jw/dashboard-full.jpg" alt="Screen 07 — Post-Publishing Main Dashboard" style="width:100%;display:block;"/>
+            </div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);text-align:center;margin-top:10px;letter-spacing:0.06em;">↕ Scroll inside the frame to explore the full dashboard</div>
+        </div>
+        <div class="aiop-frame-cap" style="margin-top:8px;">Post-Publishing Dashboard — Scheme KPIs · Category breakdown · Regional India map · Budget utilisation · Recent schemes table</div>
+      </div>
+
+      <!-- Screen 8: Scheme Detail -->
+      <div class="aiop-sub reveal">
+        <div class="aiop-eyebrow">Screen 08</div>
+        <div class="aiop-h2" style="margin-bottom:12px;">Scheme Detail — Individual Analytics Page</div>
+        <p class="aiop-p" style="margin-bottom:28px;">Drilling into any scheme shows a dedicated analytics view: Total Applications (18,000), Approved (12,500), In-Progress (3,200), Rejected (2,300). An application funnel tracks drop-offs step by step (Applications Started → Identity → Address → Docs → Review → Submit), a fraud case map by location, budget spend over time, device split, and a complete applicant list with disbursement amounts and statuses.</p>
+        <div style="position:relative;">
+          <div class="browser-wrap browser-wrap--glow">
+            <div class="browser-chrome">
+              <div class="browser-chrome__dots">
+                <div class="browser-chrome__dot browser-chrome__dot--r"></div>
+                <div class="browser-chrome__dot browser-chrome__dot--y"></div>
+                <div class="browser-chrome__dot browser-chrome__dot--g"></div>
+              </div>
+              <div class="browser-chrome__bar">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                aiop.jio.com / schemes / PM-Scholarship-2024 — Scheme Analytics
+              </div>
+            </div>
+            <div class="browser-scroll">
+              <img src="img/jw/scheme-detail.jpg" alt="Screen 08 — Scheme Detail Analytics" style="width:100%;display:block;"/>
+            </div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);text-align:center;margin-top:10px;letter-spacing:0.06em;">↕ Scroll inside the frame to explore scheme-level analytics</div>
+        </div>
+        <div class="aiop-frame-cap" style="margin-top:8px;">Scheme Detail Page — Application funnel · Fraud case geographic heatmap · Budget over time · Device split · Applicant table</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────── -->
+  <!-- WHAT'S NEXT -->
+  <!-- ────────────────────────────────────────────── -->
+  <section class="aiop-sec">
+    <div class="container">
+      <div class="aiop-phase-hdr reveal">
+        <div class="aiop-phase-hdr__num" aria-hidden="true">04</div>
+        <div class="aiop-phase-hdr__text">
+          <div class="aiop-phase-hdr__tag">Double Diamond · Phase Four</div>
+          <div class="aiop-phase-hdr__title">Deliver</div>
+          <div class="aiop-phase-hdr__sub">What's next · Usability testing · Dev handoff</div>
+        </div>
+      </div>
+
+      <div class="reveal" style="padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;">
+        <div>
+          <div class="aiop-eyebrow" style="margin-bottom:16px;">Product Vision</div>
+          <p style="font-family:var(--font-display);font-size:clamp(18px,2.4vw,28px);font-weight:800;color:var(--text-1);letter-spacing:-0.03em;line-height:1.3;max-width:780px;">Any government body or NGO in India can launch, manage &amp; monitor a welfare scheme in under 30 minutes — verified, fraud-proof, and accessible to every citizen via Jio's 500M+ network.</p>
+        </div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;line-height:1.8;text-align:right;white-space:nowrap;">
+          Jio AIOP · 2024<br/>Sagar · Maitri · George
+        </div>
+      </div>
+
+      <div class="aiop-next reveal" style="margin-top:32px;">
+        <div class="aiop-next-card">
+          <span class="aiop-next-card__num">Next Step 01</span>
+          <span class="aiop-next-card__rule"></span>
+          <div class="aiop-next-card__title">Usability Testing Plan</div>
+          <div class="aiop-next-card__items">
+            <div class="aiop-next-card__item">Recruit 8–10 Program Officers across Tier 1, 2 &amp; 3 — matching our 4 personas</div>
+            <div class="aiop-next-card__item">Moderated sessions testing scheme creation wizard (end-to-end)</div>
+            <div class="aiop-next-card__item">Focused tasks on eligibility simulator and document mapping</div>
+            <div class="aiop-next-card__item">Measure: task completion rate, time-on-task, error rate, SUS score</div>
+            <div class="aiop-next-card__item">Specific validation: do Tier 3 users succeed without a moderator?</div>
+          </div>
+        </div>
+        <div class="aiop-next-card">
+          <span class="aiop-next-card__num">Next Step 02</span>
+          <span class="aiop-next-card__rule"></span>
+          <div class="aiop-next-card__title">Development Handoff</div>
+          <div class="aiop-next-card__items">
+            <div class="aiop-next-card__item">Figma component library with all states (empty, loading, error, success)</div>
+            <div class="aiop-next-card__item">Annotated specs for eligibility rule builder — most complex interaction</div>
+            <div class="aiop-next-card__item">API contract for DigiLocker &amp; Aadhar eKYC integration points</div>
+            <div class="aiop-next-card__item">Responsive breakpoint documentation (Desktop · Tablet · Mobile)</div>
+            <div class="aiop-next-card__item">Accessibility checklist — WCAG 2.1 AA compliance for government use</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPLORE MORE WORK -->
+  <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
+      </div>
+      <a href="work.html" class="btn btn--primary">Back to All Work</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

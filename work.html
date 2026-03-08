@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Sagar Kumar</title>
+  <meta name="description" content="Selected work by Sagar Kumar — Senior Product Designer. Case studies in design systems, B2B platforms, consumer apps, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    /* ---- Work page filter tabs ---- */
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+    .filter-btn:hover { color: var(--text-1); border-color: var(--border-strong); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ---- Project grid ---- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .pcard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      transition: border-color 320ms ease, transform 320ms var(--ease-expo), box-shadow 320ms ease;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .pcard::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,92,46,0.05) 0%, transparent 60%);
+      opacity: 0; transition: opacity 300ms ease;
+      pointer-events: none;
+    }
+    .pcard:hover { border-color: var(--border-accent); transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.22); }
+    .pcard:hover::before { opacity: 1; }
+
+    .pcard__thumb {
+      height: 280px;
+      background: var(--bg-elevated);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pcard__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 500ms var(--ease-expo); }
+    .pcard:hover .pcard__thumb img { transform: scale(1.03); }
+    /* Hide img when no src set — gradient placeholder shows instead */
+    .pcard__thumb img[src=""], .pcard__thumb img:not([src]) { display: none; }
+    /* Placeholder label when no image — dashed centre marker */
+    .pcard__thumb:has(img[src=""])::after,
+    .pcard__thumb:not(:has(img[src!=""]))::after {
+      content: '+ Add Screenshot';
+      position: absolute;
+      bottom: 14px; right: 16px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.12);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Coloured placeholder thumbs per project */
+    .pcard__thumb--jio     { background: linear-gradient(135deg,#0e0a18,#1a0a08); }
+    .pcard__thumb--payu    { background: linear-gradient(135deg,#080e1a,#0a1020); }
+    .pcard__thumb--kidr    { background: linear-gradient(135deg,#080f08,#101a10); }
+    .pcard__thumb--b2b     { background: linear-gradient(135deg,#0a0c18,#08100e); }
+
+    .pcard__thumb-label {
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 52px; font-weight: 800;
+      letter-spacing: -0.05em;
+      color: rgba(255,92,46,0.10);
+      user-select: none; pointer-events: none;
+    }
+    .pcard__thumb-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(8,8,15,0.45) 100%);
+      pointer-events: none;
+    }
+    [data-theme="light"] .pcard__thumb-overlay {
+      background: linear-gradient(180deg, transparent 50%, rgba(244,244,248,0.25) 100%);
+    }
+
+    /* Card body — no gap, use margins so content doesn't float */
+    .pcard__body {
+      padding: 22px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pcard__tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .pcard__num {
+      font-family: var(--font-mono);
+      font-size: 11px; color: var(--text-3);
+      letter-spacing: 0.08em; margin-bottom: 5px;
+    }
+    .pcard__title {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.25;
+      color: var(--text-1); margin-bottom: 10px;
+    }
+    .pcard__desc {
+      font-size: 14px; color: var(--text-2);
+      line-height: 1.65; margin-bottom: 0;
+    }
+    .pcard__metric {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12.5px; font-weight: 600; color: var(--accent);
+      padding: 5px 10px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--r-sm);
+      width: fit-content;
+      margin-top: auto; /* push to bottom of flex container */
+      padding-top: 5px;
+      margin-top: 16px;
+    }
+    .pcard__footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 12px; margin-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .pcard__role { font-size: 11px; color: var(--text-3); font-family: var(--font-mono); letter-spacing: 0.06em; }
+    .pcard__cta {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 600;
+      color: var(--text-2); transition: all 200ms ease;
+      white-space: nowrap;
+    }
+    .pcard:hover .pcard__cta { color: var(--accent); gap: 8px; }
+
+    /* ── Hero card — full 3 cols, Jio AI Chat ───────────── */
+    .pcard--hero {
+      grid-column: span 3;
+      flex-direction: row;
+    }
+    .pcard--hero .pcard__thumb {
+      width: 50%; height: auto; min-height: 420px;
+      flex-shrink: 0;
+    }
+    .pcard--hero .pcard__body {
+      padding: 36px 40px;
+      justify-content: center;
+    }
+    .pcard--hero .pcard__title { font-size: 22px; margin-bottom: 14px; }
+    .pcard--hero .pcard__desc  { font-size: 15px; max-width: 480px; }
+    .pcard--hero .pcard__metric { font-size: 14px; padding: 8px 14px; margin-top: 20px; }
+
+    /* ── Featured card — spans 2 cols ───────────────────── */
+    .pcard--featured { grid-column: span 2; }
+    .pcard--featured .pcard__thumb { height: 340px; }
+    .pcard--featured .pcard__title { font-size: 22px; }
+
+    /* ── Accent border on hero & featured ───────────────── */
+    .pcard--hero,
+    .pcard--featured { border-color: var(--border-strong); }
+
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .pcard--hero { grid-column: span 2; flex-direction: column; }
+      .pcard--hero .pcard__thumb { width: 100%; height: 320px; }
+      .pcard--hero .pcard__body { padding: 28px; }
+      .pcard--featured { grid-column: span 2; }
+    }
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .pcard--hero, .pcard--featured { grid-column: span 1; flex-direction: column; }
+      .pcard--hero .pcard__thumb { width: 100%; height: 260px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="work.html">Work</a><a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="section-label reveal">All Work</div>
+      <h1 class="d-xl reveal reveal-delay-1">
+        Work that shipped.<br/>Work that <span class="text-accent">stuck.</span>
+      </h1>
+      <p class="body-lg reveal reveal-delay-2" style="margin-top:20px;max-width:600px;">
+        Enterprise products, design systems, B2B platforms, and consumer apps — each project documented with the full design thinking process.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- FILTER + GRID -->
+  <section class="section--sm" style="padding-top:48px;">
+    <div class="container">
+
+      <!-- Filter bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="b2b">B2B</button>
+        <button class="filter-btn" data-filter="b2c">B2C</button>
+        <button class="filter-btn" data-filter="design-system">Design System</button>
+        <button class="filter-btn" data-filter="fintech">FinTech</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <!-- Social filter hidden while Mentorship card is hidden -->
+        <button class="filter-btn" data-filter="social" style="display:none;">Social</button>
+      </div>
+
+      <!-- Project grid -->
+      <div class="projects-grid" id="projectsGrid">
+
+        <!-- ━━━ JIO PROJECTS ━━━ -->
+
+        <!-- ROW 1 — Jio AI Chat Pattern (hero, full-width) -->
+        <a href="project-jio-chat-pattern.html" class="pcard pcard--hero reveal" data-tags="b2b b2c mobile">
+          <div class="pcard__thumb pcard__thumb--jio">
+            <div class="pcard__thumb-label">JIO</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/jio_hero_banner.jpg" alt="Jio AI Chat Pattern" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">AI</span><span class="tag">B2C</span><span class="tag">Mobile</span></div>
+            <div class="pcard__num">01 · Lead Product Designer · Jio Platforms</div>
+            <div class="pcard__title">Jio AI Chat Pattern</div>
+            <p class="pcard__desc">AI-powered conversational platform deployed across all Jio/RIL verticals — featuring no-code bot building, smart escalation, and multi-channel support. Raised CSAT from 2.6 to 4.2 and cut support calls by 55–60% across 400M+ users.</p>
+            <div class="pcard__metric">⚡ CSAT 2.6 → 4.2 · 55–60% call reduction</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">JIO PLATFORMS · AI</span>
+              <span class="pcard__cta">View Case Study →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 3 — Jio AIOP (full-width) -->
+        <a href="project-jio-welfare.html" class="pcard reveal" data-tags="b2b b2c" style="grid-column: span 3;">
+          <div class="pcard__thumb pcard__thumb--b2b">
+            <div class="pcard__thumb-label">JIO</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/jio_aiop.jpg" alt="Jio AIOP Platform" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">B2G</span><span class="tag">SaaS</span><span class="tag">No-Code</span><span class="tag">GovTech</span></div>
+            <div class="pcard__num">02 · UX Designer · Jio / Reliance Foundation</div>
+            <div class="pcard__title">Jio AIOP — AI Operations Platform</div>
+            <p class="pcard__desc">No-Code SaaS for governments &amp; NGOs to launch, manage, and monitor welfare schemes — with DigiLocker integration, AI document verification &amp; verified audience building.</p>
+            <div class="pcard__metric">🏛️ Double Diamond · Scheme Management SaaS</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">JIO PLATFORMS · ENTERPRISE</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ━━━ PAYU PROJECTS ━━━ -->
+
+        <!-- ROW 3 — PayU Partners (featured, 2 cols) + PayU Design System (1 col) -->
+        <a href="project-payu.html" class="pcard pcard--featured reveal" data-tags="b2b fintech">
+          <div class="pcard__thumb pcard__thumb--payu">
+            <div class="pcard__thumb-label">PAY</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/payu-partners-hero.jpg" alt="PayU Partners Platform" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">B2B</span><span class="tag">FinTech</span><span class="tag">Web Platform</span></div>
+            <div class="pcard__num">03 · Senior Product Designer · PayU</div>
+            <div class="pcard__title">PayU Partners Platform</div>
+            <p class="pcard__desc">Transformed a 14-step manual onboarding into a self-serve digital portal — streamlining KYC, bank linking, and go-live into a guided 3-step flow that increased merchant retention by 25%.</p>
+            <div class="pcard__metric">↑ 25% merchant retention</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">PAYU · FINTECH</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="project-payu-ds.html" class="pcard reveal reveal-delay-1" data-tags="design-system fintech b2b b2c">
+          <div class="pcard__thumb" style="background:linear-gradient(135deg,#1a0c00,#120800);">
+            <div class="pcard__thumb-label" style="color:rgba(255,130,0,0.12);">PDS</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/payuds_banner.jpg" alt="PayU Design System" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">Design System</span><span class="tag">FinTech</span></div>
+            <div class="pcard__num">04 · Senior Product Designer · PayU</div>
+            <div class="pcard__title">PayU Design System</div>
+            <p class="pcard__desc">Built a scalable token-based design system for PayU's dashboard and mobile products — 30+ components, 40+ resources, 600+ assets.</p>
+            <div class="pcard__metric">30+ Components · 600+ Assets</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">PAYU · DESIGN SYSTEM</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 4 — PayU Super App (featured, 2 cols) + Morgan Stanley (1 col) -->
+        <a href="project-payu-super.html" class="pcard pcard--featured reveal" data-tags="b2c fintech mobile">
+          <div class="pcard__thumb" style="background:linear-gradient(135deg,#071a0e,#0a1410);">
+            <div class="pcard__thumb-label" style="color:rgba(52,210,120,0.12);">PAY</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/supperapp_banner.jpg" alt="PayU Super App" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">B2C</span><span class="tag">FinTech</span><span class="tag">Mobile</span></div>
+            <div class="pcard__num">05 · Senior Product Designer · PayU</div>
+            <div class="pcard__title">PayU Super App</div>
+            <p class="pcard__desc">Redesigned PayU's core consumer app — streamlining payment flows, account management, and discovery into a unified super-app experience.</p>
+            <div class="pcard__metric">↑ Reduced user friction across core payment flows</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">PAYU · CONSUMER</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ━━━ OTHER PROJECTS ━━━ -->
+
+        <!-- ROW 4 continued — Morgan Stanley KIDR (1 col, pairs with PayU Super above) -->
+        <a href="project-kidr.html" class="pcard reveal reveal-delay-1" data-tags="b2b fintech">
+          <div class="pcard__thumb pcard__thumb--kidr">
+            <div class="pcard__thumb-label">DOC</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/kiid_banner.jpg" alt="Morgan Stanley KIID Repository" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">SaaS</span><span class="tag">B2B</span><span class="tag">FinTech</span></div>
+            <div class="pcard__num">06 · Lead Designer · Infosys Digital</div>
+            <div class="pcard__title">Morgan Stanley KIID Repository</div>
+            <p class="pcard__desc">Centralised, searchable document hub for fund managers replacing scattered drives and email chains.</p>
+            <div class="pcard__metric">↓ 60% document retrieval time</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">FINTECH SAAS · B2B</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ROW 5 — CN Express Pass (featured, 2 cols) — restore to 1 col when Mentorship is visible -->
+        <a href="project-cn-express.html" class="pcard pcard--featured reveal" data-tags="b2c mobile">
+          <div class="pcard__thumb" style="background:linear-gradient(135deg,#030d1a,#050e20);">
+            <div class="pcard__thumb-label" style="color:rgba(60,140,255,0.12);">CN</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="img/Cn_banner.jpg" alt="CN Express Pass — Driver App" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">B2C</span><span class="tag">Mobile</span><span class="tag">Driver App</span></div>
+            <div class="pcard__num">07 · Product Designer · Infosys Digital</div>
+            <div class="pcard__title">CN Express Pass — Driver App</div>
+            <p class="pcard__desc">Intermodal driver app replacing paper passes with digital QR-based access — designed using Double Diamond with Six Thinking Hats for multi-stakeholder alignment.</p>
+            <div class="pcard__metric">📱 Paperless QR pass system · Full DT process</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">CN RAIL · MOBILE</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Mentorship App — HIDDEN, remove display:none + revert CN Express to pcard (1 col) to restore -->
+        <a href="project-mentorship.html" class="pcard reveal reveal-delay-1" data-tags="b2c mobile social" style="display:none;">
+          <div class="pcard__thumb" style="background:linear-gradient(135deg,#180a00,#100600);">
+            <div class="pcard__thumb-label" style="color:rgba(255,160,40,0.12);font-size:72px;">MNT</div>
+            <div class="pcard__thumb-overlay"></div>
+            <img src="" alt="Project screenshot" loading="lazy">
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__tags"><span class="tag">B2C</span><span class="tag">Mobile</span><span class="tag">Social</span></div>
+            <div class="pcard__num">08 · Product Designer · End-to-end</div>
+            <div class="pcard__title">Mentorship Booking App</div>
+            <p class="pcard__desc">"Delivering Knowledge & Support Today and Everyday." — A platform connecting mentors and mentees with structured guidance, a community design system, and measurable growth tracking. Built with end-to-end research including user flows, a full design system, and usability testing.</p>
+            <div class="pcard__metric">87% want mentors · 218% ROI on mentorship · Full DT process</div>
+            <div class="pcard__footer">
+              <span class="pcard__role">CONSUMER · MOBILE APP</span>
+              <span class="pcard__cta">View Project →</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- More projects note -->
+      <div style="margin-top:48px;text-align:center;" class="reveal">
+        <p class="body-sm" style="color:var(--text-3);margin-bottom:16px;">Additional projects available on request — some are under NDA.</p>
+        <a href="contact.html" class="btn btn--ghost btn--sm">Request Full Portfolio →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2024 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a><a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.pcard');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          const show = f === 'all' || tags.includes(f);
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
