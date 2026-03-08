@@ -1255,6 +1255,11 @@ body::before {
   :root { --pad: 20px; }
   .section { padding: 60px 0; }
   .section--sm { padding: 48px 0; }
+  /* Hero: no full-viewport-height on mobile, reduce padding */
+  .hero { min-height: auto; padding-top: var(--nav-h); align-items: flex-start; }
+  .hero__inner { padding: 40px 0 48px; }
+  /* Page heroes: consistent top spacing across all pages */
+  .page-hero { padding: calc(var(--nav-h) + 40px) 0 40px; }
   .nav__links, .nav__cta { display: none; }
   .nav__toggle { display: flex; }
   .impact-strip__inner { grid-template-columns: repeat(2, 1fr); }
@@ -1267,6 +1272,10 @@ body::before {
   .about-edu-cert-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
   /* Work page: force all cards to single column */
   .pcard--fullwidth { grid-column: span 1 !important; }
+  /* Homepage project card: move image to top on mobile */
+  .project-card { grid-template-columns: 1fr; }
+  .project-card .project-card__img { order: -1; height: 220px; }
+  .work-grid .project-card:first-child { grid-column: span 1; }
 }
 @media (max-width: 480px) {
   .impact-strip__inner { grid-template-columns: 1fr 1fr; }
