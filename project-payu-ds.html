@@ -698,7 +698,7 @@
 
     @media (max-width: 768px) {
       .pds-2col { grid-template-columns: 1fr; }
-      .pds-hero-stats { grid-template-columns: 1fr; }
+      .pds-hero-stats { grid-template-columns: 1fr 1fr; }
       .pds-problems { grid-template-columns: 1fr; }
       .pds-scope-grid { grid-template-columns: 1fr 1fr; }
       .pds-research-grid { grid-template-columns: 1fr; }
@@ -710,6 +710,12 @@
       .pds-meta { flex-direction: column; }
       .pds-meta__item { border-right: none; border-bottom: 1px solid var(--border); }
       .pds-meta__item:last-child { border-bottom: none; }
+    }
+    @media (max-width: 640px) {
+      .pds-hero-stats { grid-template-columns: 1fr; }
+      .pds-scope-grid { grid-template-columns: 1fr; }
+      .pds-colors { grid-template-columns: repeat(2, 1fr); }
+      .pds-outcomes { grid-template-columns: 1fr; }
     }
       /* Icon animation */
     @keyframes iconPop {

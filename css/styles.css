@@ -1365,6 +1365,33 @@ body::before {
 }
 
 /* ============================================================
+   GLOBAL MOBILE GRID OVERRIDE
+   Forces all inline two+ column grids to single column
+   on small screens (project detail pages, etc.)
+   ============================================================ */
+@media (max-width: 640px) {
+  /* 2–3 col inline grids → single column */
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.4fr"],
+  [style*="grid-template-columns:1fr 1.4fr"],
+  [style*="grid-template-columns: repeat(2, 1fr)"],
+  [style*="grid-template-columns:repeat(2, 1fr)"],
+  [style*="grid-template-columns: repeat(3, 1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* 4+ col grids → 2 col (keeps swatches/icons readable) */
+  [style*="grid-template-columns: repeat(4, 1fr)"],
+  [style*="grid-template-columns:repeat(4, 1fr)"],
+  [style*="grid-template-columns: 1fr 1fr 1fr 1fr"],
+  [style*="grid-template-columns: repeat(5, 1fr)"],
+  [style*="grid-template-columns: repeat(6, 1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ============================================================
    CURRENTLY SECTION  (homepage)
    ============================================================ */
 .currently-section {
