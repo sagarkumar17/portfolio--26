@@ -353,9 +353,13 @@
     <div class="container">
       <div class="proj-visuals__label">Final Designs</div>
 
-      <!-- ── Main banner ── -->
-      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;width:100%;">
-        <img src="img/supperapp_banner.jpg" alt="PayU Super App Redesign" loading="lazy" style="width:100%;height:auto;display:block;">
+      <div class="proj-visuals__banner" style="background:linear-gradient(135deg,#071a0e,#0d2d14);">
+        <div class="proj-visuals__glow" style="--proj-glow-color:rgba(52,210,120,0.15);"></div>
+        <div class="proj-visuals__placeholder">
+          <span class="proj-visuals__mark" style="color:rgba(52,210,120,0.9);">PayU</span>
+          <span class="proj-visuals__hint" style="color:rgba(52,210,120,0.5);">Add project visuals here</span>
+        </div>
+        <img src="" alt="PayU Super App — final design" loading="lazy">
       </div>
 
     </div>
@@ -1339,53 +1343,260 @@
       <h2 class="psu-h2 reveal">The redesigned PayU merchant experience</h2>
       <p class="psu-lead reveal">Every screen was designed with the three personas in mind — ensuring first-time users could onboard with confidence, power users could transact in seconds, and all merchants could discover and use the full PayU product suite.</p>
 
-      <!-- Login + Onboarding visual designs -->
+      <!-- Login + Onboarding row -->
       <div style="margin-bottom:12px;" class="psu-sub reveal">Login · Onboarding Experience</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;" class="reveal">
-        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
-          <img src="img/login_supperapp.jpg" alt="PayU Super App — Login Screen" loading="lazy" style="width:100%;height:auto;display:block;">
-          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Login Screen</div>
+      <div class="psu-phone-row psu-phone-row--2 reveal">
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div style="flex:1;background:linear-gradient(160deg,#071a0e,#0d2d14);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px;">
+                <div style="width:44px;height:44px;border-radius:11px;background:#34D278;display:flex;align-items:center;justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+                <div style="font-size:13px;font-weight:800;color:#fff;">Welcome to PayU</div>
+                <div style="font-size:7px;color:rgba(255,255,255,0.45);text-align:center;margin-bottom:6px;">Your complete merchant payment suite</div>
+                <div style="width:100%;display:flex;flex-direction:column;gap:5px;">
+                  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:7px 10px;font-size:8px;color:rgba(255,255,255,0.35);">Mobile Number</div>
+                  <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:7px 10px;font-size:8px;color:rgba(255,255,255,0.35);">Password</div>
+                  <div style="background:#34D278;border-radius:7px;padding:8px;text-align:center;font-size:9px;font-weight:800;color:#000;margin-top:3px;">Log In</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Login Screen</div>
         </div>
-        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
-          <img src="img/onboarding_superapp.jpg" alt="PayU Super App — Onboarding Flow" loading="lazy" style="width:100%;height:auto;display:block;">
-          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Onboarding Flow</div>
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div style="flex:1;background:#f8f8f8;display:flex;flex-direction:column;padding:12px;gap:7px;">
+                <div style="font-size:11px;font-weight:800;color:#111;">Set up your account</div>
+                <div style="font-size:7px;color:#888;margin-bottom:2px;">Personalise your merchant experience</div>
+                <div style="background:#fff;border-radius:8px;padding:8px;border:1px solid #eee;">
+                  <div style="font-size:7px;color:#999;margin-bottom:5px;">Select your primary use case</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+                    <div style="border:1.5px solid #34D278;border-radius:6px;padding:6px;text-align:center;font-size:6px;font-weight:700;color:#34D278;background:rgba(52,210,120,0.06);">Collect Payments</div>
+                    <div style="border:1px solid #e5e5e5;border-radius:6px;padding:6px;text-align:center;font-size:6px;color:#888;">Invoicing</div>
+                    <div style="border:1px solid #e5e5e5;border-radius:6px;padding:6px;text-align:center;font-size:6px;color:#888;">Reporting</div>
+                    <div style="border:1px solid #e5e5e5;border-radius:6px;padding:6px;text-align:center;font-size:6px;color:#888;">All of these</div>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:8px;padding:8px;border:1px solid #eee;">
+                  <div style="font-size:7px;color:#999;margin-bottom:4px;">Business type</div>
+                  <div style="display:flex;gap:3px;flex-wrap:wrap;">
+                    <div style="border:1.5px solid #34D278;border-radius:20px;padding:3px 8px;font-size:6px;font-weight:700;color:#34D278;">SMB</div>
+                    <div style="border:1px solid #e5e5e5;border-radius:20px;padding:3px 8px;font-size:6px;color:#888;">Enterprise</div>
+                    <div style="border:1px solid #e5e5e5;border-radius:20px;padding:3px 8px;font-size:6px;color:#888;">Freelancer</div>
+                  </div>
+                </div>
+                <div style="margin-top:auto;background:#34D278;border-radius:7px;padding:7px;text-align:center;font-size:8px;font-weight:800;color:#000;">Continue →</div>
+                <div style="display:flex;justify-content:center;gap:4px;">
+                  <div style="width:18px;height:3px;border-radius:2px;background:#34D278;"></div><div style="width:6px;height:3px;border-radius:2px;background:#e0e0e0;"></div><div style="width:6px;height:3px;border-radius:2px;background:#e0e0e0;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Onboarding Flow</div>
         </div>
       </div>
 
       <div class="psu-sub reveal" style="margin-top:40px;">The All-New Homescreen</div>
       <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:640px;margin-bottom:24px;" class="reveal">Welcome to the redesigned PayU Mobile App, where simplicity meets power. The new Home Screen provides a seamless and intuitive experience — empowering merchants to manage payments effortlessly with the full product suite one tap away.</p>
-
-      <!-- Homescreen full-width visual -->
-      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;width:100%;margin-top:8px;" class="reveal">
-        <img src="img/supperapp_homescreen.jpg" alt="PayU Super App — All-New Homescreen" loading="lazy" style="width:100%;height:auto;display:block;">
-        <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">All-New Homescreen</div>
+      <div class="psu-phone-row psu-phone-row--2 reveal">
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">Good morning, Ashutosh 👋</div><div class="psu-phone__hdr-title">₹1,24,520</div><div class="psu-phone__hdr-sub">Available balance · ↑ 18% this week</div></div>
+              <div class="psu-phone__body">
+                <div class="psu-phone__section-label">Quick Actions</div>
+                <div class="psu-phone__chips">
+                  <div class="psu-phone__chip"><div class="psu-phone__chip-dot"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="psu-phone__chip-txt">Pay Link</div></div>
+                  <div class="psu-phone__chip"><div class="psu-phone__chip-dot"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><div class="psu-phone__chip-txt">QR Code</div></div>
+                  <div class="psu-phone__chip"><div class="psu-phone__chip-dot"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="psu-phone__chip-txt">Invoice</div></div>
+                  <div class="psu-phone__chip"><div class="psu-phone__chip-dot"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="psu-phone__chip-txt">Reports</div></div>
+                </div>
+                <div class="psu-phone__section-label">Recent Transactions</div>
+                <div class="psu-phone__list">
+                  <div class="psu-phone__list-row"><div class="psu-phone__list-dot"></div><div class="psu-phone__list-info"><div class="psu-phone__list-name">Rahul Sharma</div><div class="psu-phone__list-sub">Payment Link · 2m</div></div><div class="psu-phone__list-amt">+₹4,500</div></div>
+                  <div class="psu-phone__list-row"><div class="psu-phone__list-dot"></div><div class="psu-phone__list-info"><div class="psu-phone__list-name">Priya Kapoor</div><div class="psu-phone__list-sub">Invoice · 1h</div></div><div class="psu-phone__list-amt">+₹12,000</div></div>
+                  <div class="psu-phone__list-row"><div class="psu-phone__list-dot"></div><div class="psu-phone__list-info"><div class="psu-phone__list-name">Deepak Misra</div><div class="psu-phone__list-sub">QR Code · 3h</div></div><div class="psu-phone__list-amt">+₹850</div></div>
+                </div>
+              </div>
+              <div class="psu-phone__nav">
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#34D278;"></div><div class="psu-phone__nav-txt" style="color:#34D278;">Home</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Pay</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Reports</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">More</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Home · Quick Actions</div>
+        </div>
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">Explore products</div><div class="psu-phone__hdr-title">Product Suite</div></div>
+              <div class="psu-phone__body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+                  <div style="background:#fff;border-radius:8px;padding:8px;border:1.5px solid rgba(52,210,120,0.3);"><div style="width:18px;height:18px;border-radius:50%;background:#34D278;margin-bottom:4px;"></div><div style="font-size:7px;font-weight:700;color:#111;">Priority Settlement</div><div style="font-size:6px;color:#888;margin-top:1px;">Get funds in 2 hrs</div><div style="font-size:6px;color:#34D278;font-weight:700;margin-top:3px;">Active ✓</div></div>
+                  <div style="background:#fff;border-radius:8px;padding:8px;"><div style="width:18px;height:18px;border-radius:50%;background:#3B82F6;margin-bottom:4px;"></div><div style="font-size:7px;font-weight:700;color:#111;">Business Loan</div><div style="font-size:6px;color:#888;margin-top:1px;">Up to ₹50L</div><div style="font-size:6px;color:#3B82F6;font-weight:700;margin-top:3px;">Explore →</div></div>
+                  <div style="background:#fff;border-radius:8px;padding:8px;"><div style="width:18px;height:18px;border-radius:50%;background:#F59E0B;margin-bottom:4px;"></div><div style="font-size:7px;font-weight:700;color:#111;">uP Card</div><div style="font-size:6px;color:#888;margin-top:1px;">Merchant credit card</div><div style="font-size:6px;color:#F59E0B;font-weight:700;margin-top:3px;">Learn more →</div></div>
+                  <div style="background:#fff;border-radius:8px;padding:8px;"><div style="width:18px;height:18px;border-radius:50%;background:#8B5CF6;margin-bottom:4px;"></div><div style="font-size:7px;font-weight:700;color:#111;">Offers Engine</div><div style="font-size:6px;color:#888;margin-top:1px;">Discounts for customers</div><div style="font-size:6px;color:#8B5CF6;font-weight:700;margin-top:3px;">Set up →</div></div>
+                </div>
+              </div>
+              <div class="psu-phone__nav">
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Home</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Pay</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Reports</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#34D278;"></div><div class="psu-phone__nav-txt" style="color:#34D278;">More</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Product Suite · Cross-Sell</div>
+        </div>
       </div>
 
       <div class="psu-sub reveal" style="margin-top:40px;">Payments · Invoice · QR Code</div>
       <p style="font-size:15px;color:var(--text-2);line-height:1.7;max-width:640px;margin-bottom:24px;" class="reveal">Experience the future of seamless transactions with QR Code Payments — the fastest, safest way to pay and receive. Payment invoicing was redesigned with item-level inventory management, directly addressing Sajid's top pain point.</p>
-
-      <!-- Payments · Invoice · QR visual designs -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;" class="reveal">
-        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
-          <img src="img/QR_superapp.jpg" alt="PayU Super App — QR Code Payments" loading="lazy" style="width:100%;height:auto;display:block;">
-          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">QR Code Payments</div>
+      <div class="psu-phone-row reveal">
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">Send a payment request</div><div class="psu-phone__hdr-title">Payment Link</div></div>
+              <div class="psu-phone__body">
+                <div class="psu-phone__section-label">Amount</div>
+                <div style="background:#fff;border-radius:8px;padding:8px 10px;border:1.5px solid #34D278;"><div style="font-size:16px;font-weight:800;color:#111;">₹ 4,500</div></div>
+                <div class="psu-phone__section-label">Description</div>
+                <div class="psu-phone__inp">Consulting Fee - March</div>
+                <div class="psu-phone__section-label">Expiry</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+                  <div style="background:#34D278;border-radius:6px;padding:5px;text-align:center;font-size:7px;font-weight:700;color:#000;">24 hours</div>
+                  <div style="background:#fff;border-radius:6px;padding:5px;text-align:center;font-size:7px;color:#888;border:1px solid #eee;">7 days</div>
+                </div>
+                <div class="psu-phone__btn" style="margin-top:auto;">Generate Link →</div>
+              </div>
+              <div class="psu-phone__nav">
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Home</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#34D278;"></div><div class="psu-phone__nav-txt" style="color:#34D278;">Pay</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Reports</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">More</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Payment Link (redesigned)</div>
         </div>
-        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
-          <img src="img/links_superapp.jpg" alt="PayU Super App — Payment Links" loading="lazy" style="width:100%;height:auto;display:block;">
-          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Payment Links</div>
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">New</div><div class="psu-phone__hdr-title">QR Payments</div></div>
+              <div class="psu-phone__body" style="align-items:center;">
+                <div style="background:#fff;border-radius:10px;padding:10px;width:100%;text-align:center;">
+                  <div class="psu-phone__qr"><div class="psu-phone__qr-inner"></div></div>
+                  <div style="font-size:7px;font-weight:700;color:#111;margin-top:6px;">Scan to Pay</div>
+                  <div style="font-size:6px;color:#888;">Sajid's Shop · @sajid.payu</div>
+                </div>
+                <div style="background:#fff;border-radius:8px;padding:8px 10px;width:100%;">
+                  <div style="font-size:7px;color:#999;margin-bottom:4px;">Amount collected today</div>
+                  <div style="font-size:14px;font-weight:800;color:#111;">₹18,450</div>
+                  <div style="font-size:6px;color:#34D278;margin-top:1px;">↑ 23% vs yesterday</div>
+                </div>
+                <div class="psu-phone__btn" style="width:100%;">Share QR Code</div>
+              </div>
+              <div class="psu-phone__nav">
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Home</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#34D278;"></div><div class="psu-phone__nav-txt" style="color:#34D278;">Pay</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Reports</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">More</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">QR Code Payments (new)</div>
         </div>
-        <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;">
-          <img src="img/Invoice_superapp.jpg" alt="PayU Super App — Invoice" loading="lazy" style="width:100%;height:auto;display:block;">
-          <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Invoice · Inventory</div>
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">Create invoice</div><div class="psu-phone__hdr-title">Invoice</div></div>
+              <div class="psu-phone__body">
+                <div class="psu-phone__section-label">Customer</div>
+                <div class="psu-phone__inp">Search customer name...</div>
+                <div class="psu-phone__section-label">Items</div>
+                <div style="background:#fff;border-radius:8px;padding:7px 9px;border:1px solid #eee;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div style="font-size:7px;font-weight:700;color:#111;">iPhone 14 Screen</div><div style="font-size:7px;font-weight:700;color:#111;">₹4,200</div></div>
+                  <div style="font-size:6px;color:#999;">Qty: 1 · SKU: APL-SCR-14</div>
+                </div>
+                <div style="border:1px dashed #ccc;border-radius:8px;padding:7px;text-align:center;font-size:7px;color:#34D278;font-weight:600;">+ Add Item from Inventory</div>
+                <div style="background:#fff;border-radius:8px;padding:7px 9px;border:1px solid #eee;margin-top:2px;">
+                  <div style="display:flex;justify-content:space-between;"><div style="font-size:7px;color:#888;">Subtotal</div><div style="font-size:7px;color:#111;font-weight:600;">₹4,200</div></div>
+                  <div style="display:flex;justify-content:space-between;margin-top:2px;"><div style="font-size:7px;color:#888;">GST 18%</div><div style="font-size:7px;color:#111;font-weight:600;">₹756</div></div>
+                  <div style="border-top:1px solid #eee;margin:4px 0;"></div>
+                  <div style="display:flex;justify-content:space-between;"><div style="font-size:8px;font-weight:800;color:#111;">Total</div><div style="font-size:8px;font-weight:800;color:#34D278;">₹4,956</div></div>
+                </div>
+                <div class="psu-phone__btn">Send Invoice →</div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Invoice + Inventory (redesigned)</div>
         </div>
       </div>
 
       <div style="margin-top:32px;" class="psu-sub reveal">Settings · Support</div>
-
-      <!-- Settings · Support visual design -->
-      <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border-strong);background:#071a0e;width:100%;margin-top:16px;" class="reveal">
-        <img src="img/settings_support_superapp.jpg" alt="PayU Super App — Settings & Support" loading="lazy" style="width:100%;height:auto;display:block;">
-        <div style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);border-top:1px solid var(--border-strong);text-align:center;">Settings · Native Support</div>
+      <div class="psu-phone-row psu-phone-row--2 reveal" style="margin-top:16px;">
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">Your account</div><div class="psu-phone__hdr-title">Settings</div></div>
+              <div class="psu-phone__body">
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">Business Profile</div><div class="psu-phone__settings-sub">Akash Investments · Verified</div></div><div style="font-size:9px;color:#34D278;">✓</div></div>
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">KYC Documents</div><div class="psu-phone__settings-sub">All documents approved</div></div><span class="psu-phone__badge" style="background:rgba(52,210,120,0.1);color:#34D278;">Done</span></div>
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">Bank Account</div><div class="psu-phone__settings-sub">HDFC ···· 4821</div></div><div style="font-size:9px;color:#aaa;">›</div></div>
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">Notification Settings</div><div class="psu-phone__settings-sub">Payment alerts enabled</div></div><div style="width:22px;height:12px;border-radius:6px;background:#34D278;"></div></div>
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">Security</div><div class="psu-phone__settings-sub">Biometric auth active</div></div><div style="font-size:9px;color:#aaa;">›</div></div>
+              </div>
+              <div class="psu-phone__nav">
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Home</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Pay</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#ccc;"></div><div class="psu-phone__nav-txt">Reports</div></div>
+                <div class="psu-phone__nav-item"><div class="psu-phone__nav-bar" style="background:#34D278;"></div><div class="psu-phone__nav-txt" style="color:#34D278;">More</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Settings</div>
+        </div>
+        <div class="psu-phone">
+          <div class="psu-phone__frame">
+            <div class="psu-phone__notch"></div>
+            <div class="psu-phone__screen">
+              <div class="psu-phone__sb"><span class="psu-phone__sb-time">9:41</span><div class="psu-phone__sb-icons"><div class="psu-phone__sb-icon"></div><div class="psu-phone__sb-icon"></div></div></div>
+              <div class="psu-phone__hdr"><div class="psu-phone__hdr-eyebrow">We're here to help</div><div class="psu-phone__hdr-title">Support</div></div>
+              <div class="psu-phone__body">
+                <div class="psu-phone__inp">Search your issue...</div>
+                <div class="psu-phone__section-label">Raise a ticket</div>
+                <div style="background:#fff;border-radius:8px;padding:8px;border:1px solid #eee;display:flex;flex-direction:column;gap:5px;">
+                  <div style="background:#f8f8f8;border-radius:6px;padding:6px;font-size:7px;color:#888;border:1px solid #eee;">Select issue category</div>
+                  <div style="background:#f8f8f8;border-radius:6px;padding:6px;font-size:7px;color:#888;border:1px solid #eee;">Describe your issue...</div>
+                  <div style="background:#34D278;border-radius:6px;padding:5px;text-align:center;font-size:7px;font-weight:700;color:#000;">Submit Ticket</div>
+                </div>
+                <div class="psu-phone__section-label">Open tickets</div>
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">Settlement query</div><div class="psu-phone__settings-sub">Opened 2 days ago</div></div><span class="psu-phone__badge" style="background:rgba(245,158,11,0.1);color:#F59E0B;">Pending</span></div>
+                <div class="psu-phone__settings-row"><div><div class="psu-phone__settings-label">Report download issue</div><div class="psu-phone__settings-sub">Resolved 1 day ago</div></div><span class="psu-phone__badge" style="background:rgba(52,210,120,0.1);color:#34D278;">Done</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="psu-phone__label">Native Support (new)</div>
+        </div>
       </div>
     </div>
   </section>

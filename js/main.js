@@ -196,7 +196,7 @@
   setActive();
 })();
 
-/* ---- Contact form — Formsubmit.co ---- */
+/* ---- Contact form ---- */
 (function () {
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
@@ -209,35 +209,11 @@
     btn.disabled = true;
     btn.style.opacity = '0.7';
 
-    const data = new FormData(form);
-    // Add hidden fields for Formsubmit config
-    data.append('_subject', 'New message from portfolio — ' + (data.get('name') || 'Visitor'));
-    data.append('_captcha', 'false');
-    data.append('_template', 'table');
-
-    fetch('https://formsubmit.co/ajax/sagar17.kumar@gmail.com', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: data
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.success === 'true' || res.success === true) {
-          form.style.display = 'none';
-          if (success) success.style.display = 'block';
-        } else {
-          btn.textContent = 'Send Message →';
-          btn.disabled = false;
-          btn.style.opacity = '1';
-          alert('Something went wrong. Please try emailing sagar17.kumar@gmail.com directly.');
-        }
-      })
-      .catch(() => {
-        btn.textContent = 'Send Message →';
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        alert('Could not send message. Please email sagar17.kumar@gmail.com directly.');
-      });
+    // Simulate send (replace with real endpoint)
+    setTimeout(() => {
+      form.style.display = 'none';
+      if (success) success.style.display = 'block';
+    }, 1200);
   });
 })();
 
@@ -469,6 +445,7 @@ window.addEventListener('load', () => {
     '.pds-comp-chip', '.pds-hero-stat',
     '.mnt-impact-card', '.mnt-phase',
     '.psu-machine',
+    '.cn-chapter',
     '.kiid-problem-card'
   ].join(',');
   document.querySelectorAll(TILT_SEL).forEach(function (card) {

@@ -1907,10 +1907,13 @@ body::before {
 .proj-visuals__banner {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 7;
   border-radius: var(--r-xl);
   overflow: hidden;
   border: 1px solid var(--border-strong);
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: border-color 280ms ease;
 }
 .proj-visuals__banner:hover { border-color: var(--accent); }
@@ -1936,6 +1939,7 @@ body::before {
 .proj-visuals__row--2 { grid-template-columns: 1fr 1fr; }
 .proj-visuals__row--3 { grid-template-columns: 1fr 1fr 1fr; }
 /* Shared frame styles */
+.proj-visuals__banner,
 .proj-visuals__frame {
   position: relative;
   border-radius: var(--r-xl);
@@ -1945,17 +1949,11 @@ body::before {
   align-items: center;
   justify-content: center;
   transition: border-color 280ms ease;
-  aspect-ratio: 16 / 9;
 }
+.proj-visuals__frame { aspect-ratio: 16 / 9; }
 .proj-visuals__frame:hover { border-color: var(--accent); }
-/* Banner images — show full image, no crop */
-.proj-visuals__banner img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 600ms var(--ease-expo, cubic-bezier(0.16,1,0.3,1));
-}
-/* Frame images — fill the fixed-ratio frame */
+/* Images */
+.proj-visuals__banner img,
 .proj-visuals__frame img {
   position: absolute;
   inset: 0;
