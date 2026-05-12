@@ -32,13 +32,13 @@
     .aiop-phase-hdr__num { font-family: var(--font-display); font-size: clamp(80px,10vw,120px); font-weight: 900; line-height: 0.85; color: var(--jw-blue); opacity: 0.22; letter-spacing: -0.06em; flex-shrink: 0; }
     [data-theme="light"] .aiop-phase-hdr__num { opacity: 0.12; }
     .aiop-phase-hdr__text { padding-bottom: 8px; }
-    .aiop-phase-hdr__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 6px; }
+    .aiop-phase-hdr__tag { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 6px; }
     .aiop-phase-hdr__title { font-family: var(--font-display); font-size: clamp(30px,4vw,48px); font-weight: 900; letter-spacing: -0.03em; color: var(--text-1); line-height: 1; }
     .aiop-phase-hdr__sub { font-size: 14px; color: var(--text-2); margin-top: 6px; }
 
     /* ── Sub-section ── */
     .aiop-sub { margin-top: 56px; }
-    .aiop-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 10px; }
+    .aiop-eyebrow { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 10px; }
     .aiop-h2 { font-family: var(--font-display); font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--text-1); letter-spacing: -0.02em; margin-bottom: 10px; }
     .aiop-h3 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
     .aiop-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
@@ -52,7 +52,7 @@
     /* ── Image frame ── */
     .aiop-frame { border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--border); }
     .aiop-frame img { width: 100%; height: auto; display: block; }
-    .aiop-frame-cap { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 12px; padding: 0 2px; }
+    .aiop-frame-cap { font-family: var(--font-mono); font-size: 14px; color: var(--text-3); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 12px; padding: 0 2px; }
 
     /* ── Business goals — numbered horizontal strip ── */
     .goal-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 4px; }
@@ -67,7 +67,7 @@
     .goal-strip__item:first-child { padding-left: 0; }
     .goal-strip__item + .goal-strip__item { padding-left: 20px; }
     .goal-strip__num {
-      font-family: var(--font-display); font-size: 11px; font-weight: 900;
+      font-family: var(--font-display); font-size: 14px; font-weight: 900;
       letter-spacing: 0.12em; color: var(--jw-blue); opacity: 0.5;
       display: block; margin-bottom: 12px;
     }
@@ -76,7 +76,7 @@
       color: var(--text-1); letter-spacing: -0.02em; line-height: 1.2;
       margin-bottom: 8px;
     }
-    .goal-strip__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .goal-strip__desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
     .goal-strip__rule { display: block; width: 28px; height: 2px; background: var(--jw-blue); border-radius: 2px; margin-bottom: 14px; }
 
     /* ── Impact strip ── */
@@ -84,7 +84,7 @@
     .aiop-impact-cell { padding: 36px 24px; border-right: 1px solid var(--border); text-align: center; background: var(--bg-card); }
     .aiop-impact-cell:last-child { border-right: none; }
     .aiop-impact-cell__num { font-family: var(--font-display); font-size: clamp(32px,4vw,48px); font-weight: 900; letter-spacing: -0.04em; color: var(--jw-blue); line-height: 1; }
-    .aiop-impact-cell__label { font-size: 13px; color: var(--text-2); margin-top: 8px; line-height: 1.5; }
+    .aiop-impact-cell__label { font-size: 14px; color: var(--text-2); margin-top: 8px; line-height: 1.5; }
     @media(max-width:800px){.aiop-impact{grid-template-columns:1fr 1fr}.aiop-impact-cell:nth-child(2){border-right:none}.aiop-impact-cell:nth-child(-n+2){border-bottom:1px solid var(--border)}}
 
     /* ── Pain point cards — borderless numbered rows ── */
@@ -95,10 +95,10 @@
     .aiop-pain:nth-child(3n) { border-right: none; }
     .aiop-pain:nth-last-child(-n+3) { border-bottom: none; }
     @media(max-width:900px){ .aiop-pain:nth-child(2n){ border-right:none; } .aiop-pain:nth-child(3n){ border-right:1px solid var(--border); } .aiop-pain:nth-child(3n):nth-child(2n){ border-right:none; } }
-    .aiop-pain__phase { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 12px; display: block; }
+    .aiop-pain__phase { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jw-blue); margin-bottom: 12px; display: block; }
     .aiop-pain__rule { display: block; width: 20px; height: 2px; background: var(--jw-red); border-radius: 2px; margin-bottom: 12px; }
     .aiop-pain__title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--text-1); margin-bottom: 6px; letter-spacing: -0.01em; }
-    .aiop-pain__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .aiop-pain__desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Persona cards ── */
     .aiop-personas { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -107,34 +107,34 @@
     .aiop-persona__hdr { padding: 24px 24px 0; display: flex; gap: 16px; align-items: flex-start; }
     .aiop-persona__avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--proj-accent); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; animation: iconPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; transition: transform 0.25s ease, box-shadow 0.25s ease; }
     .aiop-persona__info { flex: 1; }
-    .aiop-persona__tier { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; display: inline-block; padding: 2px 8px; border-radius: 20px; }
+    .aiop-persona__tier { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; display: inline-block; padding: 2px 8px; border-radius: 20px; }
     .aiop-persona__tier--1 { background: rgba(34,197,94,0.1); color: #16A34A; border: 1px solid rgba(34,197,94,0.25); }
     .aiop-persona__tier--2 { background: rgba(234,179,8,0.1); color: #CA8A04; border: 1px solid rgba(234,179,8,0.25); }
     .aiop-persona__tier--3 { background: rgba(239,68,68,0.1); color: #DC2626; border: 1px solid rgba(239,68,68,0.25); }
     .aiop-persona__name { font-weight: 800; font-size: 16px; color: var(--text-1); margin-bottom: 2px; }
-    .aiop-persona__role { font-size: 12px; color: var(--jw-blue); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
-    .aiop-persona__loc { font-size: 12px; color: var(--text-3); }
+    .aiop-persona__role { font-size: 14px; color: var(--jw-blue); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
+    .aiop-persona__loc { font-size: 14px; color: var(--text-3); }
     .aiop-persona__body { padding: 16px 24px 0; }
-    .aiop-persona__bio { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .aiop-persona__bio { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
     .aiop-persona__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
     .aiop-persona__block { background: var(--bg-elevated); border-radius: var(--r-lg); padding: 14px; }
-    .aiop-persona__block-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
-    .aiop-persona__block-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    .aiop-persona__block-label { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+    .aiop-persona__block-text { font-size: 14px; color: var(--text-2); line-height: 1.55; }
     .aiop-persona__tags { padding: 0 24px 24px; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .aiop-persona__tag { font-family: var(--font-mono); font-size: 10px; color: var(--jw-blue); background: rgba(27,63,216,0.07); border: 1px solid rgba(27,63,216,0.18); border-radius: 20px; padding: 3px 10px; }
+    .aiop-persona__tag { font-family: var(--font-mono); font-size: 14px; color: var(--jw-blue); background: rgba(27,63,216,0.07); border: 1px solid rgba(27,63,216,0.18); border-radius: 20px; padding: 3px 10px; }
 
     /* ── Double diamond ── */
     .aiop-diamond { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
     .aiop-diamond-phase { padding: 24px 20px; border-right: 1px solid var(--border); }
     .aiop-diamond-phase:last-child { border-right: none; }
-    .aiop-diamond-phase__d { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .aiop-diamond-phase__d { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
     .aiop-diamond-phase__d--discover { background: rgba(27,63,216,0.1); color: var(--jw-blue); }
     .aiop-diamond-phase__d--define { background: rgba(139,92,246,0.1); color: #7C3AED; }
     .aiop-diamond-phase__d--develop { background: rgba(16,185,129,0.1); color: #059669; }
     .aiop-diamond-phase__d--deliver { background: rgba(245,158,11,0.1); color: #D97706; }
     .aiop-diamond-phase__title { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
     .aiop-diamond-phase__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-    .aiop-diamond-phase__items li { font-size: 12px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
+    .aiop-diamond-phase__items li { font-size: 14px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
     .aiop-diamond-phase__items li::before { content: '—'; position: absolute; left: 0; color: var(--jw-blue); }
     @media(max-width:800px){.aiop-diamond{grid-template-columns:1fr 1fr}}
 
@@ -150,8 +150,8 @@
       letter-spacing: -0.06em; margin-bottom: 14px;
     }
     .aiop-insight__title { font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; letter-spacing: -0.01em; }
-    .aiop-insight__before { font-size: 12px; color: var(--jw-red); margin-bottom: 6px; padding: 8px 12px; background: rgba(239,68,68,0.05); border-radius: 6px; border-left: 2px solid var(--jw-red); line-height: 1.55; }
-    .aiop-insight__after { font-size: 12px; color: #059669; padding: 8px 12px; background: rgba(16,185,129,0.05); border-radius: 6px; border-left: 2px solid #059669; line-height: 1.55; }
+    .aiop-insight__before { font-size: 14px; color: var(--jw-red); margin-bottom: 6px; padding: 8px 12px; background: rgba(239,68,68,0.05); border-radius: 6px; border-left: 2px solid var(--jw-red); line-height: 1.55; }
+    .aiop-insight__after { font-size: 14px; color: #059669; padding: 8px 12px; background: rgba(16,185,129,0.05); border-radius: 6px; border-left: 2px solid #059669; line-height: 1.55; }
 
     /* ── User flow steps ── */
     .aiop-flow { display: flex; gap: 0; overflow-x: auto; padding-bottom: 8px; }
@@ -160,8 +160,8 @@
     .aiop-flow-step:last-child { border-right: 1px solid var(--border); border-radius: 0 var(--r-lg) var(--r-lg) 0; }
     .aiop-flow-step::after { content: '›'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--jw-blue); z-index: 1; background: var(--bg); padding: 2px 0; }
     .aiop-flow-step:last-child::after { display: none; }
-    .aiop-flow-step__num { font-family: var(--font-mono); font-size: 10px; color: var(--jw-blue); letter-spacing: 0.1em; margin-bottom: 6px; }
-    .aiop-flow-step__title { font-size: 12px; font-weight: 700; color: var(--text-1); line-height: 1.4; }
+    .aiop-flow-step__num { font-family: var(--font-mono); font-size: 14px; color: var(--jw-blue); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .aiop-flow-step__title { font-size: 14px; font-weight: 700; color: var(--text-1); line-height: 1.4; }
 
     /* ── Screen grid ── */
     .aiop-screens { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -170,14 +170,14 @@
     /* ── Heuristic score ── */
     .aiop-score-badge { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25); border-radius: var(--r-lg); margin-bottom: 32px; }
     .aiop-score-badge__num { font-family: var(--font-display); font-size: 40px; font-weight: 900; color: var(--jw-amber); letter-spacing: -0.03em; line-height: 1; }
-    .aiop-score-badge__text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
-    .aiop-score-badge__label { font-size: 11px; font-family: var(--font-mono); color: var(--jw-amber); text-transform: uppercase; letter-spacing: 0.1em; }
+    .aiop-score-badge__text { font-size: 14px; color: var(--text-2); line-height: 1.5; }
+    .aiop-score-badge__label { font-size: 14px; font-family: var(--font-mono); color: var(--jw-amber); text-transform: uppercase; letter-spacing: 0.1em; }
 
     /* ── Vision quote ── */
     .aiop-vision { background: linear-gradient(135deg, rgba(27,63,216,0.07), rgba(27,63,216,0.02)); border: 1px solid rgba(27,63,216,0.2); border-radius: var(--r-xl); padding: 48px; position: relative; overflow: hidden; }
     .aiop-vision::before { content: '"'; font-family: var(--font-display); font-size: 180px; color: var(--jw-blue); opacity: 0.06; position: absolute; top: -20px; left: 20px; line-height: 1; }
     .aiop-vision__text { font-size: clamp(16px,2vw,20px); color: var(--text-1); line-height: 1.7; font-style: italic; position: relative; z-index: 1; }
-    .aiop-vision__attr { font-family: var(--font-mono); font-size: 11px; color: var(--jw-blue); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 20px; }
+    .aiop-vision__attr { font-family: var(--font-mono); font-size: 14px; color: var(--jw-blue); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 20px; }
 
     /* ── Next steps — open two-column ── */
     .aiop-next { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
@@ -186,12 +186,12 @@
     .aiop-next-card:last-child { border-right: none; }
     @media(max-width:700px){ .aiop-next-card { border-right: none; border-bottom: 1px solid var(--border); } .aiop-next-card:last-child { border-bottom: none; } }
     .aiop-next-card__icon { display: none; }
-    .aiop-next-card__num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--jw-blue); margin-bottom: 10px; display: block; }
+    .aiop-next-card__num { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; color: var(--jw-blue); margin-bottom: 10px; display: block; }
     .aiop-next-card__rule { display: block; width: 28px; height: 2px; background: var(--jw-blue); border-radius: 2px; margin-bottom: 14px; }
     .aiop-next-card__title { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text-1); margin-bottom: 4px; letter-spacing: -0.02em; }
     .aiop-next-card__items { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
-    .aiop-next-card__item { font-size: 13px; color: var(--text-2); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
-    .aiop-next-card__item::before { content: '→'; color: var(--jw-blue); flex-shrink: 0; font-family: var(--font-mono); font-size: 11px; margin-top: 2px; }
+    .aiop-next-card__item { font-size: 14px; color: var(--text-2); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
+    .aiop-next-card__item::before { content: '→'; color: var(--jw-blue); flex-shrink: 0; font-family: var(--font-mono); font-size: 14px; margin-top: 2px; }
 
     /* ── Browser / Laptop Mockup ── */
     .browser-wrap {
@@ -227,7 +227,7 @@
       background: rgba(255,255,255,0.06);
       border-radius: 6px;
       display: flex; align-items: center; padding: 0 10px;
-      font-family: var(--font-mono); font-size: 10px;
+      font-family: var(--font-mono); font-size: 14px;
       color: rgba(255,255,255,0.35); letter-spacing: 0.04em;
       gap: 6px;
     }
@@ -244,9 +244,9 @@
 
     /* ── Comparison table ── */
     .cmp-wrap { overflow-x: auto; border-radius: var(--r-xl); border: 1px solid var(--border); }
-    .cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 720px; }
+    .cmp-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
     .cmp-table thead tr { background: #1A2ECC; }
-    .cmp-table thead th { padding: 12px 14px; text-align: left; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8); border-right: 1px solid rgba(255,255,255,0.1); font-weight: 600; }
+    .cmp-table thead th { padding: 12px 14px; text-align: left; font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8); border-right: 1px solid rgba(255,255,255,0.1); font-weight: 600; }
     .cmp-table thead th:last-child { border-right: none; }
     .cmp-table thead th:first-child { min-width: 170px; }
     .cmp-table tbody tr { border-bottom: 1px solid var(--border); transition: background 150ms ease; }
@@ -255,15 +255,15 @@
     .cmp-table tbody tr:hover { background: rgba(27,63,216,0.04); }
     .cmp-table td { padding: 13px 14px; border-right: 1px solid var(--border); vertical-align: top; color: var(--text-2); line-height: 1.55; }
     .cmp-table td:last-child { border-right: none; }
-    .cmp-table td:first-child { font-weight: 600; color: var(--text-1); font-size: 12px; }
+    .cmp-table td:first-child { font-weight: 600; color: var(--text-1); font-size: 14px; }
     .cmp-cell--yes { color: #16A34A !important; }
     .cmp-cell--no { color: #DC2626 !important; }
     .cmp-cell--partial { color: #CA8A04 !important; }
-    .cmp-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-family: var(--font-mono); font-weight: 600; }
+    .cmp-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-family: var(--font-mono); font-weight: 600; }
     .cmp-badge--yes::before { content: '✓'; }
     .cmp-badge--no::before { content: '✗'; }
     .cmp-badge--par::before { content: '△'; }
-    .cmp-jio-win { background: rgba(27,63,216,0.06); border-left: 3px solid var(--jw-blue); padding: 8px 12px; border-radius: 0 6px 6px 0; font-size: 11px; color: var(--jw-blue); font-family: var(--font-mono); margin-top: 8px; letter-spacing: 0.04em; }
+    .cmp-jio-win { background: rgba(27,63,216,0.06); border-left: 3px solid var(--jw-blue); padding: 8px 12px; border-radius: 0 6px 6px 0; font-size: 14px; color: var(--jw-blue); font-family: var(--font-mono); margin-top: 8px; letter-spacing: 0.04em; }
 
     /* ── Annotation chip ── */
     .anno-wrap { position: relative; }
@@ -271,7 +271,7 @@
       position: absolute;
       background: var(--jw-blue);
       color: #fff;
-      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.06em;
       padding: 5px 12px; border-radius: 20px;
       white-space: nowrap;
       z-index: 10;
@@ -293,7 +293,7 @@
 
     /* ── Screen badge strip ── */
     .screen-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .screen-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(27,63,216,0.07); border: 1px solid rgba(27,63,216,0.18); border-radius: 20px; font-size: 11px; font-family: var(--font-mono); color: var(--jw-blue); }
+    .screen-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(27,63,216,0.07); border: 1px solid rgba(27,63,216,0.18); border-radius: 20px; font-size: 14px; font-family: var(--font-mono); color: var(--jw-blue); }
     .screen-badge--green { background: rgba(34,197,94,0.07); border-color: rgba(34,197,94,0.2); color: #16A34A; }
     .screen-badge--amber { background: rgba(245,158,11,0.07); border-color: rgba(245,158,11,0.2); color: #D97706; }
 
@@ -317,7 +317,7 @@
       color: var(--jw-blue); opacity: 0.12; pointer-events: none; user-select: none;
     }
     .screen-card__step {
-      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--jw-blue);
       background: rgba(27,63,216,0.08); border: 1px solid rgba(27,63,216,0.18);
       border-radius: 20px; padding: 4px 12px; display: inline-block; white-space: nowrap;
@@ -351,10 +351,10 @@
     }
     .screen-card__annot:last-child { border-right: none; }
     .screen-card__annot-label {
-      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--text-3); margin-bottom: 4px;
     }
-    .screen-card__annot-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    .screen-card__annot-text { font-size: 14px; color: var(--text-2); line-height: 1.55; }
     .screen-card__annot--heuristic .screen-card__annot-label { color: #D97706; }
     .screen-card__annot--heuristic { border-top: 2px solid rgba(245,158,11,0.4); }
     .screen-card__annot--insight .screen-card__annot-label { color: #059669; }
@@ -641,7 +641,7 @@
           <div class="aiop-eyebrow" style="margin-bottom:12px;">Platform Tagline</div>
           <p style="font-family:var(--font-display);font-size:clamp(16px,1.8vw,21px);font-weight:700;color:var(--text-1);letter-spacing:-0.02em;line-height:1.55;">Easily manage welfare schemes, document verification, audience &amp; cohort building — on a single No-Code SaaS platform.</p>
           <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(27,63,216,0.15);">
-            <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);">Visual Designs Complete · Usability Testing Next</span>
+            <span style="font-family:var(--font-mono);font-size: 14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);">Visual Designs Complete · Usability Testing Next</span>
           </div>
         </div>
       </div>
@@ -651,28 +651,28 @@
         <div class="aiop-eyebrow" style="margin-bottom:16px;">Business Goals</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;">
           <div style="padding:24px 22px;border-right:1px solid var(--border);">
-            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">01</div>
+            <div style="font-family:var(--font-mono);font-size: 14px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">01</div>
             <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
             <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Build Verified Audience</div>
-            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Right users matched to the right schemes via eligibility &amp; targeting.</div>
+            <div style="font-size: 14px;color:var(--text-2);line-height:1.6;">Right users matched to the right schemes via eligibility &amp; targeting.</div>
           </div>
           <div style="padding:24px 22px;border-right:1px solid var(--border);">
-            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">02</div>
+            <div style="font-family:var(--font-mono);font-size: 14px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">02</div>
             <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
             <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Speed Up Approval</div>
-            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Automated document handling cuts application turnaround significantly.</div>
+            <div style="font-size: 14px;color:var(--text-2);line-height:1.6;">Automated document handling cuts application turnaround significantly.</div>
           </div>
           <div style="padding:24px 22px;border-right:1px solid var(--border);">
-            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">03</div>
+            <div style="font-family:var(--font-mono);font-size: 14px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">03</div>
             <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
             <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Ensure Transparency</div>
-            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Traceable workflow from scheme creation to beneficiary selection.</div>
+            <div style="font-size: 14px;color:var(--text-2);line-height:1.6;">Traceable workflow from scheme creation to beneficiary selection.</div>
           </div>
           <div style="padding:24px 22px;">
-            <div style="font-family:var(--font-mono);font-size:11px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">04</div>
+            <div style="font-family:var(--font-mono);font-size: 14px;color:var(--jw-blue);letter-spacing:0.12em;opacity:0.6;margin-bottom:12px;">04</div>
             <div style="width:24px;height:2px;background:var(--jw-blue);border-radius:2px;margin-bottom:14px;"></div>
             <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:8px;line-height:1.3;">Increase Reach</div>
-            <div style="font-size:12px;color:var(--text-2);line-height:1.6;">Discoverable across all Jio apps — Tier 1, 2 &amp; 3 cities via 500M+ network.</div>
+            <div style="font-size: 14px;color:var(--text-2);line-height:1.6;">Discoverable across all Jio apps — Tier 1, 2 &amp; 3 cities via 500M+ network.</div>
           </div>
         </div>
       </div>
@@ -686,19 +686,19 @@
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
             <div style="padding:24px 22px;border-right:1px solid var(--border);">
               <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">500M<span style="color:var(--jw-blue);font-size:20px;">+</span></div>
-              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">Jio User Reach</div>
+              <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">Jio User Reach</div>
             </div>
             <div style="padding:24px 22px;border-right:1px solid var(--border);">
               <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">&lt;30<span style="color:var(--jw-blue);font-size:20px;">min</span></div>
-              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">Scheme Setup Time</div>
+              <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">Scheme Setup Time</div>
             </div>
             <div style="padding:24px 22px;border-right:1px solid var(--border);">
               <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">3<span style="color:var(--jw-blue);font-size:20px;">-tier</span></div>
-              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">City Coverage</div>
+              <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">City Coverage</div>
             </div>
             <div style="padding:24px 22px;">
               <div style="font-family:var(--font-display);font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--text-1);line-height:1;margin-bottom:6px;">1<span style="color:var(--jw-blue);font-size:20px;">platform</span></div>
-              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">No-Code SaaS</div>
+              <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);">No-Code SaaS</div>
             </div>
           </div>
         </div>
@@ -856,9 +856,9 @@
             <div class="aiop-eyebrow" style="margin-bottom:8px;">Design Opportunity</div>
             <p style="font-size:14px;color:var(--text-1);font-weight:600;line-height:1.6;margin-bottom:8px;">No existing platform combines real-time analytics, admin dashboards, and intelligent recommendations — all 5 competitors gap out on the 3 highest-value capabilities.</p>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
-              <span style="font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Real-time Analytics</span>
-              <span style="font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Admin Dashboards</span>
-              <span style="font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Intelligent Recommendations</span>
+              <span style="font-size: 14px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Real-time Analytics</span>
+              <span style="font-size: 14px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Admin Dashboards</span>
+              <span style="font-size: 14px;font-family:var(--font-mono);color:var(--jw-blue);background:rgba(27,63,216,0.07);border:1px solid rgba(27,63,216,0.18);border-radius:20px;padding:4px 12px;">Gap: Intelligent Recommendations</span>
             </div>
           </div>
         </div>
@@ -955,15 +955,15 @@
         <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
           <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid var(--jw-blue);">
             <div class="aiop-eyebrow" style="margin-bottom:6px;">Design Adoption 1</div>
-            <div style="font-size:13px;color:var(--text-2);">Google &amp; Facebook's <strong style="color:var(--text-1);">guided flows with pre-filled templates</strong> directly inspired our 4-step scheme wizard with categorised templates.</div>
+            <div style="font-size: 14px;color:var(--text-2);">Google &amp; Facebook's <strong style="color:var(--text-1);">guided flows with pre-filled templates</strong> directly inspired our 4-step scheme wizard with categorised templates.</div>
           </div>
           <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid #7C3AED;">
             <div class="aiop-eyebrow" style="margin-bottom:6px;">Design Adoption 2</div>
-            <div style="font-size:13px;color:var(--text-2);">LinkedIn &amp; Google's <strong style="color:var(--text-1);">audience builder</strong> for precise targeting inspired our eligibility rule builder &amp; cohort segments.</div>
+            <div style="font-size: 14px;color:var(--text-2);">LinkedIn &amp; Google's <strong style="color:var(--text-1);">audience builder</strong> for precise targeting inspired our eligibility rule builder &amp; cohort segments.</div>
           </div>
           <div style="padding:18px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);border-left:3px solid #059669;">
             <div class="aiop-eyebrow" style="margin-bottom:6px;">Design Adoption 3</div>
-            <div style="font-size:13px;color:var(--text-2);">Google &amp; Facebook's <strong style="color:var(--text-1);">real-time preview</strong> shaped our Step 4 "Preview Scheme Banner" across Mobile, Desktop &amp; Tablet views.</div>
+            <div style="font-size: 14px;color:var(--text-2);">Google &amp; Facebook's <strong style="color:var(--text-1);">real-time preview</strong> shaped our Step 4 "Preview Scheme Banner" across Mobile, Desktop &amp; Tablet views.</div>
           </div>
         </div>
       </div>
@@ -1026,9 +1026,9 @@
             </div>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:20px;font-size:12px;color:#DC2626;font-family:var(--font-mono);">● High Severity — 2 issues</div>
-            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:20px;font-size:12px;color:#D97706;font-family:var(--font-mono);">● Medium Severity — 4 issues</div>
-            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:20px;font-size:12px;color:#16A34A;font-family:var(--font-mono);">● Low Severity — 4 issues</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:20px;font-size: 14px;color:#DC2626;font-family:var(--font-mono);">● High Severity — 2 issues</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:20px;font-size: 14px;color:#D97706;font-family:var(--font-mono);">● Medium Severity — 4 issues</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:20px;font-size: 14px;color:#16A34A;font-family:var(--font-mono);">● Low Severity — 4 issues</div>
           </div>
         </div>
 
@@ -1052,7 +1052,7 @@
                 <td>Key metrics (Total Schemes, Published, Drafts) are shown on dashboard.</td>
                 <td style="color:#DC2626;">"Verified Applications" is blank — no fallback text or last-updated timestamp.</td>
                 <td>Show fallback text "Yet to verify" and add "Last updated on…" timestamp.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">2</td>
@@ -1060,7 +1060,7 @@
                 <td>Uses familiar terms like "Published", "Draft", "Apply".</td>
                 <td style="color:#D97706;">Terms like "Unpublish" or "Export" could confuse less technical users.</td>
                 <td>Use clearer copy like "Remove from live view" or "Download details".</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">3</td>
@@ -1068,7 +1068,7 @@
                 <td>Users can edit or unpublish schemes.</td>
                 <td style="color:#DC2626;font-weight:600;">No confirmation modal before critical actions like unpublishing a live scheme.</td>
                 <td>Add confirmation dialog: "Are you sure you want to unpublish this scheme?"</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#DC2626;background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:12px;">● High</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#DC2626;background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:12px;">● High</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">4</td>
@@ -1076,7 +1076,7 @@
                 <td>UI is consistent; primary buttons and tags follow visual standards.</td>
                 <td style="color:#D97706;">Minor inconsistency — "Edit", "Export", "Unpublish" vs "Create New Scheme" casing.</td>
                 <td>Ensure all UI text follows sentence case or title case per design system.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">5</td>
@@ -1084,7 +1084,7 @@
                 <td>Actions are separated (Apply vs Edit) to reduce errors.</td>
                 <td style="color:#DC2626;font-weight:600;">No safeguard against accidentally clicking "Unpublish" — no undo mechanism.</td>
                 <td>Add undo option or toast notification with 5-second undo window after critical action.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#DC2626;background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:12px;">● High</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#DC2626;background:rgba(239,68,68,0.1);padding:4px 10px;border-radius:12px;">● High</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">6</td>
@@ -1092,7 +1092,7 @@
                 <td>Users can see all schemes with labels clearly.</td>
                 <td style="color:#D97706;">No filter or search to locate schemes faster across categories or status.</td>
                 <td>Add filters by status, date, category; add a quick search bar above the scheme table.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">7</td>
@@ -1100,7 +1100,7 @@
                 <td>List view toggle exists for power users.</td>
                 <td style="color:#D97706;">No batch actions or bulk export for schemes. Power users lose time on repeated actions.</td>
                 <td>Add "Select multiple" checkbox + bulk export / bulk status actions toolbar.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">8</td>
@@ -1108,7 +1108,7 @@
                 <td>Visually clean and focused. Clear layout hierarchy.</td>
                 <td style="color:#D97706;">Slight crowding between sections. "List View" toggle text placement is unclear.</td>
                 <td>Improve toggle visibility; increase spacing between dashboard sections and table.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">9</td>
@@ -1116,7 +1116,7 @@
                 <td>Validation messages exist for mandatory form fields.</td>
                 <td style="color:#D97706;">Error messages are generic ("Something went wrong") — no guidance on how to fix.</td>
                 <td>Provide inline error descriptions with corrective action per field ("Enter a valid date range").</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#D97706;background:rgba(245,158,11,0.1);padding:4px 10px;border-radius:12px;">● Medium</span></td>
               </tr>
               <tr>
                 <td style="font-weight:700;color:var(--jw-blue);text-align:center;">10</td>
@@ -1124,7 +1124,7 @@
                 <td>Some tooltips exist on key form fields.</td>
                 <td style="color:#D97706;">No contextual help panel or onboarding walkthrough for first-time Program Officers.</td>
                 <td>Add a "?" help trigger per section with contextual documentation or guided tour for new users.</td>
-                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
+                <td style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;font-size: 14px;font-family:var(--font-mono);color:#16A34A;background:rgba(34,197,94,0.1);padding:4px 10px;border-radius:12px;">● Low</span></td>
               </tr>
             </tbody>
           </table>
@@ -1296,36 +1296,36 @@
           <!-- Stage progress bar -->
           <div style="display:flex;align-items:center;gap:0;margin-bottom:4px;overflow-x:auto;padding-bottom:4px;">
             <div style="display:flex;align-items:center;gap:0;min-width:max-content;width:100%;">
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.08);border-radius:4px 0 0 4px;border:1px solid rgba(27,63,216,0.2);">01 · Create</div>
-              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.04);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">02 · Publish</div>
-              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">03 · Live</div>
-              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">04 · Verify</div>
-              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">05 · Decide</div>
-              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size:12px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(139,92,246,0.8);padding:6px 8px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);">06 · Disburse</div>
-              <div style="width:20px;text-align:center;color:var(--text-3);font-size:12px;background:rgba(0,0,0,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">→</div>
-              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#059669;padding:6px 8px;background:rgba(16,185,129,0.06);border-radius:0 4px 4px 0;border:1px solid rgba(16,185,129,0.15);">07 · Monitor</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.08);border-radius:4px 0 0 4px;border:1px solid rgba(27,63,216,0.2);">01 · Create</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size: 14px;background:rgba(27,63,216,0.04);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">02 · Publish</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size: 14px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">03 · Live</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size: 14px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">04 · Verify</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size: 14px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--jw-blue);padding:6px 8px;background:rgba(27,63,216,0.06);border:1px solid rgba(27,63,216,0.15);">05 · Decide</div>
+              <div style="width:20px;text-align:center;color:var(--jw-blue);font-size: 14px;background:rgba(27,63,216,0.03);border-top:1px solid rgba(27,63,216,0.1);border-bottom:1px solid rgba(27,63,216,0.1);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(139,92,246,0.8);padding:6px 8px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);">06 · Disburse</div>
+              <div style="width:20px;text-align:center;color:var(--text-3);font-size: 14px;background:rgba(0,0,0,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">→</div>
+              <div style="flex:1;text-align:center;font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#059669;padding:6px 8px;background:rgba(16,185,129,0.06);border-radius:0 4px 4px 0;border:1px solid rgba(16,185,129,0.15);">07 · Monitor</div>
             </div>
           </div>
 
           <!-- Main JTB table -->
           <div style="overflow-x:auto;border-radius:var(--r-xl);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-            <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:1000px;" aria-label="Jobs-to-be-Done journey map — 7 stages of welfare scheme lifecycle">
+            <table style="width:100%;border-collapse:collapse;font-size: 14px;min-width:1000px;" aria-label="Jobs-to-be-Done journey map — 7 stages of welfare scheme lifecycle">
               <caption class="sr-only">Jobs-to-be-Done journey map showing Program Officer actions, KPIs, pain points, solutions and emotions across 7 scheme lifecycle stages</caption>
               <thead>
                 <tr style="background:#0F1F8A;">
-                  <th scope="col" style="padding:14px 16px;text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);width:90px;border-right:1px solid rgba(255,255,255,0.08);font-weight:500;">Stage</th>
-                  <th scope="col" style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">01</span> Scheme<br/>Creation</th>
-                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">02</span> Review &amp;<br/>Publish</th>
-                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">03</span> Live &amp;<br/>Discoverable</th>
-                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">04</span> Application &amp;<br/>Doc Verification</th>
-                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size:10px;opacity:0.5;margin-right:4px;">05</span> Application<br/>Decision</th>
-                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;background:rgba(139,92,246,0.15);"><span style="font-size:10px;opacity:0.5;margin-right:4px;">06</span> Disbursement<br/><span style="opacity:0.55;font-size:9px;">(Another Team)</span></th>
-                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);font-weight:700;text-align:left;background:rgba(16,185,129,0.12);"><span style="font-size:10px;opacity:0.5;margin-right:4px;">07</span> Post-Approval<br/>Monitoring</th>
+                  <th scope="col" style="padding:14px 16px;text-align:left;font-family:var(--font-mono);font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);width:90px;border-right:1px solid rgba(255,255,255,0.08);font-weight:500;">Stage</th>
+                  <th scope="col" style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">01</span> Scheme<br/>Creation</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">02</span> Review &amp;<br/>Publish</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">03</span> Live &amp;<br/>Discoverable</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">04</span> Application &amp;<br/>Doc Verification</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">05</span> Application<br/>Decision</th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);border-right:1px solid rgba(255,255,255,0.08);font-weight:700;text-align:left;background:rgba(139,92,246,0.15);"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">06</span> Disbursement<br/><span style="opacity:0.55;font-size:14px;">(Another Team)</span></th>
+                  <th style="padding:14px 14px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);font-weight:700;text-align:left;background:rgba(16,185,129,0.12);"><span style="font-size: 14px;opacity:0.5;margin-right:4px;">07</span> Post-Approval<br/>Monitoring</th>
                 </tr>
               </thead>
               <tbody>
@@ -1333,7 +1333,7 @@
                 <!-- ACTIONS -->
                 <tr style="border-bottom:1px solid var(--border);">
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;background:var(--bg-card);">
-                    <span style="display:inline-block;padding:4px 10px;background:rgba(27,63,216,0.1);border:1px solid rgba(27,63,216,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--jw-blue);font-weight:700;white-space:nowrap;">Actions</span>
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(27,63,216,0.1);border:1px solid rgba(27,63,216,0.2);border-radius:20px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:var(--jw-blue);font-weight:700;white-space:nowrap;">Actions</span>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
                     <div style="display:flex;flex-direction:column;gap:4px;">
@@ -1375,7 +1375,7 @@
                 <!-- KPIs -->
                 <tr style="border-bottom:1px solid var(--border);background:var(--bg-elevated);">
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;">
-                    <span style="display:inline-block;padding:4px 10px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#059669;font-weight:700;white-space:nowrap;">KPIs</span>
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:20px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#059669;font-weight:700;white-space:nowrap;">KPIs</span>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;">
                     <div style="display:flex;flex-direction:column;gap:4px;">
@@ -1417,7 +1417,7 @@
                 <!-- PAIN POINTS -->
                 <tr style="border-bottom:1px solid var(--border);">
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;background:var(--bg-card);">
-                    <span style="display:inline-block;padding:4px 10px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#DC2626;font-weight:700;white-space:nowrap;">Pain Points</span>
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:20px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#DC2626;font-weight:700;white-space:nowrap;">Pain Points</span>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(239,68,68,0.02);">
                     <div style="display:flex;flex-direction:column;gap:4px;">
@@ -1459,7 +1459,7 @@
                 <!-- SOLUTIONS -->
                 <tr style="border-bottom:1px solid var(--border);background:var(--bg-elevated);">
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;">
-                    <span style="display:inline-block;padding:4px 10px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#0891B2;font-weight:700;white-space:nowrap;">Solutions</span>
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);border-radius:20px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#0891B2;font-weight:700;white-space:nowrap;">Solutions</span>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;color:var(--text-2);line-height:1.7;background:rgba(6,182,212,0.02);">
                     <div style="display:flex;flex-direction:column;gap:4px;">
@@ -1501,62 +1501,62 @@
                 <!-- EMOTIONS -->
                 <tr>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;background:var(--bg-card);">
-                    <span style="display:inline-block;padding:4px 10px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:20px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9333EA;font-weight:700;white-space:nowrap;">Emotions</span>
+                    <span style="display:inline-block;padding:4px 10px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:20px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#9333EA;font-weight:700;white-space:nowrap;">Emotions</span>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Focused">🎯</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Focused</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Focused</div>
                       <div style="font-size:20px;" title="Motivated">💪</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Motivated</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Motivated</div>
                     </div>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Anxious">😰</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Anxious</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Anxious</div>
                       <div style="font-size:20px;" title="Hopeful">🤞</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Hopeful</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Hopeful</div>
                     </div>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Proud">😊</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Proud</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Proud</div>
                       <div style="font-size:20px;" title="Curious">🤔</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Curious</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Curious</div>
                     </div>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Dependent">🫤</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Dependent</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Dependent</div>
                       <div style="font-size:20px;" title="Impatient">😤</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Impatient</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Impatient</div>
                     </div>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Satisfied">😌</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Satisfied</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Satisfied</div>
                       <div style="font-size:20px;" title="Responsible">🤝</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Responsible</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Responsible</div>
                     </div>
                   </td>
                   <td style="padding:14px 12px;border-right:1px solid var(--border);vertical-align:top;text-align:center;background:rgba(139,92,246,0.03);">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Concern">😮</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Concern</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Concern</div>
                       <div style="font-size:20px;" title="Relief">😮‍💨</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Relief</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Relief</div>
                     </div>
                   </td>
                   <td style="padding:14px 12px;vertical-align:top;text-align:center;background:rgba(16,185,129,0.03);">
                     <div style="display:flex;flex-direction:column;gap:8px;align-items:center;">
                       <div style="font-size:20px;" title="Accomplished">🏆</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Accomplished</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Accomplished</div>
                       <div style="font-size:20px;" title="Reflective">💭</div>
-                      <div style="font-size:11px;color:var(--text-2);font-family:var(--font-mono);">Reflective</div>
+                      <div style="font-size: 14px;color:var(--text-2);font-family:var(--font-mono);">Reflective</div>
                     </div>
                   </td>
                 </tr>
@@ -1564,7 +1564,7 @@
               </tbody>
             </table>
           </div>
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.08em;text-align:right;margin-top:10px;">← Scroll horizontally to explore all 7 stages →</div>
+          <div style="font-family:var(--font-mono);font-size: 14px;color:var(--text-3);letter-spacing:0.08em;text-align:right;margin-top:10px;">← Scroll horizontally to explore all 7 stages →</div>
         </div>
       </div>
 
@@ -1674,9 +1674,9 @@
             <div class="screen-card__title">First Launch — Empty State</div>
             <p class="screen-card__desc">When a Program Officer logs in for the first time, a clear CTA guides them to create their first scheme. Key metrics (Total Schemes, Published, Drafts, Total Applications, Fraud Cases Flagged, Avg. Drop-off Rate) are surfaced upfront — establishing data-centricity from the start.</p>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Prominent "New Scheme" CTA with illustrative onboarding banner</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Browse Templates" secondary action lowers barrier to entry</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> All KPI cards visible but empty — normalising data-first workflow</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Prominent "New Scheme" CTA with illustrative onboarding banner</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Browse Templates" secondary action lowers barrier to entry</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> All KPI cards visible but empty — normalising data-first workflow</div>
             </div>
           </div>
         </div>
@@ -1718,9 +1718,9 @@
             <div class="screen-card__title">Pre-Defined Templates</div>
             <p class="screen-card__desc">A modal presents categorised scheme templates — Education, Health, Women Empowerment, Rural Transformation, Disaster Management, Sports &amp; Development, Art/Culture, and more. Officers pick a template or start blank. Pre-defined templates reduce setup time and encode best practices for each scheme type.</p>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Thumbnail cards with illustrated categories for fast recognition</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Blank Template" option for custom/novel scheme types</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Templates pre-fill relevant datapoints and documents — cutting setup from ~45 min to ~10 min</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Thumbnail cards with illustrated categories for fast recognition</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Blank Template" option for custom/novel scheme types</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Templates pre-fill relevant datapoints and documents — cutting setup from ~45 min to ~10 min</div>
             </div>
             <div class="screen-badges" style="margin-top:14px;">
               <span class="screen-badge screen-badge--green">✓ Inspired by Google Ads templates</span>
@@ -1766,10 +1766,10 @@
             <div class="screen-card__title">Scheme Details</div>
             <p class="screen-card__desc">A stepper progress indicator at the top shows the 4-step scheme creation flow. Step 1 captures foundation details: scheme name, category, bio/benefits (rich text editor with JioType), language, start/end date, state, and location. "Save as Draft" is always accessible — reducing fear of losing work.</p>
             <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
-              <div style="padding:6px 12px;background:rgba(27,63,216,0.10);border:1px solid rgba(27,63,216,0.25);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--jw-blue);">● Step 1: Scheme Details</div>
-              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--text-3);">○ Step 2: Datapoints &amp; Docs</div>
-              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--text-3);">○ Step 3: Check Eligibility</div>
-              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size:11px;font-family:var(--font-mono);color:var(--text-3);">○ Step 4: Preview Scheme</div>
+              <div style="padding:6px 12px;background:rgba(27,63,216,0.10);border:1px solid rgba(27,63,216,0.25);border-radius:20px;font-size: 14px;font-family:var(--font-mono);color:var(--jw-blue);">● Step 1: Scheme Details</div>
+              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size: 14px;font-family:var(--font-mono);color:var(--text-3);">○ Step 2: Datapoints &amp; Docs</div>
+              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size: 14px;font-family:var(--font-mono);color:var(--text-3);">○ Step 3: Check Eligibility</div>
+              <div style="padding:6px 12px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:20px;font-size: 14px;font-family:var(--font-mono);color:var(--text-3);">○ Step 4: Preview Scheme</div>
             </div>
           </div>
         </div>
@@ -1811,8 +1811,8 @@
             <div class="screen-card__title">Datapoints &amp; Documents</div>
             <p class="screen-card__desc">Officers choose which personal datapoints (Gender, DOB, Income, District, Family Income…) and documents (Aadhar, PAN, Income Certificate, Class X Marksheet…) are required for applicants. A dual-panel interface shows available documents on the left and selected ones on the right — clear, friction-free document mapping.</p>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Category-filtered document library (Personal, Education, Occupation, Economic, Health, Housing)</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> DigiLocker-integrated documents auto-fetch from citizen vault</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Category-filtered document library (Personal, Education, Occupation, Economic, Health, Housing)</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> DigiLocker-integrated documents auto-fetch from citizen vault</div>
             </div>
             <div class="screen-badges" style="margin-top:14px;">
               <span class="screen-badge screen-badge--green">✓ DigiLocker Integration</span>
@@ -1858,8 +1858,8 @@
             <div class="screen-card__title">Check Eligibility — Rule Builder</div>
             <p class="screen-card__desc">Officers create complex eligibility rules using a visual condition builder (AND/OR logic, nested groups). Before finalising, they run an "Eligibility Simulator" — testing how different user profiles interact with the form, rules, and document logic — ensuring correctness before publishing.</p>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Visual rule builder with AND/OR/nested condition groups</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Run Test" — simulate eligibility against real profiles before going live</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Visual rule builder with AND/OR/nested condition groups</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Run Test" — simulate eligibility against real profiles before going live</div>
             </div>
             <div class="screen-badges" style="margin-top:14px;">
               <span class="screen-badge screen-badge--amber">⚡ Fixes Heuristic #3 — User Control</span>
@@ -1905,9 +1905,9 @@
             <div class="screen-card__title">Create &amp; Preview Banner — Publish</div>
             <p class="screen-card__desc">The final step lets officers design the citizen-facing scheme banner — upload image, set transparency, background/foreground colour — and preview it across Mobile, Desktop, and Tablet breakpoints in real time. A "Publish Scheme" CTA goes live only after all 4 steps are complete.</p>
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Real-time multi-device preview (Mobile · Desktop · Tablet)</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Image opacity, background/foreground colour controls</div>
-              <div style="font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Publish Scheme" CTA is gated — only active after all 4 steps complete</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Real-time multi-device preview (Mobile · Desktop · Tablet)</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> Image opacity, background/foreground colour controls</div>
+              <div style="font-size: 14px;color:var(--text-2);display:flex;gap:6px;align-items:center;"><span style="color:var(--jw-blue);font-size:14px;">→</span> "Publish Scheme" CTA is gated — only active after all 4 steps complete</div>
             </div>
             <div class="screen-badges" style="margin-top:14px;">
               <span class="screen-badge screen-badge--green">✓ Inspired by Facebook Ads preview</span>
@@ -1964,7 +1964,7 @@
               <img src="img/jw/dashboard-full.jpg" alt="Screen 07 — Post-Publishing Main Dashboard" style="width:100%;display:block;"/>
             </div>
           </div>
-          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);text-align:center;margin-top:10px;letter-spacing:0.06em;">↕ Scroll inside the frame to explore the full dashboard</div>
+          <div style="font-family:var(--font-mono);font-size: 14px;color:var(--text-3);text-align:center;margin-top:10px;letter-spacing:0.06em;">↕ Scroll inside the frame to explore the full dashboard</div>
         </div>
         <div class="aiop-frame-cap" style="margin-top:8px;">Post-Publishing Dashboard — Scheme KPIs · Category breakdown · Regional India map · Budget utilisation · Recent schemes table</div>
       </div>
@@ -1991,7 +1991,7 @@
               <img src="img/jw/scheme-detail.jpg" alt="Screen 08 — Scheme Detail Analytics" style="width:100%;display:block;"/>
             </div>
           </div>
-          <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);text-align:center;margin-top:10px;letter-spacing:0.06em;">↕ Scroll inside the frame to explore scheme-level analytics</div>
+          <div style="font-family:var(--font-mono);font-size: 14px;color:var(--text-3);text-align:center;margin-top:10px;letter-spacing:0.06em;">↕ Scroll inside the frame to explore scheme-level analytics</div>
         </div>
         <div class="aiop-frame-cap" style="margin-top:8px;">Scheme Detail Page — Application funnel · Fraud case geographic heatmap · Budget over time · Device split · Applicant table</div>
       </div>
@@ -2018,7 +2018,7 @@
           <div class="aiop-eyebrow" style="margin-bottom:16px;">Product Vision</div>
           <p style="font-family:var(--font-display);font-size:clamp(18px,2.4vw,28px);font-weight:800;color:var(--text-1);letter-spacing:-0.03em;line-height:1.3;max-width:780px;">Any government body or NGO in India can launch, manage &amp; monitor a welfare scheme in under 30 minutes — verified, fraud-proof, and accessible to every citizen via Jio's 500M+ network.</p>
         </div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;line-height:1.8;text-align:right;white-space:nowrap;">
+        <div style="font-family:var(--font-mono);font-size: 14px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;line-height:1.8;text-align:right;white-space:nowrap;">
           Jio AIOP · 2024<br/>Sagar · Maitri · George
         </div>
       </div>
@@ -2057,7 +2057,7 @@
   <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-mono);font-size: 14px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
         <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
       </div>
       <a href="work.html" class="btn btn--primary">Back to All Work</a>

@@ -30,13 +30,13 @@
     .pu-phase-hdr__num { font-family: var(--font-display); font-size: clamp(80px,10vw,120px); font-weight: 900; line-height: 0.85; color: var(--pu-green); opacity: 0.22; letter-spacing: -0.06em; flex-shrink: 0; }
     [data-theme="light"] .pu-phase-hdr__num { opacity: 0.12; }
     .pu-phase-hdr__text { padding-bottom: 8px; }
-    .pu-phase-hdr__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 6px; }
+    .pu-phase-hdr__tag { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 6px; }
     .pu-phase-hdr__title { font-family: var(--font-display); font-size: clamp(30px,4vw,48px); font-weight: 900; letter-spacing: -0.03em; color: var(--text-1); line-height: 1; }
     .pu-phase-hdr__sub { font-size: 14px; color: var(--text-2); margin-top: 6px; }
 
     /* ── Sub-section ── */
     .pu-sub { margin-top: 56px; }
-    .pu-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 10px; }
+    .pu-eyebrow { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 10px; }
     .pu-h2 { font-family: var(--font-display); font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--text-1); letter-spacing: -0.02em; margin-bottom: 10px; }
     .pu-h3 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
     .pu-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
@@ -55,11 +55,11 @@
     .pu-persona__avatar { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; background: var(--pu-green-dim); border: 2px solid var(--pu-border-green); flex-shrink: 0; font-style: normal; }
     .pu-persona__info { flex: 1; }
     .pu-persona__name { font-weight: 800; font-size: 16px; color: var(--text-1); margin-bottom: 2px; }
-    .pu-persona__role { font-size: 12px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
+    .pu-persona__role { font-size: 14px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
     .pu-persona__body { padding: 16px 24px; }
-    .pu-persona__bio { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .pu-persona__bio { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
     .pu-persona__tags { padding: 0 24px 24px; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .pu-persona__tag { font-family: var(--font-mono); font-size: 10px; color: var(--pu-green); background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; padding: 3px 10px; }
+    .pu-persona__tag { font-family: var(--font-mono); font-size: 14px; color: var(--pu-green); background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; padding: 3px 10px; }
 
     /* ── Pain point / Insight grid ── */
     .pu-pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
@@ -69,10 +69,10 @@
     .pu-pain:nth-child(3n) { border-right: none; }
     .pu-pain:nth-last-child(-n+3) { border-bottom: none; }
     @media(max-width:900px){ .pu-pain:nth-child(2n){ border-right:none; } .pu-pain:nth-child(3n){ border-right:1px solid var(--border); } .pu-pain:nth-child(3n):nth-child(2n){ border-right:none; } }
-    .pu-pain__phase { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: block; }
+    .pu-pain__phase { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: block; }
     .pu-pain__rule { display: block; width: 20px; height: 2px; background: var(--pu-green); border-radius: 2px; margin-bottom: 12px; }
     .pu-pain__title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--text-1); margin-bottom: 6px; letter-spacing: -0.01em; }
-    .pu-pain__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .pu-pain__desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Insight cards ── */
     .pu-insight-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
@@ -82,20 +82,20 @@
     @media(max-width:900px){ .pu-insight { border-right: none; border-bottom: 1px solid var(--border); } .pu-insight:last-child { border-bottom: none; } }
     .pu-insight__num { font-family: var(--font-display); font-size: clamp(40px,5vw,56px); font-weight: 900; color: var(--pu-green); opacity: 0.18; line-height: 0.9; letter-spacing: -0.06em; margin-bottom: 14px; }
     .pu-insight__title { font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; letter-spacing: -0.01em; }
-    .pu-insight__text { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .pu-insight__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Double Diamond ── */
     .pu-diamond { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
     .pu-diamond-phase { padding: 24px 20px; border-right: 1px solid var(--border); }
     .pu-diamond-phase:last-child { border-right: none; }
-    .pu-diamond-phase__d { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .pu-diamond-phase__d { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
     .pu-diamond-phase__d--discover { background: var(--pu-green-dim); color: var(--pu-green); }
     .pu-diamond-phase__d--define { background: rgba(139,92,246,0.1); color: #7C3AED; }
     .pu-diamond-phase__d--develop { background: rgba(16,185,129,0.1); color: #059669; }
     .pu-diamond-phase__d--deliver { background: rgba(245,158,11,0.1); color: #D97706; }
     .pu-diamond-phase__title { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
     .pu-diamond-phase__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-    .pu-diamond-phase__items li { font-size: 12px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
+    .pu-diamond-phase__items li { font-size: 14px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
     .pu-diamond-phase__items li::before { content: '—'; position: absolute; left: 0; color: var(--pu-green); }
     @media(max-width:800px){.pu-diamond{grid-template-columns:1fr 1fr}}
 
@@ -105,7 +105,7 @@
     .pu-constraint { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
     .pu-constraint__num { font-family: var(--font-display); font-size: 36px; font-weight: 900; color: var(--pu-green); opacity: 0.25; margin-bottom: 12px; }
     .pu-constraint__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
-    .pu-constraint__text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .pu-constraint__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Objectives grid ── */
     .pu-objectives { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
@@ -113,7 +113,7 @@
     .pu-obj { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
     .pu-obj__icon { font-size: 28px; margin-bottom: 16px; }
     .pu-obj__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
-    .pu-obj__text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .pu-obj__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Browser / Laptop Mockup ── */
     .browser-wrap {
@@ -140,7 +140,7 @@
       background: rgba(255,255,255,0.06);
       border-radius: 6px;
       display: flex; align-items: center; padding: 0 10px;
-      font-family: var(--font-mono); font-size: 10px;
+      font-family: var(--font-mono); font-size: 14px;
       color: rgba(255,255,255,0.35); letter-spacing: 0.04em;
       gap: 6px;
     }
@@ -160,7 +160,7 @@
       color: var(--pu-green); opacity: 0.12; pointer-events: none; user-select: none;
     }
     .screen-card__step {
-      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--pu-green);
       background: var(--pu-green-dim); border: 1px solid var(--pu-border-green);
       border-radius: 20px; padding: 4px 12px; display: inline-block; white-space: nowrap;
@@ -192,10 +192,10 @@
     }
     .screen-card__annot:last-child { border-right: none; }
     .screen-card__annot-label {
-      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--text-3); margin-bottom: 4px;
     }
-    .screen-card__annot-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    .screen-card__annot-text { font-size: 14px; color: var(--text-2); line-height: 1.55; }
     @media(max-width:700px){ .screen-card__annots { grid-template-columns: 1fr; } .screen-card__header { flex-direction: column; gap: 16px; } }
 
     /* ── Phone frame ── */
@@ -221,7 +221,7 @@
     .pu-usecase { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
     .pu-usecase__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 14px; }
     .pu-usecase__steps { display: flex; flex-direction: column; gap: 12px; }
-    .pu-usecase__step { font-size: 13px; color: var(--text-2); line-height: 1.65; padding-left: 16px; position: relative; }
+    .pu-usecase__step { font-size: 14px; color: var(--text-2); line-height: 1.65; padding-left: 16px; position: relative; }
     .pu-usecase__step::before { content: '→'; position: absolute; left: 0; color: var(--pu-green); font-weight: 700; }
 
     /* ── Animation ── */
@@ -236,12 +236,12 @@
 
     /* ── Utilities ── */
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
-    .section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; }
+    .section-label { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; }
     .section-label::before { background: var(--pu-green); }
     .d-xl { font-family: var(--font-display); font-size: clamp(40px,6vw,72px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; }
     .body-lg { font-size: 18px; color: var(--text-2); line-height: 1.75; }
-    .tag { display: inline-block; padding: 4px 12px; background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; font-size: 11px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; }
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; border-radius: var(--r-md); font-size: 13px; font-weight: 600; transition: all 200ms ease; }
+    .tag { display: inline-block; padding: 4px 12px; background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; font-size: 14px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; border-radius: var(--r-md); font-size: 14px; font-weight: 600; transition: all 200ms ease; }
     .btn--primary { background: var(--pu-green); color: #0A0A14; }
     .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(141,194,0,0.3); }
 
@@ -267,7 +267,7 @@
     }
     .footer__logo span { color: var(--pu-green); }
     .footer__copy {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-3);
     }
     .footer__links {
@@ -275,7 +275,7 @@
       gap: 24px;
     }
     .footer__links a {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-2);
       transition: color 200ms ease;
     }
@@ -373,7 +373,7 @@
     }
     .vp__tag {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
@@ -388,7 +388,7 @@
       letter-spacing: -0.01em;
     }
     .vp__hint {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-2);
       max-width: 320px;
       line-height: 1.6;
@@ -509,8 +509,8 @@
               display:flex; align-items:center; justify-content:center;
               font-size:14px; flex-shrink:0;
             }
-            .ip-header-name { font-size:11px; font-weight:700; color:#fff; }
-            .ip-header-status { font-size:9px; color:#30d158; margin-top:1px; }
+            .ip-header-name { font-size: 14px; font-weight:700; color:#fff; }
+            .ip-header-status { font-size:14px; color:#30d158; margin-top:1px; }
             /* Messages */
             .ip-messages {
               flex:1; padding:10px 12px; display:flex;
@@ -520,17 +520,17 @@
               background:rgba(255,255,255,0.1);
               border-radius:4px 14px 14px 14px;
               padding:7px 10px; max-width:82%;
-              font-size:9.5px; color:rgba(255,255,255,0.85); line-height:1.5;
+              font-size:14px; color:rgba(255,255,255,0.85); line-height:1.5;
             }
             .ip-bubble-user {
               background:#0F3CCC;
               border-radius:14px 4px 14px 14px;
               padding:7px 10px; max-width:80%; align-self:flex-end;
-              font-size:9.5px; color:#fff; line-height:1.5;
+              font-size:14px; color:#fff; line-height:1.5;
             }
             .ip-chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:2px; }
             .ip-chip {
-              font-size:8.5px; padding:4px 9px;
+              font-size:14px; padding:4px 9px;
               border:1px solid rgba(255,255,255,0.2);
               border-radius:20px; color:rgba(255,255,255,0.7);
               white-space:nowrap;
@@ -541,7 +541,7 @@
               border:1px solid rgba(239,68,68,0.3);
               border-radius:4px 14px 14px 14px;
               padding:7px 10px; max-width:88%;
-              font-size:9.5px; color:#f87171; line-height:1.5;
+              font-size:14px; color:#f87171; line-height:1.5;
             }
             /* Input bar */
             .ip-inputbar {
@@ -554,7 +554,7 @@
             .ip-input {
               flex:1; background:rgba(255,255,255,0.08);
               border-radius:20px; padding:6px 12px;
-              font-size:9px; color:rgba(255,255,255,0.35);
+              font-size:14px; color:rgba(255,255,255,0.35);
             }
             .ip-send {
               width:26px; height:26px; border-radius:50%;
@@ -568,15 +568,15 @@
             .iphone17__badge {
               display:inline-flex; align-items:center; gap:5px;
               padding:4px 10px; border-radius:20px;
-              font-size:9px; font-weight:700; font-family:monospace;
+              font-size:14px; font-weight:700; font-family:monospace;
               letter-spacing:0.06em; margin-bottom:6px;
             }
             .iphone17__ann-title {
-              font-size:11px; font-weight:700; color:var(--text-1);
+              font-size: 14px; font-weight:700; color:var(--text-1);
               margin-bottom:3px;
             }
             .iphone17__ann-desc {
-              font-size:10px; color:var(--text-3); line-height:1.5;
+              font-size: 14px; color:var(--text-3); line-height:1.5;
               max-width:200px; margin:0 auto;
             }
             /* Violation highlight ring */
@@ -612,14 +612,14 @@
           .uf-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.07);border:none;color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;margin-left:12px;flex-shrink:0;}
           .uf-close:hover{background:rgba(255,255,255,.15);}
           .uf-body{flex:1;overflow:auto;padding:36px 40px 64px;}
-          .uf-section-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:22px;}
+          .uf-section-label{font-family:var(--font-mono);font-size: 14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:22px;}
 
           /* ── Node types ── */
           .fn{display:inline-flex;flex-direction:column;align-items:flex-start;padding:13px 17px;border-radius:11px;font-size:14px;line-height:1.5;flex-shrink:0;}
           .fn__title{font-weight:800;white-space:nowrap;font-size:14px;}
-          .fn__sub{font-size:11.5px;opacity:.7;white-space:nowrap;margin-top:3px;}
+          .fn__sub{font-size:14px;opacity:.7;white-space:nowrap;margin-top:3px;}
           .fn__list{display:flex;flex-direction:column;gap:5px;margin-top:8px;}
-          .fn__li{font-size:11.5px;display:flex;align-items:center;gap:7px;}
+          .fn__li{font-size:14px;display:flex;align-items:center;gap:7px;}
           .fn__dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
           .fn--start{background:#1B3ED0;color:#fff;border-radius:24px;padding:12px 26px;font-weight:800;font-size:14px;letter-spacing:-.01em;}
           .fn--msg{background:#DBEAFE;color:#1e3a5f;border:1px solid #BFDBFE;}
@@ -649,7 +649,7 @@
 
           /* ── Layout helpers ── */
           .uf-lane{display:flex;align-items:flex-start;gap:0;margin-bottom:20px;}
-          .uf-lane-tag{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:11.5px;font-weight:700;white-space:nowrap;width:155px;flex-shrink:0;margin-right:22px;margin-top:8px;}
+          .uf-lane-tag{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:700;white-space:nowrap;width:155px;flex-shrink:0;margin-right:22px;margin-top:8px;}
           .uf-vbar{width:2px;background:rgba(255,255,255,.06);flex-shrink:0;align-self:stretch;margin-right:22px;}
           .uf-split{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
           .uf-split-row{display:flex;align-items:center;gap:0;}
@@ -1092,40 +1092,40 @@
               <div style="display:flex;align-items:flex-end;gap:6px;height:80px;padding:0 4px;">
                 <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;">
                   <div style="width:100%;background:#1B3ED0;border-radius:3px 3px 0 0;height:72px;"></div>
-                  <div style="font-size:11px;color:var(--text-2);text-align:center;line-height:1.4;">Quick<br/>resp.</div>
+                  <div style="font-size: 14px;color:var(--text-2);text-align:center;line-height:1.4;">Quick<br/>resp.</div>
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;">
                   <div style="width:100%;background:#22C55E;border-radius:3px 3px 0 0;height:52px;"></div>
-                  <div style="font-size:11px;color:var(--text-2);text-align:center;line-height:1.4;">Human<br/>agent</div>
+                  <div style="font-size: 14px;color:var(--text-2);text-align:center;line-height:1.4;">Human<br/>agent</div>
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;">
                   <div style="width:100%;background:#F97316;border-radius:3px 3px 0 0;height:30px;"></div>
-                  <div style="font-size:11px;color:var(--text-2);text-align:center;line-height:1.4;">24x7</div>
+                  <div style="font-size: 14px;color:var(--text-2);text-align:center;line-height:1.4;">24x7</div>
                 </div>
                 <div style="width:1px;background:var(--border);margin:0 3px;align-self:stretch;"></div>
                 <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;">
                   <div style="width:100%;background:#EF4444;border-radius:3px 3px 0 0;height:32px;"></div>
-                  <div style="font-size:11px;color:var(--text-2);text-align:center;line-height:1.4;">Unhelpful<br/>resp.</div>
+                  <div style="font-size: 14px;color:var(--text-2);text-align:center;line-height:1.4;">Unhelpful<br/>resp.</div>
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;">
                   <div style="width:100%;background:#BE123C;border-radius:3px 3px 0 0;height:22px;"></div>
-                  <div style="font-size:11px;color:var(--text-2);text-align:center;line-height:1.4;">No<br/>personal.</div>
+                  <div style="font-size: 14px;color:var(--text-2);text-align:center;line-height:1.4;">No<br/>personal.</div>
                 </div>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
                 <div style="background:rgba(0,180,0,0.05);border:1px solid rgba(0,180,0,0.2);border-radius:8px;padding:10px;">
                   <div style="font-size:14px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;color:#4ADE80;margin-bottom:5px;">+ve Feedback</div>
                   <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px;">
-                    <li style="font-size:12px;color:var(--text-2);">• Quick response times</li>
-                    <li style="font-size:12px;color:var(--text-2);">• Easy connect with Agent</li>
-                    <li style="font-size:12px;color:var(--text-2);">• 24x7 availability</li>
+                    <li style="font-size: 14px;color:var(--text-2);">• Quick response times</li>
+                    <li style="font-size: 14px;color:var(--text-2);">• Easy connect with Agent</li>
+                    <li style="font-size: 14px;color:var(--text-2);">• 24x7 availability</li>
                   </ul>
                 </div>
                 <div style="background:rgba(255,50,50,0.05);border:1px solid rgba(255,50,50,0.2);border-radius:8px;padding:10px;">
                   <div style="font-size:14px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;color:#F87171;margin-bottom:5px;">-ve Feedback</div>
                   <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px;">
-                    <li style="font-size:12px;color:var(--text-2);">• Unhelpful responses</li>
-                    <li style="font-size:12px;color:var(--text-2);">• Lack of personalisation</li>
+                    <li style="font-size: 14px;color:var(--text-2);">• Unhelpful responses</li>
+                    <li style="font-size: 14px;color:var(--text-2);">• Lack of personalisation</li>
                   </ul>
                 </div>
               </div>
@@ -1504,7 +1504,7 @@
                         <!-- Annotation arrow -->
                         <div style="display:flex;align-items:center;gap:5px;margin-top:2px;">
                           <div style="width:18px;height:1px;background:#F59E0B;"></div>
-                          <span style="font-size:11px;color:#F59E0B;font-weight:600;">Why not show the menu?</span>
+                          <span style="font-size: 14px;color:#F59E0B;font-weight:600;">Why not show the menu?</span>
                         </div>
                         <div style="flex:1;"></div>
                       </div>
@@ -1558,7 +1558,7 @@
                         </div>
                         <div style="display:flex;align-items:center;gap:5px;margin-top:4px;">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                          <span style="font-size:11px;color:#EF4444;font-weight:600;">Buttons vanished — user stranded</span>
+                          <span style="font-size: 14px;color:#EF4444;font-weight:600;">Buttons vanished — user stranded</span>
                         </div>
                         <div style="flex:1;"></div>
                       </div>
@@ -1609,7 +1609,7 @@
                         <!-- No recovery options annotation -->
                         <div style="display:flex;align-items:center;gap:5px;margin-top:2px;">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                          <span style="font-size:11px;color:#EF4444;font-weight:600;">No retry · no menu · no agent</span>
+                          <span style="font-size: 14px;color:#EF4444;font-weight:600;">No retry · no menu · no agent</span>
                         </div>
                         <div style="flex:1;"></div>
                       </div>
@@ -2042,7 +2042,7 @@
 
                 <!-- WhatsApp delivery note -->
                 <div style="margin-top:8px;padding:10px 0 0 166px;border-top:1px solid rgba(255,255,255,.04);">
-                  <span style="font-size:11px;color:rgba(255,255,255,.50);font-family:var(--font-mono);letter-spacing:.04em;">↑ All flows delivered via WhatsApp Business API — cloud-hosted, end-to-end encrypted · Human handover includes full conversation context</span>
+                  <span style="font-size: 14px;color:rgba(255,255,255,.50);font-family:var(--font-mono);letter-spacing:.04em;">↑ All flows delivered via WhatsApp Business API — cloud-hosted, end-to-end encrypted · Human handover includes full conversation context</span>
                 </div>
 
                 <!-- Legend -->
@@ -2091,7 +2091,7 @@
 
                 <!-- ── BRANCH A: AI CONSULTATION ── -->
                 <div style="border-left:2px solid rgba(99,150,255,.3);padding-left:22px;margin-left:0;margin-bottom:24px;">
-                  <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(99,150,255,.55);margin-bottom:12px;">Branch A · AI Consultation &amp; Live Tutoring</div>
+                  <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(99,150,255,.55);margin-bottom:12px;">Branch A · AI Consultation &amp; Live Tutoring</div>
 
                   <!-- A1: AI Tutor Chat -->
                   <div class="uf-lane" style="margin-bottom:10px;">
@@ -2176,7 +2176,7 @@
 
                 <!-- ── BRANCH B: COURSE RECOMMENDATION ── -->
                 <div style="border-left:2px solid rgba(255,197,66,.3);padding-left:22px;margin-left:0;">
-                  <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,197,66,.55);margin-bottom:12px;">Branch B · Course Recommendation, Enrollment &amp; Progress Tracking</div>
+                  <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,197,66,.55);margin-bottom:12px;">Branch B · Course Recommendation, Enrollment &amp; Progress Tracking</div>
 
                   <!-- B1: Course Recommendation -->
                   <div class="uf-lane" style="margin-bottom:10px;">
@@ -2339,9 +2339,9 @@
               <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,#020e2e);pointer-events:none;"></div>
               <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);text-align:right;">
                 <div style="font-size:22px;font-weight:800;color:#fff;font-family:var(--font-display);line-height:1;">5</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">paths</div>
+                <div style="font-size: 14px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">paths</div>
                 <div style="font-size:22px;font-weight:800;color:#F87171;font-family:var(--font-display);line-height:1;margin-top:6px;">3</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">escalations</div>
+                <div style="font-size: 14px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">escalations</div>
               </div>
             </div>
             <div class="uf-card__body">
@@ -2359,19 +2359,19 @@
           <div class="uf-card" onclick="ufOpen('e')">
             <div class="uf-card__thumb">
               <div class="mp">
-                <div style="font-size:11px;color:rgba(99,150,255,.75);font-family:var(--font-mono);letter-spacing:.08em;margin-bottom:3px;">BRANCH A · AI TUTOR</div>
+                <div style="font-size: 14px;color:rgba(99,150,255,.75);font-family:var(--font-mono);letter-spacing:.08em;margin-bottom:3px;">BRANCH A · AI TUTOR</div>
                 <div class="mp-row" style="margin-bottom:3px;"><div class="mp-n" style="width:38px;background:#EDE9FE;border:1px solid #DDD6FE;"></div><div class="mp-a"></div><div class="mp-a"></div><div class="mp-n" style="width:30px;background:#DBEAFE;border:1px solid #BFDBFE;"></div><div class="mp-a"></div><div class="mp-n" style="width:30px;background:#EDE9FE;border:1px solid #DDD6FE;"></div><div class="mp-a"></div><div class="mp-n" style="width:24px;background:#FEF3C7;border:1.5px solid #FDE68A;"></div><div class="mp-a"></div><div class="mp-n" style="width:18px;background:#D1FAE5;border:1.5px solid #34D399;"></div></div>
                 <div class="mp-row" style="margin-bottom:7px;"><div class="mp-n" style="width:38px;background:#FFD78A;border:1px solid #F5B800;"></div><div class="mp-a"></div><div class="mp-a"></div><div class="mp-n" style="width:30px;background:#DBEAFE;border:1px solid #BFDBFE;"></div><div class="mp-a"></div><div class="mp-n" style="width:28px;background:#DBEAFE;border:1px solid #BFDBFE;"></div><div class="mp-a"></div><div class="mp-n" style="width:40px;background:#D1FAE5;border:1.5px solid #34D399;"></div></div>
-                <div style="font-size:11px;color:rgba(255,197,66,.75);font-family:var(--font-mono);letter-spacing:.08em;margin-bottom:3px;">BRANCH B · COURSES</div>
+                <div style="font-size: 14px;color:rgba(255,197,66,.75);font-family:var(--font-mono);letter-spacing:.08em;margin-bottom:3px;">BRANCH B · COURSES</div>
                 <div class="mp-row" style="margin-bottom:3px;"><div class="mp-n" style="width:38px;background:#FFC43344;border:1px solid #FFC433;"></div><div class="mp-a"></div><div class="mp-a"></div><div class="mp-n" style="width:36px;background:#DBEAFE;border:1px solid #BFDBFE;"></div><div class="mp-a"></div><div class="mp-n" style="width:28px;background:#EDE9FE;border:1px solid #DDD6FE;"></div><div class="mp-a"></div><div class="mp-n" style="width:24px;background:#FEF3C7;border:1.5px solid #FDE68A;"></div><div class="mp-a"></div><div class="mp-n" style="width:18px;background:#D1FAE5;border:1.5px solid #34D399;"></div></div>
                 <div class="mp-row"><div class="mp-n" style="width:38px;background:#FFC43344;border:1px solid #FFC433;"></div><div class="mp-a"></div><div class="mp-a"></div><div class="mp-n" style="width:36px;background:#EDE9FE;border:1px solid #DDD6FE;"></div><div class="mp-a"></div><div class="mp-n" style="width:28px;background:#DBEAFE;border:1px solid #BFDBFE;"></div><div class="mp-a"></div><div class="mp-n" style="width:24px;background:#FEF3C7;border:1.5px solid #FDE68A;"></div><div class="mp-a"></div><div class="mp-n" style="width:22px;background:#F1F5F9;border:1.5px dashed #94A3B8;"></div></div>
               </div>
               <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 52%,#020e2e);pointer-events:none;"></div>
               <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);text-align:right;">
                 <div style="font-size:22px;font-weight:800;color:#fff;font-family:var(--font-display);line-height:1;">5</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">paths</div>
+                <div style="font-size: 14px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">paths</div>
                 <div style="font-size:22px;font-weight:800;color:#F87171;font-family:var(--font-display);line-height:1;margin-top:6px;">3</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">escalations</div>
+                <div style="font-size: 14px;color:rgba(255,255,255,.75);font-family:var(--font-mono);">escalations</div>
               </div>
             </div>
             <div class="uf-card__body">
@@ -2527,12 +2527,12 @@
               <div style="display:flex;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:#FF5F57;"></div><div style="width:10px;height:10px;border-radius:50%;background:#FEBC2E;"></div><div style="width:10px;height:10px;border-radius:50%;background:#28C840;"></div></div>
               <div style="width:1px;height:14px;background:rgba(255,255,255,.08);margin:0 4px;"></div>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-              <span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.04em;">Jio Chat — Ideation Board · Chatbot Pattern Strategy</span>
+              <span style="font-family:var(--font-mono);font-size: 14px;color:rgba(255,255,255,.4);letter-spacing:.04em;">Jio Chat — Ideation Board · Chatbot Pattern Strategy</span>
             </div>
             <div style="display:flex;align-items:center;gap:14px;">
-              <span style="font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.08em;">6 THEMES · 2024</span>
+              <span style="font-family:var(--font-mono);font-size:14px;color:rgba(255,255,255,.22);letter-spacing:.08em;">6 THEMES · 2024</span>
               <div style="display:flex;gap:6px;align-items:center;">
-                <div style="padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.06);font-size:9px;color:rgba(255,255,255,.3);font-family:var(--font-mono);">100%</div>
+                <div style="padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.06);font-size:14px;color:rgba(255,255,255,.3);font-family:var(--font-mono);">100%</div>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               </div>
             </div>
@@ -2543,9 +2543,9 @@
 
             <!-- Top annotation: Input Patterns bracket -->
             <div style="display:flex;align-items:center;gap:0;margin-bottom:6px;padding-left:4px;">
-              <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);flex:1;text-align:center;">← Input Patterns →</div>
+              <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);flex:1;text-align:center;">← Input Patterns →</div>
               <div style="width:1px;height:0;"></div>
-              <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);flex:1;text-align:center;">← Resolution Patterns →</div>
+              <div style="font-family:var(--font-mono);font-size: 14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2);flex:1;text-align:center;">← Resolution Patterns →</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0;margin-bottom:8px;padding-left:4px;">
               <div style="height:6px;border:1px solid rgba(255,255,255,.1);border-bottom:none;"></div>
@@ -2558,96 +2558,96 @@
 
               <!-- ── CLUSTER 1: Intent Recognition (Yellow) ── -->
               <div>
-                <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,220,100,.4);margin-bottom:9px;">01 · INTENT RECOGNITION</div>
+                <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,220,100,.4);margin-bottom:9px;">01 · INTENT RECOGNITION</div>
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="background:#FEF08A;border-radius:3px;padding:11px 13px;font-size:11.5px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(-0.7deg);font-family:var(--font-display);">
+                  <div style="background:#FEF08A;border-radius:3px;padding:11px 13px;font-size:14px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(-0.7deg);font-family:var(--font-display);">
                     Smart Intent Recognition
-                    <div style="font-size:9.5px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">NLP-powered routing</div>
+                    <div style="font-size:14px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">NLP-powered routing</div>
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                    <div style="background:#FDE047;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.4deg);font-family:var(--font-mono);">Confidence scoring<br/>0.0 – 1.0 scale</div>
-                    <div style="background:#FEF9C3;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.8deg);font-family:var(--font-mono);">NLP fallback<br/>→ live agent</div>
-                    <div style="background:#FDE047;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(0.6deg);font-family:var(--font-mono);grid-column:1/-1;">Multi-intent detection in single message</div>
+                    <div style="background:#FDE047;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.4deg);font-family:var(--font-mono);">Confidence scoring<br/>0.0 – 1.0 scale</div>
+                    <div style="background:#FEF9C3;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.8deg);font-family:var(--font-mono);">NLP fallback<br/>→ live agent</div>
+                    <div style="background:#FDE047;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(0.6deg);font-family:var(--font-mono);grid-column:1/-1;">Multi-intent detection in single message</div>
                   </div>
                 </div>
               </div>
 
               <!-- ── CLUSTER 2: Quick Reply Patterns (Blue) ── -->
               <div>
-                <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(147,197,253,.4);margin-bottom:9px;">02 · QUICK REPLY PATTERNS</div>
+                <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(147,197,253,.4);margin-bottom:9px;">02 · QUICK REPLY PATTERNS</div>
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="background:#BFDBFE;border-radius:3px;padding:11px 13px;font-size:11.5px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(0.9deg);font-family:var(--font-display);">
+                  <div style="background:#BFDBFE;border-radius:3px;padding:11px 13px;font-size:14px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(0.9deg);font-family:var(--font-display);">
                     Contextual Quick Replies
-                    <div style="font-size:9.5px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Chips + free-text balance</div>
+                    <div style="font-size:14px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Chips + free-text balance</div>
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                    <div style="background:#93C5FD;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.1deg);font-family:var(--font-mono);">Dynamic chip<br/>generation</div>
-                    <div style="background:#DBEAFE;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.6deg);font-family:var(--font-mono);">Surface most-used<br/>paths first</div>
-                    <div style="background:#93C5FD;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.4deg);font-family:var(--font-mono);grid-column:1/-1;">Chips vs free-text — context decides</div>
+                    <div style="background:#93C5FD;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.1deg);font-family:var(--font-mono);">Dynamic chip<br/>generation</div>
+                    <div style="background:#DBEAFE;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.6deg);font-family:var(--font-mono);">Surface most-used<br/>paths first</div>
+                    <div style="background:#93C5FD;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.4deg);font-family:var(--font-mono);grid-column:1/-1;">Chips vs free-text — context decides</div>
                   </div>
                 </div>
               </div>
 
               <!-- ── CLUSTER 3: Progressive Disclosure (Green) ── -->
               <div>
-                <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(134,239,172,.4);margin-bottom:9px;">03 · PROGRESSIVE DISCLOSURE</div>
+                <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(134,239,172,.4);margin-bottom:9px;">03 · PROGRESSIVE DISCLOSURE</div>
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="background:#BBF7D0;border-radius:3px;padding:11px 13px;font-size:11.5px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(-1.2deg);font-family:var(--font-display);">
+                  <div style="background:#BBF7D0;border-radius:3px;padding:11px 13px;font-size:14px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(-1.2deg);font-family:var(--font-display);">
                     Progressive Disclosure
-                    <div style="font-size:9.5px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Step-by-step info reveal</div>
+                    <div style="font-size:14px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Step-by-step info reveal</div>
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                    <div style="background:#86EFAC;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.0deg);font-family:var(--font-mono);">Don't overwhelm —<br/>one step at a time</div>
-                    <div style="background:#DCFCE7;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.9deg);font-family:var(--font-mono);">"View More" for<br/>all options</div>
-                    <div style="background:#86EFAC;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(0.3deg);font-family:var(--font-mono);grid-column:1/-1;">Confirm before irreversible action</div>
+                    <div style="background:#86EFAC;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.0deg);font-family:var(--font-mono);">Don't overwhelm —<br/>one step at a time</div>
+                    <div style="background:#DCFCE7;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.9deg);font-family:var(--font-mono);">"View More" for<br/>all options</div>
+                    <div style="background:#86EFAC;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(0.3deg);font-family:var(--font-mono);grid-column:1/-1;">Confirm before irreversible action</div>
                   </div>
                 </div>
               </div>
 
               <!-- ── CLUSTER 4: Error Recovery (Pink) ── -->
               <div>
-                <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(249,168,212,.4);margin-bottom:9px;">04 · GRACEFUL ERROR RECOVERY</div>
+                <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(249,168,212,.4);margin-bottom:9px;">04 · GRACEFUL ERROR RECOVERY</div>
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="background:#FBCFE8;border-radius:3px;padding:11px 13px;font-size:11.5px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(0.5deg);font-family:var(--font-display);">
+                  <div style="background:#FBCFE8;border-radius:3px;padding:11px 13px;font-size:14px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(0.5deg);font-family:var(--font-display);">
                     Graceful Error Recovery
-                    <div style="font-size:9.5px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Never a dead end</div>
+                    <div style="font-size:14px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Never a dead end</div>
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                    <div style="background:#F9A8D4;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.3deg);font-family:var(--font-mono);">Friendly error<br/>language only</div>
-                    <div style="background:#FCE7F3;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.7deg);font-family:var(--font-mono);">Always offer<br/>restart / home</div>
-                    <div style="background:#F9A8D4;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.5deg);font-family:var(--font-mono);grid-column:1/-1;">Retry with suggested alternatives</div>
+                    <div style="background:#F9A8D4;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.3deg);font-family:var(--font-mono);">Friendly error<br/>language only</div>
+                    <div style="background:#FCE7F3;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.7deg);font-family:var(--font-mono);">Always offer<br/>restart / home</div>
+                    <div style="background:#F9A8D4;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.5deg);font-family:var(--font-mono);grid-column:1/-1;">Retry with suggested alternatives</div>
                   </div>
                 </div>
               </div>
 
               <!-- ── CLUSTER 5: Human-AI Handover (Purple) ── -->
               <div>
-                <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,181,253,.4);margin-bottom:9px;">05 · HUMAN-AI COLLABORATION</div>
+                <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(196,181,253,.4);margin-bottom:9px;">05 · HUMAN-AI COLLABORATION</div>
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="background:#DDD6FE;border-radius:3px;padding:11px 13px;font-size:11.5px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(-0.6deg);font-family:var(--font-display);">
+                  <div style="background:#DDD6FE;border-radius:3px;padding:11px 13px;font-size:14px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(-0.6deg);font-family:var(--font-display);">
                     Human-AI Collaboration
-                    <div style="font-size:9.5px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Warm handover with context</div>
+                    <div style="font-size:14px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Warm handover with context</div>
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                    <div style="background:#C4B5FD;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.1deg);font-family:var(--font-mono);">Set wait time<br/>expectations</div>
-                    <div style="background:#EDE9FE;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.6deg);font-family:var(--font-mono);">Agent sees full<br/>chat history</div>
-                    <div style="background:#C4B5FD;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(0.8deg);font-family:var(--font-mono);grid-column:1/-1;">No hard cutoffs — gradual transition</div>
+                    <div style="background:#C4B5FD;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.1deg);font-family:var(--font-mono);">Set wait time<br/>expectations</div>
+                    <div style="background:#EDE9FE;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.6deg);font-family:var(--font-mono);">Agent sees full<br/>chat history</div>
+                    <div style="background:#C4B5FD;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(0.8deg);font-family:var(--font-mono);grid-column:1/-1;">No hard cutoffs — gradual transition</div>
                   </div>
                 </div>
               </div>
 
               <!-- ── CLUSTER 6: Personalisation (Orange) ── -->
               <div>
-                <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(253,186,116,.4);margin-bottom:9px;">06 · PERSONALISED CONTEXT</div>
+                <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:rgba(253,186,116,.4);margin-bottom:9px;">06 · PERSONALISED CONTEXT</div>
                 <div style="display:flex;flex-direction:column;gap:6px;">
-                  <div style="background:#FED7AA;border-radius:3px;padding:11px 13px;font-size:11.5px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(1.1deg);font-family:var(--font-display);">
+                  <div style="background:#FED7AA;border-radius:3px;padding:11px 13px;font-size:14px;font-weight:800;color:#1c1c1c;line-height:1.35;box-shadow:0 4px 10px rgba(0,0,0,.45);transform:rotate(1.1deg);font-family:var(--font-display);">
                     Personalised Context
-                    <div style="font-size:9.5px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Adaptive responses</div>
+                    <div style="font-size:14px;font-weight:400;opacity:.7;margin-top:3px;font-family:var(--font-mono);">Adaptive responses</div>
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                    <div style="background:#FDBA74;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.2deg);font-family:var(--font-mono);">Greeted by name<br/>on return</div>
-                    <div style="background:#FFF7ED;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.5deg);font-family:var(--font-mono);">Pre-fill from<br/>account data</div>
-                    <div style="background:#FDBA74;border-radius:3px;padding:8px 10px;font-size:9.5px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.3deg);font-family:var(--font-mono);grid-column:1/-1;">Learn + adapt from past sessions</div>
+                    <div style="background:#FDBA74;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-1.2deg);font-family:var(--font-mono);">Greeted by name<br/>on return</div>
+                    <div style="background:#FFF7ED;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(1.5deg);font-family:var(--font-mono);">Pre-fill from<br/>account data</div>
+                    <div style="background:#FDBA74;border-radius:3px;padding:8px 10px;font-size:14px;color:#1c1c1c;line-height:1.45;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-0.3deg);font-family:var(--font-mono);grid-column:1/-1;">Learn + adapt from past sessions</div>
                   </div>
                 </div>
               </div>
@@ -2657,14 +2657,14 @@
             <!-- Bottom annotation -->
             <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;">
               <div style="display:flex;align-items:center;gap:16px;">
-                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#FEF08A;"></div><span style="font-size:9px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Input</span></div>
-                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#BFDBFE;"></div><span style="font-size:9px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Interaction</span></div>
-                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#BBF7D0;"></div><span style="font-size:9px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Presentation</span></div>
-                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#FBCFE8;"></div><span style="font-size:9px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Resilience</span></div>
-                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#DDD6FE;"></div><span style="font-size:9px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Handover</span></div>
-                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#FED7AA;"></div><span style="font-size:9px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Personalisation</span></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#FEF08A;"></div><span style="font-size:14px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Input</span></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#BFDBFE;"></div><span style="font-size:14px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Interaction</span></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#BBF7D0;"></div><span style="font-size:14px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Presentation</span></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#FBCFE8;"></div><span style="font-size:14px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Resilience</span></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#DDD6FE;"></div><span style="font-size:14px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Handover</span></div>
+                <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;border-radius:2px;background:#FED7AA;"></div><span style="font-size:14px;color:rgba(255,255,255,.28);font-family:var(--font-mono);">Personalisation</span></div>
               </div>
-              <div style="font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,.18);letter-spacing:.06em;">Design · Ideate · Workshop 2024</div>
+              <div style="font-family:var(--font-mono);font-size:14px;color:rgba(255,255,255,.18);letter-spacing:.06em;">Design · Ideate · Workshop 2024</div>
             </div>
 
           </div><!-- /canvas -->
@@ -3044,7 +3044,7 @@
                 <div class="vp__icon" style="width:36px;height:36px;border-radius:10px;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
                 </div>
-                <span class="vp__tag" style="font-size:11px;">Visual 09</span>
+                <span class="vp__tag" style="font-size: 14px;">Visual 09</span>
                 <div class="vp__label" style="font-size:14px;">Retail Chat Screen</div>
                 <div class="vp__hint" style="font-size:14px;">Mobile frame · 390×844px</div>
               </div>
@@ -3054,7 +3054,7 @@
                 <div class="vp__icon" style="width:36px;height:36px;border-radius:10px;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
                 </div>
-                <span class="vp__tag" style="font-size:11px;">Visual 10</span>
+                <span class="vp__tag" style="font-size: 14px;">Visual 10</span>
                 <div class="vp__label" style="font-size:14px;">EdTech Chat Screen</div>
                 <div class="vp__hint" style="font-size:14px;">Mobile frame · 390×844px</div>
               </div>
@@ -3064,7 +3064,7 @@
                 <div class="vp__icon" style="width:36px;height:36px;border-radius:10px;">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
                 </div>
-                <span class="vp__tag" style="font-size:11px;">Visual 11</span>
+                <span class="vp__tag" style="font-size: 14px;">Visual 11</span>
                 <div class="vp__label" style="font-size:14px;">Agent Handover Screen</div>
                 <div class="vp__hint" style="font-size:14px;">Mobile frame · 390×844px</div>
               </div>

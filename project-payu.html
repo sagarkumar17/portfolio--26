@@ -29,13 +29,13 @@
     .pu-phase-hdr__num { font-family: var(--font-display); font-size: clamp(80px,10vw,120px); font-weight: 900; line-height: 0.85; color: var(--pu-green); opacity: 0.22; letter-spacing: -0.06em; flex-shrink: 0; }
     [data-theme="light"] .pu-phase-hdr__num { opacity: 0.12; }
     .pu-phase-hdr__text { padding-bottom: 8px; }
-    .pu-phase-hdr__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 6px; }
+    .pu-phase-hdr__tag { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 6px; }
     .pu-phase-hdr__title { font-family: var(--font-display); font-size: clamp(30px,4vw,48px); font-weight: 900; letter-spacing: -0.03em; color: var(--text-1); line-height: 1; }
     .pu-phase-hdr__sub { font-size: 14px; color: var(--text-2); margin-top: 6px; }
 
     /* ── Sub-section ── */
     .pu-sub { margin-top: 56px; }
-    .pu-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 10px; }
+    .pu-eyebrow { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 10px; }
     .pu-h2 { font-family: var(--font-display); font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--text-1); letter-spacing: -0.02em; margin-bottom: 10px; }
     .pu-h3 { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
     .pu-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
@@ -66,11 +66,11 @@
       }
     .pu-persona__info { flex: 1; }
     .pu-persona__name { font-weight: 800; font-size: 16px; color: var(--text-1); margin-bottom: 2px; }
-    .pu-persona__role { font-size: 12px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
+    .pu-persona__role { font-size: 14px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; margin-bottom: 2px; }
     .pu-persona__body { padding: 16px 24px; }
-    .pu-persona__bio { font-size: 13px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+    .pu-persona__bio { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
     .pu-persona__tags { padding: 0 24px 24px; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .pu-persona__tag { font-family: var(--font-mono); font-size: 10px; color: var(--pu-green); background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; padding: 3px 10px; }
+    .pu-persona__tag { font-family: var(--font-mono); font-size: 14px; color: var(--pu-green); background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; padding: 3px 10px; }
 
     /* ── Pain point / Insight grid ── */
     .pu-pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
@@ -80,10 +80,10 @@
     .pu-pain:nth-child(3n) { border-right: none; }
     .pu-pain:nth-last-child(-n+3) { border-bottom: none; }
     @media(max-width:900px){ .pu-pain:nth-child(2n){ border-right:none; } .pu-pain:nth-child(3n){ border-right:1px solid var(--border); } .pu-pain:nth-child(3n):nth-child(2n){ border-right:none; } }
-    .pu-pain__phase { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: block; }
+    .pu-pain__phase { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: block; }
     .pu-pain__rule { display: block; width: 20px; height: 2px; background: var(--pu-green); border-radius: 2px; margin-bottom: 12px; }
     .pu-pain__title { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--text-1); margin-bottom: 6px; letter-spacing: -0.01em; }
-    .pu-pain__desc { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .pu-pain__desc { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Insight cards ── */
     .pu-insight-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
@@ -93,20 +93,20 @@
     @media(max-width:900px){ .pu-insight { border-right: none; border-bottom: 1px solid var(--border); } .pu-insight:last-child { border-bottom: none; } }
     .pu-insight__num { font-family: var(--font-display); font-size: clamp(40px,5vw,56px); font-weight: 900; color: var(--pu-green); opacity: 0.18; line-height: 0.9; letter-spacing: -0.06em; margin-bottom: 14px; }
     .pu-insight__title { font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; letter-spacing: -0.01em; }
-    .pu-insight__text { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+    .pu-insight__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Double Diamond ── */
     .pu-diamond { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
     .pu-diamond-phase { padding: 24px 20px; border-right: 1px solid var(--border); }
     .pu-diamond-phase:last-child { border-right: none; }
-    .pu-diamond-phase__d { font-family: var(--font-display); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .pu-diamond-phase__d { font-family: var(--font-display); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
     .pu-diamond-phase__d--discover { background: var(--pu-green-dim); color: var(--pu-green); }
     .pu-diamond-phase__d--define { background: rgba(139,92,246,0.1); color: #7C3AED; }
     .pu-diamond-phase__d--develop { background: rgba(16,185,129,0.1); color: #059669; }
     .pu-diamond-phase__d--deliver { background: rgba(245,158,11,0.1); color: #D97706; }
     .pu-diamond-phase__title { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
     .pu-diamond-phase__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-    .pu-diamond-phase__items li { font-size: 12px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
+    .pu-diamond-phase__items li { font-size: 14px; color: var(--text-2); padding-left: 12px; position: relative; line-height: 1.5; }
     .pu-diamond-phase__items li::before { content: '—'; position: absolute; left: 0; color: var(--pu-green); }
     @media(max-width:800px){.pu-diamond{grid-template-columns:1fr 1fr}}
 
@@ -116,7 +116,7 @@
     .pu-constraint { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
     .pu-constraint__num { font-family: var(--font-display); font-size: 36px; font-weight: 900; color: var(--pu-green); opacity: 0.25; margin-bottom: 12px; }
     .pu-constraint__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
-    .pu-constraint__text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .pu-constraint__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Objectives grid ── */
     .pu-objectives { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
@@ -124,7 +124,7 @@
     .pu-obj { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
     .pu-obj__icon { width:48px; height:48px; border-radius:50%; background:var(--proj-accent); display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; margin-bottom:16px; }
     .pu-obj__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 8px; }
-    .pu-obj__text { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .pu-obj__text { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     /* ── Browser / Laptop Mockup ── */
     .browser-wrap {
@@ -151,7 +151,7 @@
       background: rgba(255,255,255,0.06);
       border-radius: 6px;
       display: flex; align-items: center; padding: 0 10px;
-      font-family: var(--font-mono); font-size: 10px;
+      font-family: var(--font-mono); font-size: 14px;
       color: rgba(255,255,255,0.35); letter-spacing: 0.04em;
       gap: 6px;
     }
@@ -171,7 +171,7 @@
       color: var(--pu-green); opacity: 0.12; pointer-events: none; user-select: none;
     }
     .screen-card__step {
-      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--pu-green);
       background: var(--pu-green-dim); border: 1px solid var(--pu-border-green);
       border-radius: 20px; padding: 4px 12px; display: inline-block; white-space: nowrap;
@@ -209,10 +209,10 @@
     }
     .screen-card__annot:last-child { border-right: none; }
     .screen-card__annot-label {
-      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em;
+      font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--text-3); margin-bottom: 4px;
     }
-    .screen-card__annot-text { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+    .screen-card__annot-text { font-size: 14px; color: var(--text-2); line-height: 1.55; }
     @media(max-width:700px){ .screen-card__annots { grid-template-columns: 1fr; } .screen-card__header { flex-direction: column; gap: 16px; } }
 
     /* ── Phone frame ── */
@@ -238,7 +238,7 @@
     .pu-usecase { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px 24px; }
     .pu-usecase__title { font-size: 16px; font-weight: 700; color: var(--text-1); margin-bottom: 14px; }
     .pu-usecase__steps { display: flex; flex-direction: column; gap: 12px; }
-    .pu-usecase__step { font-size: 13px; color: var(--text-2); line-height: 1.65; padding-left: 16px; position: relative; }
+    .pu-usecase__step { font-size: 14px; color: var(--text-2); line-height: 1.65; padding-left: 16px; position: relative; }
     .pu-usecase__step::before { content: '→'; position: absolute; left: 0; color: var(--pu-green); font-weight: 700; }
 
     /* ── Animation ── */
@@ -253,12 +253,12 @@
 
     /* ── Utilities ── */
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
-    .section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; }
+    .section-label { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pu-green); margin-bottom: 12px; display: inline-flex; align-items: center; gap: 10px; }
     .section-label::before { background: var(--pu-green); }
     .d-xl { font-family: var(--font-display); font-size: clamp(40px,6vw,72px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; }
     .body-lg { font-size: 18px; color: var(--text-2); line-height: 1.75; }
-    .tag { display: inline-block; padding: 4px 12px; background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; font-size: 11px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; }
-    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; border-radius: var(--r-md); font-size: 13px; font-weight: 600; transition: all 200ms ease; }
+    .tag { display: inline-block; padding: 4px 12px; background: var(--pu-green-dim); border: 1px solid var(--pu-border-green); border-radius: 20px; font-size: 14px; color: var(--pu-green); font-family: var(--font-mono); letter-spacing: 0.06em; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 24px; border-radius: var(--r-md); font-size: 14px; font-weight: 600; transition: all 200ms ease; }
     .btn--primary { background: var(--pu-green); color: #0A0A14; }
     .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(141,194,0,0.3); }
 
@@ -284,7 +284,7 @@
     }
     .footer__logo span { color: var(--pu-green); }
     .footer__copy {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-3);
     }
     .footer__links {
@@ -292,7 +292,7 @@
       gap: 24px;
     }
     .footer__links a {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-2);
       transition: color 200ms ease;
     }
@@ -350,7 +350,7 @@
       -webkit-backdrop-filter: blur(14px);
       color: rgba(255,255,255,0.88);
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: 14px;
       letter-spacing: 0.06em;
       padding: 5px 14px;
       border-radius: 24px;
@@ -433,7 +433,7 @@
   <!-- Back -->
   <div style="padding-top:calc(var(--nav-h) + 48px);padding-bottom:0;">
     <div class="container">
-      <a href="work.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);transition:color 200ms ease;" onmouseover="this.style.color='var(--pu-green)'" onmouseout="this.style.color='var(--text-2)'">
+      <a href="work.html" style="display:inline-flex;align-items:center;gap:8px;font-size: 14px;color:var(--text-2);transition:color 200ms ease;" onmouseover="this.style.color='var(--pu-green)'" onmouseout="this.style.color='var(--text-2)'">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         All Work
       </a>
@@ -539,19 +539,19 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;">
             <div style="padding:36px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);">
               <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">300+</div>
-              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Active Partners</div>
+              <div style="font-size: 14px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Active Partners</div>
             </div>
             <div style="padding:36px 28px;border-bottom:1px solid var(--border);">
               <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">350K+</div>
-              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Referred Merchants</div>
+              <div style="font-size: 14px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Referred Merchants</div>
             </div>
             <div style="padding:36px 28px;border-right:1px solid var(--border);">
               <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">40bn</div>
-              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Transaction Volume</div>
+              <div style="font-size: 14px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Transaction Volume</div>
             </div>
             <div style="padding:36px 28px;">
               <div style="font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--pu-green);line-height:1;">15+</div>
-              <div style="font-size:12px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Local Offices</div>
+              <div style="font-size: 14px;color:var(--text-2);margin-top:10px;letter-spacing:0.04em;">Local Offices</div>
             </div>
           </div>
         </div>
@@ -567,15 +567,15 @@
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;" class="reveal reveal-delay-2">
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;">
           <div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-1);margin-bottom:8px;">Account for Platform Partners</div>
-          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Enable enterprise platforms to self-onboard and set up payment gateway on their platform without KAM intervention.</p>
+          <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Enable enterprise platforms to self-onboard and set up payment gateway on their platform without KAM intervention.</p>
         </div>
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;">
           <div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-1);margin-bottom:8px;">Reevaluate Feature Usability</div>
-          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Filter junk leads and make pricing, merchant status, settlement & incentive information transparent and actionable.</p>
+          <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Filter junk leads and make pricing, merchant status, settlement & incentive information transparent and actionable.</p>
         </div>
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;">
           <div style="font-family:var(--font-display);font-size:16px;font-weight:800;color:var(--text-1);margin-bottom:8px;">Enable Self-Serve</div>
-          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Reduce KAM dependency for onboarding funnel and retention. Partners should manage everything independently.</p>
+          <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Reduce KAM dependency for onboarding funnel and retention. Partners should manage everything independently.</p>
         </div>
       </div>
     </div>
@@ -656,29 +656,29 @@
           <h3 class="pu-h3">Methodology</h3>
           <p class="pu-p" style="margin-top:12px;">We conducted 14 in-depth user interviews via video calls across 5 distinct groups:</p>
           <ul style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>4 Internal Stakeholders (Sales, Partnerships)</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>3 Active Resellers (experienced users)</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>2 New Resellers (onboarding journey)</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>2 Stuck Resellers (abandoned midway)</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>3 Platform Partners (API integrators)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>4 Internal Stakeholders (Sales, Partnerships)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>3 Active Resellers (experienced users)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>2 New Resellers (onboarding journey)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>2 Stuck Resellers (abandoned midway)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>3 Platform Partners (API integrators)</li>
           </ul>
         </div>
         <div>
           <h3 class="pu-h3">Key Themes</h3>
           <ul style="margin-top:12px;display:flex;flex-direction:column;gap:12px;">
-            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size: 14px;color:var(--text-2);">
               <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Awareness →</strong>
               Partners didn't understand program value or what they were signing up for
             </li>
-            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size: 14px;color:var(--text-2);">
               <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Conversion →</strong>
               Sign-up and document verification took 2–3 weeks with unclear next steps
             </li>
-            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size: 14px;color:var(--text-2);">
               <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Usage →</strong>
               No dashboard support for developer integration or platform partner workflows
             </li>
-            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size:13px;color:var(--text-2);">
+            <li style="background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:var(--r-lg);padding:12px 14px;font-size: 14px;color:var(--text-2);">
               <strong style="color:var(--text-1);display:block;margin-bottom:4px;">Retention →</strong>
               Manual incentive claiming, poor visibility into settlements, KAM dependency
             </li>
@@ -705,8 +705,8 @@
           <div class="pu-persona__body">
             <p class="pu-persona__bio">Runs a website & app solutions business. Refers clients needing PayU integration, helps with PG technical setup. Wants to quickly integrate on behalf of clients.</p>
             <div style="background:var(--bg-elevated);border-radius:var(--r-lg);padding:14px;margin-top:12px;">
-              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
-              <p style="font-size:12px;color:var(--text-2);line-height:1.55;">No dashboard support for PG integration. Relies on direct KAM for integration credentials.</p>
+              <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
+              <p style="font-size: 14px;color:var(--text-2);line-height:1.55;">No dashboard support for PG integration. Relies on direct KAM for integration credentials.</p>
             </div>
           </div>
           <div class="pu-persona__tags">
@@ -727,8 +727,8 @@
           <div class="pu-persona__body">
             <p class="pu-persona__bio">Experienced reseller. Uses dashboard regularly to refer merchants, track incentives, and research PayU products. Wants visibility into multiple products beyond Payment Gateway.</p>
             <div style="background:var(--bg-elevated);border-radius:var(--r-lg);padding:14px;margin-top:12px;">
-              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
-              <p style="font-size:12px;color:var(--text-2);line-height:1.55;">Dashboard only shows PG. Can't discover or refer Invoicing, Subscriptions, Payouts solutions.</p>
+              <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
+              <p style="font-size: 14px;color:var(--text-2);line-height:1.55;">Dashboard only shows PG. Can't discover or refer Invoicing, Subscriptions, Payouts solutions.</p>
             </div>
           </div>
           <div class="pu-persona__tags">
@@ -749,8 +749,8 @@
           <div class="pu-persona__body">
             <p class="pu-persona__bio">E-commerce platform integrating PayU PG. Merchants can find PayU natively on the platform. Representative checks dashboard for incentive tracking and quarterly claims.</p>
             <div style="background:var(--bg-elevated);border-radius:var(--r-lg);padding:14px;margin-top:12px;">
-              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
-              <p style="font-size:12px;color:var(--text-2);line-height:1.55;">No API to programmatically fetch settlement & incentive data. Manual quarterly process with KAM.</p>
+              <div style="font-family:var(--font-mono);font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">Pain Point</div>
+              <p style="font-size: 14px;color:var(--text-2);line-height:1.55;">No API to programmatically fetch settlement & incentive data. Manual quarterly process with KAM.</p>
             </div>
           </div>
           <div class="pu-persona__tags">
@@ -937,7 +937,7 @@
 
           <!-- Root -->
           <div style="display:flex;justify-content:center;margin-bottom:0;">
-            <div style="padding:12px 32px;background:var(--pu-green);color:#0a0a14;border-radius:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">PayU Partners Portal</div>
+            <div style="padding:12px 32px;background:var(--pu-green);color:#0a0a14;border-radius:8px;font-family:var(--font-mono);font-size: 14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">PayU Partners Portal</div>
           </div>
 
           <!-- Connector down -->
@@ -951,62 +951,62 @@
             <!-- Node: Dashboard -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
               <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
-              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Dashboard</div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size: 14px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Dashboard</div>
               <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
               <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">KPI Overview</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Activity Graph</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Nudge Cards</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">KPI Overview</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Activity Graph</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Nudge Cards</div>
               </div>
             </div>
 
             <!-- Node: Referrals -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
               <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
-              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Referrals</div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size: 14px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Referrals</div>
               <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
               <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Merchant List</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Add Merchant</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Bulk Upload</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Merchant Profile</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Merchant List</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Add Merchant</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Bulk Upload</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Merchant Profile</div>
               </div>
             </div>
 
             <!-- Node: Incentives -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
               <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
-              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Incentives</div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size: 14px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Incentives</div>
               <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
               <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Earnings Overview</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Claim Incentive</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Invoice Upload</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Earnings Overview</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Claim Incentive</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Invoice Upload</div>
               </div>
             </div>
 
             <!-- Node: Resources -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
               <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
-              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Resources</div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size: 14px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Resources</div>
               <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
               <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Product Catalogue</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Integration Docs</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Marketing Kit</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Product Catalogue</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Integration Docs</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Marketing Kit</div>
               </div>
             </div>
 
             <!-- Node: Settings -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
               <div style="width:2px;height:24px;background:var(--pu-border-green);"></div>
-              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size:11px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Settings</div>
+              <div style="padding:10px 14px;background:var(--pu-green-dim);border:1px solid var(--pu-border-green);border-radius:8px;font-size: 14px;font-weight:700;color:var(--pu-green);font-family:var(--font-mono);text-align:center;width:100%;box-sizing:border-box;">Settings</div>
               <div style="width:2px;height:16px;background:var(--pu-border-green);"></div>
               <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Profile</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Users & Permissions</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">API Credentials</div>
-                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--text-2);text-align:center;">Help & Support</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Profile</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Users & Permissions</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">API Credentials</div>
+                <div style="padding:7px 10px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:6px;font-size: 14px;color:var(--text-2);text-align:center;">Help & Support</div>
               </div>
             </div>
           </div>
@@ -1016,16 +1016,16 @@
       <!-- IA rationale cards -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;" class="reveal reveal-delay-3">
         <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);border-left:3px solid var(--pu-green);">
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Consolidation</div>
-          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Reduced from 11 scattered nav items to 5 primary sections — eliminating duplicate entry points that caused partner confusion.</p>
+          <div style="font-family:var(--font-mono);font-size: 14px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Consolidation</div>
+          <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Reduced from 11 scattered nav items to 5 primary sections — eliminating duplicate entry points that caused partner confusion.</p>
         </div>
         <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);border-left:3px solid var(--pu-green);">
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Task-First Grouping</div>
-          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Navigation follows partner tasks (refer, earn, integrate) rather than internal product structure — matching mental models from user research.</p>
+          <div style="font-family:var(--font-mono);font-size: 14px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Task-First Grouping</div>
+          <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Navigation follows partner tasks (refer, earn, integrate) rather than internal product structure — matching mental models from user research.</p>
         </div>
         <div style="padding:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);border-left:3px solid var(--pu-green);">
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Progressive Disclosure</div>
-          <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Advanced options (API credentials, bulk upload) are nested under primary nodes — keeping the core flow simple for new partners.</p>
+          <div style="font-family:var(--font-mono);font-size: 14px;color:var(--pu-green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Progressive Disclosure</div>
+          <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Advanced options (API credentials, bulk upload) are nested under primary nodes — keeping the core flow simple for new partners.</p>
         </div>
       </div>
     </div>
@@ -1349,30 +1349,30 @@
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px;">
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
             <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">40%</div>
-            <p style="font-size:13px;color:var(--text-2);">Reduction in onboarding drop-off rate</p>
+            <p style="font-size: 14px;color:var(--text-2);">Reduction in onboarding drop-off rate</p>
           </div>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
             <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">3x</div>
-            <p style="font-size:13px;color:var(--text-2);">Faster partner onboarding (14 steps → 4 phases)</p>
+            <p style="font-size: 14px;color:var(--text-2);">Faster partner onboarding (14 steps → 4 phases)</p>
           </div>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
             <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">60%</div>
-            <p style="font-size:13px;color:var(--text-2);">KAM time reduction via self-serve features</p>
+            <p style="font-size: 14px;color:var(--text-2);">KAM time reduction via self-serve features</p>
           </div>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px 24px;text-align:center;">
             <div style="font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--pu-green);margin-bottom:8px;">25%</div>
-            <p style="font-size:13px;color:var(--text-2);">Increase in merchant referrals post-launch</p>
+            <p style="font-size: 14px;color:var(--text-2);">Increase in merchant referrals post-launch</p>
           </div>
         </div>
 
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:32px 28px;">
           <h3 class="pu-h3" style="margin-bottom:16px;">Key Wins</h3>
           <ul style="display:flex;flex-direction:column;gap:12px;">
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Self-serve onboarding:</strong> Partners no longer wait for KAM approval at every step. Clear phase-based progression reduces anxiety.</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Real-time transparency:</strong> Settlements & incentives visible instantly. No more surprises or manual spreadsheet tracking.</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Developer enablement:</strong> Integrated credential management eliminates email coordination for API keys. Faster integration.</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Multi-product support:</strong> Dashboard now supports PayU PG, Invoicing, Subscriptions, Payouts referrals — not just PG.</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Platform partner parity:</strong> Enterprise partners now have same self-serve capabilities as individual resellers.</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Self-serve onboarding:</strong> Partners no longer wait for KAM approval at every step. Clear phase-based progression reduces anxiety.</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Real-time transparency:</strong> Settlements & incentives visible instantly. No more surprises or manual spreadsheet tracking.</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Developer enablement:</strong> Integrated credential management eliminates email coordination for API keys. Faster integration.</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Multi-product support:</strong> Dashboard now supports PayU PG, Invoicing, Subscriptions, Payouts referrals — not just PG.</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);font-weight:700;">→</span><strong style="color:var(--text-1);">Platform partner parity:</strong> Enterprise partners now have same self-serve capabilities as individual resellers.</li>
           </ul>
         </div>
       </div>
@@ -1389,16 +1389,16 @@
         <div>
           <h3 class="pu-h3" style="margin-bottom:16px;">What I'd Do Differently</h3>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--pu-green);border-radius:var(--r-lg);padding:20px;margin-bottom:20px;">
-            <p style="font-size:13px;color:var(--text-2);line-height:1.7;">Initial designs assumed single-session onboarding — wrong assumption. Many enterprise partners have multiple decision-makers who need to approve different sections (legal approves agreement, finance approves banking details, tech approves integration). We had to redesign the save-state and handoff flow in iteration 2.</p>
-            <p style="font-size:11px;color:var(--text-3);margin-top:12px;">Better stakeholder mapping upfront would have surfaced this earlier. Next time: map all decision-makers before wireframing flows.</p>
+            <p style="font-size: 14px;color:var(--text-2);line-height:1.7;">Initial designs assumed single-session onboarding — wrong assumption. Many enterprise partners have multiple decision-makers who need to approve different sections (legal approves agreement, finance approves banking details, tech approves integration). We had to redesign the save-state and handoff flow in iteration 2.</p>
+            <p style="font-size: 14px;color:var(--text-3);margin-top:12px;">Better stakeholder mapping upfront would have surfaced this earlier. Next time: map all decision-makers before wireframing flows.</p>
           </div>
 
           <h3 class="pu-h3" style="margin-bottom:16px;">Design Decisions</h3>
           <ul style="display:flex;flex-direction:column;gap:10px;">
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Persistent progress indicator across all pages (not just onboarding)</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Timeline communicated upfront (3 days for KYC, not "TBD")</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>In-app messaging replacing 60% of email notifications</li>
-            <li style="font-size:13px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Nudge cards for incomplete tasks (not mandatory popups)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Persistent progress indicator across all pages (not just onboarding)</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Timeline communicated upfront (3 days for KYC, not "TBD")</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>In-app messaging replacing 60% of email notifications</li>
+            <li style="font-size: 14px;color:var(--text-2);padding-left:16px;position:relative;"><span style="position:absolute;left:0;color:var(--pu-green);">→</span>Nudge cards for incomplete tasks (not mandatory popups)</li>
           </ul>
         </div>
 
@@ -1406,17 +1406,17 @@
           <h3 class="pu-h3" style="margin-bottom:16px;">Future Roadmap</h3>
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;margin-bottom:20px;">
             <h4 style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:12px;">Phase 2 — Community & Engagement</h4>
-            <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Partner forum, knowledge base, resource library. Partners can ask questions, share best practices, find leads in their vertical.</p>
+            <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Partner forum, knowledge base, resource library. Partners can ask questions, share best practices, find leads in their vertical.</p>
           </div>
 
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;margin-bottom:20px;">
             <h4 style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:12px;">Phase 3 — Automation & Analytics</h4>
-            <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Predictive settlements. ML-based anomaly detection. Partner performance scoring. Personalized product recommendations.</p>
+            <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Predictive settlements. ML-based anomaly detection. Partner performance scoring. Personalized product recommendations.</p>
           </div>
 
           <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:24px;">
             <h4 style="font-size:14px;color:var(--text-1);font-weight:700;margin-bottom:12px;">Phase 4 — API & Webhooks</h4>
-            <p style="font-size:13px;color:var(--text-2);line-height:1.65;">Full REST API for platform partners. Webhooks for real-time settlement & incentive events. SSO integration with partner systems.</p>
+            <p style="font-size: 14px;color:var(--text-2);line-height:1.65;">Full REST API for platform partners. Webhooks for real-time settlement & incentive events. SSO integration with partner systems.</p>
           </div>
         </div>
       </div>
@@ -1427,7 +1427,7 @@
   <div style="border-top:1px solid var(--border);padding:60px 0;background:var(--bg-card);">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
+        <div style="font-family:var(--font-mono);font-size: 14px;color:var(--text-3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Explore More Work</div>
         <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text-1);">See all projects →</div>
       </div>
       <a href="work.html" class="btn btn--primary">Back to All Work</a>
