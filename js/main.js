@@ -522,3 +522,225 @@ window.addEventListener('load', () => {
   });
 })();
 
+
+/* ═══════════════════════════════════════════════════════════
+   SK LIGHTBOX — click-to-expand image viewer
+   Works on: proj-visuals banners, screen-card browser wraps,
+             and project card thumbnails
+   ═══════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  // ── 1. Build the lightbox DOM ──────────────────────────
+  var lb = document.createElement('div');
+  lb.id = 'sk-lightbox';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.innerHTML = [
+    '<div class="sk-lb__bar">',
+      '<span class="sk-lb__title" id="sk-lb-title"></span>',
+      '<span class="sk-lb__counter" id="sk-lb-counter"></span>',
+      '<button class="sk-lb__close" aria-label="Close" id="sk-lb-close">&#x2715;</button>',
+    '</div>',
+    '<div class="sk-lb__stage">',
+      '<button class="sk-lb__nav sk-lb__nav--prev" id="sk-lb-prev" aria-label="Previous">&#8592;</button>',
+      '<div class="sk-lb__img-wrap">',
+        '<img class="sk-lb__img" id="sk-lb-img" src="" alt="">',
+      '</div>',
+      '<button class="sk-lb__nav sk-lb__nav--next" id="sk-lb-next" aria-label="Next">&#8594;</button>',
+    '</div>',
+    '<div class="sk-lb__panel" id="sk-lb-panel"></div>',
+    '<div class="sk-lb__strip" id="sk-lb-strip"></div>'
+  ].join('');
+  document.body.appendChild(lb);
+
+  var lbEl    = lb;
+  var lbImg   = document.getElementById('sk-lb-img');
+  var lbTitle = document.getElementById('sk-lb-title');
+  var lbCount = document.getElementById('sk-lb-counter');
+  var lbPanel = document.getElementById('sk-lb-panel');
+  var lbStrip = document.getElementById('sk-lb-strip');
+  var lbClose = document.getElementById('sk-lb-close');
+  var lbPrev  = document.getElementById('sk-lb-prev');
+  var lbNext  = document.getElementById('sk-lb-next');
+
+  var gallery = [];  // [{src, title, desc, annots:[{label,text}]}]
+  var current = 0;
+
+  // ── 2. Harvest images from the page ───────────────────
+  function buildGallery() {
+    gallery = [];
+
+    // Selector covers: visual banners, browser-wrap screens, card thumbs
+    var selectors = [
+      '.proj-visuals__banner img[src]:not([src=""])',
+      '.proj-visuals__frame img[src]:not([src=""])',
+      '.screen-card .browser-wrap img[src]:not([src=""])',
+      '.pcard__thumb img[src]:not([src=""])',
+      '.project-card__img img[src]:not([src=""])'
+    ];
+
+    var seen = new Set();
+    selectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (imgEl) {
+        if (seen.has(imgEl.src)) return;
+        seen.add(imgEl.src);
+
+        // Try to find title + desc from nearest screen-card
+        var card    = imgEl.closest('.screen-card');
+        var title   = '';
+        var desc    = '';
+        var annots  = [];
+
+        if (card) {
+          var titleEl = card.querySelector('.screen-card__title');
+          var descEl  = card.querySelector('.screen-card__desc');
+          if (titleEl) title = titleEl.textContent.trim();
+          if (descEl)  desc  = descEl.textContent.trim();
+          card.querySelectorAll('.screen-card__annot').forEach(function (a) {
+            var lbl = a.querySelector('.screen-card__annot-label');
+            var txt = a.querySelector('.screen-card__annot-text');
+            annots.push({
+              label: lbl ? lbl.textContent.trim() : '',
+              text:  txt ? txt.textContent.trim() : ''
+            });
+          });
+        } else {
+          // Fallback: use alt text or closest heading
+          title = imgEl.alt || '';
+          var sec = imgEl.closest('section, .psu-section, .cs-section, .proj-visuals');
+          if (sec) {
+            var h = sec.querySelector('h1,h2,h3,.pu-h2,.cs-h,.pcard__title');
+            if (h && !title) title = h.textContent.trim();
+          }
+        }
+
+        gallery.push({ src: imgEl.src, title: title, desc: desc, annots: annots, el: imgEl });
+      });
+    });
+  }
+
+  // ── 3. Render a gallery item ───────────────────────────
+  function showItem(idx) {
+    if (!gallery.length) return;
+    idx = Math.max(0, Math.min(idx, gallery.length - 1));
+    current = idx;
+
+    var item = gallery[idx];
+    lbImg.src = item.src;
+    lbImg.alt = item.title || '';
+    lbTitle.textContent = item.title || 'Visual';
+    lbCount.textContent = gallery.length > 1 ? (idx + 1) + ' / ' + gallery.length : '';
+
+    lbPrev.disabled = idx === 0;
+    lbNext.disabled = idx === gallery.length - 1;
+
+    // Panel: description + annotations
+    lbPanel.innerHTML = '';
+    if (item.desc) {
+      var d = document.createElement('p');
+      d.className = 'sk-lb__desc';
+      d.textContent = item.desc;
+      lbPanel.appendChild(d);
+    }
+    if (item.annots && item.annots.length) {
+      var annotWrap = document.createElement('div');
+      annotWrap.className = 'sk-lb__annots';
+      item.annots.forEach(function (a) {
+        if (!a.text) return;
+        var div = document.createElement('div');
+        div.className = 'sk-lb__annot';
+        div.innerHTML =
+          (a.label ? '<div class="sk-lb__annot-label">' + a.label + '</div>' : '') +
+          '<div class="sk-lb__annot-text">' + a.text + '</div>';
+        annotWrap.appendChild(div);
+      });
+      if (annotWrap.children.length) lbPanel.appendChild(annotWrap);
+    }
+
+    // Strip: update active thumb
+    lbStrip.querySelectorAll('.sk-lb__thumb').forEach(function (t, i) {
+      t.classList.toggle('active', i === idx);
+    });
+  }
+
+  // ── 4. Open / Close ───────────────────────────────────
+  function open(idx) {
+    buildGallery();
+    if (!gallery.length) return;
+
+    // Build thumbnail strip
+    lbStrip.innerHTML = '';
+    if (gallery.length > 1) {
+      gallery.forEach(function (item, i) {
+        var t = document.createElement('div');
+        t.className = 'sk-lb__thumb' + (i === idx ? ' active' : '');
+        t.innerHTML = '<img src="' + item.src + '" alt="" loading="lazy">';
+        t.addEventListener('click', function () { showItem(i); });
+        lbStrip.appendChild(t);
+      });
+    }
+
+    showItem(idx);
+    lbEl.classList.add('sk-lb--open');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function close() {
+    lbEl.classList.remove('sk-lb--open');
+    document.body.style.overflow = '';
+    setTimeout(function () { lbImg.src = ''; }, 320);
+  }
+
+  // ── 5. Wire up clicks on images ───────────────────────
+  function attachTriggers() {
+    var sel = [
+      '.proj-visuals__banner img[src]:not([src=""])',
+      '.proj-visuals__frame img[src]:not([src=""])',
+      '.screen-card .browser-wrap img[src]:not([src=""])',
+      '.pcard__thumb img[src]:not([src=""])',
+      '.project-card__img img[src]:not([src=""])'
+    ].join(',');
+
+    document.querySelectorAll(sel).forEach(function (imgEl) {
+      if (imgEl.dataset.lbWired) return;
+      imgEl.dataset.lbWired = '1';
+      imgEl.addEventListener('click', function (e) {
+        e.stopPropagation();
+        buildGallery();
+        var idx = gallery.findIndex(function (g) { return g.src === imgEl.src; });
+        open(Math.max(0, idx));
+      });
+    });
+  }
+
+  // ── 6. Controls ───────────────────────────────────────
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', function () { showItem(current - 1); });
+  lbNext.addEventListener('click', function () { showItem(current + 1); });
+
+  // Click backdrop to close
+  lbEl.addEventListener('click', function (e) {
+    if (e.target === lbEl || e.target.classList.contains('sk-lb__stage')) close();
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', function (e) {
+    if (!lbEl.classList.contains('sk-lb--open')) return;
+    if (e.key === 'Escape')      close();
+    if (e.key === 'ArrowLeft')   showItem(current - 1);
+    if (e.key === 'ArrowRight')  showItem(current + 1);
+  });
+
+  // ── 7. Init on DOM ready + after dynamic content ──────
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachTriggers);
+  } else {
+    attachTriggers();
+  }
+  // Also run after a short delay to catch lazy-loaded content
+  window.addEventListener('load', function () { setTimeout(attachTriggers, 400); });
+
+})();
+/* ── End Lightbox ─────────────────────────────────────── */
