@@ -2006,6 +2006,59 @@ body::before {
   .proj-visuals__row--3 { grid-template-columns: 1fr; }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   WATERMARK / PLACEHOLDER VISIBILITY
+   Hide placeholder overlay when a real image src is set.
+   Applies to project-page visual banners AND card thumbnails.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Project page visual banners */
+.proj-visuals__banner:has(img[src]:not([src=""])) .proj-visuals__placeholder { display: none; }
+.proj-visuals__frame:has(img[src]:not([src=""])) .proj-visuals__placeholder  { display: none; }
+/* Ensure the real image sits above the placeholder gradient */
+.proj-visuals__banner img, .proj-visuals__frame img { position: relative; z-index: 2; }
+
+/* Home / Work page project card thumbnails */
+.project-card__img:has(img[src]:not([src=""])) .project-card__img-label { display: none; }
+.pcard__thumb:has(img[src]:not([src=""])) .pcard__thumb-label           { display: none; }
+/* Ensure card images sit above the gradient overlay */
+.project-card__img img, .pcard__thumb img { position: relative; z-index: 2; }
+
+/* ═══════════════════════════════════════════════════════════
+   MINIMUM READABLE FONT SIZE — 16px across all body content
+   UI elements (tags, labels, meta) stay small intentionally.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Global content classes */
+.body-sm            { font-size: 16px !important; line-height: 1.75; }
+.cs-p               { font-size: 16px !important; line-height: 1.8; }
+.cs-list li         { font-size: 16px !important; line-height: 1.75; }
+.insight-box p      { font-size: 16px !important; }
+.project-card__desc { font-size: 16px !important; line-height: 1.75; }
+.pcard__desc        { font-size: 16px !important; line-height: 1.75; }
+.timeline-item__desc     { font-size: 16px !important; line-height: 1.75; }
+.timeline-item__company  { font-size: 16px !important; }
+.case-study__meta-item span:last-child { font-size: 15px; }
+.outcome-desc       { font-size: 16px !important; line-height: 1.75; }
+
+/* PayU project page inline-styled content classes */
+.pu-p               { font-size: 16px !important; line-height: 1.8; }
+.pu-phase-hdr__sub  { font-size: 16px !important; }
+.pu-persona__bio    { font-size: 15px !important; line-height: 1.7; }
+.pu-pain__title     { font-size: 16px !important; }
+.pu-pain__desc      { font-size: 14px !important; line-height: 1.7; }
+.pu-insight__title  { font-size: 16px !important; }
+.pu-insight__text   { font-size: 14px !important; line-height: 1.7; }
+.pu-diamond-phase__title { font-size: 16px !important; }
+.pu-diamond-phase__items li { font-size: 14px !important; line-height: 1.6; }
+.pu-constraint__text { font-size: 15px !important; line-height: 1.7; }
+.pu-obj__text       { font-size: 15px !important; line-height: 1.7; }
+.screen-card__desc  { font-size: 16px !important; line-height: 1.8; }
+.pu-usecase__step   { font-size: 15px !important; line-height: 1.7; }
+
+/* Project page paragraph text — catch-all for inline-styled p tags */
+.proj-section p, .psu-section p, .cs-section p { font-size: 16px; line-height: 1.8; }
+
 
 /* ── Icon entrance + hover animations ── */
 @keyframes iconPop {
