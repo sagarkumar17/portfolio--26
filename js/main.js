@@ -64,8 +64,7 @@
 
   // Apply saved theme immediately (before paint) to avoid flash
   const saved = localStorage.getItem(STORAGE_KEY);
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = saved || (prefersDark ? 'dark' : 'light');
+  const theme = saved || 'light';
   if (theme === 'light') html.setAttribute('data-theme', 'light');
 
   function setTheme(t) {
