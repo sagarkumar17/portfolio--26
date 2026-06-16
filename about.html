@@ -173,143 +173,32 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- PAGE HERO -->
-  <style>
-    .about-hero {
-      padding-top: 120px;
-      padding-bottom: 80px;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 64px;
-      align-items: center;
-    }
-    .about-hero__text .section-label { margin-bottom: 20px; }
-    .about-hero__text h1 {
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      font-family: var(--font-display);
-      font-weight: 800;
-      color: var(--text-1);
-      margin-bottom: 24px;
-    }
-    .about-hero__text p {
-      font-size: 18px;
-      color: var(--text-2);
-      line-height: 1.7;
-      max-width: 520px;
-    }
-    .about-hero__photo {
-      position: relative;
-    }
-    .about-hero__photo-frame {
-      width: 100%;
-      aspect-ratio: 4/5;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: linear-gradient(160deg,#141422,#1a0a05);
-      position: relative;
-    }
-    .about-hero__photo-frame img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 10%;
-      display: block;
-    }
-    /* Subtle accent glow behind photo */
-    .about-hero__photo::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, var(--accent), transparent 60%);
-      opacity: 0.15;
-      z-index: -1;
-    }
-    /* Floating label on photo */
-    .about-hero__photo-tag {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(8,8,15,0.82);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 100px;
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #EFEFFF;
-    }
-    /* Badge always dark — it sits on photo so must stay readable in both themes */
-    .about-hero__photo-tag .dot {
-      width: 7px; height: 7px;
-      background: #34D27A;
-      border-radius: 50%;
-      animation: pulse 2s ease infinite;
-    }
-    @media (max-width: 900px) {
-      .about-hero {
-        grid-template-columns: 1fr;
-        padding-top: 100px;
-      }
-      .about-hero__photo { max-width: 100%; }
-    }
-  </style>
+  <!-- PAGE TITLE -->
+  <div class="ed-page-title reveal">ABOUT</div>
 
-  <section>
-    <div class="container">
-      <div class="about-hero">
-
-        <!-- LEFT: text -->
-        <div class="about-hero__text">
-          <div class="section-label reveal">About Me</div>
-          <h1 class="reveal reveal-delay-1">
-            I design products<br/>people trust — and<br/>systems teams<br/>can <span class="text-accent">scale.</span>
-          </h1>
-          <p class="reveal reveal-delay-2">
-            Senior Product Designer with 9+ years across Jio, PayU, and Infosys. I design AI products, scalable design systems, and enterprise experiences that move real metrics — CSAT 2.6→4.2, 71% engagement lift, 55% support call reduction.
-          </p>
-          <div class="about-teaser__tag-row reveal reveal-delay-3" style="margin-top:28px;">
-            <span class="tag">Design Systems</span>
-            <span class="tag">Enterprise UX</span>
-            <span class="tag">Team Leadership</span>
-            <span class="tag">B2B · B2C</span>
-          </div>
-          <div class="reveal reveal-delay-4" style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="contact.html" class="btn btn--primary">Let's Talk →</a>
-            <a href="cv/sagar-kumar-cv.pdf?v=2" download class="btn btn--ghost" style="display:inline-flex;align-items:center;gap:8px;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              Download CV
-            </a>
-          </div>
-        </div>
-
-        <!-- RIGHT: photo -->
-        <div class="about-hero__photo reveal reveal-delay-2">
-          <div class="about-hero__photo-frame">
-            <img
-              src="img/sagar.jpg"
-              alt="Sagar Kumar — Senior Product Designer"
-              onerror="this.style.display='none';"
-            />
-          </div>
-          <div class="about-hero__photo-tag">
-            <span class="dot"></span>
-            Open to opportunities · Bengaluru / Remote
-          </div>
-        </div>
-
+  <!-- INTRO SPLIT: photo + bio -->
+  <div class="about-ed-intro">
+    <div class="about-ed-photo reveal">
+      <img src="img/sagar.jpg" alt="Sagar Kumar — Senior Product Designer" onerror="this.style.display='none';"/>
+      <div class="about-ed-photo-label">Senior Product Designer · Bengaluru</div>
+    </div>
+    <div class="about-ed-bio reveal reveal-delay-1">
+      <h2>Sagar Kumar</h2>
+      <p>
+        A Senior Product Designer with 9+ years of experience in enterprise products across B2B and B2C — at Jio, PayU, and Infosys.
+      </p>
+      <p>
+        I specialize in design systems, AI product experiences, and turning complex business problems into interfaces that feel simple. I've raised CSAT from 2.6 to 4.2, driven 71% engagement lifts, and reduced support calls by 55%.
+      </p>
+      <p>
+        I believe constraints are creative fuel — and that the best design is the kind users never have to think about.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+        <a href="contact.html" class="btn btn--primary">Let's Talk →</a>
+        <a href="cv/sagar-kumar-cv.pdf?v=2" download class="btn btn--ghost">Download CV</a>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- PHILOSOPHY -->
   <section class="section--sm" style="border-bottom:1px solid var(--border);">
@@ -1130,6 +1019,69 @@
       </div>
     </div>
   </section>
+
+  <!-- SKILLS AS PLAIN TEXT -->
+  <div class="about-ed-skills reveal">
+    <div class="about-ed-skills__col">
+      <div class="about-ed-skills__label">Design Skills</div>
+      <ul class="about-ed-skills__list">
+        <li>Design Systems</li>
+        <li>Enterprise UX</li>
+        <li>AI Products</li>
+        <li>B2B Platforms</li>
+        <li>UX Research</li>
+        <li>Prototyping</li>
+      </ul>
+    </div>
+    <div class="about-ed-skills__col">
+      <div class="about-ed-skills__label">Tools</div>
+      <ul class="about-ed-skills__list">
+        <li>Figma</li>
+        <li>Framer</li>
+        <li>Cursor AI</li>
+        <li>Claude</li>
+        <li>Adobe CC</li>
+        <li>After Effects</li>
+      </ul>
+    </div>
+    <div class="about-ed-skills__col">
+      <div class="about-ed-skills__label">Soft Skills</div>
+      <ul class="about-ed-skills__list">
+        <li>Systems Thinking</li>
+        <li>Stakeholder Mgmt</li>
+        <li>Design Leadership</li>
+        <li>Articulation</li>
+        <li>Problem Framing</li>
+        <li>Mentoring</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COMPANIES -->
+  <div class="about-ed-clients reveal">
+    <div class="about-ed-clients__label">Companies I've worked with</div>
+    <div class="about-ed-clients__list">
+      <span>Jio Platforms</span>
+      <span>PayU</span>
+      <span>Infosys</span>
+      <span>Morgan Stanley</span>
+      <span>CN Rail</span>
+      <span>Plux Studio</span>
+    </div>
+  </div>
+
+  <!-- REACH OUT -->
+  <div class="ed-reach-out reveal">
+    <a href="contact.html">REACH OUT TO ME →</a>
+  </div>
+
+  <!-- MINI FOOTER -->
+  <div class="ed-footer-bar">
+    <a href="cv/sagar-kumar-cv.pdf?v=2" download>Resume</a>
+    <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+    <span class="available">Open to work · Bengaluru / Remote</span>
+    <span>© 2026 Sagar Kumar</span>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">

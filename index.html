@@ -60,56 +60,46 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO — Subhankar-inspired: name left, photo full-height right -->
   <section class="hero">
-    <div class="container">
-      <div class="hero__inner">
 
-        <!-- Stacked name — dominates viewport -->
+    <!-- Left: name + bio -->
+    <div class="hero__left">
+      <div class="hero__left-inner">
         <h1 class="hero__name reveal">
           <span class="hero__name-line">Sagar</span>
-          <span class="hero__name-line">Kumar<span class="hero__name-line--accent">.</span></span>
+          <span class="hero__name-line">Kumar<span style="color:var(--accent)">.</span></span>
         </h1>
-
-        <!-- Bottom row: photo + bio -->
-        <div class="hero__bottom">
-
-          <!-- Photo -->
-          <div class="hero__img-wrap reveal reveal-delay-1">
-            <img
-              src="img/sagar.jpg"
-              alt="Sagar Kumar — Senior Product Designer"
-              style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-            />
-            <div style="display:none;width:100%;height:100%;background:var(--bg-elevated);align-items:center;justify-content:center;">
-              <span style="font-family:'Fraunces',serif;font-size:64px;font-weight:900;color:var(--accent);opacity:0.2;letter-spacing:-0.05em;">SK</span>
-            </div>
-            <div class="hero__img-overlay"></div>
+        <div class="hero__meta reveal reveal-delay-1">
+          <div class="hero__label">Senior Product Designer · Bengaluru</div>
+          <p class="hero__sub">
+            9+ years designing enterprise products across Jio, PayU &amp; Infosys. I work at the intersection of AI, design systems, and complexity — turning hard problems into experiences people actually use.
+          </p>
+          <div class="hero__actions">
+            <a href="work.html" class="btn btn--primary">View My Work <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="about.html" class="btn btn--ghost">About Me</a>
           </div>
-
-          <!-- Bio + actions -->
-          <div class="hero__right reveal reveal-delay-2">
-            <div class="hero__label">Senior Product Designer · Bengaluru</div>
-            <p class="hero__sub">
-              9+ years designing enterprise products across Jio, PayU &amp; Infosys. I work at the intersection of AI, design systems, and business complexity — turning hard problems into experiences people actually use.
-            </p>
-            <div class="hero__actions">
-              <a href="work.html" class="btn btn--primary">View My Work <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a href="about.html" class="btn btn--ghost">About Me</a>
-            </div>
-            <div class="hero__badge">
-              <div class="hero__badge-dot"></div>
-              <div class="hero__badge-text">
-                Open to opportunities
-                <span>Full-time · Bengaluru / Remote</span>
-              </div>
+          <div class="hero__badge">
+            <div class="hero__badge-dot"></div>
+            <div class="hero__badge-text">
+              Open to opportunities
+              <span>Full-time · Bengaluru / Remote</span>
             </div>
           </div>
-
         </div>
       </div>
     </div>
+
+    <!-- Right: full-height photo, bleeds to edge -->
+    <div class="hero__photo reveal reveal-delay-1">
+      <img
+        src="img/sagar.jpg"
+        alt="Sagar Kumar — Senior Product Designer"
+        style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
+        onerror="this.style.display='none';"
+      />
+    </div>
+
   </section>
 
   <!-- LOGOS STRIP -->

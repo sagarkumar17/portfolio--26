@@ -228,214 +228,108 @@
     <a href="work.html">Work</a><a href="contact.html">Contact</a>
   </div>
 
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <div class="section-label reveal">All Work</div>
-      <h1 class="d-xl reveal reveal-delay-1">
-        Work that shipped.<br/>Work that <span class="text-accent">stuck.</span>
-      </h1>
-      <p class="body-lg reveal reveal-delay-2" style="margin-top:20px;max-width:600px;">
-        Enterprise products, design systems, B2B platforms, and consumer apps — each project documented with the full design thinking process.
-      </p>
-    </div>
-  </section>
+  <!-- PAGE TITLE -->
+  <div class="ed-page-title reveal">WORK</div>
 
+  <!-- EDITORIAL WORK GRID -->
+  <div class="ed-work-grid" style="border-top:1px solid var(--border);">
 
-  <!-- FILTER + GRID -->
-  <section class="section--sm" style="padding-top:48px;">
-    <div class="container">
-
-      <!-- Filter bar -->
-      <div class="filter-bar reveal">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="b2b">B2B</button>
-        <button class="filter-btn" data-filter="b2c">B2C</button>
-        <button class="filter-btn" data-filter="design-system">Design System</button>
-        <button class="filter-btn" data-filter="fintech">FinTech</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <!-- Social filter hidden while Mentorship card is hidden -->
-        <button class="filter-btn" data-filter="social" style="display:none;">Social</button>
+    <a href="project-jio-chat-pattern.html" class="ed-work-item reveal">
+      <div class="ed-work-item__img-wrap" data-label="JIO">
+        <img class="ed-work-item__img" src="img/jio_hero_banner.jpg" alt="Jio AI Chat Pattern" loading="lazy" onerror="this.style.opacity='0';">
       </div>
-
-      <!-- Project grid -->
-      <div class="projects-grid" id="projectsGrid">
-
-        <!-- ━━━ JIO PROJECTS ━━━ -->
-
-        <!-- ROW 1 — Jio AI Chat Pattern (hero, full-width) -->
-        <a href="project-jio-chat-pattern.html" class="pcard pcard--hero reveal" data-tags="b2b b2c mobile">
-          <div class="pcard__thumb pcard__thumb--jio">
-            <div class="pcard__thumb-label">JIO</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/jio_hero_banner.jpg" alt="Jio AI Chat Pattern" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">AI</span><span class="tag">B2C</span><span class="tag">Mobile</span></div>
-            <div class="pcard__num">01 · Senior Product Designer · Jio Platforms</div>
-            <div class="pcard__title">Jio AI Chat Pattern</div>
-            <p class="pcard__desc">AI-powered conversational platform deployed across all Jio/RIL verticals — featuring no-code bot building, smart escalation, and multi-channel support. Raised CSAT from 2.6 to 4.2 and cut support calls by 55–60% across 400M+ users.</p>
-            <div class="pcard__metric">⚡ CSAT 2.6 → 4.2 · 55–60% call reduction</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">JIO PLATFORMS · AI</span>
-              <span class="pcard__cta">View Case Study →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- ROW 3 — Jio AIOP (full-width) -->
-        <a href="project-jio-welfare.html" class="pcard pcard--fullwidth reveal" data-tags="b2b b2c" style="grid-column: span 3;">
-          <div class="pcard__thumb pcard__thumb--b2b">
-            <div class="pcard__thumb-label">JIO</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/jio_aiop.jpg" alt="Jio AIOP Platform" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">B2G</span><span class="tag">SaaS</span><span class="tag">No-Code</span><span class="tag">GovTech</span></div>
-            <div class="pcard__num">02 · UX Designer · Jio / Reliance Foundation</div>
-            <div class="pcard__title">Jio AIOP — AI Operations Platform</div>
-            <p class="pcard__desc">No-Code SaaS for governments &amp; NGOs to launch, manage, and monitor welfare schemes — with DigiLocker integration, AI document verification &amp; verified audience building.</p>
-            <div class="pcard__metric">🏛️ Double Diamond · Scheme Management SaaS</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">JIO PLATFORMS · ENTERPRISE</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- ━━━ PAYU PROJECTS ━━━ -->
-
-        <!-- ROW 3 — PayU Partners (featured, 2 cols) + PayU Design System (1 col) -->
-        <a href="project-payu.html" class="pcard pcard--featured reveal" data-tags="b2b fintech">
-          <div class="pcard__thumb pcard__thumb--payu">
-            <div class="pcard__thumb-label">PAY</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/payu-partners-hero.jpg" alt="PayU Partners Platform" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">B2B</span><span class="tag">FinTech</span><span class="tag">Web Platform</span></div>
-            <div class="pcard__num">03 · Senior Product Designer · PayU</div>
-            <div class="pcard__title">PayU Partners Platform</div>
-            <p class="pcard__desc">Transformed a 14-step manual onboarding into a self-serve digital portal — streamlining KYC, bank linking, and go-live into a guided 3-step flow that increased merchant retention by 25%.</p>
-            <div class="pcard__metric">↑ 25% merchant retention</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">PAYU · FINTECH</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="project-payu-ds.html" class="pcard reveal reveal-delay-1" data-tags="design-system fintech b2b b2c">
-          <div class="pcard__thumb" style="background:linear-gradient(135deg,#1a0c00,#120800);">
-            <div class="pcard__thumb-label" style="color:rgba(255,130,0,0.12);">PDS</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/payuds_banner.jpg" alt="PayU Design System" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">Design System</span><span class="tag">FinTech</span></div>
-            <div class="pcard__num">04 · Senior Product Designer · PayU</div>
-            <div class="pcard__title">PayU Design System</div>
-            <p class="pcard__desc">Built a scalable token-based design system for PayU's dashboard and mobile products — 30+ components, 40+ resources, 600+ assets.</p>
-            <div class="pcard__metric">30+ Components · 600+ Assets</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">PAYU · DESIGN SYSTEM</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- ROW 4 — PayU Super App (featured, 2 cols) + Morgan Stanley (1 col) -->
-        <a href="project-payu-super.html" class="pcard pcard--featured reveal" data-tags="b2c fintech mobile">
-          <div class="pcard__thumb" style="background:linear-gradient(135deg,#071a0e,#0a1410);">
-            <div class="pcard__thumb-label" style="color:rgba(52,210,120,0.12);">PAY</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/supperapp_banner.jpg" alt="PayU Super App" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">B2C</span><span class="tag">FinTech</span><span class="tag">Mobile</span></div>
-            <div class="pcard__num">05 · Senior Product Designer · PayU</div>
-            <div class="pcard__title">PayU Super App</div>
-            <p class="pcard__desc">Redesigned PayU's core consumer app — streamlining payment flows, account management, and discovery into a unified super-app experience.</p>
-            <div class="pcard__metric">↑ Reduced user friction across core payment flows</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">PAYU · CONSUMER</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- ━━━ OTHER PROJECTS ━━━ -->
-
-        <!-- ROW 4 continued — Morgan Stanley KIDR (1 col, pairs with PayU Super above) -->
-        <a href="project-kidr.html" class="pcard reveal reveal-delay-1" data-tags="b2b fintech">
-          <div class="pcard__thumb pcard__thumb--kidr">
-            <div class="pcard__thumb-label">DOC</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/kiid_banner.jpg" alt="Morgan Stanley KIID Repository" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">SaaS</span><span class="tag">B2B</span><span class="tag">FinTech</span></div>
-            <div class="pcard__num">06 · Lead Designer · Infosys Digital</div>
-            <div class="pcard__title">Morgan Stanley KIID Repository</div>
-            <p class="pcard__desc">Centralised, searchable document hub for fund managers replacing scattered drives and email chains.</p>
-            <div class="pcard__metric">↓ 60% document retrieval time</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">FINTECH SAAS · B2B</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- ROW 5 — CN Express Pass (featured, 2 cols) — restore to 1 col when Mentorship is visible -->
-        <a href="project-cn-express.html" class="pcard pcard--featured reveal" data-tags="b2c mobile">
-          <div class="pcard__thumb" style="background:linear-gradient(135deg,#030d1a,#050e20);">
-            <div class="pcard__thumb-label" style="color:rgba(60,140,255,0.12);">CN</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="img/Cn_banner.jpg" alt="CN Express Pass screenshot" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">B2C</span><span class="tag">Mobile</span><span class="tag">Driver App</span></div>
-            <div class="pcard__num">07 · Product Designer · Infosys Digital</div>
-            <div class="pcard__title">CN Express Pass — Driver App</div>
-            <p class="pcard__desc">Intermodal driver app replacing paper passes with digital QR-based access — designed using Double Diamond with Six Thinking Hats for multi-stakeholder alignment.</p>
-            <div class="pcard__metric">📱 Paperless QR pass system · Full DT process</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">CN RAIL · MOBILE</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Mentorship App — HIDDEN, remove display:none + revert CN Express to pcard (1 col) to restore -->
-        <a href="project-mentorship.html" class="pcard reveal reveal-delay-1" data-tags="b2c mobile social" style="display:none;">
-          <div class="pcard__thumb" style="background:linear-gradient(135deg,#180a00,#100600);">
-            <div class="pcard__thumb-label" style="color:rgba(255,160,40,0.12);font-size:72px;">MNT</div>
-            <div class="pcard__thumb-overlay"></div>
-            <img src="" alt="Project screenshot" loading="lazy">
-          </div>
-          <div class="pcard__body">
-            <div class="pcard__tags"><span class="tag">B2C</span><span class="tag">Mobile</span><span class="tag">Social</span></div>
-            <div class="pcard__num">08 · Product Designer · End-to-end</div>
-            <div class="pcard__title">Mentorship Booking App</div>
-            <p class="pcard__desc">"Delivering Knowledge & Support Today and Everyday." — A platform connecting mentors and mentees with structured guidance, a community design system, and measurable growth tracking. Built with end-to-end research including user flows, a full design system, and usability testing.</p>
-            <div class="pcard__metric">87% want mentors · 218% ROI on mentorship · Full DT process</div>
-            <div class="pcard__footer">
-              <span class="pcard__role">CONSUMER · MOBILE APP</span>
-              <span class="pcard__cta">View Project →</span>
-            </div>
-          </div>
-        </a>
-
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">Jio AI Chat Pattern</span>
+        <span class="ed-work-item__cat">AI · B2C</span>
       </div>
+    </a>
 
-      <!-- More projects note -->
-      <div style="margin-top:48px;text-align:center;" class="reveal">
-        <p class="body-sm" style="color:var(--text-3);margin-bottom:16px;">Additional projects available on request — some are under NDA.</p>
-        <a href="contact.html" class="btn btn--ghost btn--sm">Request Full Portfolio →</a>
+    <a href="project-jio-welfare.html" class="ed-work-item reveal reveal-delay-1">
+      <div class="ed-work-item__img-wrap" data-label="JIO">
+        <img class="ed-work-item__img" src="img/jio_aiop.jpg" alt="Jio AIOP Platform" loading="lazy" onerror="this.style.opacity='0';">
       </div>
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">Jio AIOP Platform</span>
+        <span class="ed-work-item__cat">Enterprise · GovTech</span>
+      </div>
+    </a>
 
-    </div>
-  </section>
+    <a href="project-payu.html" class="ed-work-item reveal">
+      <div class="ed-work-item__img-wrap" data-label="PAY">
+        <img class="ed-work-item__img" src="img/payu-partners-hero.jpg" alt="PayU Partners" loading="lazy" onerror="this.style.opacity='0';">
+      </div>
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">PayU Partners Platform</span>
+        <span class="ed-work-item__cat">B2B · FinTech</span>
+      </div>
+    </a>
+
+    <a href="project-payu-ds.html" class="ed-work-item reveal reveal-delay-1">
+      <div class="ed-work-item__img-wrap" data-label="DS">
+        <img class="ed-work-item__img" src="img/payuds_banner.jpg" alt="PayU Design System" loading="lazy" onerror="this.style.opacity='0';">
+      </div>
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">PayU Design System</span>
+        <span class="ed-work-item__cat">Design System</span>
+      </div>
+    </a>
+
+    <a href="project-payu-super.html" class="ed-work-item reveal">
+      <div class="ed-work-item__img-wrap" data-label="PAY">
+        <img class="ed-work-item__img" src="img/supperapp_banner.jpg" alt="PayU Super App" loading="lazy" onerror="this.style.opacity='0';">
+      </div>
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">PayU Super App</span>
+        <span class="ed-work-item__cat">B2C · Mobile</span>
+      </div>
+    </a>
+
+    <a href="project-kidr.html" class="ed-work-item reveal reveal-delay-1">
+      <div class="ed-work-item__img-wrap" data-label="DOC">
+        <img class="ed-work-item__img" src="img/kiid_banner.jpg" alt="Morgan Stanley KIID" loading="lazy" onerror="this.style.opacity='0';">
+      </div>
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">Morgan Stanley KIID</span>
+        <span class="ed-work-item__cat">B2B · FinTech</span>
+      </div>
+    </a>
+
+    <a href="project-cn-express.html" class="ed-work-item reveal" style="border-right:none;">
+      <div class="ed-work-item__img-wrap" data-label="CN">
+        <img class="ed-work-item__img" src="img/Cn_banner.jpg" alt="CN Express Pass" loading="lazy" onerror="this.style.opacity='0';">
+      </div>
+      <div class="ed-work-item__view">VIEW</div>
+      <div class="ed-work-item__meta">
+        <span class="ed-work-item__name">CN Express Pass</span>
+        <span class="ed-work-item__cat">Mobile · Driver App</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- NDA note -->
+  <div style="padding:32px clamp(20px,4vw,60px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);" class="reveal">
+    <p style="font-size:14px;color:var(--text-3);">Additional projects available on request — some are under NDA. <a href="contact.html" style="color:var(--accent);">Get in touch →</a></p>
+  </div>
+
+  <!-- REACH OUT -->
+  <div class="ed-reach-out reveal">
+    <a href="contact.html">REACH OUT TO ME →</a>
+  </div>
+
+  <!-- MINI FOOTER -->
+  <div class="ed-footer-bar">
+    <a href="cv/sagar-kumar-cv.pdf?v=2" download>Resume</a>
+    <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+    <span class="available">Open to work · Bengaluru / Remote</span>
+    <span>© 2026 Sagar Kumar</span>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
