@@ -17,8 +17,6 @@
   <script>
     (function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||( p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();
   </script>
-  <link rel="canonical" href="https://sagarkumar.site/" />
-  <meta property="og:url" content="https://sagarkumar.site/" />
 </head>
 <body>
   <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
@@ -60,25 +58,35 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- HERO — Subhankar-inspired: name left, photo full-height right -->
+  <!-- HERO -->
   <section class="hero">
-
-    <!-- Left: name + bio -->
-    <div class="hero__left">
-      <div class="hero__left-inner">
-        <h1 class="hero__name reveal">
-          <span class="hero__name-line">Sagar</span>
-          <span class="hero__name-line">Kumar<span style="color:var(--accent)">.</span></span>
-        </h1>
-        <div class="hero__meta reveal reveal-delay-1">
-          <div class="hero__label">Senior Product Designer · Bengaluru</div>
-          <p class="hero__sub">
-            9+ years designing enterprise products across Jio, PayU &amp; Infosys. I work at the intersection of AI, design systems, and complexity — turning hard problems into experiences people actually use.
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <div class="hero__label reveal">Senior Product Designer · Bengaluru</div>
+          <h1 class="d-xl hero__headline reveal reveal-delay-1">
+            Building digital<br/>products that<br/><span class="text-accent">scale.</span>
+          </h1>
+          <p class="hero__sub reveal reveal-delay-2">
+            9+ years designing enterprise products across Jio, PayU & Infosys. I work at the intersection of AI, design systems, and business complexity — turning hard problems into experiences people actually use.
           </p>
-          <div class="hero__actions">
+          <div class="hero__actions reveal reveal-delay-3">
             <a href="work.html" class="btn btn--primary">View My Work <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             <a href="about.html" class="btn btn--ghost">About Me</a>
           </div>
+        </div>
+        <div class="hero__img-wrap reveal reveal-delay-2">
+          <img
+            src="img/sagar.jpg"
+            alt="Sagar Kumar — Senior Product Designer"
+            style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <!-- Fallback shown if image not yet added -->
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(160deg,#141422 0%,#1a0a05 100%);align-items:center;justify-content:center;">
+            <span style="font-family:'Syne',sans-serif;font-size:96px;font-weight:800;color:rgba(255,92,46,0.15);letter-spacing:-0.05em;">SK</span>
+          </div>
+          <div class="hero__img-overlay"></div>
           <div class="hero__badge">
             <div class="hero__badge-dot"></div>
             <div class="hero__badge-text">
@@ -89,17 +97,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Right: full-height photo, bleeds to edge -->
-    <div class="hero__photo reveal reveal-delay-1">
-      <img
-        src="img/sagar.jpg"
-        alt="Sagar Kumar — Senior Product Designer"
-        style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
-        onerror="this.style.display='none';"
-      />
-    </div>
-
   </section>
 
   <!-- LOGOS STRIP -->

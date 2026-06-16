@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
   <link rel="stylesheet" href="css/styles.css"/>
-  <script>(function(){var t=localStorage.getItem('sk-theme');if((t||'light')==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
   <style>
     /* ── Brand accent for universal hero ── */
     :root { --proj-accent: #00C4B0; }
@@ -81,8 +81,6 @@
       .mnt-mini-stat { border-right:none; border-bottom:1px solid var(--border); }
     }
   </style>
-  <link rel="canonical" href="https://sagarkumar.site/project-mentorship.html" />
-  <meta property="og:url" content="https://sagarkumar.site/project-mentorship.html" />
 </head>
 <body>
   <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
