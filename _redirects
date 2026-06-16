@@ -1,0 +1,2 @@
+# Redirect old domain to new domain (permanent 301)
+https://sagarkumar.work/*  https://sagarkumar.site/:splat  301!
