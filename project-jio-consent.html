@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jio Consent Management Platform — Sagar Kumar</title>
+  <meta name="description" content="Designing India's first unified consent experience across Jio's entire consumer and enterprise ecosystem — DPDP Act compliant, 4 modules, 8+ user flows."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>(function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||(p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+  <style>
+    :root {
+      --proj-accent: #1B3FD8;
+      --jcm-blue:   #1B3FD8;
+      --jcm-navy:   #0F1F6B;
+      --jcm-cyan:   #00B2D6;
+      --jcm-green:  #22C55E;
+      --jcm-amber:  #F59E0B;
+      --jcm-red:    #EF4444;
+      --jcm-light:  #E8EEFF;
+    }
+
+    /* ── Section rhythm ── */
+    .jcm-sec { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .jcm-sec:last-of-type { border-bottom: none; }
+    .jcm-sec--alt { background: var(--bg-card); }
+
+    /* ── Eyebrow + headings ── */
+    .jcm-eyebrow { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jcm-blue); margin-bottom: 10px; }
+    .jcm-h2 { font-family: var(--font-display); font-size: clamp(26px,3.5vw,42px); font-weight: 800; letter-spacing: -0.025em; color: var(--text-1); line-height: 1.1; margin-bottom: 16px; }
+    .jcm-h3 { font-size: 18px; font-weight: 700; color: var(--text-1); margin-bottom: 10px; }
+    .jcm-p { font-size: 15px; color: var(--text-2); line-height: 1.75; }
+
+    /* ── Grids ── */
+    .jcm-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .jcm-3col { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .jcm-4col { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    @media(max-width:900px){ .jcm-2col,.jcm-3col { grid-template-columns:1fr; } .jcm-4col { grid-template-columns:1fr 1fr; } }
+    @media(max-width:520px){ .jcm-4col { grid-template-columns:1fr; } }
+
+    /* ── Stat strip ── */
+    .jcm-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; margin: 40px 0; }
+    @media(max-width:800px){ .jcm-stats { grid-template-columns: 1fr 1fr; } }
+    .jcm-stat { padding: 28px 24px; border-right: 1px solid var(--border); text-align: center; }
+    .jcm-stat:last-child { border-right: none; }
+    @media(max-width:800px){ .jcm-stat:nth-child(2) { border-right: none; } .jcm-stat:nth-child(3) { border-right: 1px solid var(--border); } }
+    .jcm-stat__val { font-family: var(--font-display); font-size: clamp(28px,4vw,44px); font-weight: 900; letter-spacing: -0.04em; color: var(--jcm-blue); line-height: 1; margin-bottom: 8px; }
+    .jcm-stat__label { font-size: 13px; color: var(--text-3); line-height: 1.4; }
+
+    /* ── Status badge ── */
+    .jcm-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; font-family: var(--font-mono); }
+    .jcm-badge--green { background: rgba(34,197,94,0.12); color: var(--jcm-green); }
+    .jcm-badge--amber { background: rgba(245,158,11,0.12); color: var(--jcm-amber); }
+    .jcm-badge--blue  { background: rgba(27,63,216,0.12); color: var(--jcm-blue); }
+    .jcm-badge--red   { background: rgba(239,68,68,0.12); color: var(--jcm-red); }
+    .jcm-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* ── Module card ── */
+    .jcm-module { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .jcm-module__hdr { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .jcm-module__num { font-family: var(--font-mono); font-size: 13px; color: var(--text-3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+    .jcm-module__title { font-family: var(--font-display); font-size: clamp(20px,2.5vw,28px); font-weight: 800; color: var(--text-1); letter-spacing: -0.02em; }
+    .jcm-module__body { padding: 28px; }
+    .jcm-module__desc { font-size: 15px; color: var(--text-2); line-height: 1.7; margin-bottom: 24px; }
+
+    /* ── Flow table ── */
+    .jcm-flows { width: 100%; border-collapse: collapse; }
+    .jcm-flows th { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+    .jcm-flows td { padding: 13px 14px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-2); vertical-align: top; line-height: 1.5; }
+    .jcm-flows tr:last-child td { border-bottom: none; }
+    .jcm-flows td:first-child { font-weight: 600; color: var(--jcm-blue); white-space: nowrap; }
+    .jcm-flows td:first-child .jcm-flow-num { font-family: var(--font-mono); font-size: 12px; color: var(--text-3); display: block; margin-bottom: 2px; }
+
+    /* ── Feature list ── */
+    .jcm-feature-list { display: flex; flex-direction: column; gap: 10px; }
+    .jcm-feature { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: var(--bg-elevated); border-radius: var(--r-lg); border-left: 3px solid var(--jcm-blue); }
+    .jcm-feature__icon { width: 20px; height: 20px; color: var(--jcm-blue); flex-shrink: 0; margin-top: 1px; }
+    .jcm-feature__text { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+    .jcm-feature__text strong { color: var(--text-1); }
+
+    /* ── Problem cards ── */
+    .jcm-problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+    @media(max-width:700px){ .jcm-problem-grid { grid-template-columns: 1fr; } }
+    .jcm-problem-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 24px; }
+    .jcm-problem-card__hdr { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .jcm-problem-card__dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .jcm-problem-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .jcm-problem-card li { font-size: 14px; color: var(--text-2); line-height: 1.55; padding-left: 16px; position: relative; }
+    .jcm-problem-card li::before { content: '·'; position: absolute; left: 0; color: var(--text-3); }
+
+    /* ── Module overview table ── */
+    .jcm-overview-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .jcm-overview-table th { background: var(--bg-elevated); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+    .jcm-overview-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-2); vertical-align: middle; }
+    .jcm-overview-table tr:last-child td { border-bottom: none; }
+    .jcm-overview-table td:first-child { font-weight: 600; color: var(--text-1); }
+    .jcm-overview-table .mod-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+    /* ── Team cards ── */
+    .jcm-team { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    @media(max-width:900px){ .jcm-team { grid-template-columns: repeat(2,1fr); } }
+    .jcm-team-card { padding: 20px 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-xl); }
+    .jcm-team-card__avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--jcm-blue); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+    .jcm-team-card__name { font-size: 14px; font-weight: 600; color: var(--text-1); line-height: 1.3; margin-bottom: 4px; }
+    .jcm-team-card__role { font-size: 13px; color: var(--jcm-blue); font-family: var(--font-mono); line-height: 1.4; }
+
+    /* ── Visual placeholder ── */
+    .jcm-placeholder { border: 2px dashed var(--border); border-radius: var(--r-xl); background: var(--bg-elevated); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; min-height: 320px; margin-bottom: 16px; }
+    .jcm-placeholder--tall { min-height: 480px; }
+    .jcm-placeholder__label { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+    .jcm-placeholder__hint { font-size: 13px; color: var(--text-3); opacity: 0.6; }
+    .jcm-placeholder__icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(27,63,216,0.08); display: flex; align-items: center; justify-content: center; }
+
+    /* ── MVP status strip ── */
+    .jcm-mvp-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    @media(max-width:600px){ .jcm-mvp-strip { grid-template-columns: 1fr; } }
+    .jcm-mvp-card { padding: 20px 22px; border-radius: var(--r-xl); border: 1px solid var(--border); }
+    .jcm-mvp-card__label { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+    .jcm-mvp-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .jcm-mvp-card li { font-size: 14px; color: var(--text-2); line-height: 1.55; padding-left: 16px; position: relative; }
+    .jcm-mvp-card li::before { content: '·'; position: absolute; left: 0; color: var(--text-3); }
+    .jcm-mvp-card--done { background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.2); }
+    .jcm-mvp-card--done .jcm-mvp-card__label { color: var(--jcm-green); }
+    .jcm-mvp-card--pending { background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.2); }
+    .jcm-mvp-card--pending .jcm-mvp-card__label { color: var(--jcm-amber); }
+
+    /* ── TruConnect feature grid ── */
+    .jcm-tc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 16px; }
+    @media(max-width:700px){ .jcm-tc-grid { grid-template-columns: 1fr 1fr; } }
+    .jcm-tc-card { padding: 18px 16px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--r-lg); border-top: 3px solid var(--jcm-cyan); }
+    .jcm-tc-card__name { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; }
+    .jcm-tc-card__desc { font-size: 13px; color: var(--text-3); line-height: 1.5; }
+
+    /* ── Section meta badges row ── */
+    .jcm-meta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="cv/sagar-kumar-cv.pdf?v=2" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
+      <a href="contact.html" class="nav__cta">Let's Talk →</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ══ PROJECT HERO ══ -->
+  <section class="proj-hero-section">
+    <div class="container">
+      <div class="proj-eyebrow reveal">B2C + Enterprise · DPDP Compliance · Jio Platforms · 2024–2025</div>
+      <h1 class="proj-title reveal">Jio <em>Consent Management</em> Platform</h1>
+      <p class="proj-sub reveal">Designing India's first unified consent experience across Jio's entire consumer and enterprise ecosystem — 4 modules, 8+ user flows, DPDP Act compliant.</p>
+      <div class="proj-meta reveal reveal-stagger">
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">My Role</div>
+          <div class="proj-meta__v">UX Designer (Lead)</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Client</div>
+          <div class="proj-meta__v">Jio Platforms Limited</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Modules</div>
+          <div class="proj-meta__v">4 (Consumer + Enterprise)</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Year</div>
+          <div class="proj-meta__v">2024–2025</div>
+        </div>
+        <div class="proj-meta__cell">
+          <div class="proj-meta__k">Status</div>
+          <div class="proj-meta__v" style="color:var(--jcm-amber);">In Progress</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINAL DESIGNS / BANNER ══ -->
+  <section class="proj-visuals reveal">
+    <div class="container">
+      <div class="proj-visuals__label">Final Designs</div>
+
+      <div class="proj-visuals__banner" style="background:linear-gradient(135deg,#080e3a,#0f1f6b);">
+        <div class="proj-visuals__glow" style="--proj-glow-color:rgba(27,63,216,0.25);"></div>
+        <div class="proj-visuals__placeholder">
+          <span class="proj-visuals__mark" style="color:rgba(27,63,216,0.9);">JIO</span>
+          <span class="proj-visuals__hint" style="color:rgba(100,140,255,0.6);">Hero banner — add marketing page mockup</span>
+        </div>
+        <!-- Replace src with actual image when ready -->
+        <img src="" alt="Jio Consent Management Platform — Hero" loading="lazy" onerror="this.style.display='none'">
+      </div>
+
+      <div class="proj-visuals__grid">
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#080e3a,#0f1f6b);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">User Portal — Accept Consent flow</span></div>
+            <img src="" alt="User Portal — Accept Consent" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#080e3a,#0f1f6b);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">User Portal — Parental Journey</span></div>
+            <img src="" alt="User Portal — Parental Journey" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="proj-visuals__row proj-visuals__row--2">
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#080e3a,#0f1f6b);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">Admin Portal — Consent Request Management</span></div>
+            <img src="" alt="Admin Portal — Consent Request Management" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-visuals__frame" style="background:linear-gradient(135deg,#080e3a,#0f1f6b);">
+            <div class="proj-visuals__placeholder"><span class="proj-visuals__hint">TruConnect — B2B Partner Portal</span></div>
+            <img src="" alt="TruConnect — B2B Partner Portal" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 01 — PROJECT OVERVIEW ══ -->
+  <section class="jcm-sec">
+    <div class="container">
+      <div class="jcm-eyebrow">01 — Project Overview</div>
+      <h2 class="jcm-h2 reveal">India's first unified consent experience</h2>
+      <p class="jcm-p reveal" style="max-width:760px;margin-bottom:8px;">
+        India's Digital Personal Data Protection (DPDP) Act, enacted in 2023, requires companies like Jio to provide users with clear, transparent, and granular control over how their personal data is collected and used. Before this project, Jio had no unified consent experience — each product (JioMart, JioCinema, JioCare, etc.) handled consent independently, leading to inconsistent UX, legal risk, and fragmented data governance.
+      </p>
+      <p class="jcm-p reveal" style="max-width:760px;margin-bottom:32px;">
+        As the lead UX designer, I owned the end-to-end design of a centralised Consent Management Platform covering four distinct products: a consumer Marketing Page, a User Portal, an Admin Portal for enterprise operators, and TruConnect for B2B partners.
+      </p>
+
+      <!-- Stat strip -->
+      <div class="jcm-stats reveal">
+        <div class="jcm-stat">
+          <div class="jcm-stat__val">4</div>
+          <div class="jcm-stat__label">Modules designed<br>(Consumer + Enterprise)</div>
+        </div>
+        <div class="jcm-stat">
+          <div class="jcm-stat__val">8+</div>
+          <div class="jcm-stat__label">Complete user flows<br>in User Portal</div>
+        </div>
+        <div class="jcm-stat">
+          <div class="jcm-stat__val">3</div>
+          <div class="jcm-stat__label">Dev files<br>delivered</div>
+        </div>
+        <div class="jcm-stat">
+          <div class="jcm-stat__val" style="font-size:clamp(20px,2.5vw,28px);padding-top:4px;">DPDP</div>
+          <div class="jcm-stat__label">Compliant design<br>across all modules</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 02 — THE PROBLEM ══ -->
+  <section class="jcm-sec jcm-sec--alt">
+    <div class="container">
+      <div class="jcm-eyebrow">02 — The Problem</div>
+      <h2 class="jcm-h2 reveal">Regulatory context — DPDP Act 2023</h2>
+      <p class="jcm-p reveal" style="max-width:760px;margin-bottom:24px;">
+        India's Digital Personal Data Protection Act (2023) fundamentally changed how companies must handle user data. Under the Act, every data fiduciary (like Jio) is required to obtain explicit, informed, and purpose-specific consent from users before collecting or processing their personal data.
+      </p>
+
+      <div class="jcm-problem-grid reveal">
+        <div class="jcm-problem-card">
+          <div class="jcm-problem-card__hdr">
+            <div class="jcm-problem-card__dot" style="background:var(--jcm-blue);"></div>
+            The Business Problem
+          </div>
+          <ul>
+            <li>Legal risk — inconsistent consent handling could violate DPDP requirements</li>
+            <li>Fragmented data governance — no single view of what users had consented to</li>
+            <li>Poor UX — users encountered different consent flows across Jio products</li>
+            <li>Duplicated effort — every product team building consent from scratch</li>
+          </ul>
+        </div>
+        <div class="jcm-problem-card">
+          <div class="jcm-problem-card__hdr">
+            <div class="jcm-problem-card__dot" style="background:var(--jcm-cyan);"></div>
+            The User Problem
+          </div>
+          <ul>
+            <li>Had no single place to see what data they had consented to share</li>
+            <li>Could not easily withdraw or update their consent preferences</li>
+            <li>Were unaware of parental controls for minor users</li>
+            <li>Received cookie banners inconsistently across Jio's web products</li>
+            <li>Had no grievance mechanism if their consent rights were violated</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 03 — SOLUTION OVERVIEW ══ -->
+  <section class="jcm-sec">
+    <div class="container">
+      <div class="jcm-eyebrow">03 — Our Solution</div>
+      <h2 class="jcm-h2 reveal">4 modules covering every consent surface</h2>
+      <p class="jcm-p reveal" style="max-width:700px;margin-bottom:32px;">
+        We designed a unified Consent Management Platform that covers every surface where users and operators interact with consent data across Jio's ecosystem.
+      </p>
+
+      <table class="jcm-overview-table reveal">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>What it does</th>
+            <th>Audience</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="mod-dot" style="background:#1B3FD8;"></span>Marketing Page</td>
+            <td>Public-facing awareness page explaining Jio's consent approach, user rights, and how to manage preferences</td>
+            <td>All consumers</td>
+            <td><span class="jcm-badge jcm-badge--green">Complete</span></td>
+          </tr>
+          <tr>
+            <td><span class="mod-dot" style="background:#00B2D6;"></span>User Portal</td>
+            <td>Self-service portal with 8 complete flows: accept, withdraw, update consent, raise grievances, manage cookie preferences</td>
+            <td>Registered users</td>
+            <td><span class="jcm-badge jcm-badge--green">Complete</span></td>
+          </tr>
+          <tr>
+            <td><span class="mod-dot" style="background:#7C3AED;"></span>Admin Portal</td>
+            <td>Operator-facing platform for managing consent requests, handling grievances, configuring forms, ITSM integration</td>
+            <td>Jio Employees / Admins</td>
+            <td><span class="jcm-badge jcm-badge--amber">MVP 1 Done</span></td>
+          </tr>
+          <tr>
+            <td><span class="mod-dot" style="background:#F59E0B;"></span>TruConnect</td>
+            <td>B2B consent management for enterprise partners integrating with Jio's consent layer</td>
+            <td>B2B Partners</td>
+            <td><span class="jcm-badge jcm-badge--amber">In Progress</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ══ 04 — MODULE 1: MARKETING PAGE ══ -->
+  <section class="jcm-sec jcm-sec--alt">
+    <div class="container">
+      <div class="jcm-eyebrow">04 — Module 1</div>
+      <div class="jcm-module reveal">
+        <div class="jcm-module__hdr">
+          <div>
+            <div class="jcm-module__num">Module 01</div>
+            <div class="jcm-module__title">Marketing Page</div>
+          </div>
+          <div class="jcm-meta-row">
+            <span class="jcm-badge jcm-badge--green">✓ Complete</span>
+            <span class="jcm-badge jcm-badge--blue">Dev File Ready</span>
+          </div>
+        </div>
+        <div class="jcm-module__body">
+          <p class="jcm-module__desc">
+            The Marketing Page is the first public-facing surface of the Consent Management Platform — a consumer-facing web page that explains Jio's consent approach, communicates user rights under the DPDP Act, and guides users toward managing their preferences. I developed multiple design iterations with the latest being the production-ready design, using Jio's dark/navy brand aesthetic.
+          </p>
+          <div class="jcm-feature-list">
+            <div class="jcm-feature">
+              <svg class="jcm-feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div class="jcm-feature__text"><strong>Plain-language data transparency</strong> — explains all types of data Jio collects and why, in accessible language</div>
+            </div>
+            <div class="jcm-feature">
+              <svg class="jcm-feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div class="jcm-feature__text"><strong>Clear CTAs</strong> — directs users to manage or withdraw consent with confidence</div>
+            </div>
+            <div class="jcm-feature">
+              <svg class="jcm-feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div class="jcm-feature__text"><strong>DPDP rights communication</strong> — user's right to access, correct, erase, and withdraw consent</div>
+            </div>
+            <div class="jcm-feature">
+              <svg class="jcm-feature__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <div class="jcm-feature__text"><strong>Multiple design iterations</strong> — evolved through feedback cycles to production-ready final design</div>
+            </div>
+          </div>
+
+          <!-- Placeholder for Marketing Page mockup -->
+          <div class="jcm-placeholder jcm-placeholder--tall reveal" style="margin-top:28px;">
+            <div class="jcm-placeholder__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--jcm-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="jcm-placeholder__label">Marketing Page — Final Design</div>
+            <div class="jcm-placeholder__hint">Add marketing page mockup here</div>
+          </div>
+          <div class="jcm-2col reveal" style="margin-top:0;">
+            <div class="jcm-placeholder" style="min-height:220px;">
+              <div class="jcm-placeholder__label">Iteration 1–2</div>
+              <div class="jcm-placeholder__hint">Early explorations</div>
+            </div>
+            <div class="jcm-placeholder" style="min-height:220px;">
+              <div class="jcm-placeholder__label">Final Production Design</div>
+              <div class="jcm-placeholder__hint">Dev-ready screens</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 05 — MODULE 2: USER PORTAL ══ -->
+  <section class="jcm-sec">
+    <div class="container">
+      <div class="jcm-eyebrow">05 — Module 2</div>
+      <div class="jcm-module reveal">
+        <div class="jcm-module__hdr">
+          <div>
+            <div class="jcm-module__num">Module 02</div>
+            <div class="jcm-module__title">User Portal</div>
+          </div>
+          <div class="jcm-meta-row">
+            <span class="jcm-badge jcm-badge--green">✓ Complete</span>
+            <span class="jcm-badge jcm-badge--blue">Dev File Ready</span>
+          </div>
+        </div>
+        <div class="jcm-module__body">
+          <p class="jcm-module__desc">
+            The User Portal is a self-service interface where Jio users can manage all aspects of their consent — from accepting and withdrawing permissions, to raising grievances and managing parental controls. It is the most comprehensive module, covering 8 complete user flows, all delivered as Figma dev files.
+          </p>
+
+          <h3 class="jcm-h3">8 Complete User Flows</h3>
+          <table class="jcm-flows reveal">
+            <thead>
+              <tr>
+                <th style="width:220px;">Flow</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="jcm-flow-num">01</span>Accept Consent</td>
+                <td>User views and accepts data collection permissions — primary onboarding flow</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">02</span>Withdraw Consent</td>
+                <td>User withdraws previously granted permissions with clear confirmation steps</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">03</span>Update Consent</td>
+                <td>User updates the scope or purpose of their consent preferences</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">04</span>Approve Pending Request</td>
+                <td>User reviews and approves a pending consent request from a Jio service</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">05</span>Raise Grievance Request</td>
+                <td>User files a formal grievance if they believe their data rights were violated</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">06</span>Cookie Banner &amp; Preferences</td>
+                <td>User manages cookie consent through a banner and a detailed preference center</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">07</span>Parental Journey</td>
+                <td>Parent/guardian manages consent on behalf of a minor user — the most complex flow</td>
+              </tr>
+              <tr>
+                <td><span class="jcm-flow-num">08</span>Auto Renewal</td>
+                <td>User manages automatic consent renewal settings for recurring data use</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Placeholders for User Portal screens -->
+          <div class="jcm-placeholder jcm-placeholder--tall reveal" style="margin-top:28px;">
+            <div class="jcm-placeholder__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--jcm-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div class="jcm-placeholder__label">User Portal — All 8 flows</div>
+            <div class="jcm-placeholder__hint">Add complete flow overview (Figma)</div>
+          </div>
+          <div class="jcm-3col reveal">
+            <div class="jcm-placeholder" style="min-height:200px;">
+              <div class="jcm-placeholder__label">Accept Consent</div>
+              <div class="jcm-placeholder__hint">Flow screens</div>
+            </div>
+            <div class="jcm-placeholder" style="min-height:200px;">
+              <div class="jcm-placeholder__label">Cookie Banner</div>
+              <div class="jcm-placeholder__hint">Flow screens</div>
+            </div>
+            <div class="jcm-placeholder" style="min-height:200px;">
+              <div class="jcm-placeholder__label">Parental Journey</div>
+              <div class="jcm-placeholder__hint">Flow screens</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 06 — MODULE 3: ADMIN PORTAL ══ -->
+  <section class="jcm-sec jcm-sec--alt">
+    <div class="container">
+      <div class="jcm-eyebrow">06 — Module 3</div>
+      <div class="jcm-module reveal">
+        <div class="jcm-module__hdr">
+          <div>
+            <div class="jcm-module__num">Module 03</div>
+            <div class="jcm-module__title">Admin Portal</div>
+          </div>
+          <div class="jcm-meta-row">
+            <span class="jcm-badge jcm-badge--green">MVP 1 Done</span>
+            <span class="jcm-badge jcm-badge--amber">MVP 2 Not Started</span>
+          </div>
+        </div>
+        <div class="jcm-module__body">
+          <p class="jcm-module__desc">
+            The Admin Portal is an enterprise-facing platform for Jio operators to manage consent at scale — processing user consent requests, handling grievances, configuring forms, and maintaining compliance workflows. It is designed for Jio's internal operations teams.
+          </p>
+
+          <div class="jcm-mvp-strip reveal">
+            <div class="jcm-mvp-card jcm-mvp-card--done">
+              <div class="jcm-mvp-card__label">✓ MVP 1 — Completed</div>
+              <ul>
+                <li>ITSM Integration — connecting consent management to Jio's internal ticketing system</li>
+                <li>Consent Request Management — operators view, process, and resolve incoming user consent requests</li>
+                <li>Full user story coverage across all MVP 1 operator flows</li>
+                <li>Dev file delivered and handed off to Shrey Kumar and Vaishnavi A</li>
+              </ul>
+            </div>
+            <div class="jcm-mvp-card jcm-mvp-card--pending">
+              <div class="jcm-mvp-card__label">⏳ MVP 2 — Not Started</div>
+              <ul>
+                <li>Grievance Templates Configuration — operators create and manage reusable grievance response templates</li>
+                <li>Form Configuration — operators customise consent form fields and layouts</li>
+                <li>Scope defined, designs not yet started</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Placeholder for Admin Portal -->
+          <div class="jcm-placeholder jcm-placeholder--tall reveal">
+            <div class="jcm-placeholder__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--jcm-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="jcm-placeholder__label">Admin Portal — User story flow coverage</div>
+            <div class="jcm-placeholder__hint">Add Figma screenshot of all operator journeys</div>
+          </div>
+          <div class="jcm-2col reveal">
+            <div class="jcm-placeholder" style="min-height:220px;">
+              <div class="jcm-placeholder__label">Consent Request Management</div>
+              <div class="jcm-placeholder__hint">MVP 1 screens</div>
+            </div>
+            <div class="jcm-placeholder" style="min-height:220px;">
+              <div class="jcm-placeholder__label">ITSM Integration</div>
+              <div class="jcm-placeholder__hint">Ticketing flow screens</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 07 — MODULE 4: TRUCONNECT ══ -->
+  <section class="jcm-sec">
+    <div class="container">
+      <div class="jcm-eyebrow">07 — Module 4</div>
+      <div class="jcm-module reveal">
+        <div class="jcm-module__hdr">
+          <div>
+            <div class="jcm-module__num">Module 04</div>
+            <div class="jcm-module__title">TruConnect</div>
+          </div>
+          <div class="jcm-meta-row">
+            <span class="jcm-badge jcm-badge--amber">In Progress</span>
+            <span class="jcm-badge jcm-badge--blue">Wireframes / UI Flows</span>
+          </div>
+        </div>
+        <div class="jcm-module__body">
+          <p class="jcm-module__desc">
+            TruConnect is Jio's B2B consent management product for enterprise partners who need to integrate with Jio's consent infrastructure. It provides a self-service portal for partner organisations to configure their consent collection, manage grievance templates, and generate compliance reports.
+          </p>
+
+          <h3 class="jcm-h3">Features Designed</h3>
+          <div class="jcm-tc-grid reveal">
+            <div class="jcm-tc-card">
+              <div class="jcm-tc-card__name">Sign Up</div>
+              <div class="jcm-tc-card__desc">Enterprise partner onboarding and account creation</div>
+            </div>
+            <div class="jcm-tc-card">
+              <div class="jcm-tc-card__name">Configuration</div>
+              <div class="jcm-tc-card__desc">Partner-level consent configuration settings</div>
+            </div>
+            <div class="jcm-tc-card">
+              <div class="jcm-tc-card__name">Grievance Templates</div>
+              <div class="jcm-tc-card__desc">Creating, editing, and managing grievance response templates at scale</div>
+            </div>
+            <div class="jcm-tc-card">
+              <div class="jcm-tc-card__name">Edit Consent Template</div>
+              <div class="jcm-tc-card__desc">Customising consent form templates for the partner's end-users</div>
+            </div>
+            <div class="jcm-tc-card">
+              <div class="jcm-tc-card__name">Grievance Reports</div>
+              <div class="jcm-tc-card__desc">Analytics and reporting on grievance resolution status</div>
+            </div>
+            <div class="jcm-tc-card">
+              <div class="jcm-tc-card__name">Metadata Fields</div>
+              <div class="jcm-tc-card__desc">Configuring custom metadata fields for consent data collection</div>
+            </div>
+          </div>
+
+          <!-- Placeholder for TruConnect -->
+          <div class="jcm-placeholder jcm-placeholder--tall reveal" style="margin-top:24px;">
+            <div class="jcm-placeholder__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--jcm-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <div class="jcm-placeholder__label">TruConnect — B2B Partner Portal</div>
+            <div class="jcm-placeholder__hint">Add wireframes and UI flow screens (Figma)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ 08 — MY ROLE ══ -->
+  <section class="jcm-sec jcm-sec--alt">
+    <div class="container">
+      <div class="jcm-eyebrow">08 — My Role</div>
+      <h2 class="jcm-h2 reveal">End-to-end across all four modules</h2>
+      <p class="jcm-p reveal" style="max-width:720px;margin-bottom:32px;">
+        I owned the UX design end-to-end across all four modules — from understanding the regulatory context and user needs, through to final Figma dev files. I collaborated closely with the design manager, development teams, and module POCs throughout.
+      </p>
+
+      <div class="jcm-team reveal">
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:var(--jcm-blue);">SA</div>
+          <div class="jcm-team-card__name">Sagar Ayapilla</div>
+          <div class="jcm-team-card__role">UX Designer (Lead)<br>All 4 modules</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:#7C3AED;">GC</div>
+          <div class="jcm-team-card__name">George Chiramal Davis</div>
+          <div class="jcm-team-card__role">Design Manager</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:var(--jcm-cyan);">PV</div>
+          <div class="jcm-team-card__name">Pirjo Vanem</div>
+          <div class="jcm-team-card__role">POC — Marketing Page &amp; TruConnect</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:#0D9488;">AS</div>
+          <div class="jcm-team-card__name">Akanksha Singh</div>
+          <div class="jcm-team-card__role">POC — User Portal</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:#059669;">SK</div>
+          <div class="jcm-team-card__name">Shrey Kumar</div>
+          <div class="jcm-team-card__role">Dev — Admin Portal</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:#0891B2;">VA</div>
+          <div class="jcm-team-card__name">Vaishnavi A</div>
+          <div class="jcm-team-card__role">Dev — Admin Portal</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:#DC2626;">RM</div>
+          <div class="jcm-team-card__name">Raviraj Mishra</div>
+          <div class="jcm-team-card__role">POC — TruConnect next steps</div>
+        </div>
+        <div class="jcm-team-card">
+          <div class="jcm-team-card__avatar" style="background:#9333EA;">LK</div>
+          <div class="jcm-team-card__name">Lokesh</div>
+          <div class="jcm-team-card__role">POC — TruConnect</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="index.html" class="footer__logo">SK<span>.</span></a>
+        <p class="footer__copy">© 2026 Sagar Kumar. Made with precision in Bengaluru.</p>
+        <div class="footer__links">
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
