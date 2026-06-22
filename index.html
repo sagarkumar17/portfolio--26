@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sagar Kumar — Crafting Digital Products That Scale</title>
+  <title>Sagar Kumar — Product Designer</title>
   <meta name="description" content="Senior Product Designer with 9+ years across Jio, PayU & Infosys. AI chatbot CSAT 2.6→4.2, 71% PayU engagement lift, 40% handoff reduction via design system." />
   <meta property="og:title" content="Sagar Kumar — Crafting Digital Products That Scale" />
   <meta property="og:description" content="9+ years designing AI products, design systems &amp; enterprise UX at Jio, PayU &amp; Infosys." />
@@ -17,483 +17,978 @@
   <meta name="twitter:title" content="Sagar Kumar — Crafting Digital Products That Scale" />
   <meta name="twitter:description" content="9+ years designing AI products, design systems &amp; enterprise UX at Jio, PayU &amp; Infosys." />
   <meta name="twitter:image" content="https://sagarkumar.site/img/og-preview.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Fraunces:ital,opsz,wght@1,9..144,700;1,9..144,800&display=swap" />
 
-  <!-- Prevent theme flash on load -->
-  <script>
-    (function(){var t=localStorage.getItem('sk-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches;if((t||( p?'dark':'light'))==='light')document.documentElement.setAttribute('data-theme','light');})();
-  </script>
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563EB;
+      --blue-lt: #60A5FA;
+      --dark: #0a0a0a;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --border: rgba(0,0,0,0.09);
+      --white: #ffffff;
+      --off: #f8fafc;
+      --font-body: 'DM Sans', sans-serif;
+      --font-display: 'Manrope', sans-serif;
+      --font-script: 'Fraunces', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       FLOATING PILL NAV
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 60px;
+      padding: 8px 16px 8px 10px;
+      transition: box-shadow .3s;
+      white-space: nowrap;
+    }
+    .nav.scrolled { box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+
+    .nav__brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav__avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      overflow: hidden; background: #e5e7eb; flex-shrink: 0;
+    }
+    .nav__avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .nav__name {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: .1em; color: var(--dark);
+    }
+    .nav__links {
+      display: flex; gap: 22px; align-items: center;
+    }
+    .nav__links a {
+      font-size: 14px; font-weight: 500; color: var(--muted);
+      transition: color .2s;
+    }
+    .nav__links a:hover { color: var(--dark); }
+    .nav__resume {
+      font-size: 13px; font-weight: 600; color: var(--dark);
+      background: #f1f5f9; border-radius: 40px;
+      padding: 6px 16px; transition: background .2s;
+    }
+    .nav__resume:hover { background: #e2e8f0; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(165deg, #c7dfff 0%, #a8cffa 25%, #cfe8ff 55%, #e8f4ff 80%, #f0f8ff 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero__photo {
+      position: absolute;
+      right: 0; bottom: 0;
+      height: 92%;
+      width: auto;
+      max-width: 58%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 1;
+    }
+    .hero__photo-fade {
+      position: absolute;
+      right: 0; bottom: 0; height: 92%; width: 58%;
+      background: linear-gradient(to right, rgba(199,223,255,.75) 0%, rgba(199,223,255,.2) 35%, transparent 70%);
+      z-index: 2;
+    }
+    .hero__bottom-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 28%;
+      background: linear-gradient(to top, rgba(224,240,255,.85) 0%, transparent 100%);
+      z-index: 2;
+    }
+
+    .hero__content {
+      position: relative; z-index: 3;
+      padding: 0 64px 72px;
+      max-width: 660px;
+    }
+    .hero__greeting {
+      font-size: 16px; font-weight: 500;
+      color: rgba(10,10,10,.6); margin-bottom: 14px;
+      opacity: 0; animation: fadeUp .7s .2s ease forwards;
+    }
+    .hero__h1 {
+      font-family: var(--font-display);
+      font-size: clamp(70px, 9vw, 128px);
+      font-weight: 800;
+      line-height: .96;
+      color: var(--dark);
+      letter-spacing: -.04em;
+      opacity: 0; animation: fadeUp .8s .35s ease forwards;
+    }
+    .hero__h1-script {
+      display: block;
+      font-family: var(--font-script);
+      font-style: italic; font-weight: 800;
+      font-size: clamp(66px, 8.5vw, 122px);
+      letter-spacing: -.02em; line-height: 1;
+    }
+    .hero__role {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      margin-top: 20px;
+      font-size: 16px; font-weight: 500; color: rgba(10,10,10,.68);
+      opacity: 0; animation: fadeUp .7s .5s ease forwards;
+    }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(0,0,0,.10); border-radius: 20px;
+      padding: 4px 12px 4px 6px;
+      font-size: 14px; font-weight: 600; color: var(--dark);
+    }
+    .hero__badge img {
+      width: 20px; height: 20px; border-radius: 4px; object-fit: contain;
+    }
+
+    .hero__bar {
+      position: relative; z-index: 3;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 64px;
+      border-top: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.38);
+      backdrop-filter: blur(8px);
+    }
+    .hero__bar-item {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(10,10,10,.5);
+      display: flex; align-items: center; gap: 5px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SECTION UTILITIES
+    ============================================================ */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .13em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 20px;
+    }
+    .section-label::before { content: '◆'; font-size: 9px; }
+
+    .cross-sep {
+      text-align: center; padding: 40px 0 8px;
+      font-size: 20px; color: #d1d5db;
+    }
+
+    .hr-sep { border: none; border-top: 1px solid var(--border); margin: 0 64px; }
+
+    /* ============================================================
+       WHAT I DO
+    ============================================================ */
+    .what-section {
+      padding: 100px 64px 0;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .what-text {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.6vw, 54px);
+      font-weight: 700; line-height: 1.28;
+      color: var(--dark); max-width: 840px;
+      margin-left: auto;
+    }
+    .what-text em { font-style: italic; color: var(--blue); }
+    .what-text .muted { color: var(--muted); }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    .stats-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 60px 64px 80px;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .stat__num {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 6vw, 88px);
+      font-weight: 800; color: var(--blue); line-height: 1;
+      margin-bottom: 10px;
+    }
+    .stat__title { font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+    .stat__sub { font-size: 14px; color: var(--muted); max-width: 260px; }
+
+    /* ============================================================
+       SELECTED WORK HEADING
+    ============================================================ */
+    .work-head {
+      padding: 80px 64px 36px;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .work-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 76px);
+      font-weight: 800; line-height: 1.04;
+      letter-spacing: -.035em; color: var(--dark);
+    }
+    .work-head p { font-size: 16px; color: var(--muted); margin-top: 12px; }
+
+    /* ============================================================
+       PROJECT CARDS (Full-bleed)
+    ============================================================ */
+    .pcard-wrap { padding: 0 24px; display: flex; flex-direction: column; gap: 12px; }
+
+    .pcard {
+      position: relative;
+      min-height: 78vh;
+      border-radius: 18px; overflow: hidden;
+      display: flex; align-items: flex-end;
+      text-decoration: none;
+      transition: transform .4s ease;
+    }
+    .pcard:hover { transform: scale(1.005); }
+
+    .pcard__bg {
+      position: absolute; inset: 0;
+      z-index: 0;
+    }
+    .pcard__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: .35;
+    }
+    .pcard__mockup {
+      position: absolute;
+      right: 4%; bottom: 0;
+      height: 88%; width: 48%;
+      object-fit: contain; object-position: bottom right;
+      z-index: 2; pointer-events: none;
+    }
+    .pcard__info {
+      position: relative; z-index: 3;
+      margin: 0 0 40px 40px;
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: 16px; padding: 26px;
+      max-width: 460px;
+    }
+    .pcard__meta {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 14px;
+    }
+    .pcard__num {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white;
+    }
+    .pcard__year { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.65); }
+    .pcard__title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.2vw, 30px);
+      font-weight: 800; color: white;
+      line-height: 1.22; margin-bottom: 12px;
+    }
+    .pcard__tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 11px; }
+    .pcard__tag {
+      font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 40px; padding: 3px 11px;
+    }
+    .pcard__desc { font-size: 14px; color: rgba(255,255,255,.72); line-height: 1.6; margin-bottom: 16px; }
+    .pcard__cta {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 14px; font-weight: 600; color: white;
+      background: rgba(0,0,0,.28); border-radius: 40px;
+      padding: 9px 18px; transition: background .2s;
+    }
+    .pcard__cta:hover { background: rgba(0,0,0,.45); }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    .about-wrap {
+      display: grid; grid-template-columns: 360px 1fr;
+      gap: 80px; align-items: start;
+      padding: 100px 64px; max-width: 1240px; margin: 0 auto;
+    }
+    .polaroid {
+      background: white; padding: 14px 14px 52px;
+      box-shadow: 0 16px 56px rgba(0,0,0,.14);
+      transform: rotate(-2.5deg);
+      transition: transform .35s, box-shadow .35s;
+    }
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.015);
+      box-shadow: 0 24px 72px rgba(0,0,0,.18);
+    }
+    .polaroid img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: center top;
+    }
+    .about-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.8vw, 52px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -.03em; color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .about-body { font-size: 16px; color: #374151; line-height: 1.8; margin-bottom: 14px; }
+    .signature {
+      font-family: var(--font-script); font-style: italic;
+      font-size: 52px; color: var(--blue); margin-top: 28px;
+    }
+
+    /* ============================================================
+       EXPERIENCE TIMELINE
+    ============================================================ */
+    .exp-section {
+      padding: 100px 64px; background: var(--off);
+    }
+    .exp-head { text-align: center; margin-bottom: 72px; }
+    .exp-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6.5vw, 88px);
+      font-weight: 800; letter-spacing: -.045em;
+      line-height: 1.04; color: var(--dark);
+    }
+    .exp-sub { font-size: 16px; color: var(--muted); margin-top: 12px; }
+
+    /* Timeline */
+    .timeline {
+      position: relative; max-width: 900px; margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; top: 0; bottom: 0;
+      left: 50%; transform: translateX(-50%);
+      width: 2px; background: #e5e7eb; z-index: 0;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 1fr 56px 1fr;
+      margin-bottom: 56px; position: relative;
+    }
+
+    .tl-center {
+      display: flex; flex-direction: column;
+      align-items: center; z-index: 2;
+    }
+    .tl-pill {
+      display: inline-flex; align-items: center;
+      background: white; border: 1px solid #e5e7eb;
+      border-radius: 40px; padding: 5px 14px;
+      font-size: 12px; font-weight: 600; color: var(--dark);
+      white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      margin-bottom: 8px;
+    }
+    .tl-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--blue);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+
+    .tl-card {
+      background: white; border: 1px solid #e5e7eb;
+      border-radius: 16px; padding: 22px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.04);
+    }
+    .tl-card--right { grid-column: 3; padding-left: 24px; }
+    .tl-card--left  { grid-column: 1; padding-right: 24px; }
+
+    .tl-card__head {
+      display: flex; align-items: flex-start;
+      gap: 12px; margin-bottom: 14px;
+    }
+    .tl-logo {
+      width: 40px; height: 40px; border-radius: 8px;
+      overflow: hidden; background: #f3f4f6;
+      flex-shrink: 0;
+    }
+    .tl-logo img {
+      width: 100%; height: 100%;
+      object-fit: contain; padding: 4px;
+    }
+    .tl-role { font-size: 15px; font-weight: 700; color: var(--dark); }
+    .tl-co { font-size: 13px; color: var(--muted); }
+    .tl-loc {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 12px; color: var(--muted);
+      margin-left: auto; white-space: nowrap;
+    }
+    .tl-bullets { padding: 0; }
+    .tl-bullets li {
+      font-size: 13px; color: #374151; line-height: 1.6;
+      padding-left: 16px; position: relative; margin-bottom: 6px;
+    }
+    .tl-bullets li::before {
+      content: '•'; position: absolute; left: 0;
+      color: var(--blue); font-weight: 700;
+    }
+    .tl-bullets strong { font-weight: 700; color: var(--dark); }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .test-section { padding: 80px 64px; overflow: hidden; }
+    .test-track {
+      display: flex; gap: 24px; margin-top: 36px;
+      overflow-x: auto; padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+    .test-track::-webkit-scrollbar { display: none; }
+    .test-card {
+      background: white; padding: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.09);
+      border-radius: 6px;
+      min-width: 300px; max-width: 320px; flex-shrink: 0;
+    }
+    .test-avatar {
+      width: 72px; height: 72px; border-radius: 6px;
+      overflow: hidden; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .test-avatar span {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 800; color: white;
+    }
+    .test-name {
+      font-family: var(--font-script); font-style: italic;
+      font-size: 20px; color: var(--dark); margin-bottom: 3px;
+    }
+    .test-role { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+    .test-quote { font-size: 13px; color: #374151; line-height: 1.7; font-style: italic; }
+
+    /* ============================================================
+       CTA / FOOTER
+    ============================================================ */
+    .footer {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #93c5fd 0%, #60a5fa 35%, #3b82f6 65%, #2563eb 100%);
+      padding: 80px 64px 0;
+    }
+    .footer__inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+    .footer__headline {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 80px);
+      font-weight: 800; color: white;
+      line-height: 1.1; letter-spacing: -.03em;
+    }
+    .footer__headline em {
+      font-family: var(--font-script); font-style: italic;
+    }
+    .footer__contact {
+      display: flex; gap: 56px; flex-wrap: wrap;
+      margin-top: 40px; padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+    .footer__clabel {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.55);
+      margin-bottom: 7px;
+    }
+    .footer__cvalue {
+      font-size: 16px; font-weight: 600; color: white;
+    }
+    .footer__social { display: flex; gap: 10px; align-items: center; }
+    .footer__sb {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.28);
+      display: flex; align-items: center; justify-content: center;
+      color: white; transition: background .2s;
+    }
+    .footer__sb:hover { background: rgba(255,255,255,.32); }
+    .footer__bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      padding: 20px 0;
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer__copy { font-size: 13px; color: rgba(255,255,255,.55); }
+    .footer__fnav a {
+      font-size: 13px; color: rgba(255,255,255,.55);
+      margin-left: 20px; transition: color .2s;
+    }
+    .footer__fnav a:hover { color: white; }
+    .footer__watermark {
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(80px, 16vw, 240px);
+      font-weight: 900; letter-spacing: -.06em;
+      color: rgba(255,255,255,.09);
+      white-space: nowrap; z-index: 1;
+      pointer-events: none; user-select: none;
+      line-height: .78;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .nav { width: calc(100% - 32px); }
+      .nav__links { display: none; }
+      .hero__photo { max-width: 100%; height: 70%; opacity: .5; }
+      .hero__photo-fade { width: 100%; }
+      .hero__content { padding: 0 24px 56px; max-width: none; }
+      .hero__bar { padding: 14px 24px; }
+      .what-section { padding: 72px 24px 0; }
+      .stats-wrap { padding: 48px 24px 60px; grid-template-columns: 1fr; gap: 32px; }
+      .work-head { padding: 60px 24px 28px; }
+      .pcard-wrap { padding: 0; }
+      .pcard { min-height: 65vh; border-radius: 0; }
+      .pcard__mockup { display: none; }
+      .pcard__info { max-width: none; margin: 0 16px 24px; }
+      .about-wrap { grid-template-columns: 1fr; padding: 72px 24px; gap: 36px; }
+      .polaroid { max-width: 260px; margin: 0 auto; }
+      .exp-section { padding: 72px 24px; }
+      .timeline::before { left: 20px; }
+      .tl-item { grid-template-columns: 40px 1fr; }
+      .tl-center { grid-column: 1; }
+      .tl-card--right, .tl-card--left { grid-column: 2; padding: 0; }
+      .test-section { padding: 60px 24px; }
+      .footer { padding: 60px 24px 0; }
+      .hr-sep { margin: 0 24px; }
+    }
+  </style>
 </head>
 <body>
-  <div id="sk-loader"><div id="sk-loader__inner"><div id="sk-loader__mark">SK<span class="dot">.</span></div><div id="sk-loader__rule"></div><div id="sk-loader__text"><div id="sk-loader__name">Sagar Kumar</div><div id="sk-loader__meta">Portfolio &middot; &copy; 2026</div></div></div></div>
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <a href="index.html" class="nav__logo">SK<span>.</span></a>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav__brand">
+      <div class="nav__avatar">
+        <img src="img/sagar.JPG" alt="Sagar" onerror="this.style.background='#2563EB'">
+      </div>
+      <span class="nav__name">SAGAR</span>
+    </div>
     <ul class="nav__links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
       <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <div class="nav__right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <!-- Moon icon (shown in dark mode) -->
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-        <!-- Sun icon (shown in light mode) -->
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-      </button>
-      <a href="cv/sagar-kumar-cv.pdf?v=2" download class="nav__cv"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Resume</a>
-      <a href="contact.html" class="nav__cta">Let's Talk →</a>
-      <button class="nav__toggle" id="navToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a href="cv/sagar-kumar-cv.pdf?v=2" download class="nav__resume">Resume ↓</a>
   </nav>
-  <div class="nav__mobile" id="navMobile">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="work.html">Work</a>
-    <a href="contact.html">Contact</a>
-  </div>
 
-  <!-- HERO -->
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
   <section class="hero">
-    <div class="container">
-      <div class="hero__inner">
-        <div class="hero__content">
-          <div class="hero__label reveal">Senior Product Designer · Bengaluru</div>
-          <h1 class="d-xl hero__headline reveal reveal-delay-1">
-            Building digital<br/>products that<br/><span class="text-accent">scale.</span>
-          </h1>
-          <p class="hero__sub reveal reveal-delay-2">
-            9+ years designing enterprise products across Jio, PayU & Infosys. I work at the intersection of AI, design systems, and business complexity — turning hard problems into experiences people actually use.
-          </p>
-          <div class="hero__actions reveal reveal-delay-3">
-            <a href="work.html" class="btn btn--primary">View My Work <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            <a href="about.html" class="btn btn--ghost">About Me</a>
-          </div>
-        </div>
-        <div class="hero__img-wrap reveal reveal-delay-2">
-          <img
-            src="img/sagar.jpg"
-            alt="Sagar Kumar — Senior Product Designer"
-            style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-          />
-          <!-- Fallback shown if image not yet added -->
-          <div style="display:none;width:100%;height:100%;background:linear-gradient(160deg,#141422 0%,#1a0a05 100%);align-items:center;justify-content:center;">
-            <span style="font-family:'Syne',sans-serif;font-size:96px;font-weight:800;color:rgba(255,92,46,0.15);letter-spacing:-0.05em;">SK</span>
-          </div>
-          <div class="hero__img-overlay"></div>
-          <div class="hero__badge">
-            <div class="hero__badge-dot"></div>
-            <div class="hero__badge-text">
-              Open to opportunities
-              <span>Full-time · Bengaluru / Remote</span>
-            </div>
-          </div>
-        </div>
+    <img class="hero__photo" src="img/sagar.JPG" alt="Sagar Kumar" />
+    <div class="hero__photo-fade"></div>
+    <div class="hero__bottom-fade"></div>
+
+    <div class="hero__content">
+      <div class="hero__greeting">👋 Hey, I'm Sagar</div>
+      <h1 class="hero__h1">
+        product<br/>
+        <span class="hero__h1-script">designer</span>
+      </h1>
+      <div class="hero__role">
+        Building AI &amp; enterprise products &nbsp;@&nbsp;
+        <span class="hero__badge">
+          <img src="img/logos/jio.png" alt="Jio" />
+          Jio Platforms
+        </span>
       </div>
+    </div>
+
+    <div class="hero__bar">
+      <div class="hero__bar-item"><span>📍</span>&nbsp;BENGALURU, KA</div>
+      <div class="hero__bar-item">DESIGN &gt; SHIP</div>
     </div>
   </section>
 
-  <!-- LOGOS STRIP -->
-  <div class="logos-strip">
-    <div class="container">
-      <div class="logos-strip__inner">
-        <span class="logos-strip__label">Worked at</span>
-        <div class="logos-strip__sep"></div>
-        <div class="logos-strip__logos">
+  <!-- ============================================================
+       WHAT I DO
+  ============================================================ -->
+  <div class="what-section">
+    <div class="section-label reveal">WHAT I DO</div>
+    <p class="what-text reveal reveal-d1">
+      I turn complex enterprise problems into products people actually
+      <em> use</em><span class="muted"> — design systems that scale, AI that assists, and experiences that quietly do the work.</span>
+    </p>
+  </div>
 
-          <!-- Jio -->
-          <div class="logo-item">
-            <img src="img/logos/jio.png" alt="Jio" style="height:40px;width:40px;object-fit:contain;border-radius:50%;" loading="lazy"/>
-          </div>
+  <div class="cross-sep reveal">+</div>
+  <hr class="hr-sep" />
 
-          <!-- PayU -->
-          <div class="logo-item">
-            <img src="img/logos/payu.png" alt="PayU" style="height:36px;object-fit:contain;" loading="lazy"/>
-          </div>
+  <!-- ============================================================
+       STATS
+  ============================================================ -->
+  <div class="stats-wrap">
+    <div class="reveal">
+      <div class="stat__num"><span class="ctr" data-to="9">0</span>+</div>
+      <div class="stat__title">Years designing</div>
+      <div class="stat__sub">enterprise products, AI interfaces &amp; design systems</div>
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="stat__num"><span class="ctr" data-to="400">0</span>M+</div>
+      <div class="stat__title">Users reached</div>
+      <div class="stat__sub">across products shipped at Jio, PayU &amp; Infosys</div>
+    </div>
+  </div>
 
-          <!-- Infosys -->
-          <div class="logo-item">
-            <img src="img/logos/infosys.png" alt="Infosys" style="height:32px;object-fit:contain;" loading="lazy"/>
-          </div>
+  <div class="cross-sep reveal">+</div>
 
+  <!-- ============================================================
+       SELECTED WORK
+  ============================================================ -->
+  <div class="work-head reveal">
+    <div class="section-label">SELECTED WORK</div>
+    <h2>check out some<br/>of my work</h2>
+    <p>A few products I've helped shape, and the thinking behind them.</p>
+  </div>
+
+  <div class="pcard-wrap">
+
+    <!-- Project 1 — Jio AI Chat -->
+    <a href="project-jio-chat-pattern.html" class="pcard reveal" style="background:linear-gradient(135deg,#080f24 0%,#0d2154 50%,#1040a0 100%);">
+      <div class="pcard__bg"><img src="img/jio_hero_banner.jpg" alt="" /></div>
+      <img class="pcard__mockup" src="img/Cn_banner.jpg" alt="Jio AI Chat mockup" />
+      <div class="pcard__info">
+        <div class="pcard__meta">
+          <div class="pcard__num">01</div>
+          <div class="pcard__year">2023 – 2024</div>
         </div>
+        <div class="pcard__title">Jio AI Chat Pattern — unified conversational UX for 100M+ users</div>
+        <div class="pcard__tags">
+          <span class="pcard__tag">AI / ML</span>
+          <span class="pcard__tag">Design System</span>
+          <span class="pcard__tag">B2C</span>
+        </div>
+        <p class="pcard__desc">Redesigned JioChat's conversational AI — unifying fragmented chat flows into a scalable pattern library. CSAT lifted from 2.6 to 4.2★ in 8 months.</p>
+        <span class="pcard__cta">
+          View Case Study
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Project 2 — PayU -->
+    <a href="project-payu.html" class="pcard reveal" style="background:linear-gradient(135deg,#1a0d00 0%,#5c2800 50%,#8b3e00 100%);">
+      <div class="pcard__bg"><img src="img/payu-partners-hero.jpg" alt="" /></div>
+      <img class="pcard__mockup" src="img/Transaction_DSpayu.jpg" alt="PayU Partners mockup" />
+      <div class="pcard__info">
+        <div class="pcard__meta">
+          <div class="pcard__num">02</div>
+          <div class="pcard__year">2021 – 2022</div>
+        </div>
+        <div class="pcard__title">PayU Partners Platform — 71% engagement lift &amp; 60% less drop-off</div>
+        <div class="pcard__tags">
+          <span class="pcard__tag">FinTech</span>
+          <span class="pcard__tag">B2B</span>
+          <span class="pcard__tag">Web Platform</span>
+        </div>
+        <p class="pcard__desc">Redesigned a 14-step manual partner onboarding into a self-serve portal. Transformed the Super App to drive a 71% engagement lift across 125k+ merchants.</p>
+        <span class="pcard__cta">
+          View Case Study
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Project 3 — Jio Consent -->
+    <a href="project-jio-consent.html" class="pcard reveal" style="background:linear-gradient(135deg,#040a22 0%,#0a1850 50%,#1b3fd8 100%);">
+      <div class="pcard__bg"></div>
+      <div class="pcard__info">
+        <div class="pcard__meta">
+          <div class="pcard__num">03</div>
+          <div class="pcard__year">2024 – 2025</div>
+        </div>
+        <div class="pcard__title">Jio Consent Management — India's first unified DPDP-compliant experience</div>
+        <div class="pcard__tags">
+          <span class="pcard__tag">DPDP Act</span>
+          <span class="pcard__tag">Compliance</span>
+          <span class="pcard__tag">Enterprise</span>
+        </div>
+        <p class="pcard__desc">4 modules, 8+ user flows, across Jio's entire ecosystem. Designed from zero to dev-ready in 6 months while the DPDP Act was still being finalised.</p>
+        <span class="pcard__cta">
+          View Case Study
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </a>
+
+  </div><!-- /.pcard-wrap -->
+
+  <div class="cross-sep reveal">+</div>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <div class="about-wrap">
+    <div class="polaroid reveal">
+      <img src="img/sagar.JPG" alt="Sagar Kumar" />
+    </div>
+    <div class="reveal reveal-d1">
+      <div class="section-label">ABOUT ME</div>
+      <h2 class="about-title">a little about myself</h2>
+      <p class="about-body">
+        My journey into design started with a curiosity for how people interact with technology. After completing my MCA from MIT Pune, I moved through enterprise work at Infosys, fintech at PayU, and now into the scale of Jio Platforms — one of India's largest tech ecosystems.
+      </p>
+      <p class="about-body">
+        I'm drawn to problems where good design genuinely changes outcomes: where a clearer flow reduces support calls, a systematic approach multiplies a team's output, or an AI interaction earns real user trust. RISD, IxDF, and IBM certified. 9+ years in.
+      </p>
+      <div class="signature">Sagar.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EXPERIENCE TIMELINE
+  ============================================================ -->
+  <section class="exp-section">
+    <div class="exp-head">
+      <div class="section-label" style="justify-content:center;">EXPERIENCE</div>
+      <h2 class="exp-title reveal">the journey so far</h2>
+      <p class="exp-sub reveal reveal-d1">From Infosys to PayU to Jio — 9 years building products at scale.</p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Jio (current) -->
+      <div class="tl-item reveal">
+        <div></div>
+        <div class="tl-center">
+          <div class="tl-pill">2021 – Present</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-card tl-card--right">
+          <div class="tl-card__head">
+            <div class="tl-logo"><img src="img/logos/jio.png" alt="Jio" /></div>
+            <div>
+              <div class="tl-role">Senior Product Designer</div>
+              <div class="tl-co">Jio Platforms</div>
+            </div>
+            <div class="tl-loc">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Bengaluru, KA
+            </div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Led <strong>JioChat AI Pattern</strong> — unified conversational UX shipped to 100M+ users, CSAT 2.6→4.2.</li>
+            <li>Designed <strong>Jio Consent Management Platform</strong> — India's first DPDP-compliant system across 4 modules.</li>
+            <li>JioCinema &amp; JioTV features driving <strong>55% reduction</strong> in support calls.</li>
+            <li>Cross-platform <strong>Design System</strong> reducing dev handoff time by 40%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PayU -->
+      <div class="tl-item reveal">
+        <div class="tl-card tl-card--left">
+          <div class="tl-card__head">
+            <div class="tl-logo"><img src="img/logos/payu.png" alt="PayU" /></div>
+            <div>
+              <div class="tl-role">Senior Product Designer</div>
+              <div class="tl-co">PayU</div>
+            </div>
+            <div class="tl-loc">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Bengaluru, KA
+            </div>
+          </div>
+          <ul class="tl-bullets">
+            <li><strong>Partners Platform</strong> — 14-step manual onboarding → self-serve portal, 60% drop-off reduction.</li>
+            <li><strong>Super App</strong> redesign driving 71% user engagement lift across 125k+ merchants.</li>
+            <li>AI chatbot lifting CSAT from <strong>2.6 → 4.2★</strong>.</li>
+          </ul>
+        </div>
+        <div class="tl-center">
+          <div class="tl-pill">2019 – 2021</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div></div>
+      </div>
+
+      <!-- Infosys -->
+      <div class="tl-item reveal">
+        <div></div>
+        <div class="tl-center">
+          <div class="tl-pill">2016 – 2019</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-card tl-card--right">
+          <div class="tl-card__head">
+            <div class="tl-logo"><img src="img/logos/infosys.png" alt="Infosys" /></div>
+            <div>
+              <div class="tl-role">UI / UX Designer</div>
+              <div class="tl-co">Infosys</div>
+            </div>
+            <div class="tl-loc">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Pune, MH
+            </div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Enterprise workflows for <strong>BFSI and healthcare</strong> clients across web and mobile.</li>
+            <li>Built design systems and component libraries for multi-product ecosystems.</li>
+            <li>Collaborated across product, engineering and stakeholders to ship complex B2B products.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /.timeline -->
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <div class="test-section">
+    <div class="section-label reveal">KIND WORDS</div>
+    <div class="test-track reveal reveal-d1">
+      <div class="test-card">
+        <div class="test-avatar" style="background:#4f46e5"><span>SR</span></div>
+        <div class="test-name">Shree Ransubhe</div>
+        <div class="test-role">Colleague · LinkedIn Recommendation</div>
+        <p class="test-quote">"Sagar is extremely hard working and has shown his master skills in understanding the design business. His ability to grasp complex product requirements and turn them into elegant, user-centred experiences is remarkable."</p>
+      </div>
+      <div class="test-card">
+        <div class="test-avatar" style="background:#0891b2"><span>NA</span></div>
+        <div class="test-name">Nikita Aggarwal</div>
+        <div class="test-role">Designer · LinkedIn Recommendation</div>
+        <p class="test-quote">"Great mentor and leader to work with. Superior UI and UX skills. Always ready to share his knowledge. Working under Sagar pushed me to think more critically about design decisions and their downstream impact."</p>
       </div>
     </div>
   </div>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <!-- doubled for seamless loop -->
-      <span class="marquee-item">Design Systems</span>
-      <span class="marquee-item">AI Product Design</span>
-      <span class="marquee-item">UX Research</span>
-      <span class="marquee-item">Figma</span>
-      <span class="marquee-item">Design Leadership</span>
-      <span class="marquee-item">A/B Testing</span>
-      <span class="marquee-item">Advanced Prototyping</span>
-      <span class="marquee-item">Data-Driven Design</span>
-      <span class="marquee-item">Stakeholder Management</span>
-      <span class="marquee-item">Design Systems</span>
-      <span class="marquee-item">AI Product Design</span>
-      <span class="marquee-item">UX Research</span>
-      <span class="marquee-item">Figma</span>
-      <span class="marquee-item">Design Leadership</span>
-      <span class="marquee-item">A/B Testing</span>
-      <span class="marquee-item">Advanced Prototyping</span>
-      <span class="marquee-item">Data-Driven Design</span>
-      <span class="marquee-item">Stakeholder Management</span>
-    </div>
-  </div>
-  <!-- IMPACT STRIP -->
-  <section class="impact-strip">
-    <div class="container">
-      <div class="impact-strip__inner">
-        <div class="impact-stat reveal">
-          <div class="impact-stat__num"><span class="accent">71</span>%</div>
-          <div class="impact-stat__divider"></div>
-          <div class="impact-stat__label">User engagement lift<br/>on PayU Super App</div>
-        </div>
-        <div class="impact-stat reveal reveal-delay-1">
-          <div class="impact-stat__num"><span class="accent">4.2</span></div>
-          <div class="impact-stat__divider"></div>
-          <div class="impact-stat__label">CSAT score achieved<br/>from 2.6 via AI Chatbot</div>
-        </div>
-        <div class="impact-stat reveal reveal-delay-2">
-          <div class="impact-stat__num"><span class="accent">55</span>%</div>
-          <div class="impact-stat__divider"></div>
-          <div class="impact-stat__label">Reduction in support<br/>calls at Jio</div>
-        </div>
-        <div class="impact-stat reveal reveal-delay-3">
-          <div class="impact-stat__num"><span class="accent">9</span>+</div>
-          <div class="impact-stat__divider"></div>
-          <div class="impact-stat__label">Years of product<br/>design experience</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SELECTED WORK -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label reveal">Selected Work</div>
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:20px;flex-wrap:wrap;">
-        <h2 class="d-lg reveal reveal-delay-1">Projects that<br/><span class="text-accent">moved metrics.</span></h2>
-        <a href="work.html" class="link-arrow reveal reveal-delay-2">
-          View all work
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-
-      <div class="work-grid">
-
-        <!-- Card 1 — Featured (full width) -->
-        <a href="project-jio-chat-pattern.html" class="project-card reveal">
-          <div class="project-card__body">
-            <div>
-              <div class="project-card__tags">
-                <span class="tag">B2B · B2C</span>
-                <span class="tag">Design System</span>
-                <span class="tag">User Research</span>
-              </div>
-              <div class="project-card__num">01 / Senior Product Designer</div>
-              <h3 class="project-card__title">Jio AI Chat Pattern</h3>
-              <p class="project-card__desc">Redesigned the conversational AI experience for JioChat — unifying fragmented chat flows, AI interactions, and messaging patterns into a cohesive, scalable design system.</p>
-            </div>
-            <div>
-              <div class="project-card__metric">
-                🚀 Launched to 100M+ users · 8 months end-to-end
-              </div>
-              <div class="project-card__footer">
-                <span class="project-card__role">Role: Lead Designer · Team of 4</span>
-                <span class="link-arrow" style="font-size: 14px;">Case Study
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="project-card__img project-card__img--jio">
-            <div class="project-card__img-label">JIO</div>
-            <div class="project-card__img-overlay"></div>
-            <img src="img/jio_hero_banner.jpg" alt="Jio AI Chat Pattern screenshot">
-          </div>
-        </a>
-
-        <!-- Card 2 -->
-        <a href="project-payu.html" class="project-card project-card--sm reveal reveal-delay-1">
-          <div class="project-card__img project-card__img--payu">
-            <div class="project-card__img-label">PAY</div>
-            <div class="project-card__img-overlay"></div>
-            <img src="img/payu-partners-hero.jpg" alt="PayU Partners Platform screenshot">
-          </div>
-          <div class="project-card__body">
-            <div>
-              <div class="project-card__tags">
-                <span class="tag">Web Platform</span>
-                <span class="tag">B2B · FinTech</span>
-              </div>
-              <div class="project-card__num">02 / Senior Product Designer</div>
-              <h3 class="project-card__title">PayU Partners Platform</h3>
-              <p class="project-card__desc">Redesigned the partner onboarding experience from a 14-step manual process into a self-serve portal.</p>
-            </div>
-            <div>
-              <div class="project-card__metric">↓ 60% onboarding drop-off</div>
-              <div class="project-card__footer">
-                <span class="project-card__role">5 months · B2B</span>
-                <span class="link-arrow" style="font-size: 14px;">View
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Card 3 -->
-        <a href="project-kidr.html" class="project-card project-card--sm reveal reveal-delay-2">
-          <div class="project-card__img project-card__img--kidr">
-            <div class="project-card__img-label">KID</div>
-            <div class="project-card__img-overlay"></div>
-            <img src="img/kiid_banner.jpg" alt="Key Investor Document Repository screenshot">
-          </div>
-          <div class="project-card__body">
-            <div>
-              <div class="project-card__tags">
-                <span class="tag">SaaS · B2B</span>
-                <span class="tag">FinTech</span>
-              </div>
-              <div class="project-card__num">03 / Lead Designer</div>
-              <h3 class="project-card__title">Key Investor Document Repository</h3>
-              <p class="project-card__desc">Centralised, searchable document hub for fund managers and institutional investors.</p>
-            </div>
-            <div>
-              <div class="project-card__metric">↓ 60% document retrieval time</div>
-              <div class="project-card__footer">
-                <span class="project-card__role">4 months · FinTech SaaS</span>
-                <span class="link-arrow" style="font-size: 14px;">View
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CURRENTLY -->
-  <section class="currently-section">
-    <div class="container">
-      <div class="section-label reveal">Currently</div>
-      <div class="currently-grid">
-        <div class="currently-card reveal">
-          <div class="currently-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <div class="currently-card__label">Role</div>
-          <div class="currently-card__value">Senior Product Designer</div>
-          <div class="currently-card__sub">@ Jio Platforms · Bengaluru</div>
-        </div>
-        <div class="currently-card reveal reveal-delay-1">
-          <div class="currently-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
-          <div class="currently-card__label">Exploring</div>
-          <div class="currently-card__value">AI-native interfaces</div>
-          <div class="currently-card__sub">Multi-modal UX &amp; agent flows</div>
-        </div>
-        <div class="currently-card reveal reveal-delay-2">
-          <div class="currently-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-          <div class="currently-card__label">Tinkering with</div>
-          <div class="currently-card__value">Generative design tools</div>
-          <div class="currently-card__sub">Claude, Midjourney, Framer AI</div>
-        </div>
-        <div class="currently-card reveal reveal-delay-3">
-          <div class="currently-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="currently-card__label">Based in</div>
-          <div class="currently-card__value">Bengaluru, India</div>
-          <div class="currently-card__sub">IST · Open to remote</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT TEASER -->
-  <section class="section" style="background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div class="about-teaser">
+  <!-- ============================================================
+       FOOTER / CTA
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <h2 class="footer__headline reveal">
+        lets <em>design</em><br/>incredible work together.
+      </h2>
+      <div class="footer__contact reveal reveal-d1">
         <div>
-          <div class="section-label reveal">About Me</div>
-          <h2 class="d-lg reveal reveal-delay-1">
-            I design at the intersection<br/>of <span class="text-accent">complexity and clarity.</span>
-          </h2>
-          <p class="body-lg reveal reveal-delay-2" style="margin-top:20px;">
-            9 years across Jio, PayU, and Infosys — building AI products, design systems, and enterprise experiences. MCA from MIT Pune. Certified by RISD, IxDF, and IBM. I work at the intersection of research, systems thinking, and design leadership.
-          </p>
-          <div class="about-teaser__tag-row reveal reveal-delay-3">
-            <span class="tag">AI Product Design</span>
-            <span class="tag">Design Systems</span>
-            <span class="tag">Team Leadership</span>
-            <span class="tag">B2B · B2C</span>
-          </div>
-          <div style="margin-top:32px;" class="reveal reveal-delay-4">
-            <a href="about.html" class="link-arrow">
-              Full story
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div class="footer__clabel">Email</div>
+          <a href="mailto:sagar.ayapilla@ril.com" class="footer__cvalue">sagar.ayapilla@ril.com</a>
+        </div>
+        <div>
+          <div class="footer__clabel">Social</div>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank" class="footer__sb" aria-label="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="contact.html" class="footer__sb" aria-label="Contact">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </a>
           </div>
         </div>
-        <div class="about-teaser__philosophy reveal reveal-delay-2">
-          <div class="philosophy-card">
-            <div class="philosophy-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-            <div class="philosophy-card__text">
-              <div class="philosophy-card__title">Systems over screens</div>
-              <div class="philosophy-card__body">I design for scale — components, patterns, and logic that multiply effort across teams.</div>
-            </div>
-          </div>
-          <div class="philosophy-card">
-            <div class="philosophy-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="philosophy-card__text">
-              <div class="philosophy-card__title">Research-first</div>
-              <div class="philosophy-card__body">Every pixel has a reason. User insight is the foundation for every design decision I make.</div>
-            </div>
-          </div>
-          <div class="philosophy-card">
-            <div class="philosophy-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-            <div class="philosophy-card__text">
-              <div class="philosophy-card__title">AI-native thinking</div>
-              <div class="philosophy-card__body">Designing for intelligent interfaces — before they became the industry default.</div>
-            </div>
-          </div>
-          <div class="philosophy-card">
-            <div class="philosophy-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
-            <div class="philosophy-card__text">
-              <div class="philosophy-card__title">Outcome-led</div>
-              <div class="philosophy-card__body">Features exist to move metrics. Good design is measured, not assumed.</div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials-section">
-    <div class="container">
-      <div class="section-label reveal">Kind Words</div>
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;gap:20px;flex-wrap:wrap;margin-top:4px;">
-        <h2 class="d-lg reveal reveal-delay-1">What people<br/><span class="text-accent">say about working</span><br/>with me.</h2>
-      </div>
-
-      <div class="testimonials-wrap reveal reveal-delay-2">
-        <div class="testimonials-slider" id="tSlider">
-
-          <!-- Slide 1 — real LinkedIn recommendation -->
-          <div class="testimonial-slide t-active">
-            <p class="testimonial-quote">
-              <span class="testimonial-quote__mark">"</span>
-              Sagar is extremely hard working and has shown his master skills in understanding the design business in very less time. His ability to grasp complex product requirements and turn them into elegant, user-centred experiences is remarkable.
-              <span class="testimonial-quote__mark testimonial-quote__mark--close">"</span>
-            </p>
-            <div class="testimonial-person">
-              <div class="testimonial-avatar">SR</div>
-              <div>
-                <div class="testimonial-name">Shree Ransubhe</div>
-                <div class="testimonial-role">Colleague · LinkedIn Recommendation</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 2 — real LinkedIn recommendation -->
-          <div class="testimonial-slide">
-            <p class="testimonial-quote">
-              <span class="testimonial-quote__mark">"</span>
-              Great mentor and leader to work with. Superior UI and UX skills. Always ready to share his knowledge and help us learn. Working under Sagar pushed me to think more critically about design decisions and their downstream impact on users.
-              <span class="testimonial-quote__mark testimonial-quote__mark--close">"</span>
-            </p>
-            <div class="testimonial-person">
-              <div class="testimonial-avatar">NA</div>
-              <div>
-                <div class="testimonial-name">Nikita Aggarwal</div>
-                <div class="testimonial-role">Designer · LinkedIn Recommendation</div>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /.testimonials-slider -->
-
-        <div class="testimonials-controls">
-          <button class="t-btn" id="tPrev" aria-label="Previous">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 3L6 8l4 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="t-dots" id="tDots">
-            <button class="t-dot t-dot-active" data-idx="0"></button>
-            <button class="t-dot" data-idx="1"></button>
-          </div>
-          <button class="t-btn" id="tNext" aria-label="Next">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3l4 5-4 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-      </div><!-- /.testimonials-wrap -->
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="section-label reveal" style="justify-content:center;">Let's Build</div>
-      <h2 class="d-lg reveal reveal-delay-1">
-        Have a complex<br/>design challenge?
-      </h2>
-      <p class="reveal reveal-delay-2">I specialise in enterprise UX, design systems, and products that need to work at scale. If that sounds like what you're building — let's talk.</p>
-      <div class="cta-section__actions reveal reveal-delay-3">
-        <a href="contact.html" class="btn btn--primary">Start a Conversation <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></a>
-        <a href="work.html" class="btn btn--ghost">See My Work</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <a href="index.html" class="footer__logo">SK<span>.</span></a>
-        <p class="footer__copy">© 2026 Sagar Kumar. Made with precision in Bengaluru.</p>
-        <div class="footer__links">
+      <div class="footer__bottom">
+        <div class="footer__copy">© 2026 Sagar Kumar. Made with precision in Bengaluru.</div>
+        <div class="footer__fnav">
           <a href="work.html">Work</a>
           <a href="about.html">About</a>
-          <a href="https://www.linkedin.com/in/sagar17-kumar/" target="_blank">LinkedIn</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
     </div>
+    <div class="footer__watermark">SAGAR</div>
   </footer>
-  <script src="js/main.js"></script>
+
+  <!-- ============================================================
+       JS: Nav scroll, Reveal, Counters
+  ============================================================ -->
+  <script>
+    // Nav scroll shadow
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll reveal
+    const revEls = document.querySelectorAll('.reveal');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: 0.10 });
+    revEls.forEach(el => revObs.observe(el));
+
+    // Counter animation
+    const ctrs = document.querySelectorAll('.ctr');
+    const ctrObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting || e.target._done) return;
+        e.target._done = true;
+        const target = +e.target.dataset.to;
+        const dur = 1600;
+        const t0 = performance.now();
+        const tick = now => {
+          const p = Math.min((now - t0) / dur, 1);
+          const v = 1 - Math.pow(1 - p, 3);
+          e.target.textContent = Math.round(v * target);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+    ctrs.forEach(el => ctrObs.observe(el));
+  </script>
+
 </body>
 </html>
